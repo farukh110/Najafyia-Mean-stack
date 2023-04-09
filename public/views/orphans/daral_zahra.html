@@ -1,0 +1,196 @@
+<div class="grop-page container padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="darAlZahraController as daralzehraVM"
+            data-ng-init="daralzehraVM.getAllActiveDarAlZahra();daralzehraVM.amount=0;">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="project-detail-banner orphnsbanner">
+                        <h1>{{'DAR AL ZAHRA' | translate}}</h1>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xs-12">
+                    <p class="text-justify">
+                        {{daralzehraVM.content}}
+                        <!-- {{'Dar al Zahra school was established in the academic year 2008-2009 with the aim of establishing an institution where orphans can receive an exemplary educational experience from primary to higher education. Initially, Dar al Zahra started with only 90 students, and it now provides education to over 850 students. The new campus of Dar al Zahra school has a capacity of occupying at least 1300 students. The school serves the students between the age of 6 to 17 years old, and the workforce contains 70 educators. There are maximum 25 students per classroom which allows educators to serve the academic needs of all students. The list of subjects that are taught in the school includes, Sciences, Information Technology, Mathematics, English language, Arabic language, Arts, History and Islamic studies including Akhlaq and Quranic studies.' | translate}} -->
+                    </p>
+                </div>
+                <div class="col-md-3  col-xs-12 dpnone">
+                    <div class="project-calculator">
+                        <div class="form-group">
+                            <label for="">{{"SUPPORT TYPE" | translate}} </label>
+                            <select class="form-control" ng-model="selectedDz" data-ng-change="selectDzCalculator()"
+                                data-ng-options="dz.programName for dz in daralzahraCat">
+                                <option value="">{{"PLEASE SELECT" | translate}}</option>
+                            </select>
+                        </div>
+
+                        <div id="dzCalculator">
+
+                        </div>
+                        <div id="dummyDiv" ng-show="(selectedDz == null || selectedDz == '') ? true : false">
+                            <div class="form-group ng-scope">
+                                <label>{{"COUNT" | translate}}</label>
+                                <input type="text" value="" placeholder="{{'PLEASE SELECT' | translate}}"
+                                    class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="form-group ng-scope">
+                                <label>{{"AMOUNT" | translate}}</label>
+                                <input type="text" class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="form-group ng-scope">
+                                <label>{{"TOTAL AMOUNT" | translate}}</label>
+                                <input type="text" class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="row ng-scope">
+                                <div class="col-md-6 col-xs-6 text-center no-padding">
+                                    <button class="grop-btn-addcart  grop-btn_submit" ng-disabled="true">
+                                        {{"ADD TO CART" | translate}}
+                                    </button>
+                                </div>
+                                <div class="col-md-6 col-xs-6 text-center no-padding">
+                                    <button class="grop-btn-donate  grop-btn_submit" ng-disabled="true">
+                                        {{"DONATE NOW" | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 customBox no-padding grop-float_left">
+                    <div class="col-md-6 contentdyn" data-ng-repeat="x in daralzehraVM.allDarAlZahra">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="box-title"> {{x.programName}}</div>
+                            </div>
+                            <div class="box-body">
+                                <!-- <img src="uploads/{{x.imageLink}}" class="generalCare-list-image" style="width:100%; height:200px;">
+                            <p style="text-align:justify;height: 50px;">
+                                {{x.programDescription.substring(0,100)}}
+                            </p>
+                            <a ng-href="/#/daralzahradetails/{{x._id}}" class="grop-btn grop-btn_overly grop-btn_submit">View Details</a> -->
+                                <a ng-href="/#/daralzahradetails/{{x.slug}}">
+                                    <img src="uploads/{{x.imageLink}}" class="project-list-image">
+                                </a>
+                                <div class="readmore-aun">
+                                    <p class="content-aun" data-ng-bind-html="x.programDescription.substring(0,168)">
+                                    </p>
+                                    <a ng-href="/#/daralzahradetails/{{x.slug}}"
+                                        data-ng-if='x.programDescription.length >= 178'">{{' READ MORE' | translate }}</a>
+                            </div>
+                            <!-- <div style=" text-align: justify;" hm-read-more hm-html="{{x.programDescription}}"
+                                        hm-link="/#/daralzahradetails/{{x._id}}" hm-limit="300"
+                                        hm-more-text="{{' READ MORE' | translate }}"
+                                        hm-dots-class="{{toggle-dots-grey}}" hm-link-class="readMore">
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 no-padding dpnones">
+                    <div class="project-calculator dpnonesdesk">
+                        <div class="form-group">
+                            <label for="">{{"SUPPORT TYPE" | translate}} </label>
+                            <select class="form-control" ng-model="selectedDz" data-ng-change="selectDzCalculator()"
+                                data-ng-options="dz.programName for dz in daralzahraCat">
+                                <option value="">{{"PLEASE SELECT" | translate}}</option>
+                            </select>
+                        </div>
+
+                        <div id="dzCalculator">
+
+                        </div>
+                        <div id="dummyDiv" ng-show="(selectedDz == null || selectedDz == '') ? true : false">
+                            <div class="form-group ng-scope">
+                                <label>{{"COUNT" | translate}}
+
+
+                                </label>
+                                <input type="text" value="" placeholder="{{'PLEASE SELECT' | translate}}"
+                                    class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="form-group ng-scope">
+                                <label>{{"AMOUNT" | translate}}</label>
+                                <input type="text" class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="form-group ng-scope">
+                                <label>{{"TOTAL AMOUNT" | translate}}</label>
+                                <input type="text" class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="row ng-scope">
+                                <div class="col-md-6 col-xs-6 text-center no-padding">
+                                    <button class="grop-btn-addcart  grop-btn_submit" ng-disabled="true">
+                                        {{"ADD TO CART" | translate}}
+                                    </button>
+                                </div>
+                                <div class="col-md-6 col-xs-6 text-center no-padding">
+                                    <button class="grop-btn-donate  grop-btn_submit" ng-disabled="true">
+                                        {{"DONATE NOW" | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="studentListModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" data-ng-if="
+            (selectedRecurring===false || selectedRecurring) &&
+            (selectedDescend === false || selectedDescend) && 
+            (selectedDonationDuration === false || selectedDonationDuration) && 
+             amountValue && selectedCount" aria-hidden="true">
+                    <div class="modal-dialog txtright" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h2 class="modal-title" id="exampleModalLabel">{{"SELECT STUDENTS" | translate}}</h2>
+                            </div>
+                            <div class="modal-body darachk">
+                                <div class="row">
+                                    <p class="text-muted col-md-8" ng-if="!daralzehraVM.students.length">
+                                        {{'NO STUDENT(S) MATCHES THE GIVEN CRITERIA.' | translate}}</p>
+                                    <div class="col-md-4" ng-repeat="student in daralzehraVM.students">
+                                        <div class="box box-warning">
+                                            <div class="box-header with-border">
+                                                <div class="already-in-cart" ng-if="student.alreadyInCart">
+                                                    {{'Already in Cart' | translate}}</div>
+                                                <input ng-hide="student.alreadyInCart" type="checkbox"
+                                                    checklist-model="user.roles" checklist-value="student._id">
+                                                <h3 class="box-title" title="{{student.studentName}}">
+                                                    {{student.studentName
+                                                                                       | limitTo:10}}{{student.studentName.length>10?'...':''}}</h3>
+                                            </div>
+                                            <div class="box-body" style="background: #2B2B2B;">
+                                                <div class="mainhd">
+                                                    <p style="line-height: 10px;">
+                                                        {{(student.descent === "Syed" ? "Syed" : "Non-Syed").toUpperCase() | translate}}</p>
+
+                                                    <p style="line-height: 10px;">Class-{{student.grade}}</p>
+
+                                                    <p style="line-height: 10px;">{{age(student.dateOfBirth)}}-Years</p>
+                                                </div>
+                                                <img ng-src="{{student.imageLink?'uploads/'+student.imageLink:'/images/default-img.jpg'}}"
+                                                    onerror="this.src='/images/default-img.jpg'"
+                                                    class="generalCare-list-image img-circle pull-right storp" style="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <span class="errorspon"
+                                    ng-show="(user.roles.length > 0 && selectedCount != user.roles.length) ? true : false">
+                                    {{'SELECTED_COUNT_NOT_EQ' | translate}}
+                                </span>
+                                <button type="button" class="grop-btn  grop-btn_submit" data-dismiss="modal">
+                                    {{'SELECT' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

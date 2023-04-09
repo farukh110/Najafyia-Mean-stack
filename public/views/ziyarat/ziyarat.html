@@ -1,0 +1,93 @@
+<div class="grop-page container padding-cnt-no grop-full-width">
+    <div data-ng-controller="ziyaratController as ziyaratVM" data-ng-init="">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="col-md-8 col-xs-offset-2">
+                    <h1>
+                        Register for Ziyarat
+                        <small></small>
+                    </h1>
+                </div>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+                    <div class="col-md-8 col-xs-offset-2">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="box-title"></div>
+                            </div>
+                            <div class="box-body">
+                                <form role="form" class="form-horizontal"
+                                      data-ng-submit="ziyaratVM.registerForZiyarat(ziyaratForm.$valid)"
+                                      name="ziyaratForm">
+                                    <div class="col-md-12">
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <label>Full Name</label>
+                                                <input type="text" class="form-control" required
+                                                       maxlength="150"
+                                                       data-ng-model="ziyaratVM.details.fullName"
+                                                       placeholder="john marshal">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="email" class="form-control" required
+                                                       maxlength="150"
+                                                       data-ng-model="ziyaratVM.details.email"
+                                                       placeholder="john@john.com">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Phone</label>
+                                                <input type="text" class="form-control"
+                                                       data-ng-model="ziyaratVM.details.phone"
+                                                       maxlength="16"
+                                                       placeholder="e.g: +92xxxxxxxxxxxxx">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Date</label>
+                                                <div class="input-group date">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </div>
+                                                    <input type="text" id="txtFromDate" name="durationStart"
+                                                           class="form-control pull-right readonly" maxlength="10"
+                                                           ng-click="setPosFromDate();" required
+                                                           ng-model="ziyaratVM.details.date" placeholder="dd/mm/yyyy"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <select data-ng-model="ziyaratVM.details.country" class="form-control"
+                                                        required
+                                                        data-ng-options="country.name as country.name for country in ziyaratVM.countryList">
+                                                    <option value="">Select Country</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit"
+                                                        class="btn btn-primary">Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- HEADER -->
+
+    </div>
+
+</div>

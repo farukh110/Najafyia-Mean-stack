@@ -1,0 +1,130 @@
+<div class="grop-page padding-cnt-no grop-full-width">
+    <div data-ng-controller="webSettingsController as webVM" data-ng-init="webVM.getWebSettings();">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+                    <div class="col-md-8 col-xs-12 col-md-offset-1">
+                        <section class="content-header nopadding">
+                        <h1>
+                            {{'WEB SETTINGS' | translate}}
+                            <small></small>
+                        </h1>
+                    </section>
+                        <div class="col-md-10 box box-primary">
+                            <div class="box-header">
+                                <div class="box-title"> {{'WEB SETTING DETAILS' | translate}}</div>
+                            </div>
+                            <div class="box-body">
+                                <form role="form" class="form-horizontal" enctype="multipart/form-data"
+                                      data-ng-submit="webVM.saveWebSettings( webSettingsForm.$valid)"
+                                      name="webSettingsForm">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label> {{'WEB TITLE' | translate}}</label>
+                                            <input type="text" class="form-control"
+                                                   data-ng-model="webVM.details.webTitle" placeholder=" {{'WEB TITLE' | translate}}"
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{'COPY RIGHTS' | translate}}</label>
+                                            <input type="text" class="form-control"
+                                                   data-ng-model="webVM.details.copyRights"
+                                                   placeholder="{{'COPY RIGHTS' | translate}}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{'PHONE' | translate}}</label>
+                                            <input type="text" class="form-control"
+                                                   data-ng-model="webVM.details.Phone"
+                                                   placeholder="{{'PHONE' | translate}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{'EMAIL' | translate}}</label>
+                                            <input type="email" class="form-control"
+                                                   data-ng-model="webVM.details.email" placeholder="{{'EMAIL' | translate}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">{{'LOGO' | translate}}</label>
+                                            <input type="file" name="file" file-model="webVM.file"
+                                                   class="image" placeholder="Logo Image"/>
+                                            <img data-ng-if="webVM.imageURL" class="previewImg"
+                                                 ng-src="{{webVM.imageURL}}" alt="logo"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">{{'SOCIAL MEDIA TITLE' | translate}}</label>
+                                            <select class="form-control" id="social" name="social"
+                                                    data-ng-model="webVM.socialMedia.socialMedia">
+                                                <option value="">{{'SELECT PAGE' | translate}}</option>
+                                                <option value="FACEBOOK">Facebook</option>
+                                                <option value="GOOGLE">Google</option>
+                                                <option value="INSTAGRAM">Instagram</option>
+                                                <option value="YOUTUBE">Youtube</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">{{'SOCIAL MEDIA URL' | translate}}</label>
+                                            <input type="text" name="postTitle"
+                                                   data-ng-model="webVM.socialMedia.link"
+                                                   class="form-control"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">&nbsp;</label>
+                                            <button type="button" name="publish"
+                                                    data-ng-model="publish"
+                                                    class="btn btn-default pull-right"
+                                                    ng-click="webVM.addSocialMedia()">
+                                                {{'ADD' | translate}}
+                                            </button>
+                                        </div>
+                                        <div class="form-group overflowTable">
+                                            <table class="table table-responsive">
+                                                <thead>
+                                                <td> {{'Sr.' |translate}}</td>
+                                                <td>{{'SOCIAL MEDIA' | translate}}</td>
+                                                <td>{{'URL' | translate}}</td>
+                                                <td>{{'ACTIONS'| translate}}</td>
+                                                </thead>
+                                                <tr ng-repeat="sm in webVM.socialMediaList">
+                                                    <td>{{$index+1}}</td>
+                                                    <td>{{sm.socialMedia}}</td>
+                                                    <td>{{sm.link}}</td>
+                                                    <td>
+                                                        <button type="button"
+                                                                data-ng-click="webVM.deleteSocialMedia($index);">
+                                                            <i class="fa fa-trash-o"></i></button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-ng-if="webVM.socialMediaList.length<1">
+                                                    <td>{{'ADD SOCIAL MEDIA'| translate}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">{{'SUBMIT'| translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- HEADER -->
+
+    </div>
+
+</div>
+    </div>

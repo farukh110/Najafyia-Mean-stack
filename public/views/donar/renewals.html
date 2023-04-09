@@ -1,0 +1,282 @@
+<div data-ng-controller="donarDashboardController as donarVM"
+    data-ng-init="donarVM.getExpiringSponsorships(); donarVM.getTheCountforDonation()">
+
+    <div class="col-xs-12 col-md-10 col-lg-10 ">
+        <!-- <div class="dashboardCounterBoxes ">
+            <div class="small-box boxhght boxPurple">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$
+                        {{donarVM.totalOfAutoRenewUSD + donarVM.totalOfAutoRenewDonationUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€
+                        {{donarVM.totalOfAutoRenewEUR + donarVM.totalOfAutoRenewDonationEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£
+                        {{donarVM.totalOfAutoRenewGBP + donarVM.totalOfAutoRenewDonationGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'RENEWALS' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="renewals"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="renewals"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxPink">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfRecurringUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfRecurringEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfRecurringGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'PERIODIC' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="donarRecurring"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="donarRecurring"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div> -->
+        <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxNavyBlue">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfOrphanUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfOrphanEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfOrphanGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'BASIC CARE' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="generalCareSponsorship"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="generalCareSponsorship"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxYellow">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfDazUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfDazEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfDazGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'DAZ SCHOOL' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="DAZSchool"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="DAZSchool"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxOrange">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfdonationUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfdonationEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfdonationGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'TOTAL' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="donarDashboard"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="donarDashboard"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="background:white;">
+        <div class="content">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-lg-10 ">
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header no-padding">
+                        <h1>{{ 'YOUR RENEWALS' | translate}}</h1>
+                    </section>
+                    <br />
+                    <!-- Main content -->
+                    <div class="container-fluid">
+                        <div class="row" data-ng-hide="donarVM.renewalsList.length>0">
+                            <div class="col-md-12 col-xs-12 no-padding">
+                                <h4>{{ 'Expiring Sponsorships' | translate}}</h4>
+                            </div>
+                            <div class="col-md-12  col-xs-12 no-padding overflowTable">
+                                <table class="table table-hover" style="max-height: 450px; overflow-y: auto"
+                                    data-ng-if="donarVM.expiringSponsorshipList.length">
+                                    <thead style="background-color: #f0c84c;">
+                                        <td class="tablecntr">{{ 'SR NO' | translate}}</td>
+                                        <td class="tablecntr">{{ 'DESCRIPTION' | translate}}</td>
+                                        <td class="tablecntr">{{ 'Details (if any)' | translate}}</td>
+                                        <td class="tablecntr">{{ 'END DATE' | translate}}</td>
+                                        <td class="tablecntr">{{ 'Auto Renewal Next Payment' | translate}}</td>
+                                        <td class="tablecntr">{{ 'AMOUNT' | translate}}</td>
+                                    </thead>
+                                    <tr
+                                        data-ng-repeat="sponsorship in donarVM.expiringSponsorshipList | limitTo: donarVM.recordsLimit | filterBy: ['program[0].programName']: donarVM.programType">
+                                        <td class="tablecntr">{{$index+1}}</td>
+                                        <td class="tablecntr">{{sponsorship.description}}</td>
+                                        <td class="tablecntr">{{sponsorship.details || '--'}}</td>
+                                        <td class="tablecntr">{{sponsorship.endDate | date:"dd-MM-yyyy"}}</td>
+                                        <td class="tablecntr">{{sponsorship.nextPayment | date:"dd-MM-yyyy"}}</td>
+                                        <td data-ng-if="donarVM.userLanguage === 'ARB'"
+                                            style="width:100px;text-align: left; position: relative;">
+                                            <span style="position: absolute; left: 00px;   bottom: 10px;">
+                                                {{sponsorship.amount | number: 2}}
+                                                <span
+                                                    style="margin-left:10px;margin-right: 5px;">{{sponsorship.currency}}</span>
+                                            </span>
+                                        </td>
+                                        <td data-ng-if="donarVM.userLanguage !== 'ARB'"
+                                            style="width:100px;text-align: left; position: relative;">
+                                            <span style="position: absolute; left: 10px;   bottom: 10px;">
+                                                <span
+                                                    style="margin-left:10px;margin-right: 5px;">{{sponsorship.currency}}</span>
+                                                {{sponsorship.amount | number: 2}}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr  style="color: red" data-ng-if="!donarVM.expiringSponsorshipList.length">
+                                <td class="text-center" colspan="6">{{ 'No Renewal Due' | translate}}</td>
+                            </tr> -->
+                                </table>
+                                <!-- Blank Table Start -->
+
+                                <table class="table table-hover" data-ng-if="!donarVM.expiringSponsorshipList.length">
+                                    <thead style="background-color: #f0c84c;">
+                                        <td class="tablecntr">{{ 'S.NO' | translate}}</td>
+                                        <td class="tablecntr">{{ 'DESCRIPTION' | translate}}</td>
+                                        <td class="tablecntr">{{ 'Details (if any)' | translate}}</td>
+                                        <td class="tablecntr">{{ 'END DATE' | translate}}</td>
+                                        <td class="tablecntr">{{ 'Auto Renewal Next Payment' | translate}}</td>
+                                        <td class="tablecntr">{{ 'AMOUNT' | translate}}</td>
+                                    </thead>
+                                    <tr>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                    </tr>
+                                </table>
+
+                                <!-- Blank Table Close -->
+                                <a href="javascript:void(0)" class="alignright loadmore "
+                                    data-ng-if="donarVM.recordsLimit < donarVM.expiringSponsorshipList.length"
+                                    data-ng-click="donarVM.loadMore();"><img src="images/3.gif" width="15"
+                                        height="15">&nbsp;&nbsp;{{ 'LOAD MORE' | translate}}</a>
+                            </div>
+                            <!-- 
+                    <div class="col-md-12">
+                        <div class="col-md-12 no-padding text-left txtright">
+                            <p class="text-blue"> {{ 'see all of my expiring services' | translate}}</p>
+                        </div>
+                        <div class="col-md-4 no-padding text-right">
+                            <div class="form-group" data-ng-hide="donarVM.expiringSponsorshipList.length<1">
+                                <button type="submit" class="btn grop-btn btn-primary"
+                                        data-ng-click="donarVM.addRenewals()">{{ 'Add Renew' | translate}}
+                                </button>
+                            </div>
+                        </div>
+
+                    </div> -->
+                        </div>
+
+                        <div class="row" data-ng-show="donarVM.renewalsList.length>0">
+                            <div class="col-md-12">
+                                <h4>{{ 'Renew Sponsorships' | translate}}</h4>
+                            </div>
+                            <div class="col-md-12">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <td>{{ 'S.NO' | translate}}</td>
+                                        <td>{{ 'CATEGORY' | translate}}</td>
+                                        <td>{{ 'NAME' | translate}}</td>
+                                        <td>{{ 'AUTO RENEWAL' | translate}}</td>
+                                        <td>{{ 'PAYMENT TYPE' | translate}}</td>
+                                        <td>{{ 'DURATION' | translate}}</td>
+                                        <td>{{ 'Price' | translate}}</td>
+                                    </thead>
+                                    <tr data-ng-repeat="renew in donarVM.renewalsList">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{renew.donationdetails[0].program[0].programName || '----'}}</td>
+                                        <td>
+                                            <span data-ng-if="renew.orphans">{{renew.orphans[0].orphanName}}</span>
+                                            <span data-ng-if="renew.students">{{renew.students[0].studentName}}</span>
+                                        </td>
+                                        <td><input type="checkbox" data-ng-model="renew.autoRenew"></td>
+                                        <td>
+                                            <select class='form-control' ng-model='renew.donationdetails[0].isRecurring'
+                                                data-ng-disabled="true">
+                                                <option value=''>{{ 'PLEASE SELECT' | translate}}</option>
+                                                <option ng-value='false'>{{ 'ONE TIME' | translate}}</option>
+                                                <option ng-value='true'>{{ 'RECURRING' | translate}}</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class='form-control' ng-model='donationDuration'
+                                                data-ng-change="donarVM.setEndDate(renew,donationDuration);"
+                                                ng-options='x.noOfMonths as x.donationDurationName for x in  donarVM.donationDurations'>
+                                                <option value='0'>{{ 'PLEASE SELECT' | translate}}</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            {{renew.sponsorshipAmount | number:3}}</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="col-md-12 text-right">
+                                <h2>Total: <span class="text-bold">{{donarVM.totalAmount | number:3}}</span></h2>
+                                <div class="form-group">
+                                    <button type="button" class="btn grop-btn btn-default"
+                                        data-ng-click="donarVM.renewalsList=[]">{{ 'CANCEL' | translate}}
+                                    </button>
+                                    <button type="submit" class="btn grop-btn btn-primary"
+                                        data-ng-click="donarVM.renewSponsorships()">{{ 'RENEW' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Your Page Content Here -->
+                </div>
+            </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- HEADER -->
+    </div>

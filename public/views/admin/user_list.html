@@ -1,0 +1,96 @@
+<style>
+    .userList {
+        margin-top: 20px;
+    }
+
+    .userList .table-responsive {
+        overflow-y: auto;
+        height: 530px;
+    }
+
+    .userList table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .userList table td,
+    .userList table th {
+        /* border: 1px solid #dddddd; */
+        text-align: center !important;
+        padding: 8px;
+    }
+
+    .userList table tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+
+<div class="row userList" ng-controller="userController as vm" ng-init="vm.getUsers()">
+    <div class="col-md-10">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <input type="text" class="form-control" placeholder="{{'SEARCH' | translate}}" ng-model="userName">
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>{{'FULLNAME' | translate}}</th>
+                        <th>{{'USERNAME' | translate}}</th>
+                        <th>{{'EMAIL' | translate}}</th>
+                        <th>{{'MOBILE NO' | translate}}</th>
+                        <th>{{'GENDER' | translate}}</th>
+                        <th>{{'ROLE' | translate}}</th>
+                        <th>{{'ACTION' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="obj in vm.Users | filter:userName track by $index">
+                        <td>
+                            {{$index+1}}
+                        </td>
+                        <td>
+                            {{obj.fullName}}
+                        </td>
+                        <td>
+                            {{obj.userName}}
+                        </td>
+                        <td>
+                            {{obj.email}}
+                        </td>
+                        <td>
+                            {{obj.mobile || '--'}}
+                        </td>
+                        <td>
+                            {{(obj.gender  || '--').toUpperCase() | translate}}
+                        </td>
+                        <td>
+                            <span
+                                ng-repeat="userRoles in obj.role">{{userRoles | translate}}{{$last ? '' : ', '}}</span>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                ng-if="(obj.role[0] !== 'super admin' && obj.role != 'donor' && obj.role[0] !== 'admin') || (obj.role[0] == 'admin' && (userDetail.role.length && userDetail.role.indexOf('super admin') >=0) )"
+                                ng-click="vm.editUser(obj._id)">{{'EDIT' | translate}}</button>
+                            <button class="btn btn-sm btn-danger"
+                                ng-if="(obj.role[0] == 'admin' && (userDetail.role.length && userDetail.role.indexOf('super admin') >=0)) || obj.role[0] !== 'admin' && obj.role[0] !== 'super admin' && (userDetail.role.length && userDetail.role.indexOf('super admin') >=0) || ((obj.role[0] !== 'admin' && obj.role[0] !== 'super admin') && (userDetail.role.length && userDetail.role.indexOf('admin') >=0))"
+                                ng-click="vm.deleteUser(obj._id, $index)">{{'DELETE' | translate}}</button>
+                        </td>
+                    </tr>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="text-center" ng-if="!(vm.Users | filter : userName).length">
+                <strong>{{'NO USER' | translate}}</strong>
+            </p>
+        </div>
+    </div>
+
+</div>

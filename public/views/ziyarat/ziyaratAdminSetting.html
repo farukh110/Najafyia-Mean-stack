@@ -1,0 +1,180 @@
+<div data-ng-controller="ziyaratController as ziyaratVM" data-ng-init="ziyaratVM.getZiyaratSetting();">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <!--<section class="content-header">-->
+
+
+            <!--</section>-->
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+                    <div class="col-md-11 col-xs-12 col-md-offset-1">
+                        <div class="col-md-3">
+                            <h4>{{ 'lbl_Ziyarat_Ziyarat_Setting' | translate }}</h4>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-10 col-xs-12 col-md-offset-1">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="box-title">
+                                </div>
+                            </div>
+                            <div class="box-body overflowTable">
+                                <form role="form" name="ziyaratSettingForm"
+                                    data-ng-submit="ziyaratVM.saveZiyaratSetting(ziyaratSettingForm.$valid)">
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+
+                                            <label for="chk_ziyarat_notify">
+                                                {{ 'lbl_Ziyarat_Send_Notification_to_Zaireen' | translate }}
+                                            </label>
+                                        </div>
+                                        <div class="col-md-8 ">
+                                            <input type="checkbox" id="chk_ziyarat_notify" value=""
+                                                data-ng-model="ziyaratVM.ziyaratSetting.ziyaratProcessAutomate">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4 "><label>
+                                                {{ 'lbl_Ziyarat_Admin_Emails' | translate }}
+                                                <span title="{{'tt_ziyarat_admin_email_info' | translate}}"
+                                                    style="font-size:12px;"
+                                                    class=" hidden-xs showopacity glyphicon glyphicon-info-sign"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="col-md-8 ">
+                                            <input type="text" class="form-control pull-right"
+                                                placeholder="{{ 'ph_Ziyarat_Admin_Email' | translate }}"
+                                                data-ng-model="ziyaratVM.ziyaratSetting.adminEmails" autocomplete="off"
+                                                required oninvalid="getValidate(this)"
+                                                title="{{ 'tt_Ziyarat_Admin_Email' | translate }}"
+                                                oninput="this.setCustomValidity('')" />
+                                        </div>
+
+
+
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-11 ">
+                                            <h4>{{ 'lbl_consultant_heading'| translate }} <span
+                                                    title="{{ 'tt_ziyarat_consultant_heading' | translate }}"
+                                                    style="font-size:14px;"
+                                                    class=" hidden-xs showopacity glyphicon glyphicon-info-sign"></span>
+                                            </h4>
+                                            <br />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-responsive">
+                                                <thead>
+                                                    <td> {{'Sr.' |translate}}</td>
+                                                    <td> {{'NAME'| translate}}*</td>
+                                                    <td> {{'EMAIL' | translate}}*</td>
+                                                    <!-- <td> {{'QUERY STRING' | translate}}</td> -->
+                                                    <td> {{'PHONE' | translate}}</td>
+                                                    <td> {{'ACTIONS' | translate}}</td>
+
+                                                </thead>
+                                                <tr ng-repeat="ziyarat in ziyaratVM.ziyaratSetting.consultants ">
+                                                    <td>{{$index+1}}</td>
+                                                    <td>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="{{ 'NAME' | translate }}"
+                                                            data-ng-model="ziyarat.name" autocomplete="off" required
+                                                            oninvalid="getValidate(this)"
+                                                            title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                            oninput="this.setCustomValidity('')" />
+                                                        <!-- {{ziyarat.name}} -->
+                                                    </td>
+                                                    <td>
+                                                        <input type="email" name="email" class="form-control"
+                                                            placeholder="{{ 'EMAIL' | translate }}"
+                                                            data-ng-model="ziyarat.email" autocomplete="off" required
+                                                            oninvalid="getValidate(this)"
+                                                            title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                            oninput="this.setCustomValidity('')" />
+                                                        <!-- {{ziyarat.email}} -->
+                                                    </td>
+                                                    <!-- <td>
+                                            <input type="text" class="form-control"
+                                            placeholder="{{ 'QueryString' | translate }}" 
+                                            data-ng-model="ziyarat.queryString"  autocomplete="off"  />
+                                            
+                                        </td> -->
+                                                    <td>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="{{ 'PHONE' | translate }}"
+                                                            data-ng-model="ziyarat.phone" />
+                                                        <!-- {{ziyarat.phone || '--'}} -->
+                                                    </td>
+
+                                                    <td>
+                                                        <button title="{{ 'DELETE' | translate }}"
+                                                            data-ng-click="ziyaratVM.deleteConsultantofThisRow($index)">
+                                                            <i class="fa fa-trash"></i> </button>
+                                                    </td>
+
+
+
+                                                </tr>
+                                                <tr data-ng-if="ziyaratVM.ziyaratSetting.consultants.length < 1">
+                                                    <td colspan="5">
+                                                        {{'Record not found' | translate}}
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <button type="submit" class="btn btn-primary">{{
+                                                'btn_text_Save_Settings' | translate }}</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button title="Add" type="button" data-ng-click="ziyaratVM.AddNewRow()" class="pull-right">
+                                                <i class="fa fa-plus"></i>{{ 'btn_text_Add_Consultant' | translate }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="box-footer">
+
+                            </div>
+                        </div>
+                        <script>
+                            jQuery('.form-control').removeAttr('title');
+                            //for login and signup module 
+                            let lang = localStorage.getItem('lang');
+
+                            function getValidate(input) {
+                                if (input.value == '' && lang == 'ARB') {
+                                    input.setCustomValidity("يرجى ملء الحقول الفارغة");
+                                } else if (input.value == '' && lang == 'FRN') {
+                                    input.setCustomValidity("S'il vous plaît remplir le champ manquant");
+                                } else {
+                                    input.setCustomValidity("Please fill out this field.");
+                                }
+                            }
+
+
+                            // jQuery(document).ready(function () {
+
+                            // });
+                        </script>
+                    </div>

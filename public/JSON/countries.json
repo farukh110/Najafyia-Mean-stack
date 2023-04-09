@@ -1,0 +1,1970 @@
+[
+  {
+    "name": "Afghanistan",
+    "alpha2": "AF",
+    "alpha3": "AFG",
+    "dialCode": "+93",
+    "region": "Asia",
+    "subRegion": "Southern Asia"
+  },
+  {
+    "name": "Åland Islands",
+    "alpha2": "AX",
+    "alpha3": "ALA",
+    "dialCode": "+358",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "Albania",
+    "alpha2": "AL",
+    "alpha3": "ALB",
+    "dialCode": "+355",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Algeria",
+    "alpha2": "DZ",
+    "alpha3": "DZA",
+    "dialCode": "+213",
+    "region": "Africa",
+    "subRegion": "Northern Africa"
+  },
+  {
+    "name": "American Samoa",
+    "alpha2": "AS",
+    "alpha3": "ASM",
+    "dialCode": "+1684",
+    "region": "Oceania",
+    "subRegion": "Polynesia"
+  },
+  {
+    "name": "Andorra",
+    "alpha2": "AD",
+    "alpha3": "AND",
+    "dialCode": "+376",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Angola",
+    "alpha2": "AO",
+    "alpha3": "AGO",
+    "dialCode": "+244",
+    "region": "Africa",
+    "subRegion": "Middle Africa"
+  },
+  {
+    "name": "Anguilla",
+    "alpha2": "AI",
+    "alpha3": "AIA",
+    "dialCode": "+1264",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Antarctica",
+    "alpha2": "AQ",
+    "alpha3": "ATA",
+    "dialCode": "+672",
+    "region": null,
+    "subRegion": null
+  },
+  {
+    "name": "Antigua and Barbuda",
+    "alpha2": "AG",
+    "alpha3": "ATG",
+    "dialCode": "+1268",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Argentina",
+    "alpha2": "AR",
+    "alpha3": "ARG",
+    "dialCode": "+54",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "Armenia",
+    "alpha2": "AM",
+    "alpha3": "ARM",
+    "dialCode": "+374",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Aruba",
+    "alpha2": "AW",
+    "alpha3": "ABW",
+    "dialCode": "+297",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Australia",
+    "alpha2": "AU",
+    "alpha3": "AUS",
+    "dialCode": "+61",
+    "region": "Oceania",
+    "subRegion": "Australia and New Zealand"
+  },
+  {
+    "name": "Austria",
+    "alpha2": "AT",
+    "alpha3": "AUT",
+    "dialCode": "+43",
+    "region": "Europe",
+    "subRegion": "Western Europe"
+  },
+  {
+    "name": "Azerbaijan",
+    "alpha2": "AZ",
+    "alpha3": "AZE",
+    "dialCode": "+994",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Bahamas",
+    "alpha2": "BS",
+    "alpha3": "BHS",
+    "dialCode": "+1242",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Bahrain",
+    "alpha2": "BH",
+    "alpha3": "BHR",
+    "dialCode": "+973",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Bangladesh",
+    "alpha2": "BD",
+    "alpha3": "BGD",
+    "dialCode": "+880",
+    "region": "Asia",
+    "subRegion": "Southern Asia"
+  },
+  {
+    "name": "Barbados",
+    "alpha2": "BB",
+    "alpha3": "BRB",
+    "dialCode": "+1246",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Belarus",
+    "alpha2": "BY",
+    "alpha3": "BLR",
+    "dialCode": "+375",
+    "region": "Europe",
+    "subRegion": "Eastern Europe"
+  },
+  {
+    "name": "Belgium",
+    "alpha2": "BE",
+    "alpha3": "BEL",
+    "dialCode": "+32",
+    "region": "Europe",
+    "subRegion": "Western Europe"
+  },
+  {
+    "name": "Belize",
+    "alpha2": "BZ",
+    "alpha3": "BLZ",
+    "dialCode": "+501",
+    "region": "Americas",
+    "subRegion": "Central America"
+  },
+  {
+    "name": "Benin",
+    "alpha2": "BJ",
+    "alpha3": "BEN",
+    "dialCode": "+229",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Bermuda",
+    "alpha2": "BM",
+    "alpha3": "BMU",
+    "dialCode": "+1441",
+    "region": "Americas",
+    "subRegion": "Northern America"
+  },
+  {
+    "name": "Bhutan",
+    "alpha2": "BT",
+    "alpha3": "BTN",
+    "dialCode": "+975",
+    "region": "Asia",
+    "subRegion": "Southern Asia"
+  },
+  {
+    "name": "Bolivia (Plurinational State of)",
+    "alpha2": "BO",
+    "alpha3": "BOL",
+    "dialCode": "+591",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "Bonaire, Sint Eustatius and Saba",
+    "alpha2": "BQ",
+    "alpha3": "BES",
+    "dialCode": "+387",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Bosnia and Herzegovina",
+    "alpha2": "BA",
+    "alpha3": "BIH",
+    "dialCode": "+267",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Botswana",
+    "alpha2": "BW",
+    "alpha3": "BWA",
+    "dialCode": "+47",
+    "region": "Africa",
+    "subRegion": "Southern Africa"
+  },
+  {
+    "name": "Bouvet Island",
+    "alpha2": "BV",
+    "alpha3": "BVT",
+    "dialCode": "+55",
+    "region": null,
+    "subRegion": null
+  },
+  {
+    "name": "Brazil",
+    "alpha2": "BR",
+    "alpha3": "BRA",
+    "dialCode": "+246",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "British Indian Ocean Territory",
+    "alpha2": "IO",
+    "alpha3": "IOT",
+    "dialCode": "+673",
+    "region": null,
+    "subRegion": null
+  },
+  {
+    "name": "Brunei Darussalam",
+    "alpha2": "BN",
+    "alpha3": "BRN",
+    "dialCode": "+359",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia"
+  },
+  {
+    "name": "Bulgaria",
+    "alpha2": "BG",
+    "alpha3": "BGR",
+    "dialCode": "+226",
+    "region": "Europe",
+    "subRegion": "Eastern Europe"
+  },
+  {
+    "name": "Burkina Faso",
+    "alpha2": "BF",
+    "alpha3": "BFA",
+    "dialCode": "+257",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Burundi",
+    "alpha2": "BI",
+    "alpha3": "BDI",
+    "dialCode": "+855",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Cambodia",
+    "alpha2": "KH",
+    "alpha3": "KHM",
+    "dialCode": "+237",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia"
+  },
+  {
+    "name": "Cameroon",
+    "alpha2": "CM",
+    "alpha3": "CMR",
+    "dialCode": "+1",
+    "region": "Africa",
+    "subRegion": "Middle Africa"
+  },
+  {
+    "name": "Canada",
+    "alpha2": "CA",
+    "alpha3": "CAN",
+    "dialCode": "+238",
+    "region": "Americas",
+    "subRegion": "Northern America"
+  },
+  {
+    "name": "Cabo Verde",
+    "alpha2": "CV",
+    "alpha3": "CPV",
+    "dialCode": "+ 345",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Cayman Islands",
+    "alpha2": "KY",
+    "alpha3": "CYM",
+    "dialCode": "+236",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Central African Republic",
+    "alpha2": "CF",
+    "alpha3": "CAF",
+    "dialCode": "+235",
+    "region": "Africa",
+    "subRegion": "Middle Africa"
+  },
+  {
+    "name": "Chad",
+    "alpha2": "TD",
+    "alpha3": "TCD",
+    "dialCode": "+56",
+    "region": "Africa",
+    "subRegion": "Middle Africa"
+  },
+  {
+    "name": "Chile",
+    "alpha2": "CL",
+    "alpha3": "CHL",
+    "dialCode": "+86",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "China",
+    "alpha2": "CN",
+    "alpha3": "CHN",
+    "dialCode": "+61",
+    "region": "Asia",
+    "subRegion": "Eastern Asia"
+  },
+  {
+    "name": "Christmas Island",
+    "alpha2": "CX",
+    "alpha3": "CXR",
+    "dialCode": "+61",
+    "region": null,
+    "subRegion": null
+  },
+  {
+    "name": "Cocos (Keeling) Islands",
+    "alpha2": "CC",
+    "alpha3": "CCK",
+    "dialCode": "+57",
+    "region": null,
+    "subRegion": null
+  },
+  {
+    "name": "Colombia",
+    "alpha2": "CO",
+    "alpha3": "COL",
+    "dialCode": "+269",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "Comoros",
+    "alpha2": "KM",
+    "alpha3": "COM",
+    "dialCode": "+242",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Congo",
+    "alpha2": "CG",
+    "alpha3": "COG",
+    "dialCode": "+243",
+    "region": "Africa",
+    "subRegion": "Middle Africa"
+  },
+  {
+    "name": "Congo (Democratic Republic of the)",
+    "alpha2": "CD",
+    "alpha3": "COD",
+    "dialCode": "+682",
+    "region": "Africa",
+    "subRegion": "Middle Africa"
+  },
+  {
+    "name": "Cook Islands",
+    "alpha2": "CK",
+    "alpha3": "COK",
+    "dialCode": "+506",
+    "region": "Oceania",
+    "subRegion": "Polynesia"
+  },
+  {
+    "name": "Costa Rica",
+    "alpha2": "CR",
+    "alpha3": "CRI",
+    "dialCode": "+225",
+    "region": "Americas",
+    "subRegion": "Central America"
+  },
+  {
+    "name": "Côte d'Ivoire",
+    "alpha2": "CI",
+    "alpha3": "CIV",
+    "dialCode": "+385",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Croatia",
+    "alpha2": "HR",
+    "alpha3": "HRV",
+    "dialCode": "+53",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Cuba",
+    "alpha2": "CU",
+    "alpha3": "CUB",
+    "dialCode": "+357",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Curaçao",
+    "alpha2": "CW",
+    "alpha3": "CUW",
+    "dialCode": "+420",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Cyprus",
+    "alpha2": "CY",
+    "alpha3": "CYP",
+    "dialCode": "+45",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Czech Republic",
+    "alpha2": "CZ",
+    "alpha3": "CZE",
+    "dialCode": "+253",
+    "region": "Europe",
+    "subRegion": "Eastern Europe"
+  },
+  {
+    "name": "Denmark",
+    "alpha2": "DK",
+    "alpha3": "DNK",
+    "dialCode": "+1767",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "Djibouti",
+    "alpha2": "DJ",
+    "alpha3": "DJI",
+    "dialCode": "+1849",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Dominica",
+    "alpha2": "DM",
+    "alpha3": "DMA",
+    "dialCode": "+593",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Dominican Republic",
+    "alpha2": "DO",
+    "alpha3": "DOM",
+    "dialCode": "+20",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Ecuador",
+    "alpha2": "EC",
+    "alpha3": "ECU",
+    "dialCode": "+503",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "Egypt",
+    "alpha2": "EG",
+    "alpha3": "EGY",
+    "dialCode": "+240",
+    "region": "Africa",
+    "subRegion": "Northern Africa"
+  },
+  {
+    "name": "El Salvador",
+    "alpha2": "SV",
+    "alpha3": "SLV",
+    "dialCode": "+291",
+    "region": "Americas",
+    "subRegion": "Central America"
+  },
+  {
+    "name": "Equatorial Guinea",
+    "alpha2": "GQ",
+    "alpha3": "GNQ",
+    "dialCode": "+372",
+    "region": "Africa",
+    "subRegion": "Middle Africa"
+  },
+  {
+    "name": "Eritrea",
+    "alpha2": "ER",
+    "alpha3": "ERI",
+    "dialCode": "+251",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Estonia",
+    "alpha2": "EE",
+    "alpha3": "EST",
+    "dialCode": "+500",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "Ethiopia",
+    "alpha2": "ET",
+    "alpha3": "ETH",
+    "dialCode": "+298",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Falkland Islands (Malvinas)",
+    "alpha2": "FK",
+    "alpha3": "FLK",
+    "dialCode": "+679",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "Faroe Islands",
+    "alpha2": "FO",
+    "alpha3": "FRO",
+    "dialCode": "+358",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "Fiji",
+    "alpha2": "FJ",
+    "alpha3": "FJI",
+    "dialCode": "+33",
+    "region": "Oceania",
+    "subRegion": "Melanesia"
+  },
+  {
+    "name": "Finland",
+    "alpha2": "FI",
+    "alpha3": "FIN",
+    "dialCode": "+594",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "France",
+    "alpha2": "FR",
+    "alpha3": "FRA",
+    "dialCode": "+689",
+    "region": "Europe",
+    "subRegion": "Western Europe"
+  },
+  {
+    "name": "French Guiana",
+    "alpha2": "GF",
+    "alpha3": "GUF",
+    "dialCode": "+262",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "French Polynesia",
+    "alpha2": "PF",
+    "alpha3": "PYF",
+    "dialCode": "+241",
+    "region": "Oceania",
+    "subRegion": "Polynesia"
+  },
+  {
+    "name": "French Southern Territories",
+    "alpha2": "TF",
+    "alpha3": "ATF",
+    "dialCode": "+220",
+    "region": null,
+    "subRegion": null
+  },
+  {
+    "name": "Gabon",
+    "alpha2": "GA",
+    "alpha3": "GAB",
+    "dialCode": "+995",
+    "region": "Africa",
+    "subRegion": "Middle Africa"
+  },
+  {
+    "name": "Gambia",
+    "alpha2": "GM",
+    "alpha3": "GMB",
+    "dialCode": "+49",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Georgia",
+    "alpha2": "GE",
+    "alpha3": "GEO",
+    "dialCode": "+233",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Germany",
+    "alpha2": "DE",
+    "alpha3": "DEU",
+    "dialCode": "+350",
+    "region": "Europe",
+    "subRegion": "Western Europe"
+  },
+  {
+    "name": "Ghana",
+    "alpha2": "GH",
+    "alpha3": "GHA",
+    "dialCode": "+30",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Gibraltar",
+    "alpha2": "GI",
+    "alpha3": "GIB",
+    "dialCode": "+299",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Greece",
+    "alpha2": "GR",
+    "alpha3": "GRC",
+    "dialCode": "+1473",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Greenland",
+    "alpha2": "GL",
+    "alpha3": "GRL",
+    "dialCode": "+590",
+    "region": "Americas",
+    "subRegion": "Northern America"
+  },
+  {
+    "name": "Grenada",
+    "alpha2": "GD",
+    "alpha3": "GRD",
+    "dialCode": "+1671",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Guadeloupe",
+    "alpha2": "GP",
+    "alpha3": "GLP",
+    "dialCode": "+502",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Guam",
+    "alpha2": "GU",
+    "alpha3": "GUM",
+    "dialCode": "+44",
+    "region": "Oceania",
+    "subRegion": "Micronesia"
+  },
+  {
+    "name": "Guatemala",
+    "alpha2": "GT",
+    "alpha3": "GTM",
+    "dialCode": "+224",
+    "region": "Americas",
+    "subRegion": "Central America"
+  },
+  {
+    "name": "Guernsey",
+    "alpha2": "GG",
+    "alpha3": "GGY",
+    "dialCode": "+245",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "Guinea",
+    "alpha2": "GN",
+    "alpha3": "GIN",
+    "dialCode": "+592",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Guinea-Bissau",
+    "alpha2": "GW",
+    "alpha3": "GNB",
+    "dialCode": "+509",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Guyana",
+    "alpha2": "GY",
+    "alpha3": "GUY",
+    "dialCode": "+0",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "Haiti",
+    "alpha2": "HT",
+    "alpha3": "HTI",
+    "dialCode": "+379",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Heard Island and McDonald Islands",
+    "alpha2": "HM",
+    "alpha3": "HMD",
+    "dialCode": "+504",
+    "region": null,
+    "subRegion": null
+  },
+  {
+    "name": "Holy See",
+    "alpha2": "VA",
+    "alpha3": "VAT",
+    "dialCode": "+852",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Honduras",
+    "alpha2": "HN",
+    "alpha3": "HND",
+    "dialCode": "+36",
+    "region": "Americas",
+    "subRegion": "Central America"
+  },
+  {
+    "name": "Hong Kong",
+    "alpha2": "HK",
+    "alpha3": "HKG",
+    "dialCode": "+354",
+    "region": "Asia",
+    "subRegion": "Eastern Asia"
+  },
+  {
+    "name": "Hungary",
+    "alpha2": "HU",
+    "alpha3": "HUN",
+    "dialCode": "+91",
+    "region": "Europe",
+    "subRegion": "Eastern Europe"
+  },
+  {
+    "name": "Iceland",
+    "alpha2": "IS",
+    "alpha3": "ISL",
+    "dialCode": "+62",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "India",
+    "alpha2": "IN",
+    "alpha3": "IND",
+    "dialCode": "+98",
+    "region": "Asia",
+    "subRegion": "Southern Asia"
+  },
+  {
+    "name": "Indonesia",
+    "alpha2": "ID",
+    "alpha3": "IDN",
+    "dialCode": "+964",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia"
+  },
+  {
+    "name": "Iran (Islamic Republic of)",
+    "alpha2": "IR",
+    "alpha3": "IRN",
+    "dialCode": "+353",
+    "region": "Asia",
+    "subRegion": "Southern Asia"
+  },
+  {
+    "name": "Iraq",
+    "alpha2": "IQ",
+    "alpha3": "IRQ",
+    "dialCode": "+44",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Ireland",
+    "alpha2": "IE",
+    "alpha3": "IRL",
+    "dialCode": "+972",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "Isle of Man",
+    "alpha2": "IM",
+    "alpha3": "IMN",
+    "dialCode": "+39",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "Israel",
+    "alpha2": "IL",
+    "alpha3": "ISR",
+    "dialCode": "+1876",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Italy",
+    "alpha2": "IT",
+    "alpha3": "ITA",
+    "dialCode": "+81",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Jamaica",
+    "alpha2": "JM",
+    "alpha3": "JAM",
+    "dialCode": "+44",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Japan",
+    "alpha2": "JP",
+    "alpha3": "JPN",
+    "dialCode": "+962",
+    "region": "Asia",
+    "subRegion": "Eastern Asia"
+  },
+  {
+    "name": "Jersey",
+    "alpha2": "JE",
+    "alpha3": "JEY",
+    "dialCode": "+7",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "Jordan",
+    "alpha2": "JO",
+    "alpha3": "JOR",
+    "dialCode": "+254",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Kazakhstan",
+    "alpha2": "KZ",
+    "alpha3": "KAZ",
+    "dialCode": "+686",
+    "region": "Asia",
+    "subRegion": "Central Asia"
+  },
+  {
+    "name": "Kenya",
+    "alpha2": "KE",
+    "alpha3": "KEN",
+    "dialCode": "+850",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Kiribati",
+    "alpha2": "KI",
+    "alpha3": "KIR",
+    "dialCode": "+82",
+    "region": "Oceania",
+    "subRegion": "Micronesia"
+  },
+  {
+    "name": "Korea (Democratic People's Republic of)",
+    "alpha2": "KP",
+    "alpha3": "PRK",
+    "dialCode": "+383",
+    "region": "Asia",
+    "subRegion": "Eastern Asia"
+  },
+  {
+    "name": "Korea (Republic of)",
+    "alpha2": "KR",
+    "alpha3": "KOR",
+    "dialCode": "+965",
+    "region": "Asia",
+    "subRegion": "Eastern Asia"
+  },
+  {
+    "name": "Kuwait",
+    "alpha2": "KW",
+    "alpha3": "KWT",
+    "dialCode": "+996",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Kyrgyzstan",
+    "alpha2": "KG",
+    "alpha3": "KGZ",
+    "dialCode": "+856",
+    "region": "Asia",
+    "subRegion": "Central Asia"
+  },
+  {
+    "name": "Lao People's Democratic Republic",
+    "alpha2": "LA",
+    "alpha3": "LAO",
+    "dialCode": "+371",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia"
+  },
+  {
+    "name": "Latvia",
+    "alpha2": "LV",
+    "alpha3": "LVA",
+    "dialCode": "+961",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "Lebanon",
+    "alpha2": "LB",
+    "alpha3": "LBN",
+    "dialCode": "+266",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Lesotho",
+    "alpha2": "LS",
+    "alpha3": "LSO",
+    "dialCode": "+231",
+    "region": "Africa",
+    "subRegion": "Southern Africa"
+  },
+  {
+    "name": "Liberia",
+    "alpha2": "LR",
+    "alpha3": "LBR",
+    "dialCode": "+218",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Libya",
+    "alpha2": "LY",
+    "alpha3": "LBY",
+    "dialCode": "+423",
+    "region": "Africa",
+    "subRegion": "Northern Africa"
+  },
+  {
+    "name": "Liechtenstein",
+    "alpha2": "LI",
+    "alpha3": "LIE",
+    "dialCode": "+370",
+    "region": "Europe",
+    "subRegion": "Western Europe"
+  },
+  {
+    "name": "Lithuania",
+    "alpha2": "LT",
+    "alpha3": "LTU",
+    "dialCode": "+352",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "Luxembourg",
+    "alpha2": "LU",
+    "alpha3": "LUX",
+    "dialCode": "+853",
+    "region": "Europe",
+    "subRegion": "Western Europe"
+  },
+  {
+    "name": "Macao",
+    "alpha2": "MO",
+    "alpha3": "MAC",
+    "dialCode": "+389",
+    "region": "Asia",
+    "subRegion": "Eastern Asia"
+  },
+  {
+    "name": "Macedonia (the former Yugoslav Republic of)",
+    "alpha2": "MK",
+    "alpha3": "MKD",
+    "dialCode": "+261",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Madagascar",
+    "alpha2": "MG",
+    "alpha3": "MDG",
+    "dialCode": "+265",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Malawi",
+    "alpha2": "MW",
+    "alpha3": "MWI",
+    "dialCode": "+60",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Malaysia",
+    "alpha2": "MY",
+    "alpha3": "MYS",
+    "dialCode": "+960",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia"
+  },
+  {
+    "name": "Maldives",
+    "alpha2": "MV",
+    "alpha3": "MDV",
+    "dialCode": "+223",
+    "region": "Asia",
+    "subRegion": "Southern Asia"
+  },
+  {
+    "name": "Mali",
+    "alpha2": "ML",
+    "alpha3": "MLI",
+    "dialCode": "+356",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Malta",
+    "alpha2": "MT",
+    "alpha3": "MLT",
+    "dialCode": "+692",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Marshall Islands",
+    "alpha2": "MH",
+    "alpha3": "MHL",
+    "dialCode": "+596",
+    "region": "Oceania",
+    "subRegion": "Micronesia"
+  },
+  {
+    "name": "Martinique",
+    "alpha2": "MQ",
+    "alpha3": "MTQ",
+    "dialCode": "+222",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Mauritania",
+    "alpha2": "MR",
+    "alpha3": "MRT",
+    "dialCode": "+230",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Mauritius",
+    "alpha2": "MU",
+    "alpha3": "MUS",
+    "dialCode": "+262",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Mayotte",
+    "alpha2": "YT",
+    "alpha3": "MYT",
+    "dialCode": "+52",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Mexico",
+    "alpha2": "MX",
+    "alpha3": "MEX",
+    "dialCode": "+691",
+    "region": "Americas",
+    "subRegion": "Central America"
+  },
+  {
+    "name": "Micronesia (Federated States of)",
+    "alpha2": "FM",
+    "alpha3": "FSM",
+    "dialCode": "+373",
+    "region": "Oceania",
+    "subRegion": "Micronesia"
+  },
+  {
+    "name": "Moldova (Republic of)",
+    "alpha2": "MD",
+    "alpha3": "MDA",
+    "dialCode": "+377",
+    "region": "Europe",
+    "subRegion": "Eastern Europe"
+  },
+  {
+    "name": "Monaco",
+    "alpha2": "MC",
+    "alpha3": "MCO",
+    "dialCode": "+976",
+    "region": "Europe",
+    "subRegion": "Western Europe"
+  },
+  {
+    "name": "Mongolia",
+    "alpha2": "MN",
+    "alpha3": "MNG",
+    "dialCode": "+382",
+    "region": "Asia",
+    "subRegion": "Eastern Asia"
+  },
+  {
+    "name": "Montenegro",
+    "alpha2": "ME",
+    "alpha3": "MNE",
+    "dialCode": "+1664",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Montserrat",
+    "alpha2": "MS",
+    "alpha3": "MSR",
+    "dialCode": "+212",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Morocco",
+    "alpha2": "MA",
+    "alpha3": "MAR",
+    "dialCode": "+258",
+    "region": "Africa",
+    "subRegion": "Northern Africa"
+  },
+  {
+    "name": "Mozambique",
+    "alpha2": "MZ",
+    "alpha3": "MOZ",
+    "dialCode": "+95",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Myanmar",
+    "alpha2": "MM",
+    "alpha3": "MMR",
+    "dialCode": "+264",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia"
+  },
+  {
+    "name": "Namibia",
+    "alpha2": "NA",
+    "alpha3": "NAM",
+    "dialCode": "+674",
+    "region": "Africa",
+    "subRegion": "Southern Africa"
+  },
+  {
+    "name": "Nauru",
+    "alpha2": "NR",
+    "alpha3": "NRU",
+    "dialCode": "+977",
+    "region": "Oceania",
+    "subRegion": "Micronesia"
+  },
+  {
+    "name": "Nepal",
+    "alpha2": "NP",
+    "alpha3": "NPL",
+    "dialCode": "+31",
+    "region": "Asia",
+    "subRegion": "Southern Asia"
+  },
+  {
+    "name": "Netherlands",
+    "alpha2": "NL",
+    "alpha3": "NLD",
+    "dialCode": "+599",
+    "region": "Europe",
+    "subRegion": "Western Europe"
+  },
+  {
+    "name": "New Caledonia",
+    "alpha2": "NC",
+    "alpha3": "NCL",
+    "dialCode": "+687",
+    "region": "Oceania",
+    "subRegion": "Melanesia"
+  },
+  {
+    "name": "New Zealand",
+    "alpha2": "NZ",
+    "alpha3": "NZL",
+    "dialCode": "+64",
+    "region": "Oceania",
+    "subRegion": "Australia and New Zealand"
+  },
+  {
+    "name": "Nicaragua",
+    "alpha2": "NI",
+    "alpha3": "NIC",
+    "dialCode": "+505",
+    "region": "Americas",
+    "subRegion": "Central America"
+  },
+  {
+    "name": "Niger",
+    "alpha2": "NE",
+    "alpha3": "NER",
+    "dialCode": "+227",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Nigeria",
+    "alpha2": "NG",
+    "alpha3": "NGA",
+    "dialCode": "+234",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Niue",
+    "alpha2": "NU",
+    "alpha3": "NIU",
+    "dialCode": "+683",
+    "region": "Oceania",
+    "subRegion": "Polynesia"
+  },
+  {
+    "name": "Norfolk Island",
+    "alpha2": "NF",
+    "alpha3": "NFK",
+    "dialCode": "+672",
+    "region": "Oceania",
+    "subRegion": "Australia and New Zealand"
+  },
+  {
+    "name": "Northern Mariana Islands",
+    "alpha2": "MP",
+    "alpha3": "MNP",
+    "dialCode": "+1670",
+    "region": "Oceania",
+    "subRegion": "Micronesia"
+  },
+  {
+    "name": "Norway",
+    "alpha2": "NO",
+    "alpha3": "NOR",
+    "dialCode": "+47",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "Oman",
+    "alpha2": "OM",
+    "alpha3": "OMN",
+    "dialCode": "+968",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Pakistan",
+    "alpha2": "PK",
+    "alpha3": "PAK",
+    "dialCode": "+92",
+    "region": "Asia",
+    "subRegion": "Southern Asia"
+  },
+  {
+    "name": "Palau",
+    "alpha2": "PW",
+    "alpha3": "PLW",
+    "dialCode": "+680",
+    "region": "Oceania",
+    "subRegion": "Micronesia"
+  },
+  {
+    "name": "Palestine, State of",
+    "alpha2": "PS",
+    "alpha3": "PSE",
+    "dialCode": "+970",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Panama",
+    "alpha2": "PA",
+    "alpha3": "PAN",
+    "dialCode": "+507",
+    "region": "Americas",
+    "subRegion": "Central America"
+  },
+  {
+    "name": "Papua New Guinea",
+    "alpha2": "PG",
+    "alpha3": "PNG",
+    "dialCode": "+675",
+    "region": "Oceania",
+    "subRegion": "Melanesia"
+  },
+  {
+    "name": "Paraguay",
+    "alpha2": "PY",
+    "alpha3": "PRY",
+    "dialCode": "+595",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "Peru",
+    "alpha2": "PE",
+    "alpha3": "PER",
+    "dialCode": "+51",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "Philippines",
+    "alpha2": "PH",
+    "alpha3": "PHL",
+    "dialCode": "+63",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia"
+  },
+  {
+    "name": "Pitcairn",
+    "alpha2": "PN",
+    "alpha3": "PCN",
+    "dialCode": "+64",
+    "region": "Oceania",
+    "subRegion": "Polynesia"
+  },
+  {
+    "name": "Poland",
+    "alpha2": "PL",
+    "alpha3": "POL",
+    "dialCode": "+48",
+    "region": "Europe",
+    "subRegion": "Eastern Europe"
+  },
+  {
+    "name": "Portugal",
+    "alpha2": "PT",
+    "alpha3": "PRT",
+    "dialCode": "+351",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Puerto Rico",
+    "alpha2": "PR",
+    "alpha3": "PRI",
+    "dialCode": "+1939",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Qatar",
+    "alpha2": "QA",
+    "alpha3": "QAT",
+    "dialCode": "+974",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Réunion",
+    "alpha2": "RE",
+    "alpha3": "REU",
+    "dialCode": "+40",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Romania",
+    "alpha2": "RO",
+    "alpha3": "ROU",
+    "dialCode": "+7",
+    "region": "Europe",
+    "subRegion": "Eastern Europe"
+  },
+  {
+    "name": "Russian Federation",
+    "alpha2": "RU",
+    "alpha3": "RUS",
+    "dialCode": "+250",
+    "region": "Europe",
+    "subRegion": "Eastern Europe"
+  },
+  {
+    "name": "Rwanda",
+    "alpha2": "RW",
+    "alpha3": "RWA",
+    "dialCode": "+262",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Saint Barthélemy",
+    "alpha2": "BL",
+    "alpha3": "BLM",
+    "dialCode": "+590",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Saint Helena, Ascension and Tristan da Cunha",
+    "alpha2": "SH",
+    "alpha3": "SHN",
+    "dialCode": "+290",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Saint Kitts and Nevis",
+    "alpha2": "KN",
+    "alpha3": "KNA",
+    "dialCode": "+1869",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Saint Lucia",
+    "alpha2": "LC",
+    "alpha3": "LCA",
+    "dialCode": "+1758",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Saint Martin (French part)",
+    "alpha2": "MF",
+    "alpha3": "MAF",
+    "dialCode": "+590",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Saint Pierre and Miquelon",
+    "alpha2": "PM",
+    "alpha3": "SPM",
+    "dialCode": "+508",
+    "region": "Americas",
+    "subRegion": "Northern America"
+  },
+  {
+    "name": "Saint Vincent and the Grenadines",
+    "alpha2": "VC",
+    "alpha3": "VCT",
+    "dialCode": "+1784",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Samoa",
+    "alpha2": "WS",
+    "alpha3": "WSM",
+    "dialCode": "+685",
+    "region": "Oceania",
+    "subRegion": "Polynesia"
+  },
+  {
+    "name": "San Marino",
+    "alpha2": "SM",
+    "alpha3": "SMR",
+    "dialCode": "+378",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Sao Tome and Principe",
+    "alpha2": "ST",
+    "alpha3": "STP",
+    "dialCode": "+239",
+    "region": "Africa",
+    "subRegion": "Middle Africa"
+  },
+  {
+    "name": "Saudi Arabia",
+    "alpha2": "SA",
+    "alpha3": "SAU",
+    "dialCode": "+966",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Senegal",
+    "alpha2": "SN",
+    "alpha3": "SEN",
+    "dialCode": "+221",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Serbia",
+    "alpha2": "RS",
+    "alpha3": "SRB",
+    "dialCode": "+381",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Seychelles",
+    "alpha2": "SC",
+    "alpha3": "SYC",
+    "dialCode": "+248",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Sierra Leone",
+    "alpha2": "SL",
+    "alpha3": "SLE",
+    "dialCode": "+232",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Singapore",
+    "alpha2": "SG",
+    "alpha3": "SGP",
+    "dialCode": "+65",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia"
+  },
+  {
+    "name": "Sint Maarten (Dutch part)",
+    "alpha2": "SX",
+    "alpha3": "SXM",
+    "dialCode": "+421",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Slovakia",
+    "alpha2": "SK",
+    "alpha3": "SVK",
+    "dialCode": "+386",
+    "region": "Europe",
+    "subRegion": "Eastern Europe"
+  },
+  {
+    "name": "Slovenia",
+    "alpha2": "SI",
+    "alpha3": "SVN",
+    "dialCode": "+677",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Solomon Islands",
+    "alpha2": "SB",
+    "alpha3": "SLB",
+    "dialCode": "+252",
+    "region": "Oceania",
+    "subRegion": "Melanesia"
+  },
+  {
+    "name": "Somalia",
+    "alpha2": "SO",
+    "alpha3": "SOM",
+    "dialCode": "+27",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "South Africa",
+    "alpha2": "ZA",
+    "alpha3": "ZAF",
+    "dialCode": "+211",
+    "region": "Africa",
+    "subRegion": "Southern Africa"
+  },
+  {
+    "name": "South Georgia and the South Sandwich Islands",
+    "alpha2": "GS",
+    "alpha3": "SGS",
+    "dialCode": "+500",
+    "region": null,
+    "subRegion": null
+  },
+  {
+    "name": "South Sudan",
+    "alpha2": "SS",
+    "alpha3": "SSD",
+    "dialCode": "+34",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Spain",
+    "alpha2": "ES",
+    "alpha3": "ESP",
+    "dialCode": "+94",
+    "region": "Europe",
+    "subRegion": "Southern Europe"
+  },
+  {
+    "name": "Sri Lanka",
+    "alpha2": "LK",
+    "alpha3": "LKA",
+    "dialCode": "+249",
+    "region": "Asia",
+    "subRegion": "Southern Asia"
+  },
+  {
+    "name": "Sudan",
+    "alpha2": "SD",
+    "alpha3": "SDN",
+    "dialCode": "+597",
+    "region": "Africa",
+    "subRegion": "Northern Africa"
+  },
+  {
+    "name": "Suriname",
+    "alpha2": "SR",
+    "alpha3": "SUR",
+    "dialCode": "+47",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "Svalbard and Jan Mayen",
+    "alpha2": "SJ",
+    "alpha3": "SJM",
+    "dialCode": "+268",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "Swaziland",
+    "alpha2": "SZ",
+    "alpha3": "SWZ",
+    "dialCode": "+46",
+    "region": "Africa",
+    "subRegion": "Southern Africa"
+  },
+  {
+    "name": "Sweden",
+    "alpha2": "SE",
+    "alpha3": "SWE",
+    "dialCode": "+41",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "Switzerland",
+    "alpha2": "CH",
+    "alpha3": "CHE",
+    "dialCode": "+963",
+    "region": "Europe",
+    "subRegion": "Western Europe"
+  },
+  {
+    "name": "Syrian Arab Republic",
+    "alpha2": "SY",
+    "alpha3": "SYR",
+    "dialCode": "+886",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Taiwan, Province of China",
+    "alpha2": "TW",
+    "alpha3": "TWN",
+    "dialCode": "+992",
+    "region": "Asia",
+    "subRegion": "Eastern Asia"
+  },
+  {
+    "name": "Tajikistan",
+    "alpha2": "TJ",
+    "alpha3": "TJK",
+    "dialCode": "+255",
+    "region": "Asia",
+    "subRegion": "Central Asia"
+  },
+  {
+    "name": "Tanzania, United Republic of",
+    "alpha2": "TZ",
+    "alpha3": "TZA",
+    "dialCode": "+66",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Thailand",
+    "alpha2": "TH",
+    "alpha3": "THA",
+    "dialCode": "+670",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia"
+  },
+  {
+    "name": "Timor-Leste",
+    "alpha2": "TL",
+    "alpha3": "TLS",
+    "dialCode": "+228",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia"
+  },
+  {
+    "name": "Togo",
+    "alpha2": "TG",
+    "alpha3": "TGO",
+    "dialCode": "+690",
+    "region": "Africa",
+    "subRegion": "Western Africa"
+  },
+  {
+    "name": "Tokelau",
+    "alpha2": "TK",
+    "alpha3": "TKL",
+    "dialCode": "+676",
+    "region": "Oceania",
+    "subRegion": "Polynesia"
+  },
+  {
+    "name": "Tonga",
+    "alpha2": "TO",
+    "alpha3": "TON",
+    "dialCode": "+1868",
+    "region": "Oceania",
+    "subRegion": "Polynesia"
+  },
+  {
+    "name": "Trinidad and Tobago",
+    "alpha2": "TT",
+    "alpha3": "TTO",
+    "dialCode": "+216",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Tunisia",
+    "alpha2": "TN",
+    "alpha3": "TUN",
+    "dialCode": "+90",
+    "region": "Africa",
+    "subRegion": "Northern Africa"
+  },
+  {
+    "name": "Turkey",
+    "alpha2": "TR",
+    "alpha3": "TUR",
+    "dialCode": "+993",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "Turkmenistan",
+    "alpha2": "TM",
+    "alpha3": "TKM",
+    "dialCode": "+1649",
+    "region": "Asia",
+    "subRegion": "Central Asia"
+  },
+  {
+    "name": "Turks and Caicos Islands",
+    "alpha2": "TC",
+    "alpha3": "TCA",
+    "dialCode": "+688",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Tuvalu",
+    "alpha2": "TV",
+    "alpha3": "TUV",
+    "dialCode": "+256",
+    "region": "Oceania",
+    "subRegion": "Polynesia"
+  },
+  {
+    "name": "Uganda",
+    "alpha2": "UG",
+    "alpha3": "UGA",
+    "dialCode": "+380",
+    "region": "Africa",
+    "subRegion": "Eastern Africa"
+  },
+  {
+    "name": "Ukraine",
+    "alpha2": "UA",
+    "alpha3": "UKR",
+    "dialCode": "+971",
+    "region": "Europe",
+    "subRegion": "Eastern Europe"
+  },
+  {
+    "name": "United Arab Emirates",
+    "alpha2": "AE",
+    "alpha3": "ARE",
+    "dialCode": "+44",
+    "region": "Asia",
+    "subRegion": "Western Asia"
+  },
+  {
+    "name": "United Kingdom of Great Britain and Northern Ireland",
+    "alpha2": "GB",
+    "alpha3": "GBR",
+    "dialCode": "+1",
+    "region": "Europe",
+    "subRegion": "Northern Europe"
+  },
+  {
+    "name": "United States of America",
+    "alpha2": "US",
+    "alpha3": "USA",
+    "dialCode": "+598",
+    "region": "Americas",
+    "subRegion": "Northern America"
+  },
+  {
+    "name": "United States Minor Outlying Islands",
+    "alpha2": "UM",
+    "alpha3": "UMI",
+    "dialCode": "+998",
+    "region": null,
+    "subRegion": null
+  },
+  {
+    "name": "Uruguay",
+    "alpha2": "UY",
+    "alpha3": "URY",
+    "dialCode": "+678",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "Uzbekistan",
+    "alpha2": "UZ",
+    "alpha3": "UZB",
+    "dialCode": "+58",
+    "region": "Asia",
+    "subRegion": "Central Asia"
+  },
+  {
+    "name": "Vanuatu",
+    "alpha2": "VU",
+    "alpha3": "VUT",
+    "dialCode": "+84",
+    "region": "Oceania",
+    "subRegion": "Melanesia"
+  },
+  {
+    "name": "Venezuela (Bolivarian Republic of)",
+    "alpha2": "VE",
+    "alpha3": "VEN",
+    "dialCode": "+1284",
+    "region": "Americas",
+    "subRegion": "South America"
+  },
+  {
+    "name": "Viet Nam",
+    "alpha2": "VN",
+    "alpha3": "VNM",
+    "dialCode": "+1340",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia"
+  },
+  {
+    "name": "Virgin Islands (British)",
+    "alpha2": "VG",
+    "alpha3": "VGB",
+    "dialCode": "+681",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Virgin Islands (U.S.)",
+    "alpha2": "VI",
+    "alpha3": "VIR",
+    "dialCode": "+967",
+    "region": "Americas",
+    "subRegion": "Caribbean"
+  },
+  {
+    "name": "Wallis and Futuna",
+    "alpha2": "WF",
+    "alpha3": "WLF",
+    "dialCode": "+260",
+    "region": "Oceania",
+    "subRegion": "Polynesia"
+  },
+  {
+    "name": "Western Sahara",
+    "alpha2": "EH",
+    "alpha3": "ESH",
+    "dialCode": "+263",
+    "region": "Africa",
+    "subRegion": "Northern Africa"
+  }
+]

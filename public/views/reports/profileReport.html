@@ -1,0 +1,199 @@
+<div class="">
+    <div data-ng-controller="reportsController as reportVM"
+        data-ng-init="reportVM.getProfileReport();reportVM.getCountryList()">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        {{'PROFILE STATISTICS' | translate}}
+                        <small></small>
+                    </h1>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Your Page Content Here -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                </div>
+
+                                <div class="box-body">
+                                    <form role="form" data-ng-submit="reportVM.filterProfileReport();"
+                                        class="form-horizontal reportFilterArea">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'SELECTION FROM' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtFromDate" name="durationStart"
+                                                                class="form-control pull-right readonly"
+                                                                ng-click="setPosFromDate();"
+                                                                ng-change="startDateChange();" autocomplete="off"
+                                                                ng-model="reportVM.searchCriteria.fromDate" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'TO' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtToDate"
+                                                                class="form-control pull-right readonly"
+                                                                ng-click="setPosToDate();" autocomplete="off"
+                                                                ng-model="reportVM.searchCriteria.toDate" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'LANGUAGE' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <select data-ng-model="reportVM.searchCriteria.language"
+                                                            class="form-control">
+                                                            <option value="">{{'SELECT LANGUAGE' | translate}}</option>
+                                                            <option value="ENG">ENG</option>
+                                                            <option value="ARB">ARB</option>
+                                                            <option value="FRN">FRN</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'COUNTRY' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <select data-ng-model="reportVM.searchCriteria.country"
+                                                            class="form-control"
+                                                            data-ng-options="country.name as country.name for country in reportVM.countryList">
+                                                            <option value="">{{'SELECT COUNTRY' | translate}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12 text-right" ng-if="language !== 'ARB'">
+                                                <button type="submit" class="btn btn-primary">{{'GENERATE' | translate}}
+                                                </button>
+                                                <button type="button" class="btn btn-primary"
+                                                    data-ng-click="reportVM.resetForm();">{{'CLEAR' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="col-md-12 text-left" ng-if="language === 'ARB'">
+                                                <button type="button" class="btn btn-primary"
+                                                    data-ng-click="reportVM.resetForm();">{{'CLEAR' | translate}}
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">{{'GENERATE' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <!----------------  Export Data ---------------->
+                                    <div class="row" ng-if="profileReport.length">
+                                        <div class="col-md-12">
+                                            <div class="pull-right">
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                    data-ng-click="exportToExcel('PROFILE_REPORT','exportTableExcel');">
+                                                    {{'EXCEL' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="pull-right" style="margin-right: 10px;">
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                    data-ng-click="exportToPDF('PROFILE_REPORT',8,'p');">
+                                                    {{'PDF' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="pull-right" style="margin-right: 10px;">
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                    data-ng-click="reportVM.printDiv('exportTableExcel')">
+                                                    {{'PRINT' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" id="printableArea" ng-if="profileReport.length">
+                                        <div class="col-md-12" id="exportTableExcel" style="margin-top: 10px;">
+                                            <table class="table table-striped table-bordered reportsTable"
+                                                style="margin-bottom: 0px;" border="1" cellspacing="0"
+                                                id="exportTableHeader">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="9">
+                                                            {{'PROFILE STATISTICS' | translate}} - : {{reportVM.dateToday |
+                                                    date:'dd-MM-yyyy'}}
+                                                            (From :
+                                                            {{reportVM.searchCriteria.fromDate | date : "dd-MM-yyyy"}}
+                                                            To :
+                                                            {{reportVM.searchCriteria.toDate | date : "dd-MM-yyyy"}})
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                            <table class="table table-responsive" id="exportTable"
+                                                style="max-height: 450px">
+                                                <thead>
+                                                    <th style="min-width: 55px; text-align:center">
+                                                        {{'SR NO' | translate}}</th>
+                                                    <th style="min-width: 100px; text-align:center">
+                                                        {{'COUNTRYNAME' | translate }}</th>
+                                                    <th style="min-width: 60px; text-align:center">
+                                                        {{'LANGUAGE' | translate }}</th>
+                                                    <th style="min-width: 150px; text-align:center">
+                                                        {{'TOTAL' | translate}}</th>
+                                                    <th style="min-width: 150px; text-align:center">
+                                                        {{'PERCENTAGE' | translate}}</th>
+                                                </thead>
+                                                <tr ng-repeat="data in profileReport" style="text-align: center;">
+                                                    <td class="text-center">{{$index+1}}</td>
+                                                    <td class="text-center">{{data.country}}</td>
+                                                    <td class="text-center">{{data.language}}</td>
+                                                    <td class="text-center">{{data.count}}</td>
+                                                    <td class="text-center">{{data.percentage}}%</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div ng-if="reportVM.toggler && !profileReport.length">
+                                        <h4 class="text-danger text-center">{{'DATA NOT FOUND' | translate}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- HEADER -->
+
+        </div>
+    </div>
+</div>

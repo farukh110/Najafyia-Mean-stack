@@ -1,0 +1,63 @@
+{
+  "name": "froala-editor",
+  "version": "1.2.8",
+  "authors": [
+    "Raghul <raghulunni@gmail.com>"
+  ],
+  "description": "A beautiful jQuery WYSIWYG HTML rich text editor. High performance and modern design make it easy to use for developers and loved by users.",
+   "main": [
+       "js/plugins/*.min.js",
+        "js/froala_editor.min.js",
+        "js/froala_editor_ie8.min.js",
+        "css/froala_editor.min.css",
+        "css/froala_style.min.css",
+        "css/froala_content.min.css",
+        "css/themes/*.min.css"
+  ],
+  "dependencies": {
+    
+  },
+   "homepage": "https://www.froala.com",
+   "keywords": [
+    "froala",
+    "html",
+    "text",
+    "editor",
+    "wysiwyg",
+    "jquery-plugin",
+    "rich editor",
+    "rich text editor",
+    "rte",
+    "javascript",
+    "jquery"
+  ],
+   "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/froala/wysiwyg-editor"
+    }
+  ],
+ "licenses": [
+    {
+      "type": "Single Website",
+      "url": "https://www.froala.com/wysiwyg-editor/pricing"
+    },
+    {
+      "type": "Advanced",
+      "url": "https://www.froala.com/wysiwyg-editor/pricing"
+    },
+    {
+      "type": "OEM",
+      "url": "https://www.froala.com/wysiwyg-editor/pricing"
+    }
+  ],
+ 
+
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

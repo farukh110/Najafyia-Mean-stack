@@ -1,0 +1,118 @@
+<div class="grop-page padding-cnt-no grop-full-width">
+    <div data-ng-controller="suggestedDonationsController as donVM"
+        data-ng-init="donVM.getSuggestedDonationsList(); donVM.getProgramTypes();">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+
+
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Your Page Content Here -->
+                    <div class="row">
+                        <div class="col-md-8 col-xs-12 col-md-offset-1">
+                            <section class="content-header nopadding">
+                                <h1>
+                                    {{'SUGGESTED DONATIONS' | translate}}<br>
+                                    <small> {{'SUGGESTED DONATIONS FOR DONAR' | translate}}</small>
+                                </h1>
+                            </section>
+                            <div class="col-md-10 box box-primary">
+                                <div class="box-header">
+                                    <div class="box-title"></div>
+                                </div>
+                                <div class="box-body">
+                                    <form role="form" class="form-horizontal"
+                                        data-ng-submit="donVM.saveSuggestedDonations(donationForm.$valid)"
+                                        name="donationForm">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>{{'PROGRAM TYPE' | translate}}</label>
+                                                <select ng-model="donVM.details.programType" class="form-control"
+                                                    required
+                                                    data-ng-change="donVM.getProgramList(donVM.details.programType)"
+                                                    data-ng-options="type._id as type.programTypeName for type in donVM.programTypesList">
+                                                    <option value="">{{'SELECT PROGRAM TYPE' | translate}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>{{'PROGRAM NAME' | translate}}</label>
+                                                <select ng-model="donVM.details.program" class="form-control" required
+                                                    data-ng-change="donVM.getProgramSubCategoryList(donVM.details.program)"
+                                                    data-ng-options="progarm._id as progarm.programName for progarm in donVM.programList">
+                                                    <option value="">{{'SELECT PROGRAM' | translate}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group" data-ng-if="donVM.programSubCategoryList.length>0">
+                                                <label>{{'PROGRAM SUB-CATEGORIES NAME' | translate}}</label>
+                                                <select ng-model="donVM.details.programSubCategory" class="form-control"
+                                                    required
+                                                    data-ng-options="progarm._id as progarm.programSubCategoryName for progarm in donVM.programSubCategoryList">
+                                                    <option value="">{{'SELECT SUB-CATEGORY' | translate}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label">&nbsp;</label>
+                                                <button type="button" class="btn btn-default pull-right"
+                                                    data-ng-click="donVM.resetForm();">
+                                                    {{'CLEAR' | translate}}
+                                                </button>
+                                                <button type="submit" class="btn btn-default pull-right">
+                                                    {{donVM.isEdit?'Update':'ADD' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group overflowTable">
+                                                <table class="table table-responsive">
+                                                    <thead>
+                                                        <td> {{'Sr.' |translate}}</td>
+                                                        <td>{{'PROGRAM TYPE' | translate}}</td>
+                                                        <td>{{'PROGRAM NAME' | translate}}</td>
+                                                        <td>{{'PROGRAM SUB-CATEGORIES NAME' | translate}}</td>
+                                                        <td>{{'ACTIONS' | translate}}</td>
+                                                    </thead>
+                                                    <tr ng-repeat="donation in donVM.suggestedDonationsList">
+                                                        <td>{{$index+1}}</td>
+                                                        <td>
+                                                            {{donation.programType?donation.programType[0].programTypeName:'--'}}
+                                                        </td>
+                                                        <td>{{donation.program?donation.program[0].programName:'--'}}
+                                                        </td>
+                                                        <td>
+                                                            {{donation.programSubCategory?((donation.programSubCategory[0].programSubCategoryName) | translate):'--'}}
+                                                        </td>
+                                                        <td>
+                                                            <button type="button"
+                                                                data-ng-click="donVM.editSuggestedDonations(donation);">
+                                                                <i class="fa fa-pencil"></i></button>
+                                                            <button type="button"
+                                                                data-ng-click="donVM.deleteSuggestedDonations(donation._id);">
+                                                                <i class="fa fa-trash-o"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-ng-if="donVM.suggestedDonationsList.length<1">
+                                                        <td colspan="5">{{'ADD SUGGESTED DONATIONS' | translate}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- HEADER -->
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,258 @@
+<div data-ng-controller="donarDashboardController as donarVM"
+    data-ng-init="donarVM.getUserDonations(); donarVM.getUserRecurringDonations(); donarVM.getTheCountforDonation()">
+
+    <div class="col-xs-12 col-md-10 col-lg-10 ">
+        <!-- <div class="dashboardCounterBoxes ">
+            <div class="small-box boxhght boxPurple">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$
+                        {{donarVM.totalOfAutoRenewUSD + donarVM.totalOfAutoRenewDonationUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€
+                        {{donarVM.totalOfAutoRenewEUR + donarVM.totalOfAutoRenewDonationEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£
+                        {{donarVM.totalOfAutoRenewGBP + donarVM.totalOfAutoRenewDonationGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'RENEWALS' | translate}}</h4>
+                </div>
+                <a href="" ui-sref="renewals" class="small-box-footer">{{ 'MORE INFO' | translate}} <i
+                        class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxPink">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfRecurringUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfRecurringEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfRecurringGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'PERIODIC' | translate}}</h4>
+                </div>
+                <a href="" ui-sref="donarRecurring" class="small-box-footer">{{ 'MORE INFO' | translate}} <i
+                        class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div> -->
+     <!--   <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxNavyBlue">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfOrphanUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfOrphanEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfOrphanGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'BASIC CARE' | translate}}</h4>
+                </div>
+                <a href="" ui-sref="generalCareSponsorship" class="small-box-footer">{{ 'MORE INFO' | translate}} <i
+                        class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxYellow">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfDazUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfDazEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfDazGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'DAZ SCHOOL' | translate}}</h4>
+                </div>
+                <a href="" ui-sref="DAZSchool" class="small-box-footer">{{ 'MORE INFO' | translate}} <i
+                        class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxOrange">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfdonationUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfdonationEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfdonationGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'TOTAL' | translate}}</h4>
+                </div>
+                <a href="" ui-sref="donarDashboard" class="small-box-footer">{{ 'MORE INFO' | translate}} <i
+                        class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div> -->
+    </div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper daralzahra" style="background:white;">
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-lg-10 ">
+                    <!-- Content Header (Page header) -->
+
+                    <div class="col-md-12 col-xs-12 no-padding">
+                        <div class="col-md-10 col-xs-12 form-inline no-padding">
+                            <div class="form-group">
+                                <!-- <label><b> {{ 'DONATIONS' | translate}}:</b></label> -->
+                                <select ng-model="donarVM.programType"
+                                    ng-change="donarVM.filteredDonations(donarVM.programType)" class="form-control">
+                                    <option value="">{{ 'All category' | translate}}</option>
+                                    <option ng-value="donation.program[0].programName"
+                                        data-ng-repeat="donation in donarVM.filterOption | unique:'program[0].programName'">
+                                        {{donation.program[0].programName === 'Higher Education Loans'?'Higher Education':donation.program[0].programName || '----'}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 col-xs-12 form-inline no-padding" style="margin-bottom: 10px;">
+                            <div class="form-group socialButtons">
+                                <!-- <label><b>{{ 'YEAR' | translate}}:</b></label> -->
+                                <!-- <select class="form-control" data-ng-change="donarVM.recordsLimit=8"
+                                    data-ng-model="donarVM.searchValue" style="text-align: center;">
+                                    <option value="">{{ 'YEAR' | translate}}</option>
+                                    <option style="text-align: center" value="2019">2019</option>
+                                    <option style="text-align: center" ng-selected="true" value="2018">2018</option>
+                                    <option style="text-align: center" value="2017">2017</option>
+                                </select> -->
+                                <!-- <form id="someform"> -->
+                                    <select id="year" class="form-control" ata-ng-change="donarVM.recordsLimit=8"
+                                    data-ng-model="donarVM.searchValue" style="text-align: center;">
+                                    <option value="" selected>{{'YEAR' | translate}}</option>
+                                </select>
+                                 <!-- </form> -->
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-2 col-xs-4 text-right">
+                                <div class="form-group">
+                                        <label><b>{{ 'YEAR' | translate}}:</b></label>
+                            <select class="form-control"  data-ng-change="donarVM.recordsLimit=8" data-ng-model="donarVM.searchValue" style="text-align: center">
+                                    <option value="">{{ 'YEAR' | translate}}</option>
+                                    <option style="text-align: center"  value="2019">2019</option>
+                                    <option style="text-align: center"  ng-selected="true" value="2018">2018</option>
+                                    <option style="text-align: center"  value="2017">2017</option>
+                                </select>
+                        </div>
+                        </div> -->
+                        <!-- <div class="col-md-1 col-xs-8 no-padding">
+                            
+                        </div> -->
+                    </div>
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 no-padding overflowTable">
+                                <table class="table table-hover"
+                                    ng-if="donarVM.userDonationsList.length && (donarVM.userDonationsList  | filter : {created: donarVM.searchValue} | limitTo: donarVM.recordsLimit).length">
+                                    <thead style="background: #f0c84c;">
+                                        <td class="tablecntr">{{ 'S.NO' | translate}}</td>
+                                        <td>{{ 'CATEGORY' | translate}}</td>
+                                        <td>{{ 'SUB CATEGORY' | translate}}</td>
+                                        <td class="tablecntr">{{ 'DONATION DATE' | translate}}</td>
+                                        <td class="tablecntr">{{ 'AMOUNT' | translate}}</td>
+                                        <td class="tablecntr">{{ 'INVOICE' | translate}}</td>
+                                    </thead>
+                                    <tr
+                                        data-ng-repeat="donation in donarVM.userDonationsList | filter:{created: donarVM.searchValue} | limitTo: donarVM.recordsLimit">
+                                        <td class="tablecntr">{{$index+1}}</td>
+                                        <td>{{donation.program[0].programName === 'Higher Education Loans'?'Higher Education':donation.program[0].programName || '----'}}
+                                        </td>
+                                        <td>
+                                            <span
+                                                ng-if="!donation.otherPersonalityName && donation.programSubCategory[0].programSubCategoryName">{{((donation.programSubCategory[0].programSubCategoryName) | translate)}}</span>
+                                            <span
+                                                ng-if="(donation.otherPersonalityName && donation.hasOwnProperty('otherPersonalityName') && donation.otherPersonalityName.length)">{{'OTHER' | translate}} : {{donation.otherPersonalityName}}</span>
+                                            <span
+                                                ng-if="!donation.otherPersonalityName && !donation.programSubCategory[0].programSubCategoryName">----</span>
+                                        </td>
+                                        <td class="tablecntr">{{donation.created | date:"dd-MM-yyyy HH:mm:ss"}}</td>
+                                <td data-ng-if="donarVM.userLanguage !== 'ARB'" style="width:100px;text-align: left; position: relative;">
+                                    <span style="position: absolute; left: 10px;   bottom: 10px;">
+                                        <span
+                                            style="margin-left:0px;margin-right: 5px;">{{donation.donation.currency}}</span>
+                                        {{donation.amount | number: 2}}
+                                    </span>
+                                </td>
+                                <td data-ng-if="donarVM.userLanguage === 'ARB'" style="width:100px;text-align: left; position: relative;">
+                                    <span style="position: absolute; left: 00px;   bottom: 10px;">
+                                        {{donation.amount | number: 2}}
+                                        <span
+                                            style="margin-left:10px;margin-right: 5px;">{{donation.donation.currency}}</span>
+                                    </span>
+                                </td>
+
+                                <td class="tablecntr" > <a href="{{donation.donation.documentPath}}" target="_blank">View</a></td>
+                                
+                                    </tr>
+                                </table>
+
+                                <!-- Blank Table Start -->
+                                <table class="table table-hover"
+                                    ng-if="!donarVM.userDonationsList || !(donarVM.userDonationsList  | filter : {created: donarVM.searchValue} | limitTo: donarVM.recordsLimit).length">
+                                    <thead style="background: #f0c84c;">
+                                        <td class="tablecntr">{{ 'S.NO' | translate}}</td>
+                                        <td>{{ 'CATEGORY' | translate}}</td>
+                                        <td>{{ 'SUB CATEGORY' | translate}}</td>
+                                        <td class="tablecntr">{{ 'DONATION DATE' | translate}}</td>
+                                        <td class="tablecntr">{{ 'AMOUNT' | translate}}</td>
+                                    </thead>
+                                    <tr>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                        <td class="tablecntr">&nbsp;</td>
+                                    </tr>
+                                </table>
+                                <div class="col-md-12 col-xs-12 no-padding">
+                                    <a href="javascript:void(0)" class="alignright loadmore"
+                                        data-ng-if="donarVM.recordsLimit < (donarVM.userDonationsList  | filter : programFilter).length"
+                                        data-ng-click="donarVM.loadMore();"><img src="images/3.gif" width="15"
+                                            height="15">&nbsp;&nbsp;{{ 'LOAD MORE' | translate}}</a>
+                                </div>
+
+                                <!-- Blank Table Close -->
+                            </div>
+                            <!-- <p style="color: red;text-align: left;font-size: 14px;" ng-if="!donarVM.userDonationsList || !(donarVM.userDonationsList  | filter : created).length">{{ 'NO RECENT DONATIONS' | translate}}</p> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <!-- Your Page Content Here -->
+    </section>
+    <!-- /.content -->
+</div>
+<script>
+    let startYear = new Date().getFullYear()
+    for (y = startYear; y >= 2017; y--) {
+        var optn = document.createElement("OPTION");
+        optn.text = y;
+        optn.value = y;
+        document.getElementById('year').options.add(optn);
+        document.getElementById('year').style.color = 'black';
+    }
+</script>
+<!-- HEADER -->
+</div>

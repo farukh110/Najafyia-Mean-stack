@@ -1,0 +1,894 @@
+img.wp-smiley,
+img.emoji {
+  display: inline !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 1em !important;
+  width: 1em !important;
+  margin: 0 .07em !important;
+  vertical-align: -0.1em !important;
+  background: none !important;
+  padding: 0 !important;
+}
+.grop-header_area {
+    position: relative;
+  }
+
+  .grop-header-divider {
+    padding-top: 0px !important;
+  }
+
+  .grpe-extra-class-1 h2 {
+    font-size: 42px;
+    color: #fff;
+  }
+
+  .grpe-extra-class-1 p {
+    font-size: 17px;
+    color: #888;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .grpe-extra-lnehit h2 {
+    line-height: 45px;
+  }
+
+  .vc_custom_1506574086359 {
+    margin-bottom: 130px !important;
+  }
+
+  .vc_custom_1504535137664 {
+    margin-top: 45px !important;
+  }
+
+  .vc_custom_1504535675320 {
+    margin-top: 30px !important;
+  }
+
+  .vc_custom_1505214233080 {
+    margin-top: 100px !important;
+    margin-bottom: 100px !important;
+    padding-bottom: 45px !important;
+    background: #222222 !important; 
+  }
+
+  .vc_custom_1507812589324 {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+
+  .vc_custom_1507721834648 {
+    padding-top: 100px !important;
+    padding-bottom: 94px !important;
+  }
+
+  .vc_custom_1507619222996 {
+    margin-top: 80px !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+
+  .vc_custom_1504608357198 {
+    padding-top: 75px !important;
+    padding-bottom: 73px !important;
+    background-color: #f6f6f6 !important;
+  }
+
+  .vc_custom_1506320778388 {
+    background: #f0c84c url(images/callout-bg-pattrm.png?id=702) !important;
+  }
+
+  .vc_custom_1501758001382 {
+    margin-top: -35px !important;
+  }
+
+  .vc_custom_1508221191220 {
+    padding-top: 5px !important;
+    padding-right: 46px !important;
+    padding-left: 46px !important;
+  }
+
+  .vc_custom_1505214081121 {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+
+  .vc_custom_1507276449858 {
+    margin-top: 60px !important;
+  }
+
+  .vc_custom_1507705104971 {
+    padding-top: 0px !important;
+  }
+
+  .vc_custom_1507706242647 {
+    padding-top: 0px !important;
+  }
+
+  .vc_custom_1504607676259 {
+    margin-top: 0px !important;
+  }
+
+  .vc_custom_1507721827608 {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    background-image: url(https://victorthemes.com/themes/groppe/wp-content/uploads/2017/08/Home-two-image.jpg?id=2496) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }
+
+  .vc_custom_1507722926535 {
+    padding-top: 10% !important;
+    padding-right: 5% !important;
+    padding-bottom: 10% !important;
+    padding-left: 10% !important;
+    background-color: #f6f6f6 !important;
+  }
+
+  .vc_custom_1507621173696 {
+    padding-bottom: 20px !important;
+  }
+
+  .vc_custom_1507092023477 {
+    margin-top: 0px !important;
+  }
+
+  .vc_custom_1507266457031 {
+    margin-bottom: 52px !important;
+  }
+
+  .vc_custom_1507612430924 {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+
+  .vc_custom_1507614573435 {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .vc_custom_1506588847483 {
+    padding-top: 20px !important;
+  }
+
+  .vc_custom_1505390415025 {
+    padding-top: 0px !important;
+  }
+
+  .vc_custom_1505212801534 {
+    padding-top: 0px !important;
+  }
+
+  .grop-section_text.grop-heading-5a0c0d2f0cdb4 h2 {
+    font-size: 30px;
+  }
+
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-btn span,
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-big_link span {
+    color: #222222;
+  }
+
+  .grop-btn-5a0c0d2f0f0e2-donate-now:hover,
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-cause_remor_btn:hover,
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-btn span:hover,
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-big_link:hover span {
+    color: #222222 !important;
+  }
+
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-cause_remor_btn,
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-big_link {
+    font-weight: 500!important;
+  }
+
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-cause_remor_btn,
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-big_link {
+    height: 54px;
+  }
+
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-big_link,
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-cause_remor_btn {
+    background: #f0c84c !important;
+    border-color: #f0c84c !important;
+  }
+
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-big_link:hover,
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-big_link:focus,
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-big_link:active,
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-cause_remor_btn:hover,
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-cause_remor_btn:focus,
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-cause_remor_btn:active,
+  .grop-btn-5a0c0d2f0f0e2-donate-now.grop-btn_overly:before {
+    background: #dcb748 !important;
+    border-color: #dcb748 !important;
+  }
+
+  .grop-section_text.grop-heading-5a0c0d2f18982 h2 {
+    color: #222222;
+    font-size: 28px;
+    padding-bottom: 12px;
+  }
+
+  .grop-txt-block-5a0c0d2f1de01-16-333333 {
+    color: #333333;
+    font-size: 16px;
+    padding-bottom: 20px;
+    line-height: 26px;
+  }
+
+  .grop-txt-block-5a0c0d2f1dead-15-777777 {
+    color: #777777;
+    font-size: 15px;
+    line-height: 26px;
+  }
+
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-btn span,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-big_link span {
+    color: #222222;
+  }
+
+  .grop-btn-5a0c0d2f1dfe2-join-us-today:hover,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-cause_remor_btn:hover,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-btn span:hover,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-big_link:hover span {
+    color: #222222 !important;
+  }
+
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-cause_remor_btn,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-big_link {
+    font-weight: 500!important;
+  }
+
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-cause_remor_btn,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-big_link {
+    height: 42px;
+  }
+
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-cause_remor_btn,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-big_link {
+    line-height: 42px;
+  }
+
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-big_link,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-cause_remor_btn {
+    background: #f0c84c !important;
+    border-color: #f0c84c !important;
+  }
+
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-big_link:hover,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-big_link:focus,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-big_link:active,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-cause_remor_btn:hover,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-cause_remor_btn:focus,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-cause_remor_btn:active,
+  .grop-btn-5a0c0d2f1dfe2-join-us-today.grop-btn_overly:before {
+    background: #dcb748 !important;
+    border-color: #dcb748 !important;
+  }
+
+  .grop-txt-block-5a0c0d2f20de9-40-ffffff {
+    color: #ffffff;
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .grop-section_text.grop-heading-5a0c0d2f2183e h2 {
+    font-size: 26px;
+  }
+
+  .grop-footer-adrs-5a0c0d2f39ab2 a {
+    color: #666666;
+  }
+
+  .grop-footer-adrs-5a0c0d2f39ab2 a:hover {
+    color: #f0c84c!important;
+  }
+
+  .grop-footer-adrs-5a0c0d2f39b48 a {
+    color: #666666;
+  }
+
+  .grop-footer-adrs-5a0c0d2f39b48 a:hover {
+    color: #f0c84c!important;
+  }
+  .no-class {}
+  
+      .layout-boxed {}
+  
+      .no-class {}
+  
+      .header-area-trprnt #grop-mainmenu>li>a,
+      .header-area-trprnt .grop-hadr_shopping_cart>a,
+      .header-area-trprnt .grop-hadr_search>a {}
+  
+      .header-area-trprnt #grop-mainmenu>li>a:hover,
+      .header-area-trprnt #grop-mainmenu>li>a:focus,
+      .header-area-trprnt #grop-mainmenu li.current-menu-ancestor>a,
+      .header-area-trprnt #grop-mainmenu>li.menu-item-has-children:hover>a,
+      .header-area-trprnt .grop-hadr_shopping_cart>a:hover,
+      .header-area-trprnt .grop-hadr_search>a:hover {}
+  
+      .no-class {}
+  
+      .grop-title-area {}
+  
+      .no-class {}
+  
+      .vt-maintenance-mode {}
+  
+      .no-class {}
+  
+      @media (max-width:991px) {
+        .grop-mobil_menu_warp {
+          display: block;
+        }
+        .grop-mainmenu_warp {
+          /*display: none;*/
+        }
+        .grop-brand {
+          background-color: #fff !important;
+        }
+        .navigation-bar,
+        .top-nav-icons,
+        .grop-nav-search,
+        .hav-mobile-logo.grop-logo img.default-logo,
+        .hav-mobile-logo.grop-logo img.retina-logo,
+        .is-sticky .grop-logo img.default-logo.sticky-logo,
+        .is-sticky .grop-logo img.retina-logo.sticky-logo,
+        .header-transparent .grop-logo.hav-mobile-logo img.transparent-default-logo.transparent-logo,
+        .header-transparent .is-sticky .grop-logo.hav-mobile-logo img.transparent-default-logo.sticky-logo,
+        .grop-logo.hav-mobile-logo img.transparent-default-logo.sticky-logo {
+          display: none;
+        }
+        .mean-container .top-nav-icons,
+        .mean-container .grop-logo,
+        .mean-container .grop-nav-search,
+        .hav-mobile-logo.grop-logo img.mobile-logo {
+          display: block;
+        }
+        .mean-container .container {
+          width: 100%;
+        }
+        .grop-header-two .mean-container .grop-logo {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 99999;
+          padding: 0 20px;
+        }
+        .grop-header-two .mean-container .grop-navigation {
+          position: absolute;
+          right: 73px;
+          top: 0;
+          z-index: 9999;
+        }
+        .mean-container .grop-nav-search {
+          float: left;
+          left: 0;
+          right: auto;
+          background-color: rgba(0, 0, 0, 0.4);
+        }
+        .mean-container .grop-search-three {
+          position: absolute;
+          width: 100%;
+          left: 0;
+          top: 0;
+          z-index: 9999;
+        }
+        .mean-container .grop-search-three input {
+          position: absolute;
+          left: 0;
+          top: 0;
+          background: rgba(0, 0, 0, 0.4);
+        }
+        .grop-header-two .mean-container .top-nav-icons {
+          position: absolute;
+          left: 0;
+          z-index: 999999;
+        }
+        .grop-header-two .grop-brand {
+          padding-top: 20px;
+          padding-bottom: 0;
+        }
+        .hav-mobile-logo .default-logo,
+        .hav-mobile-logo .transparent-retina-logo,
+        .hav-mobile-logo .retina-logo,
+        .header-area-trprnt .grop-header_sticky_active .dhav-default-logo.hav-mobile-logo .default-logo,
+        .hav-mobile-logo .grop-logo.grop-txt-logo {
+          display: none;
+        }
+        .mobile-logo {
+          display: inline-block;
+        }
+        .header-area-trprnt .grop-header_sticky_active .hav-mobile-logo.hav-transparent-logo .grop-default-logo,
+        .grop-header_area .hav-mobile-logo .grop-hadr_black_logo {
+          display: none;
+        }
+        @media only screen and (-webkit-min-device-pixel-ratio:1.5),
+        only screen and (-moz-min-device-pixel-ratio:1.5),
+        only screen and (-o-min-device-pixel-ratio:3/2),
+        only screen and (min-device-pixel-ratio:1.5) {
+          .hav-mobile-logo .grop-hadr_black_logo,
+          .grop-logo.default-logo,
+          .transparent-retina-logo,
+          .hav-default-retina-logo .grop-txt-logo,
+          .hav-default-retina-logo .transparent-retina-logo {
+            display: none;
+          }
+          .hav-mobile-logo .retina-logo,
+          .hav-mobile-logo .transparent-retina-logo,
+          .hav-mobile-logo.hav-transparent-retina .transparent-retina-logo {
+            display: none;
+          }
+          .hav-mobile-logo.hav-transparent-retina .retina-logo {
+            display: none;
+          }
+        }
+      }
+  
+      body,
+      .grop-silder_caption_text p,
+      .grop-section_text p,
+      .grop-ucoming_evnt_location,
+      .grop-ucoming_evnt_time,
+      .grop-prjct_tab_cont p,
+      .grop-fetrd_cause_cont p,
+      .grop-prlax_bcmvolnter_text p,
+      .help_single_itm_warp p,
+      .grop-news_single p,
+      .grop-news_ps_date,
+      .grop-news_pst_in,
+      .grop-news_pst_commnt,
+      .grop-ftr_sngl_widget .textwidget,
+      .grop-ftr_sngl_widget ul li a,
+      #grop-latest_tweets,
+      #grop-latest_tweets a,
+      #grop-latest_tweets .twt-date,
+      .mc4wp-form-fields p,
+      .grop-callout2_text p,
+      .grop-dnatrsd_amount,
+      .grop-stryabtus_pra_stg,
+      .grop-stryabtustxt_warp p,
+      .grop-h2bcme_vlnter_stn_txt,
+      .grop-h2bcme_vlnter_cont p,
+      .grop-suprtus_tday_txt p,
+      .grop-suess_stris_single p,
+      .grop-suess_stris_info h6,
+      .grop-missions_txt p,
+      .grop-suess_strisst2_txt p,
+      .grop-vltrs_peple_intro_txt p,
+      .grop-vltrs_peple_scil_title,
+      .grop-vltrs_peple_promo_box p,
+      .grop-testimonial_single p,
+      .grop-tstimnl_intro p,
+      .grop-grop-ndspnsr_box p,
+      .grop-news_pst_cont p,
+      .grop-hm-3sildcapst1_text p,
+      .grop-hm-3sildcapst2_text p,
+      .grop-cause_txts_content p:not(.grop-donation_stats),
+      .grop-side-widget .grop-wigt_search_form input[type="search"],
+      .grop-upcomt_wigt_txt .grop-upcomt_wigt-date,
+      .grop-donate_txt_wigt p,
+      .grop-cusigl_content p.grop-semi-txt,
+      .grop-sigl_content p.grop-semi-txt,
+      .grop-cusigl_content p.grop-box-txt,
+      .grop-sigl_content p.grop-box-txt,
+      .grop-cusigl_content p,
+      .grop-sigl_content p,
+      .grop-cusiglso_txt h4,
+      .grop-siglso_txt h4,
+      .grop-about_txt q,
+      .grop-about_txt p,
+      .grop-ab_msion_heading p,
+      .grop-ab_msions_txt p,
+      ul.grop-ab_msions_list li,
+      .grop-ab_calut_txt p,
+      .grop-tm_desc p,
+      .grop-tmsl_txt_warp p,
+      .grop-oimt_txt p,
+      .grop-bv_txt p,
+      .grop-bvlist_text p,
+      .grop-callout3_cont p,
+      .grop-ucoming_evnt_txt_cont p:not(.grop-ucoming_evnt_location),
+      .grop-evensigl_content p,
+      .grop-evensigl_content ol li,
+      .grop-cgettouch_txt p,
+      .grop-cgettouch_info .grop-cgettouch_locn,
+      .grop-offic_locfull,
+      .grop-offic_loc_txt p,
+      .grop-contact_social p,
+      .grop-post_meta,
+      .grop-post_content p,
+      .grop-post_comnt,
+      .grop-pulrnws_wigt_warp .grop-pulrnws_date,
+      .grop-sigl_content ol li,
+      .author-content p,
+      #comments.comments-area .grop-comments-meta span,
+      #comments.comments-area .comment-content p,
+      #comments.comments-area #respond #commentform .grop-form-inputs input,
+      #comments.comments-area #respond #commentform .grop-form-textarea textarea,
+      .grop-projct_content_warp p,
+      .grop-pjctsigle_content p,
+      .grop-prjctinfo_box h5,
+      .woocommerce ul.products li.product .price,
+      .woocommerce ul.products li.product .price del,
+      .woocommerce ul.products li.product .price ins,
+      .woocommerce ul.cart_list li img del,
+      .woocommerce ul.cart_list li img ins,
+      .woocommerce ul.product_list_widget li del,
+      .woocommerce ul.product_list_widget li ins,
+      .woocommerce .entry-summary .woocommerce-review-link,
+      .woocommerce div.product p.price,
+      .woocommerce div.product span.price,
+      [itemprop="description"] p,
+      .woocommerce .entry-summary .product_meta span,
+      .woocommerce #reviews #comments ol.commentlist li .comment-text .description p,
+      .woocommerce-Tabs-panel--description p,
+      .woocommerce #reviews #comments ol.commentlist li .comment-text p.meta>time,
+      .woocommerce form.login>p,
+      .woocommerce table.shop_table td,
+      .woocommerce-checkout #payment div.payment_box,
+      .grop-hm-4cap_btxt p,
+      .grop-hm4ab_desc p,
+      .grop-hm4srv_txt p,
+      .grop-pww_txt p,
+      .grop-faq-body,
+      .grop-faq-body p,
+      .grop-hadrsrch_form input[type="search"],
+      .grop-txt-blck {
+
+      }
+  
+      #grop-mainmenu>li>a {
+
+
+      }
+  
+      #grop-mainmenu ul.sub-menu li a {
+
+      }
+  
+      body .grop-hm-3sildcapst3_text p,
+      body .grop-oic_txt,
+      body [class*="grop-input-col-"] input,
+      body [class*="grop-input-col-"] select,
+      body .grop-callout3_cont h2,
+      body .grop-resform_footr,
+      body .grop-faqp-title,
+      body .grop-header_info>ul li,
+      body .grop-header_info>ul a,
+      body h4.grop-cause_title,
+      body .grop-donation_stats,
+      body .grop-cause_time,
+      body .grop-cause_remor_btn,
+      body .grop-prlax_captn_text p,
+      body h4.grop-ucoming_evnt_title,
+      body .grop-prjct_nav_tabs li a,
+      body .grop-prjct_tab_title,
+      body .grop-prjct_tab_title a,
+      body .grop-fetrd_cause_cont .grop-fetrd_cause_title,
+      body .grop-fetrd_cause_cont .grop-fetrd_cause_title a,
+      body .grop-fetrdcs_dnt_stats,
+      body .grop-counter_cont p,
+      body .help_single_itm_warp h4,
+      body .help_single_itm_warp h4 a,
+      body h4.grop-news_ps_title,
+      body .grop-copyright,
+      body .grop-caudetai_title,
+      body .grop-dnatrsd_name,
+      body .grop-stryabtus_box_txt h5,
+      body .grop-suprtus_tday_txt h4,
+      body .grop-suessrstr_name,
+      body .grop-cntdwn_upevt_txt h5,
+      body .grop-cntdwn_upevt_txt h4,
+      body .grop-dont_sectors_txt .grop-dont_sectors_mta,
+      body .grop-dont_sectors_txt .grop-dont_sectors_btn,
+      body .grop-missions_txt h4,
+      body .grop-suess_strisst2_pst_txt h4,
+      body .grop-vltrs_peple_intro_txt h4,
+      body .grop-vltpeple_prmo_btn,
+      body .grop-tstimnl_intro .grop-tstimnl_prsn-title,
+      body #grop_filters ul li,
+      body .grop-posts-pagination-warp .page-numbers,
+      body .woocommerce-pagination .page-numbers,
+      body .grop-side-widget>ul li a,
+      body .grop-upcomt_wigt_txt h5,
+      body .grop-side-widget .tagcloud a,
+      body .grop-cusigl_meta,
+      body .grop-sigl_meta,
+      body .grop-cusigl_dt-txt,
+      body .grop-sigl_dt-txt,
+      body .grop-urtcau_wigt_txt h5,
+      body .grop-urtcau_wigt-date,
+      body .grop-ab_msionrd_btn,
+      body .grop-ab_msions_txt h4,
+      body .grop-tm_intro h4,
+      body .grop-tm_intro h6,
+      body .grop-tmsl_conctinfo span,
+      body .grop-grop-oimtrm_btn,
+      body .grop-oic_singl_warp p,
+      body [class*="grop-worldmap_"] .tooltip.top .tooltip-inner,
+      body .grop-bvlist_text h4,
+      body [class*="grop-input-col-"] label,
+      body [class*="grop-input-col-"] input,
+      body [class*="grop-input-col-"] textarea,
+      body [class*="grop-input-col-"] select,
+      body .grop-galry_cption,
+      body .grop-cgettouch_info h4,
+      body .grop-post_title,
+      body .grop-pulrnws_wigt_warp h5,
+      body .grop-sigl_content h4,
+      body .author-content .author-name,
+      body #comments.comments-area .grop-comments-meta h4,
+      body #comments.comments-area a.comment-reply-link,
+      body #comments.comments-area #respond #reply-title small a,
+      body .grop-projct_content_warp h4,
+      body .woocommerce-result-count,
+      body .woocommerce .woocommerce-ordering select,
+      body .woocommerce ul.products li.product h3,
+      body .woocommerce ul.cart_list li a,
+      body .woocommerce ul.product_list_widget li a,
+      body .woocommerce .quantity .qty,
+      body .woocommerce-tabs .panel>h2,
+      body .woocommerce-Tabs-panel--description h2,
+      body .woocommerce div.product .woocommerce-tabs .woocommerce-Reviews-title,
+      body .woocommerce #reviews #comments ol.commentlist li .comment-text p.meta>strong,
+      body .woocommerce #reviews h3#reply-title,
+      body .woocommerce #review_form #respond p[class*="comment-form"]>label,
+      body .woocommerce table.shop_attributes th,
+      body .woocommerce-error,
+      body .woocommerce-info,
+      body .woocommerce-message,
+      body .woocommerce form .form-row label,
+      body .lost_password,
+      body .woocommerce table.shop_table td.product-name,
+      body .woocommerce .woocommerce-checkout-payment label,
+      body .woocommerce-page .woocommerce-checkout-payment label,
+      body #add_payment_method #payment .payment_method_paypal .about_paypal,
+      body .woocommerce-cart #payment .payment_method_paypal .about_paypal,
+      body .woocommerce-checkout #payment .payment_method_paypal .about_paypal,
+      body .woocommerce-cart .woocommerce table.shop_table th,
+      body .woocommerce-cart .woocommerce table.shop_table .cart_item td.product-name,
+      body .woocommerce-cart .woocommerce-shipping-calculator .shipping-calculator-button,
+      body .grop-rsd_amn,
+      body .grop-gal_amn,
+      body .grop-chart_tolltip_list>div,
+      body .grop-piechart_inrtxt h6,
+      body .grop-piechart_inrtxt h5,
+      body .grop-piechart_list li,
+      body .grop-pww_btn,
+      body .grop-faq-heading .panel-title,
+      body .grop-header_style3 .grop-hsi2_txt h5,
+      body .grop-header_style3 .grop-hsi2_txt h6,
+      body .grop-callout_txt_warp p,
+      body .grop-sigl_tags,
+      body .wpcf7 input,
+      body .wpcf7 textarea,
+      body .wpcf7 select,
+      body .grop-sigl_content,
+      body #comments.comments-area .comment-content,
+      body .grop-sigl_content h3,
+      body .grop-sigl_content th,
+      body #comments.comments-area .comment-content h4,
+      body #comments.comments-area .comment-content h3,
+      body #comments.comments-area .comment-content th,
+      body .grop-sigl_content h5,
+      body .grop-sigl_content h6,
+      body #comments.comments-area .comment-content h5,
+      body #comments.comments-area .comment-content h6,
+      body ul.slimmenu li a,
+      body .grop-btn,
+      body .grop-knob,
+      body .grop-donation_stats .grop-rasd_amount,
+      body .grop-fetrdcs_dnt_stats .grop-rasd_amount,
+      body .grop-caudetai_amunt,
+      body .flip-clock-divider .flip-clock-label,
+      body [class*="grop-sildcap_tag-"],
+      body .grop-hm-3sildcapst3_btn,
+      body .grop-cusigl_dtr_count,
+      body .grop-sigl_dtr_count,
+      body .grop-cusigl_title,
+      body .grop-sigl_title,
+      body .grop-cusigl_pager a,
+      body .grop-sigl_pager a,
+      body .grop-tmsl_conctinfo,
+      body .grop-oimt_cption,
+      body .grop-callout3_cont h2 span,
+      body .grop-evensigl_tx,
+      body .grop-evensigl_desc_warp h4,
+      body .grop-float_left h5.grop-dtls_title,
+      body .grop-float_left .grop-dtl h5,
+      body .grop-evensigl_map h4,
+      body .grop-gm-text,
+      body #comments.comments-area #respond #commentform .form-submit .submit,
+      body .grop-pjctsigle_title,
+      body .grop-prjctinfo_box h6,
+      body .grop-pjdnatrsd_area>h3,
+      body .woocommerce span.onsale,
+      body .woocommerce #respond input#submit,
+      body .woocommerce a.button,
+      body .woocommerce button.button,
+      body .woocommerce input.button,
+      body .woocommerce div.product .product_title,
+      body .woocommerce div.product .woocommerce-tabs ul.tabs li a,
+      body .woocommerce table.shop_table th,
+      body .grop-hsi2_txt h6,
+      body .grop-hsi2_txt h5,
+      body .grop-rsd_amn span,
+      body .grop-gal_amn span,
+      body .grop-hm4srv_txt h4,
+      body .grop-faqp-title span,
+      body .grop-404_txt h2,
+      body .grop-sigltags_warp>span,
+      body .grop-sigl_content h1,
+      body .grop-sigl_content h2,
+      body #comments.comments-area .comment-content h1,
+      body #comments.comments-area .comment-content h2,
+      body .grop-sigl_content .post-password-form input[type="submit"],
+      body #comments.comments-area .comment-content .post-password-form input[type="submit"],
+      body .grop-cause_donate_btn,
+      body .grop-vltrs_peple_intro,
+      body .grop-causelist_donate_btn,
+      body .grop-tmsl_intro,
+      body .grop-evensiglre_btn,
+      body .grop-confrm_sigl .grop-btn_submit,
+      body .wpcf7 input[type="submit"],
+      body .wpcf7 button[type="submit"],
+      body .grop-offic_loc,
+      body .grop-404_btn,
+      body .tribe-events-list-widget-events h4.tribe-event-title a,
+      body .submit-form .give-submit.give-btn,
+      body .donation-form-wrap h2,
+      body .donation-form-wrap legend.give-payment-mode-label,
+      body .grop-float_left .grop-evensigl_content h4,
+      .woocommerce ul.products li.product .woocommerce-loop-product__title {
+
+      }
+  
+      body .grop-hm4_promo,
+      body .grop-404_txt h1,
+      body .grop-sildcap_title,
+      body .grop-big_link,
+      body .grop-section_text [class*="grop-sctn_title_"],
+      body .grop-prlax_captn_text h2,
+      body .grop-ucoming_evnt_date,
+      body .grop-ucoming_evnt_tp_cont>h3,
+      body .grop-counter_cont h2,
+      body .grop-prlax_bcmvolnter_text h2,
+      body .grop-news_single h2,
+      body .grop-ftr_widget_title,
+      body .grop-hm-2sildcap_text .grop-sildcap_title,
+      body .grop-styl-2sildcap_text .grop-sildcap_title,
+      body .grop-callout2_text h3,
+      body .grop-dnatrss_sec_title,
+      body .grop-stryabtus_title,
+      body .grop-stryabtus_counter,
+      body .grop-h2bcme_vlnter_title,
+      body .grop-h2prlax_callout_text h2,
+      body .grop-sussstris_sec-title,
+      body .flip-clock-wrapper,
+      body .flip-clock-wrapper .flip,
+      body .flip-clock-wrapper .flip li,
+      body .flip-clock-wrapper .flip li a,
+      body .flip-clock-wrapper .flip li div,
+      body .grop-suess_strisst2_txt h2,
+      body .grop-vltrs_peple_promo_box h2,
+      body .grop-grop-ndspnsr_box h2,
+      body .grop-hm3callout_txt,
+      body .grop-page_title,
+      body .grop-side-widget-title,
+      body .grop-donate_txt_wigt h4,
+      body .grop-rtdcaus-title,
+      body .grop-about_txt h3,
+      body .grop-ab_msion_heading h3,
+      body .grop-ab_calut_txt h3,
+      body .grop-tm_desc h3,
+      body .grop-tmsl_title,
+      body .grop-oimt_txt h3,
+      body .grop-oic_singl_warp h2,
+      body .grop-bv_txt h3,
+      body .grop-form_title,
+      body .grop-evnt_list_item .grop-evnt_list_date span.grop-evnt_d,
+      body .grop-evnt_list_item .grop-evnt_list_date span.grop-evnt_m-y,
+      body .grop-resform_headr,
+      body .grop-cgettouch_txt h3,
+      body .grop-offic_loc_txt h2,
+      body .grop-contact_social h3,
+      body #comments.comments-area .comments-title,
+      body #comments.comments-area #respond #reply-title,
+      body .grop-rtdpjct-title,
+      body .grop-page-title,
+      body .related.products,
+      body .woocommerce-billing-fields>h3,
+      body #ship-to-different-address label,
+      body #order_review_heading,
+      body .woocommerce .cart-collaterals .cart_totals>h2,
+      body .woocommerce-page .cart-collaterals .cart_totals>h2,
+      body .woocommerce-account .woocommerce h2,
+      body .woocommerce-account .woocommerce h3,
+      body .woocommerce-account .woocommerce h4,
+      body .grop-hm-4cap_btxt h3,
+      body .grop-hm4ab_desc h2,
+      body .grop-pww_txt h2,
+      body .wpcf7 .grop-file-upload .grop-file-btn,
+      body h4.widget-title,
+      body .related.products h2 {
+
+      }
+  
+      .grop-float_left h1,
+      .grop-float_left h2,
+      .grop-float_left h3,
+      .grop-float_left h4,
+      .grop-float_left h5,
+      .grop-float_left h6,
+      .grop-float_left h1,
+      .grop-float_left h2,
+      .grop-float_left h3,
+      .grop-float_left h4,
+      .grop-float_left h5,
+      .grop-float_left h6,
+      .no-sidebar h1,
+      .no-sidebar h2,
+      .no-sidebar h3,
+      .no-sidebar h4,
+      .no-sidebar h5,
+      .no-sidebar h6,
+      .text-logo,
+      .grop-page_title {
+
+      }
+  
+      .grop-side-widget-title,
+      .grop-page-rgt_sidebar h1,
+      .grop-page-rgt_sidebar h2,
+      .grop-page-rgt_sidebar h3,
+      .grop-page-rgt_sidebar h4,
+      .grop-page-rgt_sidebar h5,
+      .grop-page-rgt_sidebar h6 {
+
+      }
+  
+      .grop-ftr_widget_title,
+      .grop-footer_widgets h1,
+      .grop-footer_widgets h2,
+      .grop-footer_widgets h3,
+      .grop-footer_widgets h4,
+      .grop-footer_widgets h5,
+      .grop-footer_widgets h6 {
+
+      }
+  
+      .your-custom-class {
+
+      }
+
+      /* Common style rules for najafyia */
+      .checkbox{
+        font-size: 24px;
+      }
+      .checkbox .fa-times-circle{
+        color:gray;
+      }
+      .checkbox .fa-check-circle{
+        color:#c8a023;
+      }
+      input[type=checkbox], input[type=radio]{
+          transform: scale(1.5);
+      }
+     .cart-checkout a:hover,.cart-checkout a:active,.cart-checkout a:focus{
+        color: #151515!important;
+      }
+     .swal2-content .program-names-list{
+        width: 48%;
+        text-align: left;
+        margin: 0 auto;
+        color: white;
+      }
+      .swal2-content .program-names-list.ARB{
+        text-align: right;
+        direction: rtl;
+      }

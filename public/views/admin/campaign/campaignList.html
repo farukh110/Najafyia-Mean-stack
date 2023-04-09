@@ -1,0 +1,90 @@
+<div data-ng-controller="campaignController as campVM" data-ng-init="campVM.getCampaigns()">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <!--<section class="content-header">-->
+
+        <!--</section>-->
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Your Page Content Here -->
+            <div class="row">
+                <div class="col-md-10 col-xs-12 col-md-offset-1">
+                    <div class="col-md-8 nopadding">
+                        <h4>{{'CAMPAIGN'| translate}}</h4>
+                    </div>
+                    <div class="col-md-4 no-padding">
+
+                        <div class="col-md-12 no-padding">
+                            <input type="text" class="form-control pull-right" data-ng-model="campVM.searchValue"
+                                   placeholder="{{'SEARCH BY NAME'| translate}}"/>
+                        </div>
+                        <!-- <div class="col-md-3 no-padding">
+                            <button type="button" name="searchBtn" class="btn btn-bitbucket pull-right">{{'SEARCH'| translate}}</button>
+                        </div> -->
+
+                    </div>
+                </div>
+
+                <div class="col-md-10 col-xs-12 col-md-offset-1">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <div class="box-title">
+
+                            </div>
+                        </div>
+                        <div class="box-body overflowTable">
+                            <form role="form">
+                                <table class="table table-responsive">
+                                    <thead>
+                                    <td> {{'Sr.' |translate}}</td>
+                                    <td> {{'CAMPAIGN NAME'| translate}}</td>
+                                    <td> {{'DESCRIPTION'| translate}}</td>
+                                    <td> {{'TARGET'| translate}}</td>
+                                    <td> {{'START DATE'| translate}}</td>
+                                    <td> {{'END DATE'| translate}}</td>
+                                    <td> {{'BANNER'| translate}}</td>
+                                    <td> {{'ACTIONS'| translate}}</td>
+                                    </thead>
+                                    <tr ng-repeat="camp in campVM.campaignList | filter:{title: campVM.searchValue}">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{camp.title}}</td>
+                                        <td>{{camp.description | limitTo:20}}{{camp.description.length>20?'...':''}}</td>
+                                        <td>{{camp.targetAmount | number}}</td>
+                                        <td>{{camp.startDate | date:'MM/dd/yyyy'}}</td>
+                                        <td>{{camp.endDate | date:'MM/dd/yyyy'}}</td>
+                                        <td>{{camp.isBanner?'YES':'--'}}</td>
+                                        <td>
+                                            <a href="/#/admin/addCampaign?id={{camp._id}}"><i class="fa fa-edit">{{'EDIT'| translate}}</i></a> |
+                                            <button data-ng-if="camp.isActive==true" class="btn-danger"
+                                                    data-ng-click="campVM.deActivateCampaign(camp._id,false);">
+                                                DeActivate
+                                            </button>
+                                            <button data-ng-if="camp.isActive==false" class="btn-success"
+                                                    data-ng-click="campVM.deActivateCampaign(camp._id,true);">Activate
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="box-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- HEADER -->
+</div></div>
+<script>
+    jQuery(function () {
+        jQuery('#edit').editable({inlineMode: false, fullPage: true})
+    });
+
+</script>

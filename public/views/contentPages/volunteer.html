@@ -1,0 +1,273 @@
+<style>
+    .form-horizontal .form-group {
+        margin-right: 0px;
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+
+    .btn {
+        font-size: 12px;
+    }
+</style>
+<div class="grop-page padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="pageContentController as pageVM"
+            data-ng-init="pageVM.getPageContentByName('VOLUNTEER');pageVM.getLanguagesList();">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12  col-xs-12">
+                        <div class="pageHeadingAreaImg" style="background-image:url(/images/get-involved-banner.png)">
+                            <h1>{{'VOLUNTEER WITH US'|translate}}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-content-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-8 ">
+                            <form class="form-horizontal" autocomplete="off"
+                                ng-submit="pageVM.saveVolunteer(queryForm.$valid);" name="queryForm">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-12 no-padding">
+
+                                            <div class="col-md-6 cvolres" style="">
+                                                <div class="input-group date" style="">
+                                                    <input type="text" id="txtFromDate" name="durationStart"
+                                                        class="form-control pull-right readonly inputWithIcon"
+                                                        ng-click="setPosFromDate();"
+                                                        ng-change="startDateChange(); checkStartDate(pageVM.volunteerDetails.from);"
+                                                        ng-model="pageVM.volunteerDetails.from"
+                                                        placeholder="{{'FROM' | translate}}" autocomplete="off" />
+                                                    <span class="input-group-addon roundedIcon"><i
+                                                            class="fa fa-calendar"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group date" style="">
+                                                    <!-- ng-change="checkStartDate(pageVM.volunteerDetails.to)" -->
+                                                    <input type="text" id="txtToDate"
+                                                        class="form-control pull-right readonly inputWithIcon"
+                                                        ng-click="setPosToDate()" ng-model="pageVM.volunteerDetails.to"
+                                                        placeholder="{{'TO' | translate}}" autocomplete="off" />
+                                                    <span class="input-group-addon roundedIcon"><i
+                                                            class="fa fa-calendar"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="form-group" style="">
+                                            <input type="text" class="form-control" id="name"
+                                                ng-model="pageVM.volunteerDetails.name"
+                                                placeholder="{{'NAME' | translate}}*" required
+                                                oninvalid="getValidate(this)" oninput="this.setCustomValidity('')"
+                                                autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="email"
+                                                ng-model="pageVM.volunteerDetails.email"
+                                                placeholder="{{'EMAIL' | translate}}*" required
+                                                oninvalid="getValidate(this)" oninput="this.setCustomValidity('')"
+                                                autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="form-group" style="margin-bottom: 0;">
+                                            <input type="text" class="form-control" id="phone"
+                                                ng-model="pageVM.volunteerDetails.phone" maxlength="16"
+                                                ng-keypress='isNumberKey($event)' placeholder="{{'PHONE' | translate}}*"
+                                                required oninvalid="getValidate(this)"
+                                                oninput="this.setCustomValidity('')" autocomplete="off">
+                                            <span class="text-left warning">
+                                                {{'PLEASE TYPE YOUR MOBILE NUMBER ALONG WITH THE COUNTRY CODE' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="age"
+                                                ng-model="pageVM.volunteerDetails.age" max="100"
+                                                ng-keypress='isNumberKey($event)' maxlength="3"
+                                                placeholder="{{'AGE' | translate}}*" required
+                                                oninvalid="getValidate(this)" oninput="this.setCustomValidity('')"
+                                                autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="form-group">
+                                            <select data-ng-model="pageVM.volunteerDetails.country" class="form-control"
+                                                data-ng-options="country.name as country.name for country in pageVM.countryList">
+                                                <option value="">{{'COUNTRY' | translate}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="nationality"
+                                                ng-model="pageVM.volunteerDetails.nationality"
+                                                placeholder="{{'NATIONALITY' | translate}}*" required
+                                                oninvalid="getValidate(this)" oninput="this.setCustomValidity('')"
+                                                autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group">
+                                            <select data-ng-model="pageVM.language" class="form-control"
+                                                data-ng-options="language.name as language.name for language in pageVM.languageList">
+                                                <option value="" selected disabled>{{'LANGUAGE' | translate}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-xs-12">
+                                        <div class="">
+                                            <div class="col-md-4 col-xs-4 text-center no-padding">
+                                                <div class="bigCheck">
+                                                    <input type="checkbox" class=""
+                                                        data-ng-model="pageVM.languageLevelRead" value="Read"
+                                                        name="languageLevel" autocomplete="off">
+                                                    <p>{{'READ' | translate}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4  col-xs-4 text-center no-padding">
+                                                <div class="bigCheck">
+                                                    <input type="checkbox" class=""
+                                                        data-ng-model="pageVM.languageLevelWrite" value="Write"
+                                                        name="languageLevel" autocomplete="off">
+                                                    <p>{{'WRITE' | translate}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4  col-xs-4 text-center no-padding">
+                                                <div class="bigCheck">
+                                                    <input type="checkbox" class=""
+                                                        data-ng-model="pageVM.languageLevelSpeak" value="Speak"
+                                                        name="languageLevel" autocomplete="off">
+                                                    <p>{{'SPEAK' | translate}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-xs-12 text-right">
+                                        <div class="form-group">
+                                            <button type="button" class="btn  btn-primary btn-block"
+                                                data-ng-click="pageVM.addLanguage();">{{'ADD LANGUAGE' | translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row col-md-12" data-ng-if="pageVM.volunterLanguageList.length">
+                                    <div class="overflowTable">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <th style="width: 50px">{{'SR NO' | translate}}</th>
+                                                <th>{{'LANGUAGE' | translate}}</td>
+                                                <th>{{'READ' | translate}}</td>
+                                                <th>{{'WRITE' | translate}}</td>
+                                                <th>{{'SPEAK' | translate}}</td>
+                                                <th style="width: 50px">
+                                                    </td>
+                                            </thead>
+                                            <tr data-ng-repeat="language in pageVM.volunterLanguageList">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{language.language}}</td>
+                                                <td>{{language.read?'YES':'NO' | translate}}</td>
+                                                <td>{{language.write?'YES':'NO' | translate}}</td>
+                                                <td>{{language.speak?'YES':'NO' | translate}}</td>
+                                                <td>
+                                                    <button type="button"
+                                                        data-ng-click="pageVM.deleteLanguage($index);">
+                                                        <i class="fa fa-trash-o"></i></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label"><b>{{'ATTACH PHOTO' | translate}}</b></label>
+                                            <label class="slcnew">
+                                                <!-- <input type="file" id="file" aria-label="File browser example"> -->
+                                                <input type="file" id="file" aria-label="File browser example"
+                                                    name="file" file-model="pageVM.file" class="form-control image"
+                                                    accept="image/png, image/jpeg"
+                                                    placeholder="{{'ATTACH PHOTO' | translate}}" autocomplete="off" />
+                                                <span class="file-custom"></span>
+                                            </label>
+                                            <!-- <input type="file" name="file"
+  file-model="pageVM.file"
+  class="form-control image" accept="image/png, image/jpeg"  placeholder="{{'IMAGE' | translate}}" autocomplete="off"/> -->
+                                            <img class="previewImg" data-ng-if="pageVM.imegeURL"
+                                                ng-src="/uploads/{{pageVM.imegeURL}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label"><b>{{'ATTACH CV' | translate}}</b></label>
+                                            <label class="slcnew">
+                                                <!-- <input type="file" id="file" aria-label="File browser example"> -->
+                                                <input type="file" id="file" aria-label="" name="file"
+                                                    file-model="pageVM.cv" class="form-control image"
+                                                    accept="application/pdf" placeholder="{{'ATTACH CV' | translate}}"
+                                                    autocomplete="off" />
+                                                <span class="file-custom-cv"></span>
+                                                <!-- <input type="file" name="file"
+                                                   file-model="pageVM.cv" accept="application/pdf"
+                                                   class="form-control image" placeholder="{{'IMAGE' | translate}}" autocomplete="off"/> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row centered">
+                                    <div class="col-md-3 text-center">
+                                        <button type="submit" class="btn btn-block themeBtn2">{{'SUBMIT' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        let lang = localStorage.getItem('lang');
+        function getValidate(input) {
+            if (input.value == '' && lang == 'ARB') {
+                input.setCustomValidity("يرجى ملء الحقل المفقود");
+            } else if (input.value == '' && lang == 'FRN') {
+                input.setCustomValidity("S'il vous plaît remplir le champ manquant");
+            } else {
+                input.setCustomValidity("Please fill out this field.");
+            }
+        }
+
+    </script>
+</div>

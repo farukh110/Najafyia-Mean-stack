@@ -1,0 +1,109 @@
+<div data-ng-controller="sadaqaController as sadaqaVM" data-ng-init="sadaqaVM.getSadaqas();">
+    <!-- Content Wrapper. Contains sadaqa content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+    <div class="content-wrapper">
+        <!-- Content Header (sadaqa header) -->
+        <section class="content-header">
+
+
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Your sadaqa Content Here -->
+            <div class="row">
+                <div class="col-md-10 col-xs-12 col-md-offset-1">
+                    <div class="col-md-8 nopadding">
+                        <h4>{{'SADAQAH'| translate}}</h4>
+                    </div>
+                    <div class="col-md-4 no-padding">
+
+                        <div class="col-md-12 no-padding">
+                            <input type="text" class="form-control pull-right" data-ng-model="sadaqaVM.searchValue" placeholder="{{ 'SEARCH BY SADAQAH NAME' | translate }}" />
+                        </div>
+                        <!-- <div class="col-md-3 no-padding">
+                            <button type="button" name="searchBtn" class="btn btn-bitbucket pull-right">{{ 'SEARCH' | translate }}</button>
+                        </div> -->
+
+                    </div>
+                </div>
+
+                <div class="col-md-10 col-xs-12 col-md-offset-1">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label ng-binding">
+                                    {{'ADD PAGE CONTENT' | translate}}</label>
+                                    <textarea rows="4" id="sadaqahTxt"style="width: 100%; resize: none;" cols="50" data-ng-model="sadaqaVM.content" placeholder="{{'PLEASE ENTER CONTENT' | translate}}"></textarea>
+                                    <p style="color: red;" id="showError"></p>
+                                    <button data-ng-click="sadaqaVM.saveBasicContent()" class="btn btn-default pull-right">
+                                        {{'SAVE SADAQA' | translate}}
+                                    </button>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="box-body">
+                            <form role="form">
+                                <table class="table table-responsive">
+                                    <thead>
+                                        <td>
+                                            {{'SADAQAH NO.' | translate }}
+                                        </td>
+                                        <td>
+                                            {{'SADAQAH NAME' | translate }}
+                                        </td>
+                                        <td>
+                                          {{'CATEGORY NAME' | translate }}
+                                         </td>
+                                        <td>
+                                            {{'CREATED DATE' | translate }}
+                                        </td>
+                                        <td>
+                                            {{'STATUS' | translate }}
+                                        </td>
+                                        <td>
+                                            {{'ACTIONS' | translate }}
+                                        </td>
+                                    </thead>
+                                    <tr ng-repeat="sadaqa in sadaqaVM.Sadaqas | filter:{programName: sadaqaVM.searchValue}">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{sadaqa.programName}}</td>
+                                        <td>
+                                        <p ng-repeat="sadaqacats in sadaqa.programSubCategory">
+
+                                                -{{sadaqacats.programSubCategoryName}}
+                                        </p>
+
+                                        </td>
+                                        <td>{{sadaqa.created | date:'MM/dd/yyyy'}}</td>
+                                        <td>
+                                            <p class="{{sadaqa.isActive==true?'bg-success':'btn-danger'}}">{{sadaqa.isActive==true?'Activate':'Inactive' }}</p>
+                                        </td>
+                                        <td> <a href="/#/admin/updatesadaqa?sadaqaid={{sadaqa._id}}"><i class="fa fa-edit">{{'Edit' | translate }}</i></a>                                            |
+                                            <button class="{{sadaqa.isActive==true?'btn btn-danger':'btn btn-success'}}" data-ng-click="sadaqaVM.deleteSadaqa(sadaqa._id,sadaqa.isActive);">{{sadaqa.isActive==true?'Deactivate':'Activate' }}</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="box-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- HEADER -->
+
+</div>
+    </div>
+<script>
+    jQuery(function () {
+        jQuery('#edit').editable({ inlineMode: false, fullsadaqa: true })
+    });
+
+</script>

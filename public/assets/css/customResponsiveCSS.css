@@ -1,0 +1,593 @@
+@media only screen and (min-width: 50px) and (max-width: 349px) {
+    /*  .global-wrap {
+          display: none;
+      }
+
+      #responsiveError {
+          display: block;
+      }*/
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .fastDonationWidget .grop-btn-addcart, .fastDonationWidget .grop-btn-donate {
+        width: auto;
+        font-size: 12px;
+    }
+
+    .side-action, .fastDonationWidget {
+        display: block;
+    }
+
+    .grop-ftr_sngl_widget .textwidget .grop-ftr_logo, .grop-ftr_logo img {
+        width: 120px;
+        height: 90px;
+    }
+
+    /* .grop-team-single-item .grop-btn-donate {
+         width: 40% !important;
+         font-size: 10px !important;
+     }*/
+    .grop-btn-addcart, .grop-btn-donate {
+        /*width: 20% !important;*/
+    }
+
+    /** Main Menu **/
+    .grop-nav-br {
+        width: 100% !important;
+    }
+
+    #grop-mainmenu > li > a {
+        padding: 10px 4px;
+        font-size: 12px;
+    }
+
+    #grop-mainmenu > li.menu-item-has-children > a .fa {
+        font-size: 7px;
+    }
+
+    #grop-mainmenu ul.sub-menu {
+        width: 130px;
+        word-break: break-word;
+    }
+
+    #grop-mainmenu ul.sub-menu li a {
+        padding: 12px 10px;
+        text-transform: capitalize;
+        font-size: 12px;
+    }
+
+    .grop-mainmenu_warp {
+        margin-top: 6px !important;
+        margin-bottom: 6px;
+    }
+
+    .grop-header_navigations.grop-header_sticky {
+        border-bottom: 1px solid #ffffff70;
+    }
+
+    .grop-callout2_single {
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 767px) {
+    /*  .grop-team-single-item .grop-btn-donate {
+          width: 50% !important;
+          font-size: 10px !important;
+      }*/
+    #featuredCampaignButton a {
+        margin: 0px;
+        width: auto;
+        font-size: 10px;
+        padding-left: 40px !important;
+    }
+
+}
+
+@media only screen and (min-width: 400px) and (max-width: 550px) {
+    .customSlider .contentArea {
+        margin-top: 0%;
+    }
+}
+
+@media only screen and (min-width: 350px) and (max-width: 399px) {
+    /*   .grop-team-single-item .grop-btn-donate {
+           width: 60% !important;
+           font-size: 10px !important;
+       }*/
+    #featuredCampaignButton a {
+        margin: 0px;
+        width: 40% !important;
+        font-size: 10px;
+    }
+
+    .customSlider .contentArea {
+        margin-top: 20%;
+    }
+
+    .customSlider .details{
+        margin-bottom: 0px;
+        height: 215px;
+    }
+    /*  .grop-btn-addcart, .grop-btn-donate {
+          width: 50% !important;
+      }*/
+}
+@media only screen and (min-width: 768px) and (max-width: 2000px) {
+    
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    .grop-txt-blockf{padding: 0% 30px 0px 30px;}
+    /* .grop-header_top {
+        direction: ltr !important;
+        position: fixed;
+        width: 100%;
+    } */
+    .grop-header_top{padding: 0px;}
+    .dashboardCounterBoxes {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .dashboardCounterBoxes:last-child {
+        padding-right: 0px;
+    }
+    /* input[type="text"]:disabled,  input[type="number"]:disabled{ color: #fff  !important; } */
+    input[type="text"]:disabled + i,  input[type="number"]:disabled + i{ color: #CCCBCB  !important; }
+    .homecal{
+        position: fixed !important;
+        z-index: 99999 !important;
+        top: 45px !important;
+      }
+    .cvolres{margin-bottom: 35px;}
+    .project-detail-banner, .abtbanner{text-align: center;}
+    
+    .related-projects h4, h5{text-align: center}
+    .grop-callout2_text p{text-align: center;}
+    .dpnone{display: block;}
+    .dpnones{display: none;}
+    .grop-btn-addcart-cal{ margin: 5px auto !important;}
+    .fastDonationWidget{top: 4.6em !important;}
+    .globalLogin .btn-social2{font-size: 9px;}
+    .social_icons{display: none !important;}
+    .customSlider .details {
+        font-size: 18px;
+        /* margin-top: 0%; */
+        height: auto;
+    }
+    
+    .customSlider .contentArea{ margin-top: 0%;}
+    .grop-callout2_single {
+        /* padding-top: 3px; */
+        padding: 13px 0px !important;
+        border-bottom: 1px solid;
+    }
+
+    .reslog{ margin-left: 0px; max-width: 40px; margin-top: 5px;}
+
+    .descriptionImage {
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .pagesPostImage, .project-list-image {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .customBox .box, .customBox .box .box-header, .customBox .box .box-body {
+        height: auto;
+    }
+
+    .grop-header_info {
+        font-size: 10px !important;
+    }
+
+
+    .grop-header_info .dropdown-menu {
+        /*   left: 0px;
+           right: auto;*/
+    }
+
+    .grop-header_info .list-inline > li {
+        padding-right: 2px;
+        padding-left: 4px;
+        /* border-right: 1px solid #5d5656; */
+    }
+    .grop-header_info .list-inline > li:nth-child(6) {
+        border-right: 1px solid #5d5656;
+    }
+
+    
+
+    .grop-header_info > ul li i, .grop-header_info > ul a i {
+        margin-right: 0px;
+        margin-bottom: 0px;
+    }
+
+    .grop-header_info > ul {
+        /*    float: left !important;*/
+        text-align: center;
+        margin: 12px 0px;
+        padding: 0px;
+    }
+
+    .grop-callout2_icon {
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        width: 50px;
+        margin: 0 auto;
+    }
+
+    .grop-callout2_single .grop-float_left {
+        float: none;
+    }
+
+    .grop-callout2_icon img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .grop-callout2_text h3 {
+        font-size: 15px;
+        text-align: center !important;
+    }
+
+    .side-action, .fastDonationWidget {
+        display: block;
+        width: 77% !important;
+        position: fixed !important;
+        
+  
+    }
+  .tab_data{
+    max-height: 480px !important; 
+    overflow-y: scroll;
+    }
+select  {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+  }    
+    .side-btn-arrow{ margin-left: 0px !important; position: relative !important;}
+ 
+    .customSlider img {
+        position: absolute;
+        height: auto;
+        width: 100%;
+    }
+    .customSlider {
+        height: 260px;
+    }
+    /** Footer **/
+    .grop-ftr_logo {
+        text-align: center;
+    }
+
+    .grop-copyright, .grop-copyright a {
+        margin-bottom: 10px;
+        line-height: 10px;
+        font-size: 10px;
+    }
+
+    .grop-footer-socail {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    /** Main Menu **/
+    .grop-nav-br {
+        width: 100% !important;
+    }
+
+    #grop-mainmenu > li > a {
+        padding: 5px 5px;
+        font-size: 9px;
+    }
+
+    #grop-mainmenu > li.menu-item-has-children > a .fa {
+        font-size: 7px;
+    }
+
+    #grop-mainmenu ul.sub-menu {
+        width: 130px;
+        word-break: break-word;
+        right: 0px;
+    }
+
+    #grop-mainmenu ul.sub-menu li a {
+        padding: 5px 5px;
+        text-transform: capitalize;
+        font-size: 9px;
+    }
+
+    .grop-mainmenu_warp {
+        margin-top: 6px !important;
+        margin-bottom: 6px;
+        text-align: center;
+    }
+
+    .grop-header_navigations.grop-header_sticky {
+        /* border-bottom: 1px solid #ffffff; */
+    }
+
+    .grop-cause_detai_amunt_warp {
+        width: auto !important;
+    }
+
+    .grop-skill_prgresbar span {
+        display: inline-block !important;
+    }
+
+    .progress-number-wrapper, .progress-number-mark {
+        line-height: 12px !important;
+        height: 12px !important;
+    }
+
+    /* .studentProfiletable tr td:first-child {
+        border-right: 1px solid #b1afaf;
+        padding: 6px 0px 4px 5%;
+        width: 50%;
+    }
+
+    .studentProfiletable tr td:last-child {
+        padding: 6px 0px 4px 5%;
+        width: 50%;
+    } */
+
+    .checkoutArea .grop-btn-donate {
+        font-size: 10px;
+    }
+
+    .btnSwitch {
+        margin-bottom: 10px;
+    }
+
+    .grop-footer-bottom .copy-secondary {
+        text-align: center;
+        padding-bottom: 0px !important;
+    }
+
+}
+
+@media only screen and (min-width: 320px) and (max-width: 450px) {
+    .grop-header_info{ margin-top: 0%;}
+    .grop-header_info img {
+        /*width: 14px !important;
+        margin-top: 3px;*/
+    }
+    .project-detail-banner > h1 {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 350px) and (max-width: 991px) {
+    .grop-btn-addcart, .grop-btn-donate {
+        /*width: auto !important;
+        padding: 0px 15px 0px 50px !important;*/
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .grop-btn-addcart, .grop-btn-donate {
+
+        /*background-size: 30px 37px !important;
+        font-size: 8px !important;
+        /*width: 95% !important;
+        padding: 0px 8px 0px 0px !important;*/
+    }
+
+    .grop-team-single-item .grop-btn-donate {
+        font-size: 12px !important;
+        /*background-size: 35px 35px !important;
+        padding: 0px 20px 0px 0px !important;*/
+    }
+
+    .default-logo {
+        width: 85px;
+    }
+
+    #grop-mainmenu > li > a {
+        color: #ffffff;
+        padding: 37px 4px 23px;
+        display: block;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    #grop-mainmenu > li a, ul.slimmenu li a, #comments.comments-area a.comment-reply-link, .grop-sigltags_warp > span {
+        letter-spacing: 0.2px;
+    }
+
+    .newsletterPopupBtn {
+        width: 95px;
+        font-size: 10px;
+    }
+}
+
+@media only screen and (min-width: 350px) and (max-width: 1199px) {
+    #featuredCampaignButton a {
+        margin: 0px;
+        width: auto !important;
+        font-size: 11px;
+        padding: 0 15px 0 45px !important;
+    }
+
+    .grop-btn-donateSlider {
+        margin: 0px;
+        /*width: auto !important;
+        padding: 0 15px 0 45px !important;
+        font-size: 10px;*/
+    }
+    .grop-btn-donateSlider2{
+        margin: 0px;
+        /* width: auto !important;
+        padding: 0 15px 0 45px !important;
+        font-size: 10px; */
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 1023px) {
+    
+    .daralzahra h4{text-align: center;}
+    .daralzahra .socialButtons label{line-height: 34px; margin: 0px 10px;}
+    .faqar .mt-56 {
+        margin-top: 16px;
+    }
+    .faqar .mv-20 {
+        margin: 5px 0 !important;
+    }
+    /** home page slider **/
+    .customSlider {
+
+    }
+    #ziyaratLoginModal .modal-dialog {
+        width: 92%;
+    }
+    .pagesPostImageText2 {margin: 10px 0px; width: 100%; float: left; }
+    .paddleft {
+        padding-right: 0px;
+        padding-left: 0;
+    }
+
+    .displayNone {
+        display: none !important;
+    }
+
+    /** pages **/
+    .project-detail-banner {
+        padding: 35px;
+        margin-top: 8px;
+        height: auto !important;
+    }
+
+    .project-detail-banner > h1 {
+        margin-top: 0px !important;
+        margin-left: 0px !important;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .pageHeadingAreaImg {
+        padding: 10px 0px 30px 0px;
+        margin-top: 22px;
+        height: auto !important;
+        text-align: center;
+    }
+
+    .pageHeadingAreaImg h1 {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .donarProfileBanner {
+        margin-bottom: 0px;
+    }
+
+    .padding-none {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+
+    .overflowTable {
+        overflow-x: scroll;
+        max-width: 1280px;
+        margin: 5px 0px !important;
+    }
+    .dashboardCounterBoxes:first-child{padding-left: 0px;}
+    .overflowTable table thead tr th, .overflowTable table thead tr td {
+        padding: 5px;
+        font-size: 11px;
+    }
+
+    .overflowTable table tbody tr td, .overflowTable table tr td {
+        padding: 5px;
+        font-size: 10px;
+    }
+
+    /** mobile main menu **/
+    .navbar-toggle {
+        background-color: #3d3e3f;
+        margin: 6px !important;
+        float: left;
+        padding: 10px 10px !important;
+    }
+
+    .navbar-toggle .icon-bar {
+        background: #f0c84c;
+    }
+
+    /** donar dashboard **/
+    .dashboardCounterBoxes {
+        width: 100%;
+    }
+
+    .navbar-collapse {
+        background-color: #222;
+        border-color: #080808;
+    }
+
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+        background-color: #333;
+    }
+
+    .project-calculator {
+        margin-bottom: 10px;
+        box-shadow: none !important;
+    }
+
+    .social_icons {
+        display: none !important;
+    }
+
+    .vc_custom_1505214233080, .vc_custom_1507619222996 {
+        margin-bottom: 30px !important;
+        margin-top: 30px !important;
+    }
+
+    .grop-cause_detai_prgresbar_warp {
+        margin-bottom: 0px !important;
+        margin-top: 0px !important;
+    }
+
+}
+
+@media only screen and (min-width: 1024px) {
+    /*   .navbar-collapse.collapse {
+           display: none !important;
+       }*/
+}
+
+@media (min-width: 768px) {
+    .mobileMainMenu {
+        display: none !important;
+    }
+
+    nav.sidebar {
+        margin-left: 0px !important;
+    }
+
+    #bs-sidebar-navbar-collapse-1 .navbar-nav{
+        width: 100%;
+        overflow: hidden;
+        /* text-transform: capitalize; */
+    }
+
+    #bs-sidebar-navbar-collapse-1 .dropdown-menu>li>a{
+        white-space: normal;
+        white-space: -moz-normal;
+        white-space: -normal;
+        white-space: -o-normal;
+    }
+}
+/* 
+@media screen and (device-width: 320px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)  {
+    input[type="text"]:disabled,  input[type="number"]:disabled{ color: #fff  !important; }
+      input[type="text"]:disabled + i,  input[type="number"]:disabled + i{ color: #CCCBCB  !important; }
+}
+@media screen and (device-width: 320px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)  {
+    input[type="text"]:disabled,  input[type="number"]:disabled{ color: #fff  !important; }
+      input[type="text"]:disabled + i,  input[type="number"]:disabled + i{ color: #CCCBCB  !important; }
+} */

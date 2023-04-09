@@ -1,0 +1,261 @@
+<div data-ng-controller="sadaqaController as sadaqaVM" data-ng-init="sadaqaVM.getProgramType();">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+
+
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Your Page Content Here -->
+            <div class="row">
+                <div class="col-md-10 col-xs-12 col-md-offset-1">
+                    <div class="col-md-10 box box-primary">
+                        <div class="box-header">
+                            <div class="box-title">
+                                {{'ADD SADAQAH'| translate}}
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <form role="form" name="publishForm" enctype="multipart/form-data" data-ng-submit="sadaqaVM.addSadaqa(publishForm.$valid)">
+                                <div class="col-md-12 no-padding">
+                                    <div class="col-md-12 no-padding">
+                                        <label class="control-label">{{'SADAQAH NAME'| translate}}</label>
+                                        <input type="text" name="sadaqaName" required maxlength="80" data-ng-model="sadaqaVM.sadaqaName" class="form-control col-md-6"
+                                            placeholder="{{'SADAQAH NAME'| translate}}" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 no-padding">
+                                    <div class="col-md-12 no-padding">
+                                        <label class="control-label">{{'SADAQAH SLUG'| translate}}</label>
+                                        <input type="text" name="sadaqaSlug" required maxlength="80" data-ng-model="sadaqaVM.sadaqaSlug" class="form-control col-md-6"
+                                            placeholder="{{'SADAQAH SLUG'| translate}}" />
+                                    </div>
+                                </div>
+                                <!--<div class="col-md-6">-->
+                                    <!--<div class="col-md-12">-->
+                                        <!--<label class="control-label">Sadaqa Description</label>-->
+                                        <!--<textarea type="text" name="description" required maxlength="500" data-ng-model="sadaqaVM.sadaqaDescription" class="form-control col-md-6"-->
+                                            <!--placeholder="Sadaqa Descripton" />-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <div class="col-md-12 no-padding"><br>
+                                    <label class="control-label">{{'SADAQAH DESCRIPTION'| translate}}</label>
+                                    <div id="editor" aria-placeholder="Write" class="no-padding">
+                                        <div id='addsadaqacat' name="addsadaqacat">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 no-padding" style="margin-top:20px">
+                                    <div class="col-md-4 no-padding" >
+                                        <input type="checkbox" name="hasSubCategory" ng-model="sadaqaVM.hasCategories" />&nbsp;{{'SUB CATEGORIES' | translate }}
+                                    </div>
+                                    <div class="col-md-10 no-padding" style="margin-top:10px" ng-show="sadaqaVM.hasCategories">
+                                        <table class="table table-bordered">
+                                            <thead class="success">
+                                                <td class="col-md-2"> {{'SELECT' | translate }}</td>
+                                                <td>{{'CATEGORIES' | translate }}</td>
+                                            </thead>
+                                            <tr ng-repeat="x in sadaqaVM.sadaqaCategories track by $index">
+                                                <td>
+                                                    <input type="checkbox" class="" ng-click="sadaqaVM.addOrRemoveSubcategory(x)">
+                                                </td>
+                                                <td>{{x.programSubCategoryName}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 no-padding" style="margin-top:20px">
+                                    <div class="form-group">
+                                        <div class="col-md-12 no-padding">
+                                            <label class="control-label">{{'SADAQA IMAGE' | translate}}</label>
+                                            <input type="file" name="file" required file-model="sadaqaVM.file" class="image " placeholder="sadaqa Image" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 no-padding" style="margin-top:20px">
+                                    <div class="box box-info">
+                                        <div class="box-header no-padding">
+                                            <h3 class="box-title"><br>{{'DONATION PROCESS' | translate }}</h3>
+                                        </div>
+                                        <div class="box-body no-padding">
+                                            <div class="col-md-12 no-padding">
+                                                <div class="col-md-4 no-padding">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="minimumAmount" ng-model="sadaqaVM.isMinimumAmount" /> {{'MIN AMOUNT' | translate }}</label>
+                                                    </div>
+                                                    <div class="col-md-8 no-padding" ng-show="sadaqaVM.isMinimumAmount">
+                                                        <label>{{'ENTER VALUE' | translate }}</label>
+                                                        <div class="input-group date">
+                                                            <input type="number" maxlength="8" class="form-control pull-right validateNumber" ng-required="sadaqaVM.isMinimumAmount" ng-model="sadaqaVM.minimumAmount"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 no-padding">
+                                                <div class="col-md-8 no-padding">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="recurring" ng-model="sadaqaVM.isRecurring" /> {{'RECURRING' | translate }}
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-10 no-padding" ng-show="sadaqaVM.isRecurring">
+                                                        <table class="table table-bordered">
+                                                            <thead class="success">
+                                                                <td> {{'SELECT' | translate }}</td>
+                                                                <td>{{'DONATION DURATION' | translate }}</td>
+                                                            </thead>
+                                                            <tr ng-repeat="x in sadaqaVM.donationDurations track by $index">
+                                                                <td>
+                                                                    <input id="{{x._id}}" type="checkbox" ng-checked="x.selected" class="" ng-click="sadaqaVM.addorRemoveDonationDuration(x)">
+                                                                </td>
+                                                                <td>{{x.donationDurationName}}</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 no-padding">
+                                                <div class="col-md-8 no-padding">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="amount" ng-model="sadaqaVM.isAmount" /> {{'FIXED AMOUNT' | translate }}</label>
+                                                    </div>
+                                                    <div class="col-md-4" ng-show="sadaqaVM.isAmount">
+                                                        <label>{{'ENTER VALUE' | translate }}</label>
+                                                        <div class="input-group date">
+                                                            <input type="number" class="form-control pull-right validateNumber" maxlength="8" ng-required="sadaqaVM.isAmount" ng-model="sadaqaVM.amount"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <label ng-if="sadaqaVM.minimumAmount > 0 && sadaqaVM.minimumAmount > sadaqaVM.amount" class="text-danger">Fixed Amount should be greater than minimum amount</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 no-padding">
+                                                <div class="col-md-8 no-padding">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="isOtherFieldForRP" ng-model="sadaqaVM.isOtherFieldForRP" /> {{'OTHERS FIELD FOR RELIGIOUS PERSONALITIES' | translate }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 no-padding">
+                                                <div class="col-md-4 no-padding">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="duration" ng-model="sadaqaVM.isDuration" /> {{'DURATION' | translate }}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 no-padding" ng-show="sadaqaVM.isDuration">
+                                                <div class="col-md-4 no-padding">
+                                                    <div class="form-group">
+                                                        <label>{{'START DATE'| translate}}</label>
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtFromDate" ng-click="setPosFromDate();" ng-change="startDateChange()" name="durationStart" class="form-control pull-right readonly"
+                                                                ng-required="sadaqaVM.isDuration" ng-model="sadaqaVM.StartDate"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>{{'END DATE'| translate}}</label>
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtToDate" ng-click="setPosToDate();" class="form-control pull-right readonly" ng-required="sadaqaVM.isDuration"
+                                                                ng-model="sadaqaVM.EndDate" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 no-padding">
+                                                <div class="col-md-2 no-padding">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="isCount" ng-model="sadaqaVM.isCount" /> {{'COUNT'| translate}}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 no-padding" ng-show="sadaqaVM.isCount">
+                                                <div class="col-md-4 no-padding">
+                                                    <label>{{'MIN' | translate}}</label>
+                                                    <input type="text" class="form-control validateNumber" ng-model="sadaqaVM.count.min" maxlength="3" ng-required="sadaqaVM.isCount"
+                                                        placeholder="1" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>{{'MAX' | translate}}</label>
+                                                    <input type="text" class="form-control validateNumber" ng-model="sadaqaVM.count.max" maxlength="3" ng-required="sadaqaVM.isCount"
+                                                        placeholder="100" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>{{'INTERVAL'| translate}}</label>
+                                                    <input type="text" class="form-control validateNumber" ng-model="sadaqaVM.count.interval" maxlength="3" ng-required="sadaqaVM.isCount"
+                                                        placeholder="10" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-4" style="margin-top: 10px;">
+                                                    <label>{{ 'PRIORITY RANK' | translate }}</label>
+                                                    <input type="number" class="form-control validateNumber"
+                                                        ng-model="sadaqaVM.programPriority" min='1'
+                                                        required placeholder="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <button name="publish" type="submit" class="btn btn-primary " 
+                                        ng-disabled="(sadaqaVM.isMinimumAmount && sadaqaVM.isAmount) && sadaqaVM.minimumAmount > 0 && (sadaqaVM.minimumAmount > sadaqaVM.amount)"
+                                        style="margin-top:5px;">{{'ADD SADAQAH'| translate}}</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- HEADER -->
+</div>
+</div>
+<script>
+    jQuery(document).on('keypress paste', '.validateNumber', function (event) {
+        var regex = new RegExp(/^[A-Za-z~`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/);
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (regex.test(key)) {
+            jQuery(this).focus();
+            jQuery(this).parent().next('span:first').html("<span class='inputError'></span>").show().fadeOut();
+            return false;
+        } else {
+            jQuery(this).parent().next('span:first').html("");
+            return true;
+        }
+    });
+    jQuery(".readonly").on('keydown paste', function (e) {
+        e.preventDefault();
+    });
+</script>
+<script>
+    jQuery(function () {
+        jQuery('#addsadaqacat').editable({inlineMode: false, fullPage: true});
+    });
+</script>

@@ -1,0 +1,97 @@
+<div class="grop-page container padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="sadaqaController as pageVM"
+             data-ng-init="pageVM.getActiveSadaqas();pageVM.amount=0;">
+             <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="project-detail-banner sadqabanner">
+                <h1>{{'SADAQAH' | translate}}</h1>
+            </div>
+        </div>
+            <div class="col-md-12 col-xs-12">
+                <p class="text-justify">
+                    {{pageVM.content}}
+                    <!-- {{'Sadaqah is the Arabic term for charity. It refers to the monetary assistance given to the poor and needy for the sake of Allah (SWT). There are many narrations and Quranic verses that indicate the importance and rewards for giving sadaqah. Money spent in charity is compared in the Holy Quran [2:261] to a seed sown in fertile land which produces seven hundred-fold or more.' | translate}} -->
+                </p>
+            </div>
+            <div class="col-md-3 col-xs-12 dpnone">
+                    <div class="project-calculator">
+                        <div class="form-group">
+                            <label for="">{{"SADAQAH TYPE" | translate}}</label>
+                            <select class="form-control" ng-model="pageVM.selectedSadaqa" data-ng-change="pageVM.selectCalculator()" data-ng-options="x.programName for x in  pageVM.Sadaqas">
+                                <option value="">---{{'PLEASE SELECT' | translate}}---</option>
+                            </select>
+                        </div>
+
+                        <div id="sadaqaCalculator" ng-show="pageVM.selectedSadaqa.slug == 'sadaqah-for-holy-personalities'" >
+                        </div>
+
+                        <sadaqah-component ng-show="pageVM.selectedSadaqa.slug == 'sadaqah-a-day'"  compactmode="'false'" ></sadaqah-component>
+                        <div id="dummyDiv" ng-show="(pageVM.selectedSadaqa == null || pageVM.selectedSadaqa == '') ? true : false">
+                            <div class="form-group ng-scope">
+                                <label>{{"COUNT" | translate}}</label>
+                                <input type="text" value="" placeholder="{{'PLEASE SELECT' | translate}}" class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="form-group ng-scope">
+                                <label>{{"AMOUNT" | translate}}</label>
+                                <input type="text" class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="form-group ng-scope">
+                                <label>{{"TOTAL AMOUNT" | translate}}</label>
+                                <input type="text" class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="row ng-scope">
+                                <div class="col-md-6 col-sm-6 col-xs-6 no-padding text_center">
+                                    <button class="grop-btn-addcart  grop-btn_submit" ng-disabled="true">
+                                        {{"ADD TO CART" | translate}}
+                                    </button>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 no-padding text_center">
+                                    <button class="grop-btn-donate  grop-btn_submit" ng-disabled="true">
+                                        {{"DONATE NOW" | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            <div class="col-md-9 customBox no-padding grop-float_left">
+                <div class="col-md-6 contentdyn" data-ng-repeat="x in pageVM.Sadaqas">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <div class="box-title"> {{x.programName}}</div>
+                        </div>
+                        <div class="box-body">
+                            <!-- <img src="uploads/{{x.imageLink}}" class="sadaqa-list-image" style="width:100%; height:200px;">
+                            <p style="text-align:justify;height: 50px;">
+                                {{x.programDescription.substring(0,100)}}
+                            </p>
+                            <a ng-href="/#/sadaqadetails/{{x._id}}" class="grop-btn grop-btn_overly grop-btn_submit">View Details</a> -->
+                            <a ng-href="/#/sadaqadetails/{{x.slug}}">
+                                <img src="uploads/{{x.imageLink}}" class="project-list-image">
+                            </a>
+                            <div class="readmore-aun">
+                                <p class="">{{readmoreText(x.programDescription,3)}}</p>
+                                <a ng-href="/#/sadaqadetails/{{x.slug}}"
+                                    data-ng-if="x.programDescription.length >= 170">{{'READ MORE' | translate }}</a>
+                            </div>
+                            <!-- <div class="readmore-aun" data-ng-if="pageVM.MobileDevice">
+                                <p class="content-aun-mobile" data-ng-bind-html="x.programDescription.substring(0,170)"></p>
+                                <a ng-href="/#/sadaqadetails/{{x.slug}}"
+                                    data-ng-if="x.programDescription.length >= 170">{{'READ MORE' | translate }}</a>
+                            </div> -->
+                            <!-- <div style=" text-align: justify;" hm-read-more hm-html="{{x.programDescription}}"
+                                hm-link="/#/sadaqadetails/{{x._id}}" hm-limit="300"
+                                hm-more-text="{{' READ MORE' | translate }}" hm-dots-class="{{toggle-dots-grey}}"
+                                hm-link-class="readMore">
+                            </div> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

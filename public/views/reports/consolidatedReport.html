@@ -1,0 +1,383 @@
+<div>
+    <div data-ng-controller="reportsController as reportVM"
+        data-ng-init="reportVM.getDonarWiseReport(); reportVM.getCountryList();">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+            <div class="content-wrapper">
+
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        {{'CONSOLIDATED REPORT' | translate}}
+                        <small></small>
+                    </h1>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Your Page Content Here -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                </div>
+
+                                <div class="box-body">
+                                    <form role="form" data-ng-submit="reportVM.filterConsolidatedReport();"
+                                        class="form-horizontal reportFilterArea">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'SELECTION FROM' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtFromDate" name="durationStart"
+                                                                class="form-control pull-right readonly"
+                                                                ng-click="setPosFromDate();"
+                                                                ng-change="startDateChange();"
+                                                                ng-model="reportVM.searchCriteria.fromDate"
+                                                                autocomplete="off" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'TO' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtToDate"
+                                                                class="form-control pull-right readonly"
+                                                                ng-click="setPosToDate();"
+                                                                ng-model="reportVM.searchCriteria.toDate"
+                                                                autocomplete="off" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'CATEGORY' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <select
+                                                            data-ng-change="reportVM.getProgramList(reportVM.searchCriteria.category)"
+                                                            data-ng-options="type.slug as type.programTypeName for type in reportVM.programTypesList"
+                                                            data-ng-model="reportVM.searchCriteria.category"
+                                                            class="form-control">
+                                                            <option value="">{{'SELECT CATEGORY' | translate}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'PROGRAM' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <select
+                                                            data-ng-change="reportVM.getProgramSubCategoryList(reportVM.searchCriteria.subMenu)"
+                                                            data-ng-model="reportVM.searchCriteria.subMenu"
+                                                            data-ng-options="progarm.slug as progarm.programName for progarm in reportVM.programList"
+                                                            class="form-control">
+                                                            <option value="">{{'SELECT PROGRAM' | translate}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'PROGRAM SUBCATEGORY' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <select data-ng-model="reportVM.searchCriteria.subMenu1"
+                                                            class="form-control"
+                                                            data-ng-options="progarm.slug as progarm.programSubCategoryName for progarm in reportVM.programSubCategoryList">
+                                                            <option value="">
+                                                                {{'SELECT PROGRAM SUBCATEGORY' | translate}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'PAYMENT TYPE' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <select data-ng-model="reportVM.searchCriteria.paymentType"
+                                                            class="form-control">
+                                                            <option value="">{{'SELECT PAYMENT TYPE' | translate}}
+                                                            </option>
+                                                            <option value="true">{{'RECURRING' | translate}}</option>
+                                                            <option value="false">{{'ONETIME' | translate}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'COUNTRY' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <select data-ng-model="reportVM.searchCriteria.country"
+                                                            class="form-control"
+                                                            data-ng-options="country.name as country.name for country in reportVM.countryList">
+                                                            <option value="">{{'SELECT COUNTRY' | translate}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-default dropdown-toggle" type="button"
+                                                        data-toggle="dropdown">{{'ITERATION FIELDS' | translate}}
+                                                        <span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><input type="checkbox"
+                                                            ng-change="changeColSpan(iterationFields.transactionDate)"
+                                                                data-ng-model="iterationFields.transactionDate">{{'TRANSACTION DATE' | translate}}
+                                                        </li>
+                                                        <li><input type="checkbox"
+                                                            ng-change="changeColSpan(iterationFields.nextSubMenu)"
+                                                                data-ng-model="iterationFields.nextSubMenu">
+                                                            {{'PROGRAM SUBCATEGORY' | translate}}</li>
+                                                        <li><input type="checkbox"
+                                                            ng-change="changeColSpan(iterationFields.donorId)"
+                                                                data-ng-model="iterationFields.donorId">
+                                                            {{'DONAR NAME' | translate}}</li>
+                                                        <li><input type="checkbox"
+                                                            ng-change="changeColSpan(iterationFields.donorCountry)"
+                                                                data-ng-model="iterationFields.donorCountry">
+                                                            {{'COUNTRY' | translate}}</li>
+                                                        <li><input type="checkbox"
+                                                            ng-change="changeColSpan(iterationFields.amount)"
+                                                                data-ng-model="iterationFields.amount">
+                                                            {{'TOTAL' | translate}}</li>
+                                                        <li><input type="checkbox"
+                                                            ng-change="changeColSpan(iterationFields.count)"
+                                                                data-ng-model="iterationFields.count">{{'COUNT' | translate}}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 text-right" ng-if="language !== 'ARB'">
+                                                    <button type="submit" class="btn btn-primary">{{'GENERATE' | translate}}
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-ng-click="reportVM.resetForm();">{{'CLEAR' | translate}}
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-12 text-left" ng-if="language === 'ARB'">
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-ng-click="reportVM.resetForm();">{{'CLEAR' | translate}}
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">{{'GENERATE' | translate}}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <!----------------  Export Data ---------------->
+                                    <div class="row" ng-if="dataListConsolidatedReport.length">
+                                        <div class="col-md-12">
+                                            <div class="pull-right">
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                    data-ng-click="exportToExcel('CONSOLIDATED_REPORT','printableArea');">
+                                                    {{'EXCEL' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="pull-right" style="margin-right: 10px;">
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                    data-ng-click="exportToPDF('CONSOLIDATED_REPORT',8,'p');">
+                                                    {{'PDF' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="pull-right" style="margin-right: 10px;">
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                    data-ng-click="reportVM.printDiv('printableArea')">
+                                                    {{'PRINT' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" id="printableArea" ng-if="dataListConsolidatedReport.length"
+                                        style="margin-top: 10px;">
+                                        <div class="col-md-12" id="exportTableExcel">
+                                            <table class="table table-striped table-bordered reportsTable"
+                                                style="margin-bottom: 0px;" border="1" cellspacing="0"
+                                                id="exportTableHeader">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="9">
+                                                            {{'CONSOLIDATED REPORT' | translate}} - : {{reportVM.dateToday |
+                                                    date:'dd-MM-yyyy'}}
+                                                            (From :
+                                                            {{reportVM.searchCriteria.fromDate | date : "dd-MM-yyyy"}}
+                                                            To :
+                                                            {{reportVM.searchCriteria.toDate | date : "dd-MM-yyyy"}})
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                            <table class="table table-striped table-responsive tableOverflow"
+                                                id="exportTable" style="max-height: 450px">
+                                                <thead>
+                                                    <th style="min-width: 55px; text-align:center">
+                                                        {{'SR NO' | translate}}</th>
+                                                    <th style="min-width: 160px; text-align:center"
+                                                        data-ng-if="iterationFields.donorId">
+                                                        {{'DONAR NAME' | translate}}
+                                                    </th>
+
+                                                    <th style="min-width: 150px; text-align:center">
+                                                        {{'PROGRAM' | translate}}</th>
+                                                    <th style="min-width: 200px; text-align:center"
+                                                        data-ng-if="iterationFields.nextSubMenu">
+                                                        {{'PROGRAM SUBCATEGORY' | translate}}</th>
+                                                    <th style="min-width: 150px; text-align:center">
+                                                        {{'PAYMENT TYPE' | translate}}</th>
+                                                    <th data-ng-show="iterationFields.transactionDate"
+                                                        style="min-width: 150px; text-align:center"> {{'TRANSACTION DATE' |
+                                                translate}}
+                                                    </th>
+                                                    <th style="min-width: 150px; text-align:center"
+                                                        data-ng-if="iterationFields.donorCountry">
+                                                        {{'COUNTRY' | translate}}
+                                                    </th>
+                                                    <th style="min-width: 100px; text-align:center"
+                                                        data-ng-if="iterationFields.count"> {{'COUNT' | translate}}
+                                                    </th>
+                                                    <th style="min-width: 100px; text-align:center"
+                                                        data-ng-if="iterationFields.amount"> USD</th>
+
+                                                    <th style="min-width: 100px; text-align:center"
+                                                        data-ng-if="iterationFields.amount"> EUR</th>
+
+                                                    <th style="min-width: 100px; text-align:center"
+                                                        data-ng-if="iterationFields.amount"> GBP</th>
+                                                </thead>
+                                                <tr ng-repeat="data in dataListConsolidatedReport"
+                                                    style="text-align: center;">
+                                                    <td class="text-center">{{$index+1}}</td>
+                                                    <td class="text-center" data-ng-if="iterationFields.donorId">
+                                                        {{data.donor[0].donarName}}
+                                                    </td>
+
+                                                    <td class="text-center">{{data.program[0].programName || '----'}}
+                                                    </td>
+                                                    <td class="text-center" data-ng-if="iterationFields.nextSubMenu">
+                                                        <span
+                                                            ng-if="data.programSubCategory[0].programSubCategoryName">{{data.programSubCategory[0].programSubCategoryName}}</span>
+                                                        <span
+                                                            ng-if="(data.otherPersonalityName && data.hasOwnProperty('otherPersonalityName') && data.otherPersonalityName.length)">: {{data.otherPersonalityName}}</span>
+                                                        <span
+                                                            ng-if="!data.otherPersonalityName && !data.programSubCategory[0].programSubCategoryName">----</span>
+                                                    </td>
+                                                    <td class="text-center">{{(data.isRecurring?'Recurring':'One Time').toUpperCase() | translate}}
+                                                    </td>
+                                                    <td class="text-center"
+                                                        data-ng-if="iterationFields.transactionDate">{{data.created |
+                                                    date:'dd-MM-yyyy' }}
+                                                    </td>
+                                                    <td class="text-center" data-ng-if="iterationFields.donorCountry">
+                                                        {{data.donor[0].user[0].countryOfResidence || '----'}}
+                                                    </td>
+                                                    <td class="text-center" data-ng-if="iterationFields.count">{{data.count
+                                                    || '----' }}
+                                                    </td>
+                                                    <td class="text-center" data-ng-if="iterationFields.amount">
+                                                        <span
+                                                            ng-if="data.donation.currencyTitle=='USD'">{{data.amount}}</span>
+
+                                                        <span ng-if="data.donation.currencyTitle !='USD'">--</span>
+                                                    </td>
+                                                    <td class="text-center" data-ng-if="iterationFields.amount">
+                                                        <span
+                                                            ng-if="data.donation.currencyTitle=='EUR'">{{data.amount}}</span>
+
+                                                        <span ng-if="data.donation.currencyTitle !='EUR'">--</span>
+                                                    </td>
+                                                    <td class="text-center" data-ng-if="iterationFields.amount">
+                                                        <span
+                                                            ng-if="data.donation.currencyTitle=='GBP'">{{data.amount}}</span>
+
+                                                        <span ng-if="data.donation.currencyTitle !='GBP'">--</span>
+                                                    </td>
+
+                                                </tr>
+                                                <tr class="bk-light" ng-if="dataListConsolidatedReport.length">
+                                                    <td class="text-center" colspan="{{colSpan}}">{{'GRAND TOTAL' | translate}}:
+                                                    </td>
+                                                    <td class="text-center">{{amount.grandTotalUSD.toFixed(2)}}</td>
+                                                    <td class="text-center">{{amount.grandTotalEUR.toFixed(2)}}</td>
+                                                    <td class="text-center">{{amount.grandTotalGBP.toFixed(2)}}</td>
+                                                </tr>
+                                                <tr class="bk-light" ng-if="dataListConsolidatedReport.length">
+                                                    <td class="text-center" colspan="{{colSpan}}">{{'AVERAGE' | translate}}:</td>
+                                                    <td class="text-center">{{amount.meanUSD.toFixed(2)}}</td>
+                                                    <td class="text-center">{{amount.meanEUR.toFixed(2)}}</td>
+                                                    <td class="text-center">{{amount.meanGBP.toFixed(2)}}</td>
+                                                </tr>
+                                                <tr class="bk-light" ng-if="dataListConsolidatedReport.length">
+                                                    <td class="text-center" colspan="{{colSpan}}">{{'MEDIAN' | translate}}:</td>
+                                                    <td class="text-center">{{amount.medianUSD.toFixed(2)}}</td>
+                                                    <td class="text-center">{{amount.medianEUR.toFixed(2)}}</td>
+                                                    <td class="text-center">{{amount.medianGBP.toFixed(2)}}</td>
+                                                </tr>
+                                                <tr class="bk-light" ng-if="dataListConsolidatedReport.length">
+                                                    <td class="text-center" colspan="{{colSpan - 1}}">
+                                                        <span style="margin-left: 11rem;">{{'Total Count:' | translate}}</span></td>
+                                                    <td class="text-center">{{amount.count || '---'}}</td>
+                                                    <td class="text-center">---</td>
+                                                    <td class="text-center">---</td>
+                                                    <td class="text-center">---</td>
+                                                </tr>
+                                            </table>
+                                            <table class="table table-responsive" id="resultTable"></table>
+                                        </div>
+                                    </div>
+                                    <div ng-if="reportVM.toggler && !dataListConsolidatedReport.length">
+                                        <h4 class="text-danger text-center">{{'DATA NOT FOUND' | translate}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- HEADER -->
+
+        </div>
+    </div>
+</div>

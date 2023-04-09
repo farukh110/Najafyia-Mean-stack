@@ -1,0 +1,313 @@
+<style>
+    button:hover {
+        background-color: #6e6d72 !important;
+        color: white;
+    }
+
+    button:disabled,
+    button[disabled] {
+        cursor: no-drop !important;
+        background-color: #ce9696 !important;
+    }
+
+    .freezed {
+        background-color: #fff0f0 !important;
+    }
+</style>
+<div data-ng-controller="manageOrphanController" data-ng-init="getOrphansRecurring();">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper" style="background:white;">
+
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        {{'MANAGE ORPHANS' | translate}}
+                    </h1>
+                    <div class="col-md-4  pull-right no-padding" style="margin: 1rem 0;">
+                        <!-- <div class="col-md-12 no-padding">
+                            <input type="text" class="form-control pull-right" data-ng-model="searchValue"
+                                placeholder="{{'SEARCH BY ID'| translate}}" />
+                        </div> -->
+                        <!-- <div class="col-md-3 no-padding">
+                            <button type="button" name="searchBtn" class="btn btn-bitbucket pull-right">{{'SEARCH'| translate}}</button>
+                        </div> -->
+
+                    </div>
+                </section>
+                <br />
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- <div class="col-md-12">
+                        <div class="col-md-8 col-xs-12 no-padding">
+                        </div>
+                        <div class="col-md-2 col-xs-4 text-right">
+                            <h4>Sponsorship Year</h4>
+                        </div>
+                        <div class="col-md-2 col-xs-8 no-padding">
+                            <select class="form-control" data-ng-change="recordsLimit = 10" data-ng-model="searchValue">
+                                <option value="">--- Please Slect ---</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                            </select>
+                        </div>
+                    </div> -->
+                        <div class="col-md-12 col-xs-12 overflowTable">
+                            <table datatable="ng" class="table table-hover table-responsive" dt-options="dtOptions">
+                                <thead
+                                    style="background-color: #f0ca4f;font-family: Roboto, Arial, sans-serif !important;">
+                                    <td> {{'Sr.' |translate}}</td>
+                                    <td>{{'DONAR NAME' | translate}}</td>
+                                    <td>{{'ORPHAN ID' | translate}}</td>
+                                    <td>{{'ORPHAN NAME' | translate}}</td>
+                                    <td>{{'REPLACED_FROM' | translate}}</td>
+                                    <td>{{'AGE' | translate}}</td>
+                                    <td>{{'DESCENT' | translate}}</td>
+                                    <td>
+                                        <!-- ng-show="searchOrphanName == 'show dates'" -->
+                                        {{'START DATE' | translate}}
+                                    </td>
+                                    <td ng-show="searchOrphanName == 'show dates'">{{'NEXT DONATION DATE' | translate}}
+                                    </td>
+                                    <td>
+                                        <!-- ng-show="searchOrphanName == 'show dates'" -->
+                                        {{'END DATE' | translate}}
+                                    </td>
+                                    <!-- <td>{{'CHANGE ORPHAN' | translate}}</td> -->
+                                    <!-- <td>{{'CANCEL ORPHAN' | translate}}</td> -->
+                                    <td>{{'MODIFY' | translate}}</td>
+                                    <td ng-hide="true">{{'DUE PAYMENTS' | translate}}</td>
+                                    <td>{{'STATUS' | translate}}</td>
+                                    <td>{{'PAYMENT_ATTEMPTS' | translate}}</td>
+                                    <td>{{'SUBSCRIPTION_ID' | translate}}</td>
+                                </thead>
+                                <!-- | limitTo: recordsLimit -->
+                                <tr data-ng-repeat="orphanReccurring in orphanRecurringList | filter:{orphanId: searchValue}  | unique: 'orphanId'"
+                                    ng-class="orphanReccurring.freezed ? 'freezed' : ''">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{orphanReccurring.donar[0].donarName || '----'}}</td>
+                                    <td>{{orphanReccurring.orphan.orphanId || '----'}}</td>
+                                    <td>{{orphanReccurring.orphan.orphanName || '----'}}</td>
+                                    <td>{{orphanReccurring.changeRef ? orphanReccurring.changeRef.orphanId : '' }}  <br>   {{orphanReccurring.changeRef ? orphanReccurring.changeRef.freezedDate : ''| date:"MMM-yyyy"   }}</td>
+                                  
+                                    <td>{{age(orphanReccurring.orphan.dateOfBirth) || '----'}}</td>
+                                    <td>{{(orphanReccurring.orphan.descent).toUpperCase() | translate }}</td>
+                                    <td>
+                                        {{orphanReccurring.startDate | date:"dd-MMM-yyyy" || '----'}}
+                                    </td>
+                                    <td style="background: #81c9ff;" ng-show="searchOrphanName == 'show dates'">
+                                        {{orphanReccurring.nextDonationDate | date:"dd-MMM-yyyy" || '----'}}</td>
+                                    <td>
+                                        {{orphanReccurring.endDate | date:"dd-MMM-yyyy" || '----'}}
+                                        <button ng-hide="orphanReccurring.freezed"
+                                            style="border-radius: 5px;border: 1px solid #00000025; background-color: #a6aaad; color: white;"
+                                            data-ng-click="openEndDateDialog(orphanReccurring);">
+
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                    </td>
+                                    <!-- <td>
+                                        <button ng-disabled="!orphanReccurring.freezed || orphanReccurring.isChanged"
+                                            style="border-radius: 5px;border: 1px solid #00000025; background-color: #a6aaad; color: white;"
+                                            ng-click="getOrphans(orphanReccurring.donar[0].donarName, orphanReccurring);">{{'CHANGE ORPHAN' | translate}}</button>
+                                        <span style="color: red; font-size: 12px;"
+                                            ng-show="orphanReccurring.isChanged">{{'CHANGED' | translate}}</span>
+                                    </td> -->
+                                    <td>
+                                        <button ng-disabled="orphanReccurring.freezed"
+                                            style="border-radius: 5px;border: 1px solid #00000025; background-color: #a6aaad; color: white;"
+                                            ng-click="modifyOrphan(orphanReccurring);">{{'MODIFY' |
+                                            translate}}</button>
+                                    </td>
+                                    <td ng-hide="true">
+                                        {{ orphanReccurring.freezed ? 'N/A' :
+                                        dueAmount(orphanReccurring) <=0 ? 'N/A' :
+                                            orphanReccurring.donationDetails.donation.currency + ' ' +
+                                            dueAmount(orphanReccurring)}} </td>
+
+                                    <td>{{   orphanReccurring.isCancelled ? 'CANCELLED' : orphanReccurring.isChanged ? 'CHANGED': orphanReccurring.freezed ? 'INACTIVE' : 'ACTIVE' | translate }}</td>
+
+                                 
+                                    <td>{{ getPaymentAttempt(orphanReccurring) }}</td>
+                                    <td>{{  orphanReccurring.stripeSubscriptionId ? orphanReccurring.stripeSubscriptionId : ''  }}</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <!-- <a class="btn btn-default btn-large alignright"
+                            data-ng-if="recordsLimit < orphanRecurringList.length"
+                            data-ng-click="loadMore();">{{'LOAD MORE' | translate}}</a> -->
+                    </div>
+                </div>
+                <!-- Your Page Content Here -->
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    <!-- MODAL ORPHAN SATRT -->
+    <div class="modal fade" id="orphansModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="width: 75%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h2 class="modal-title" id="exampleModalLabel">{{'SELECT ORPHANS' | translate}}</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <p class="text-muted col-md-8" ng-show="orphansList.length > 0 ? false : true">
+                            {{'NO ORPHAN(S) AVAILABLE' | translate}}.</p>
+
+                        <div class="col-md-12">
+                            <div class="col-md-4 no-padding">
+                                <div class="col-md-4 no-padding text-left">
+                                    <h4 style="font-weight: bold;">{{'DONAR NAME' | translate}}:</h4>
+                                </div>
+                                <div class="col-md-6 text-left no-padding">
+                                    <h4>{{donarName}}
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="col-md-8 no-padding">
+                                <div class="col-md-6 text-right">
+                                    <h4>{{'SEARCH'| translate}}: </h4>
+                                </div>
+                                <!-- <div class="col-md-3 style="float: right;"">
+                                    <input type="text" class="form-control col-md-6 ng-pristine ng-empty ng-invalid ng-invalid-required ng-valid-maxlength ng-touched"
+                                        placeholder="Orphan ID" ng-model="searchOrphanId" style="border-radius: 5px">
+                                </div> -->
+                                <div class="col-md-3" style="float: right;">
+                                    <select class="form-control" ng-model="searchSyed">
+                                        <option value="">{{'--- SELECT DESCENT ---' | translate}}</option>
+                                        <option value="true">{{('Syed').toUpperCase() | translate}}</option>
+                                        <option value="false">{{('Non-Syed').toUpperCase() | translate}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3" style="float: right;">
+                                    <input type="text"
+                                        class="form-control col-md-6 ng-pristine ng-empty ng-invalid ng-invalid-required ng-valid-maxlength ng-touched"
+                                        placeholder="{{'ORPHAN NAME' | translate}}" ng-model="searchOrphanName"
+                                        style="border-radius: 5px">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12 col-xs-12" style="height: 450px;overflow-y: scroll; ">
+                            <table class="table table-hover" style="margin-top: 15px;">
+                                <thead
+                                    style="background-color: #f0ca4f;font-family: Roboto, Arial, sans-serif !important;">
+                                    <td> {{'Sr.' |translate}}</td>
+                                    <td>{{'ORPHAN ID' | translate}}</td>
+                                    <td>{{'ORPHANNAME' | translate}}</td>
+                                    <td>{{'AGE' | translate}}</td>
+                                    <td>{{'DESCENT' | translate}}</td>
+                                    <td>{{'PRIORITY' | translate}}</td>
+                                    <td>{{'MALE/FEMALE' | translate}}</td>
+                                    <td>{{'SELECT' | translate}}</td>
+                                </thead>
+                                <tr
+                                    data-ng-repeat="orphan in orphansList |orderBy:'orphanId' | filter:{orphanName: searchOrphanName} | filter:{_id: searchOrphanId} | filter:{isSyed: searchSyed}  ">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{orphan.orphanId || '----'}}</td>
+                                    <td>{{orphan.orphanName || '----'}}</td>
+                                    <td>{{age(orphan.dateOfBirth) || '----'}}</td>
+                                    <td>{{(orphan.descent).toUpperCase() | translate }}</td>
+                                    <td>{{orphan.priority || '----'}}</td>
+                                    <td>{{orphan.gender.toUpperCase() | translate}}</td>
+                                    <td>
+                                        <input type="checkbox" ng-model="orphan.checked"
+                                            ng-click="updateOrphanSelection(orphan._id, orphansList, orphan);">
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'CLOSE' |
+                            translate}}</button>
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" ng-disabled="!orphanSelected._id" ng-click="changeOrphan();"
+                            style="margin-right: 10px;" class="btn btn-primary">{{'CHANGE ORPHAN' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL ORPHANSEND  -->
+
+    <!-- modal -->
+    <div class="modal fade" id="editModal" role="dialog">
+        <div class="modal-dialog vertical-align-center">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label><strong>{{'DONAR NAME' | translate}}</strong></label>
+                        <div class="form-label">
+                            {{selectedReccuring.donar && selectedReccuring.donar.length > 0 && selectedReccuring.donar[0].donarName}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>{{'ORPHANNAME' | translate}}</strong> </label>
+                        <div class="form-label">
+                            {{selectedReccuring.orphan && selectedReccuring.orphan.orphanId}} - {{selectedReccuring.orphan && selectedReccuring.orphan.orphanName}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>{{'END DATE' | translate}}</strong><span class="required">*</span></label>
+                        <div class="input-group date">
+                            <input type="text" id="txtED" name="sponsorshipEndDate" readonly="true"
+                                class="form-control pull-right readonly" placeholder="{{'END DATE'| translate}}"
+                                data-ng-model="endDate" value="{{endDate |  date:'MM/dd/yyyy'}}"
+                                ng-click="setPosED();" />
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{'CLOSE' |
+                            translate}}</button>
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" style="margin-right: 10px;" class="btn btn-info"
+                            data-ng-click="updateOrphanSponsorship()">{{'SAVE' |
+                            translate}}</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- HEADER -->
+</div>

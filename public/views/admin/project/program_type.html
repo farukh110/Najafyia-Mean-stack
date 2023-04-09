@@ -1,0 +1,61 @@
+<div data-ng-controller="projectController as projectVM" >
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+
+
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Your Page Content Here -->
+            <div class="row">
+                <div class="col-md-10 col-xs-offset-1">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <div class="box-title">
+                                Add Project Category
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <form role="form">
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Project Category Name</label>
+                                            <div class="col-md-12">
+                                                <input type="text" data-ng-model="projectVM.projectCategoryName" class="form-control col-md-6" placeholder="Category Name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Category Description</label>
+                                            <div class="col-md-12">
+                                                <input type="text" data-ng-model="projectVM.categoryDescription" name="description" class="form-control col-md-6" placeholder="Category Description"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <div class="col-md-2 col-md-offset-10">
+                                        <button name="addCategory" data-ng-click="projectVM.addProjectCategory();" class="btn btn-primary pull-right" style="margin-top:5px;">Add Category</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- HEADER -->
+
+</div>

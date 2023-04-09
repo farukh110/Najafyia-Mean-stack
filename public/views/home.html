@@ -1,0 +1,1121 @@
+<style>
+    #tabData .form-group {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+        width: 100%;
+        float: left;
+    }
+
+    #tabData .row {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
+
+    #tabData .col-md-6 {
+        position: relative;
+        height: 73px;
+        /* padding-right: 0px;
+        padding-left: 0px; */
+    }
+
+    #tabData .padding-md {
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+    }
+
+    #tabData .nav-tabs {
+        /* border-bottom: 0px solid #ddd;*/
+        cursor: pointer;
+    }
+
+    #tabData .nav-tabs>li>a {
+        margin-right: 0px;
+        line-height: 1.0;
+        /*border: 1px solid transparent;*/
+    }
+
+    .iconCurve {
+        border-radius: 10px
+    }
+
+    .btnregspec:disabled {
+        cursor: no-drop !important
+    }
+
+    img.fr-fin {
+        text-align: center;
+        margin: 0 auto;
+    }
+</style>
+<div data-ng-controller="pageContentController as pageVM"
+    data-ng-init="pageVM.getPageContentByName(('HOME'|translate)); pageVM.getRepresentative(); pageVM.getReligiousPayments(); pageVM.getWebSettings(); pageVM.getCampaigns();pageVM.getZiyaratByUserId();">
+    <div id="tabData" class="fastDonationWidget">
+        <div class="side-action" id="FastDonateBtnShowHide">
+
+            <!-- <button id="donateButtonArrow" class="side-btn-arrow col-xs-2 hidden-xs hidden-md hidden-sm" type="button"></button> -->
+            <button id="donateButton" class="side-btn col-xs-6 hidden-xs hidden-md"
+                style=" display: none; margin-left: 0px " type="button">{{ 'FAST DONATION' | translate }}</button>
+            <button id="donateButtonArrow" class="side-btn-arrow col-xs-2 hidden-xs" type="button"></button>
+            <!-- <button id="donateButton" class="side-btn col-xs-6 hidden-xs hidden-md" type="button">
+                {{ 'FAST DONATION' | translate }}</button> -->
+        </div>
+        <div class="tab_data" style="width:  100%;">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" data-target="#project" ng-click="clearFastDonationForm('project');">
+                        {{ 'PROJECTS' | translate }}</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" data-target="#orphans" ng-click="clearFastDonationForm('orphans');">
+                        {{ 'ORPHANS' | translate }}</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" data-target="#islamic" ng-click="clearFastDonationForm('islamic');">
+                        {{ 'ISLAMIC PAYMENTS' | translate }}</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" data-target="#sadqah" ng-click="clearFastDonationForm('sadqah');">
+                        {{ 'SADAQAH' | translate }}</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-content padding-md">
+
+                    <div id="project" class="tab-pane fade in active">
+                        <form role="form" class="form-horizontal" data-ng-init="pageVM.getActiveProjects();"
+                            autocomplete="nope">
+                            <div class='col-md-6 col-xs-12'>
+                                <div class="form-group">
+                                    <label>{{ 'PROJECTS TYPE'  |  translate }}
+                                    </label>
+                                    <select 
+                                    class="form-control type-select-fr" ng-model="pageVM.selectedProject"
+                                        data-ng-change="pageVM.selectProjectCalculator()">
+                                        <option value="">{{'PLEASE SELECT' | translate}}</option>
+                                        <option ng-repeat="x in pageVM.projects" ng-value="x">
+                                            {{x.programName === 'Higher Education Loans'?'Higher
+                                            Education':x.programName | translate}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div id="projectCalculator">
+                                </div>
+
+                                <div
+                                    ng-show="(pageVM.selectedProject == null || pageVM.selectedProject == '') ? true : false">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group ng-scope">
+                                            <label>{{'COUNT' | translate}}
+                                            </label>
+                                            <input type="text" value="" placeholder="{{'PLEASE SELECT' | translate}}"
+                                                class="form-control" ng-disabled="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group ng-scope">
+                                            <label>{{'AMOUNT' | translate}}
+                                            </label>
+                                            <input type="text" class="form-control" ng-disabled="true"
+                                                autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group ng-scope">
+                                            <label>{{'TOTAL AMOUNT' | translate}}
+                                            </label>
+                                            <input type="text" class="form-control" ng-disabled="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-xs-12 centered" ng-if="pageVM.browserLanguage === 'ARB'">
+
+                                        <div class="col-md-4 col-sm-5 col-xs-12">
+                                            <button class="grop-btn-addcart grop-btn_submit grop-btn-addcart-cal"
+                                                style="" ng-disabled="false">{{'ADD TO CART' | translate}}
+                                            </button>
+                                        </div>
+                                        <div class="col-md-4 col-sm-5 col-xs-12">
+                                            <button class="grop-btn-donate grop-btn_submit grop-btn-addcart-cal"
+                                                style="" ng-disabled="false">{{'DONATE NOW' | translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-xs-12 centered" ng-if="pageVM.browserLanguage !== 'ARB'">
+
+                                        <div class="col-md-4 col-sm-5 col-xs-12">
+                                            <button class="grop-btn-addcart grop-btn_submit grop-btn-addcart-cal"
+                                                style="" ng-disabled="false">{{'ADD TO CART' | translate}}
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-5 col-xs-12">
+                                            <button class="grop-btn-donate grop-btn_submit grop-btn-addcart-cal"
+                                                style="" ng-disabled="false">{{'DONATE NOW' | translate}}
+                                            </button>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="orphans" class="tab-pane fade"
+                        data-ng-init="pageVM.getActiveGeneralCares(); pageVM.getAllActiveDarAlZahra();">
+                        <form role="form" class="form-horizontal" autocomplete="nope">
+                            <div class="col-md-6 col-xs-12" ng-show="orphanType == 'dz'  " >
+                                <div class="form-group">
+                                    <label for="">{{'ORPHAN SUPPORT TYPE' | translate}}
+                                    </label>
+                                    <select class="form-control" ng-model="orphanType"
+                                        data-ng-change="pageVM.clearOrphanCalculator()">
+                                        <option value="">{{'PLEASE SELECT' | translate}}</option>
+                                        <option value="gc">{{'BASIC CARE' | translate}}</option>
+                                        <option value="dz">{{'DAR AL ZAHRA' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6 col-xs-12" ng-show="orphanType == 'gc'">
+                                <div class="form-group">
+                                    <label for="">{{ 'SUB CATEGORY' | translate}}
+                                    </label>
+                                    <select class="form-control" ng-model="selectedGc"
+                                        data-ng-change="selectGcCalculator()"
+                                        data-ng-options="gc.programName for gc in generalCareList">
+                                        <option value="">{{'PLEASE SELECT' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div> -->
+                            <div class="col-md-6 col-xs-12" ng-show="orphanType == 'dz'">
+                                <div class="form-group">
+                                    <label for="">{{ 'SUB CATEGORY' | translate}}
+                                    </label>
+                                    <select class="form-control" ng-model="selectedDz"
+                                        data-ng-change="selectDzCalculator()"
+                                        data-ng-options="dz.programName for dz in daralzahraCat">
+                                        <option value="">{{'PLEASE SELECT' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div> 
+
+                            <div class="row">
+                                <div ng-show="orphanType == 'dz'"  id="orphanCalculator">
+
+                                </div>
+
+                                <donation-calculator-component ng-show="orphanType != 'dz'"  compactmode="'true'" ></donation-calculator-component>
+
+                            <div ng-show="orphanType == 'dz'">
+                                <div id="dummyDiv" ng-show="(orphanType == null || orphanType == '') ? true : false">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group ng-scope">
+                                            <label>{{'COUNT' | translate}}
+                                            </label>
+                                            <input type="text" value="" placeholder="{{'PLEASE SELECT' | translate}}"
+                                                class="form-control" ng-disabled="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group ng-scope">
+                                            <label>{{'AMOUNT' | translate}}
+                                            </label>
+                                            <input type="text" class="form-control" ng-disabled="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group ng-scope">
+                                            <label>{{'TOTAL AMOUNT' | translate}}
+                                            </label>
+                                            <input type="text" class="form-control" ng-disabled="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-xs-12 centered">
+                                        <div class="col-md-4 col-sm-5 col-xs-12">
+                                            <button class="grop-btn-addcart grop-btn_submit grop-btn-addcart-cal"
+                                                style="" ng-disabled="false">{{'ADD TO CART'| translate}}
+                                            </button>
+                                        </div>
+                                        <div class="col-md-4 col-sm-5 col-xs-12">
+                                            <button class="grop-btn-donate grop-btn_submit grop-btn-addcart-cal"
+                                                style="" ng-disabled="false">{{'DONATE NOW'| translate}}
+                                            </button>
+                                        </div>
+                                       
+                                    </div>
+                              
+                              
+                              
+                              
+                                </div>
+
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="islamic" class="tab-pane fade">
+                        <form role="form" class="form-horizontal"
+                            data-ng-init="pageVM.getCountryList(); pageVM.getActiveReligiousPayments();"
+                            autocomplete="nope">
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">{{ 'ISLAMIC PAYMENTS TYPE' | translate }}
+                                    </label>
+                                    <select class="form-control type-select-fr" ng-model="pageVM.selectedReligiousPayment"
+                                        data-ng-change="pageVM.selectRpCalculator()"
+                                        data-ng-options="x.programName for x in  pageVM.religiousPayments">
+                                        <option value="">{{'PLEASE SELECT' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="religiousPaymentCalculator">
+                                </div>
+                                <div id=""
+                                    ng-show="(pageVM.selectedReligiousPayment == null || pageVM.selectedReligiousPayment == '') ? true : false">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group ng-scope">
+                                            <label>{{'COUNT' | translate}}
+                                            </label>
+                                            <input type="text" value="" placeholder="{{'PLEASE SELECT' | translate}}"
+                                                class="form-control" ng-disabled="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group ng-scope">
+                                            <label>{{'AMOUNT' | translate}}
+                                            </label>
+                                            <input type="text" class="form-control" ng-disabled="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group ng-scope">
+                                            <label>{{'TOTAL AMOUNT' | translate}}
+                                            </label>
+                                            <input type="text" class="form-control" ng-disabled="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-xs-12 centered">
+
+                                        <div class="col-md-4 col-sm-5 col-xs-12">
+                                            <button class="grop-btn-addcart grop-btn_submit grop-btn-addcart-cal"
+                                                style="" ng-disabled="false">{{'ADD TO CART'| translate}}
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-5 col-xs-12">
+                                            <button class="grop-btn-donate grop-btn_submit grop-btn-addcart-cal"
+                                                style="" ng-disabled="false">{{'DONATE NOW'| translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="sadqah" class="tab-pane fade">
+                        <form role="form" class="form-horizontal" data-ng-init="pageVM.getActiveSadaqas();"
+                            autocomplete="nope">
+                            <div class='col-md-6 col-xs-12'>
+                                <div class="form-group">
+                                    <label for="">{{'SADAQAH TYPE' |translate}}
+                                    </label>
+                                    <select class="form-control type-select-fr" ng-model="pageVM.selectedSadaqa"
+                                        data-ng-change="pageVM.selectSadqaCalculator()"
+                                        data-ng-options="x.programName for x in  pageVM.Sadaqas">
+                                        <option value="">{{'PLEASE SELECT' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div id="sadaqaCalculator" ng-show="pageVM.selectedSadaqa.slug == 'sadaqah-for-holy-personalities'" >
+                                </div>
+
+                                <sadaqah-component ng-show="pageVM.selectedSadaqa.slug == 'sadaqah-a-day'"  compactmode="'true'" ></sadaqah-component>
+                                <div id="dummyDiv"
+                                    ng-show="(pageVM.selectedSadaqa == null || pageVM.selectedSadaqa == '') ? true : false">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group ng-scope">
+                                            <label>{{'COUNT' | translate}}
+                                            </label>
+                                            <input type="text" value="" placeholder="{{'PLEASE SELECT' | translate}}"
+                                                class="form-control" ng-disabled="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group ng-scope">
+                                            <label>{{'AMOUNT' | translate}}
+                                            </label>
+                                            <input type="number" class="form-control" ng-disabled="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="form-group ng-scope">
+                                            <label>{{'TOTAL AMOUNT' | translate}}
+                                            </label>
+                                            <input type="text" class="form-control" ng-disabled="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-xs-12 centered">
+
+                                        <div class="col-md-4 col-sm-5 col-xs-12">
+                                            <button class="grop-btn-addcart grop-btn_submit grop-btn-addcart-cal"
+                                                style="" ng-disabled="false">{{'ADD TO CART'| translate}}
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-5 col-xs-12">
+                                            <button class="grop-btn-donate grop-btn_submit grop-btn-addcart-cal"
+                                                style="" ng-disabled="false">{{'DONATE NOW'| translate}}
+                                            </button>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="modal fade" id="orphanListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" style="z-index:10000">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h2 class="modal-title" id="exampleModalLabel">{{'SELECT ORPHANS' | translate}}</h2>
+                </div>
+                <div class="modal-body darachk">
+                    <div class="row">
+                        <p class="text-muted col-md-8 col-xs-12" ng-if="!pageVM.orphans.length">
+                            {{'NO ORPHAN(S) MATCHES THE GIVEN CRITERIA.' | translate}}</p>
+                        <div class="col-md-4 col-xs-12" ng-repeat="role in pageVM.orphans">
+                            <div class="box box-warning">
+                                <div class="box-header with-border">
+                                    <div class="already-in-cart" ng-if="role.alreadyInCart">
+                                        {{'Already in Cart' | translate}}</div>
+                                    <input ng-hide="role.alreadyInCart" type="checkbox" checklist-model="user.roles"
+                                        checklist-value="role._id">
+
+                                    <h3 class="box-title" title="{{role.orphanName}}">{{role.orphanName |
+                                        limitTo:11}}{{role.orphanName.length>11?'...':''}}</h3>
+                                </div>
+                                <div class="box-body" style="background: #2B2B2B;">
+                                    <div class="mainhd">
+                                        <p style="line-height: 10px;">
+                                            {{(role.descent).toUpperCase() | translate}}</p>
+
+                                        <p style="line-height: 10px;">{{(role.gender).toUpperCase() | translate}}</p>
+
+                                        <p style="line-height: 10px;">{{age(role.dateOfBirth)}}-Years</p>
+                                    </div>
+                                    <img ng-src="{{role.imageLink?'uploads/'+role.imageLink:'/images/default-img.jpg'}}"
+                                        onerror="this.src='/images/default-img.jpg'"
+                                        class="generalCare-list-image img-circle pull-right storp" style="">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="errorspon"
+                        ng-show="(user.roles.length > 0 && selectedCount != user.roles.length) ? true : false">
+                        {{'SELECTED_ORPHAN_COUNT_NOT_EQ' | translate}}
+                    </span>
+                    <button type="button" class="grop-btn  grop-btn_submit" style="" data-dismiss="modal">
+                        {{'SELECT' | translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+   
+    <orphan-selection-modal-component  compactmode="'true'" ></orphan-selection-modal-component>
+
+
+
+
+    <div class="modal fade" id="studentListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        ng-if="!!selectedDonationDuration" aria-hidden="true" style="z-index:10000">
+        <div class="modal-dialog txtright" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h2 class="modal-title" id="exampleModalLabel">{{'SELECT STUDENTS' | translate}}</h2>
+
+                </div>
+                <div class="modal-body darachk">
+                    <div class="row">
+                        <p class="text-muted col-md-8 col-xs-12" ng-show="!pageVM.students.length">
+                            {{'NO STUDENT(S) MATCHES THE GIVEN CRITERIA.' | translate}}</p>
+                        <div>
+                            <div class="col-md-4 col-xs-12" ng-repeat="student in pageVM.students">
+                                <div class="box box-warning">
+                                    <div class="box-header with-border">
+                                        <div class="already-in-cart" ng-if="student.alreadyInCart">
+                                            {{'Already in Cart' | translate}}</div>
+                                        <input ng-hide="student.alreadyInCart" type="checkbox"
+                                            checklist-model="user.roles" checklist-value="student._id">
+                                        <h3 class="box-title" title="{{student.studentName}}">
+                                            {{student.studentName
+                                            | limitTo:10}}{{student.studentName.length>10?'...':''}}
+                                        </h3>
+                                    </div>
+                                    <div class="box-body" style="background: #2B2B2B;">
+                                        <div class="mainhd">
+                                            <p style="line-height: 10px;">
+                                                {{(student.descent === "Syed" ? "Syed" : "Non-Syed").toUpperCase() |
+                                                translate}}
+                                            </p>
+
+                                            <p style="line-height: 10px;">Class-{{student.grade}}</p>
+
+                                            <p style="line-height: 10px;">{{age(student.dateOfBirth)}}-Years</p>
+                                        </div>
+                                        <img ng-src="{{student.imageLink?'uploads/'+student.imageLink:'/images/default-img.jpg'}}"
+                                            onerror="this.src='/images/default-img.jpg'"
+                                            class="generalCare-list-image img-circle pull-right storp" style="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="errorspon"
+                        ng-show="(user.roles.length > 0 && selectedCount != user.roles.length) ? true : false">
+                        {{'SELECTED_COUNT_NOT_EQ' | translate}}
+                    </span>
+                    <button type="button" class="grop-btn  grop-btn_submit" style="" data-dismiss="modal">
+                        {{'SELECT' | translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- END REVOLUTION SLIDER -->
+
+    <!--------------------------------- Campaign Slider ----------------------------------->
+    <div class="customSlider" ng-style="screenHeight && campaignSliderBackground()">
+        <!-- style="background-image: url('/uploads/{{pageVM.campaignList[pageVM.sliderIndex].image}}'); background-repeat: no-repeat; background-position: center ; background-size: cover;" -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="text-uppercase grop-sctn_title_fntSz-30 grop-heading-5a0c0d2f0cdb4 contentArea">
+                        <!--            <h2 class="title"> {{pageVM.campaignList[pageVM.sliderIndex].title}}</h2>-->
+                        <h2 class="details">{{pageVM.campaignList[pageVM.sliderIndex].description |
+                            limitTo:84}}{{pageVM.campaignList[pageVM.sliderIndex].description.length>84?'...':''}}
+                        </h2>
+
+                        <div class="wpb_wrapper" data-ng-if="!pageVM.campaignList[pageVM.sliderIndex].donateBtnZiyarat"
+                            data-ng-bind-html="pageVM.campaignList[pageVM.sliderIndex].donateBtn">
+                        </div>
+                        <div class="wpb_wrapper" data-ng-if="!pageVM.sliderIndex">
+                            <button class="grop-btn-donateSlider2 grop-btn_submit btnregspec"
+                                data-ng-click="pageVM.registerForZiyarat()">
+                                {{'REGISTER' | translate}}
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  <button class="btnPrevious" data-ng-click="pageVM.nextPreviousSlider('PREVIOUS');">
+                       <i class="fa fa-angle-left" aria-hidden="true"></i>
+                   </button>
+                   <button class="btnNext" data-ng-click="pageVM.nextPreviousSlider('NEXT');">
+                       <i class="fa fa-angle-right" aria-hidden="true"></i>
+                   </button>-->
+        <div class="col-md-12 col-xs-12 carousel-indicatorsDiv">
+            <!-- Indicators -->
+            <ol class="carousel-indicators" style="bottom: 0px;">
+                <li data-ng-click="pageVM.sliderNavigation($index)" data-ng-repeat="item in pageVM.campaignList"
+                    class="{{$index==pageVM.sliderIndex?'active':''}}"></li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="grop-page padding-cnt-no grop-full-width">
+        <div class="no-sidebar">
+
+            <!--------------------------------- Yellow Area ----------------------------------->
+            <div class="vc_row wpb_row vc_row-fluid grop-dhav-dotted vc_row-no-padding">
+                <div class="wpb_column vc_column_container text-left vc_col-sm-12">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div class="grop-callout2_warp" style=" padding: 0px 0px;">
+                                <div class="con-class container  grop-service-5a0c0d2f08325 headma">
+                                    <div class=" col-md-12 col-xs-12 ">
+                                        <div class="row grop-callout2_row">
+                                            <div class=" col-md-3 col-xs-12 displayFloatRight">
+                                                <div class="grop-callout2_single">
+                                                    <div class="grop-float_left  grop-callout2_icon">
+                                                        <img src="images/1-2.png" alt="" />
+                                                    </div>
+                                                    <div class="grop-fix grop-callout2_text">
+                                                        <h3>
+                                                            <a href="/#/sadaqadetails/sadaqah-a-day">{{'SADAQAH A DAY' |
+                                                                translate}}</a>
+                                                        </h3>
+
+                                                        <p class="text-center" style="font-size: 12px;">
+                                                            {{'KEEPTHECALAMITIES' | translate}}</p>
+                                                    </div>
+                                                    <!--/end-->
+                                                </div>
+                                            </div>
+                                            <div class="lneres"></div>
+                                            <div class="col-md-4 col-xs-12 displayFloatRight">
+                                                <div class="grop-callout2_single">
+                                                    <div class="grop-float_left  grop-callout2_icon">
+                                                        <img src="images/2-2.png" alt="" />
+                                                    </div>
+                                                    <div class="grop-fix grop-callout2_text">
+                                                        <h3>
+                                                            <a href="" data-ng-click="pageVM.registerForZiyarat()">
+                                                                {{'ZIYARAH OF IMAM HUSSAIN (A.S)' | translate}}</a>
+                                                        </h3>
+
+                                                        <p class="text-center" class="hidden-sm hidden-xs"
+                                                            style="font-size: 12px;">
+                                                            {{'EVERY THURSDAY ON YOUR BEHALF' | translate}}</p>
+                                                    </div>
+                                                    <!--/end-->
+                                                </div>
+                                            </div>
+                                            <div class="lneres2"></div>
+                                            <div class="col-md-3 col-xs-12 displayFloatRight">
+                                                <div class="grop-callout2_single"
+                                                    style="border-bottom: none !important;">
+                                                    <div class="grop-float_left  grop-callout2_icon">
+                                                        <img src="images/3-2.png" alt="" />
+                                                    </div>
+                                                    <div class="grop-fix grop-callout2_text">
+                                                        <h3>
+                                                            <a href="#/getInvolved">{{'GET INVOLVED' | translate}}</a>
+                                                        </h3>
+
+                                                        <p class="text-center" class="hidden-sm hidden-xs"
+                                                            style="font-size: 12px;">{{'FROMCOMPSSION' |
+                                                            translate}}</p>
+                                                    </div>
+                                                    <!--/end-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--------------------------------- Featured Campaign Area ----------------------------------->
+            <!--<div class="gap"></div>-->
+            <div class="vc_row-full-width vc_clearfix"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+
+                        <!--<div class="vc_row wpb_row vc_row-fluid grop-dhav-dotted">
+                                 <div class="wpb_column vc_column_container text-left vc_col-sm-12">
+                                     <div class="vc_column-inner vc_custom_1501758001382">
+                                         <div class="wpb_wrapper">
+                                             <div class="grop-section_text   grop-heading-5a0c0d2f0cdb4   text-center">
+                                                 <h2 class="text-uppercase grop-sctn_title_fntSz-30   grop-heading-5a0c0d2f0cdb4  text-center">
+                                                     {{pageVM.campaignFeatured.title}}</h2>
+                                                 <p>{{pageVM.campaignFeatured.description}}</p>
+                                                 <img ng-src="/uploads/{{pageVM.campaignFeatured.image}}"/>
+    
+                                                 <div class="wpb_wrapper" data-ng-bind-html="pageVM.campaignFeatured.donateBtn">
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>-->
+
+                        <div data-ng-bind-html="pageVM.pageData.homeCampaignBanners"
+                            style="margin-top: 10px; text-align: center;"></div>
+
+                        <div class="vc_row wpb_row vc_row-fluid grop-dhav-dotted">
+                            <div class="wpb_column vc_column_container text-left vc_col-sm-12">
+                                <div class="vc_column-inner ">
+                                    <div class="wpb_wrapper">
+                                        <div class="grop-fix grop-cause_detail_cont">
+                                            <div class="row centered">
+
+                                                <div class="col-md-10 col-sm-12 col-xs-12">
+                                                    <div
+                                                        class="text-center  grop-float_left  grop-cause_detai_amunt_warp hidden-xs">
+                                                        <div class="grop-cause_detai_amunt_txt"
+                                                            style="text-align: center; padding-right: 7px;">
+                                                            <h4 class="grop-caudetai_title raisedArb">
+                                                                <b>{{'RAISED' | translate}}</b>
+                                                            </h4>
+                                                            <!--<h4 class="grop-caudetai_amunt">$
+                                                            <span class="grop-conter">55,000</span>
+                                                                </h4>-->
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="text-center  grop-float_left  grop-cause_detai_prgresbar_warp">
+                                                        <div class="text-left  grop-cause_detai_prgresbar">
+                                                            <!-- <div class="grop-skill_prgresbar"> -->
+                                                            <div>
+                                                                <div data-ng-if="!pageVM.targetBarArb">
+                                                                    <span class="visible-xs txtrot"
+                                                                        style=' color:#f0c84b;font-weight:800;'><b>{{pageVM.achieved}}%</b>
+
+                                                                        <span
+                                                                            style='color:#000 !important; font-weight:normal'>
+                                                                            / {{pageVM.target}}%</span>
+                                                                    </span>
+                                                                    <span class="hidden-xs"
+                                                                        style="text-align: center;font-weight:100; color:#f0c84b ; font-family: 'Roboto', sans-serif; margin-top: -17px; float:left; width: 100%;"><b>{{pageVM.achieved}}
+                                                                            %</b></span>
+                                                                </div>
+                                                                <div data-ng-if="pageVM.targetBarArb">
+                                                                    <span class="visible-xs txtrot"
+                                                                        style='color:#f0c84b;font-weight:800'>
+                                                                        {{pageVM.achieved}}%
+                                                                        <span class="text-dark">/</span> <span
+                                                                            style='color:#000 !important; direction:rtl;font-weight:normal'>
+                                                                            <b>{{pageVM.target}}%</b>
+                                                                        </span>
+                                                                    </span>
+
+                                                                    <span class="hidden-xs"
+                                                                        style="text-align: center;font-weight:100; color:#f0c84b ; font-family: 'Roboto', sans-serif; margin-top: -17px; float:left; width: 100%;"><b>{{pageVM.achieved}}
+                                                                            %</b></span>
+                                                                </div>
+                                                                <div class="grop-progress-bar"
+                                                                    data-percentage="{{pageVM.percent}}">
+                                                                    <div class="progress-title-holder">
+                                                                        <span class="progress-number-wrapper">
+                                                                            <span class="progress-number-mark"
+                                                                                style="left: 55%;">
+                                                                                <span
+                                                                                    class="percent">{{pageVM.percent}}</span>
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="progress-content-outter">
+                                                                        <div class="progress-bar-striped animated progress-content"
+                                                                            style="height: 16px; border-radius: 17px 17px 17px 17px;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="text-center  grop-float_left  grop-cause_detai_amunt_warp hidden-xs">
+                                                        <div class="grop-cause_detai_amunt_txt">
+                                                            <h4 class="grop-caudetai_title">
+                                                                <b>{{'GOAL' | translate}}</b><br>
+                                                                <span class="grop-conter"><b>{{pageVM.target}}
+                                                                        %</b></span>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vc_row wpb_row vc_row-fluid grop-dhav-dotted">
+                            <div class="wpb_column vc_column_container text-center vc_col-sm-12">
+                                <div class="vc_column-inner ">
+                                    <button class="grop-btn-donateSlider grop-btn_submit"
+                                        ng-click="navigateToDonateUrl(pageVM.campaignUrl)">
+                                        {{'DONATE NOW' |
+                                        translate}}
+                                    </button>
+                                    <!-- <div id="featuredCampaignButton"
+                                        data-ng-bind-html="pageVM.campaignFeatured.donateBtn">
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!---------------------------------Banner 1 ----------------------------------->
+            <div data-vc-full-width="true" data-vc-full-width-init="false"
+                class="vc_row wpb_row vc_row-fluid grop-dhav-dotted vc_custom_1505214233080 vc_row-has-fill">
+                <div class="wpb_column vc_column_container text-center vc_col-sm-12">
+                    <div class="vc_column-inner vc_custom_1505214081121">
+                        <div class="wpb_wrapper">
+                            <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                <div class="wpb_column vc_column_container vc_col-sm-12">
+                                    <div class="vc_column-inner ">
+                                        <div class="wpb_wrapper">
+                                            <p style="font-family:'Roboto', Arial, sans-serif; font-size: 15px; text-align: justify;"
+                                                class="text-uppercase grop-sctn_title_fntSz-30  grop-heading-5a0c0d2f11983   vc_custom_1507276449858 text-center text-uppercase grop-dnatrss_sec_title text-center"
+                                                data-ng-bind-html="pageVM.pageData.homeBanner1">
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!---------------------------------Info Graphics ----------------------------------->
+            <div class="vc_row-full-width vc_clearfix"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12  col-xs-12">
+                        <!--<div class="vc_row wpb_row vc_row-fluid grop-dhav-dotted vc_custom_1507812589324">
+                                <div class="wpb_column vc_column_container text-left vc_col-sm-8 col-sm-push-2">
+                                    <div class="vc_column-inner vc_custom_1507705104971">
+                                        <div class="wpb_wrapper">
+                                            <div class="grop-section_text   grop-heading-5a0c0d2f18982   vc_custom_1504607676259 text-center">
+                                                <h2 class="text-uppercase grop-sctn_title_fntSz-30   grop-heading-5a0c0d2f18982  text-center">
+                                                    Info Graphics</h2>
+                                            </div>
+                                            <br/>
+                                            <div class="wpb_text_column wpb_content_element ">
+                                                <div class="wpb_wrapper">
+                                                    <canvas id="pie33" options="options"
+                                                            class="chart chart-pie chart-xs ng-isolate-scope" height="120"
+                                                            width="240" data="pieDiskData.data" labels="pieDiskData.labels"
+                                                            colours="pieDiskData.colours" legend="true"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+                        <div data-ng-bind-html="pageVM.pageData.homeInfoGraphicsBanner"
+                            class="ng-binding col-md-12 col-xs-12">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--------------------------------- Banner 2 ----------------------------------->
+            <div class="vc_row-full-width vc_clearfix"></div>
+            <div data-vc-full-width="true" data-vc-full-width-init="false"
+                class="vc_row wpb_row vc_row-fluid grop-dhav-dotted vc_custom_1505214233080 vc_row-has-fill">
+                <div class="wpb_column vc_column_container text-center vc_col-sm-12">
+                    <div class="vc_column-inner vc_custom_1505214081121">
+                        <div class="wpb_wrapper">
+                            <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                <div class="wpb_column vc_column_container vc_col-sm-12">
+                                    <div class="vc_column-inner ">
+                                        <div class="wpb_wrapper">
+                                            <p style="font-family:'Roboto', Arial, sans-serif; font-size: 15px; text-align: justify;"
+                                                class="text-uppercase grop-sctn_title_fntSz-30  grop-heading-5a0c0d2f11983   vc_custom_1507276449858 text-center text-uppercase grop-dnatrss_sec_title text-center"
+                                                data-ng-bind-html="pageVM.pageData.homeBanner2">
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="vc_row-full-width vc_clearfix"></div>
+
+            <!--------------------------------- Islamic Payments ----------------------------------->
+            <div class="vc_row wpb_row vc_row-fluid grop-dhav-dotted vc_custom_1506600058708">
+                <div class="wpb_column vc_column_container text-center vc_col-sm-12">
+                    <div class="vc_column-inner vc_custom_1504615163204" style="padding-top: 0px;">
+                        <div class="wpb_wrapper">
+                            <div class="vc_row wpb_row vc_inner vc_row-fluid vc_custom_1506600088780">
+                                <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-12 vc_col-md-12">
+                                    <div class="vc_column-inner vc_custom_1507707791871">
+                                        <div class="wpb_wrapper">
+                                            <div class="grop-team  grop-team-5a0d2336f1f83">
+                                                <!-- team Starts -->
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-md-2 displayFloatRight hgthome"
+                                                            style="float: 'none !important'">
+                                                            <div class="grop-team-single-item">
+                                                                <h4
+                                                                    class="grop-sctn_title_fntSz-30   grop-heading-5a0d2336f11da">
+                                                                    <b>{{'ISLAMIC PAYMENTS' | translate}}</b>
+                                                                </h4>
+                                                                <p style="text-align: justify;">
+                                                                    {{'YOUR LITTLE SUPPORT CAN BRING SMILE TO THE HOMELESS PEOPLE' | translate}}
+                                                                </p>
+                                                            </div>
+                                                            <!-- <div class="latest_news_caro_nav ">
+                                                                <div class="owl-prev"
+                                                                    data-ng-click="pageVM.nextPreviousCarousel('PREVIOUS');">
+                                                                    <i class="fa fa-angle-left"></i>
+                                                                </div>
+                                                                <div class="owl-next"
+                                                                    data-ng-click="pageVM.nextPreviousCarousel('NEXT');">
+                                                                    <i class="fa fa-angle-right"></i>
+                                                                </div>
+                                                            </div> -->
+                                                        </div>
+                                                        <div class="col-md-10 col-xs-12" style="position: relative;">
+                                                            <div style="z-index: 1; margin-bottom: 20px; float: none !important"
+                                                                ng-style="{float: 'none !important'}"
+                                                                class="col-md-2 displayFloatRight hgthome grop-team-single-item visible-xs">
+                                                                <div class="grop-vltrs_peple_sngle_intro  grop-tm_dr">
+                                                                    <div
+                                                                        class="grop-vltrs_peple_media projectImgPreview">
+                                                                        <div class="projectImgPreview"
+                                                                            style="background:url('images/sadaqa-banner.jpg')"
+                                                                            alt="No Preview Available"></div>
+                                                                    </div>
+                                                                    <div class="grop-vltrs_peple_cont_warp">
+                                                                        <div class="grop-vltrs_peple_intro_txt ">
+                                                                            <h4 class="text-center"
+                                                                                style="font-weight:500 !important;font-size: 18px; color: #000;">
+                                                                                {{'SADAQAH' | translate}}
+                                                                            </h4>
+                                                                            <!-- <p class="text-dark block-with-text">
+                                                                                {{'According to Quran, Sadaqa leads into the purification of the benefactor.'| translate | limitTo:160 }}
+                                                                            </p> -->
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button style="z-index: 99999;"
+                                                                                class="grop-btn-donate grop-btn_submit"
+                                                                                onclick="location.href= '/#/sadaqas'">
+                                                                                {{'DONATE NOW' | translate}}
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div style="z-index: 1;"
+                                                                    class="grop-team-single-item col-md-3 col-sm-6 col-xs-6 displayFloatRight hidden-xs">
+                                                                    <div
+                                                                        class="grop-vltrs_peple_sngle_intro  grop-tm_dr">
+                                                                        <div
+                                                                            class="grop-vltrs_peple_media projectImgPreview">
+                                                                            <div class="projectImgPreview"
+                                                                                style="background:url('images/sadaqa-banner.jpg')"
+                                                                                alt="No Preview Available"></div>
+                                                                        </div>
+                                                                        <div class="grop-vltrs_peple_cont_warp">
+                                                                            <div class="grop-vltrs_peple_intro_txt ">
+                                                                                <h4 class="text-center"
+                                                                                    style="font-weight:500 !important;font-size: 18px; color: #000;">
+                                                                                    {{'SADAQAH' | translate}}
+                                                                                </h4>
+                                                                                <!-- <p class="text-dark block-with-text">
+                                                                                    {{'According to Quran, Sadaqa leads into the purification of the benefactor.'| translate | limitTo:160 }}
+                                                                                </p> -->
+                                                                            </div>
+                                                                            <div class="text-center">
+                                                                                <button style="z-index: 99999;"
+                                                                                    class="grop-btn-donate grop-btn_submit"
+                                                                                    onclick="location.href= '/#/sadaqas'">
+                                                                                    {{'DONATE NOW' | translate}}
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <ui-carousel slides="carousel" dots="false"
+                                                                    slides-to-show="pageVM.showSlides" autoplay="true"
+                                                                    slides-to-scroll="pageVM.slidesToScroll">
+                                                                    <!-- For slider render -->
+                                                                    <carousel-item>
+                                                                        <!-- placed your item content here -->
+
+                                                                        <div class="card">
+                                                                            <div style="background: url('uploads/{{ item.imageLink || defaultpost.jpg}} ');
+                                                                            width: 100%;
+                                                                            background-size: cover;
+                                                                            min-height: 16rem;
+                                                                            background-size: 100% 160px;
+                                                                            background-repeat: no-repeat;
+                                                                            border-radius: 6px;">
+                                                                                <!-- <img src="uploads/{{ item.imageLink || defaultpost.jpg }}"
+                                                                                alt="{{ item.title }}"> -->
+                                                                            </div>
+                                                                            <div class="carousel-card-body">
+                                                                                <h4>{{ item.programName ||
+                                                                                    item.programSubCategoryName}}
+                                                                                </h4>
+                                                                                <!-- <p class="text-dark block-with-text" data-ng-bind-html="item.description.substring(0,80)">
+                                                                                    </p>
+                                                                                    <p class="text-dark block-with-text" data-ng-bind-html="item.programDescription.substring(0,80)">
+                                                                                    </p> -->
+                                                                                <button
+                                                                                    class="grop-btn-donate grop-btn_submit"
+                                                                                    ng-click="$parent.$parent.pageVM.donateNowCarousel(item)">
+                                                                                    {{'DONATE NOW' | translate}}
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </carousel-item>
+                                                                    <div style="display: flex;">
+                                                                        <carousel-prev
+                                                                            style="position:absolute;top:65%;left: -10%;">
+                                                                            <!-- placed your previous button here -->
+                                                                            <button class="owl-prev">
+                                                                                <i class="fa fa-angle-left"></i>
+                                                                            </button>
+
+                                                                            <!-- end -->
+                                                                        </carousel-prev>
+
+                                                                        <carousel-next style="position:absolute;top:65%;
+                                                                        left: -16%;">
+                                                                            <!-- placed your next button here -->
+                                                                            <button class="owl-next">
+                                                                                <i class="fa fa-angle-right"></i>
+                                                                            </button> <!-- end -->
+                                                                        </carousel-next>
+                                                                    </div>
+                                                                </ui-carousel>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- team End -->
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="gap"></div> -->
+                <!-- <hr /> -->
+                <!---------------------------------Representatives ----------------------------------->
+                <!-- <div class="gap"></div>
+                 <div class="vc_row wpb_row vc_row-fluid grop-dhav-dotted vc_custom_1506600058708">
+                     <div class="wpb_column vc_column_container text-center vc_col-sm-12">
+                         <div class="vc_column-inner vc_custom_1504615163204">
+                             <div class="wpb_wrapper">
+                                 <div class="grop-section_text   grop-heading-5a0d2336f11da   vc_custom_1507278444185 text-center">
+                                     <h2 class="text-uppercase grop-sctn_title_fntSz-30   grop-heading-5a0d2336f11da  text-center">
+                                         {{'OUR REPRESENTATIVE'| translate}}</h2>
+                                     <p>{{'Some of our champions for poor to who fight against poverty.' |
+                                         translate}}
+                                     </p>
+                                 </div>
+                                 <div class="vc_row wpb_row vc_inner vc_row-fluid vc_custom_1506600088780">
+                                     <div class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-12 vc_col-md-12">
+                                         <div class="vc_column-inner vc_custom_1507707791871">
+                                             <div class="wpb_wrapper">
+                                                 <div class="grop-team  grop-team-5a0d2336f1f83">
+                                                     &lt;!&ndash; team Starts &ndash;&gt;
+                                                     <div class="container">
+                                                         <div class="row centered">
+                                                             <div class="grop-team-single-item col-md-3 col-sm-6 col-xs-6"
+                                                                  data-ng-repeat="rep in pageVM.representativeList  | limitTo : 4">
+                                                                 <div class="grop-vltrs_peple_sngle_intro  grop-tm_dr">
+                                                                     <div class="grop-vltrs_peple_media">
+                                                                         <div class="text-uppercase  grop-vltrs_peple_intro">
+                                                                             {{rep.designation}}
+                                                                         </div>
+                                                                         <img class="projectImgPreview"
+                                                                              ng-src="{{rep.image?'/uploads/'+rep.image:'/images/default-img.jpg'}}"
+                                                                              alt="No Preview Available"/>
+                                                                     </div>
+                                                                     <div class="grop-vltrs_peple_cont_warp">
+                                                                         <div class="grop-vltrs_peple_intro_txt">
+                                                                             <h4 class="text-uppercase">
+                                                                                 {{rep.name}}</h4>
+                                                                             <p>
+                                                                                 {{rep.description |
+                                                                                 limitTo:60}}{{rep.description.length>60?'...':''}}
+                                                                             </p>
+                                                                         </div>
+                                                                         <div class="grop-fix grop-vltrs_peple_social_warp">
+                                                                             <h5 class="text-left  col-xs-6 grop-vltrs_peple_scil_title">
+                                                                                 {{'MEET ME ON' |
+                                                                                 translate}}:</h5>
+                                                                             <div class="col-xs-6  vltrs_peple_social">
+                                                                                 <ul class="list-inline text-right">
+                                                                                     <li data-ng-repeat="social in rep.socialMedia">
+                                                                                         <a href="{{social.link}}"
+                                                                                            target="_blank">
+                                                                                             <i class="fa {{social.socialMedia | iconType}}"></i>
+                                                                                         </a>
+                                                                                     </li>
+                                                                                 </ul>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+    
+                                                             </div>
+    
+                                                         </div>
+                                                         &lt;!&ndash; row &ndash;&gt;
+                                                     </div>
+                                                     &lt;!&ndash; container &ndash;&gt;
+                                                 </div>
+                                                 &lt;!&ndash; team End &ndash;&gt;
+                                                 <div class="text-center grop-posts-pagination-warp">
+                                                     <nav class="navigation pagination">
+                                                         <div class="nav-links">
+                                                         </div>
+                                                     </nav>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+    
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>-->
+
+            </div>
+            <!-- Content Area -->
+        </div>
+
+        <div id="social_icons_fixed" class="social_icons">
+            <ul class="social_links">
+                <li data-ng-repeat="social in pageVM.webSettings.socialMedia">
+                    <a href="{{social.link}}" target="_blank">
+                        <img class="iconCurve" ng-src="images/icons/{{social.socialMedia | iconImage}}.svg" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="bellNotification" id="bellNotificationBtn" data-ng-controller="menuController as ctrl"
+            data-ng-click="ctrl.bellNotification();">
+            <!-- <span class="label label-danger">3</span> -->
+            <i class="fa fa-bell"></i>
+        </div>
+
+    </div>
+    <script type='text/javascript'>
+    </script>

@@ -1,0 +1,87 @@
+<div class="grop-page container padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="projectController as projectVM"
+            data-ng-init="projectVM.getActiveProjects();projectVM.amount=0;">
+            <div class="row">
+                <div class="col-md-12  col-xs-12 ">
+                    <div class="project-detail-banner prjbanner">
+                        <h1>{{'PROJECTS' | translate}}</h1>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-xs-12 ">
+                    <p class="text-justify">
+
+                        {{projectVM.content}}
+                    </p>
+                </div>
+                <div class="col-md-3 col-xs-12 dpnone" id="stickyDiv">
+                    <div class="project-calculator">
+                        <div class="form-group">
+                            <label> {{'PROJECTS TYPE' | translate}} </label>
+                            <select class="form-control" ng-model="projectVM.selectedProject"
+                                data-ng-change="projectVM.selectCalculator()">
+                                <option value="">{{'PLEASE SELECT' | translate}}</option>
+                                <option ng-repeat="x in projectVM.projects" ng-value="x">
+                                    {{x.programName === 'Higher Education Loans'?'Higher Education':x.programName | translate}}
+                                </option>
+                            </select>
+                        </div>
+                        <div id="projectCalculator"></div>
+                        <div id="dummyDiv"
+                            ng-if="!hideDummy &&( projectVM.selectedProject == null || projectVM.selectedProject == '') ? true : false">
+                            <div class="form-group ng-scope">
+                                <label>{{ 'COUNT' | translate }} </label>
+                                <input type="text" value="" placeholder="{{'PLEASE SELECT' | translate}}"
+                                    class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="form-group ng-scope">
+                                <label>{{ 'AMOUNT' | translate }} </label>
+                                <input type="text" class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="form-group ng-scope ss">
+                                <label>{{ 'TOTAL AMOUNT' | translate }} </label>
+                                <input type="text" class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="row ng-scope">
+                                <div class="col-md-6 col-sm-6 col-xs-6 no-padding text_center">
+                                    <button class="grop-btn-addcart  grop-btn_submit" ng-disabled="true">
+                                        {{ 'ADD TO CART' | translate }}
+                                    </button>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 no-padding text_center">
+                                    <button class="grop-btn-donate  grop-btn_submit" ng-disabled="true">
+                                        {{ 'DONATE NOW' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 col-xs-12  customBox no-padding grop-float_left">
+                    <div class="col-md-6 contentdyn" data-ng-repeat="x in projectVM.projects">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="box-title">
+                                    {{x.programName === 'Higher Education Loans'?'Higher Education':x.programName}}
+                                </div>
+                            </div>
+                            <div class="box-body">
+
+
+                                <a ng-href="/#/projectdetails/{{x.slug}}">
+                                    <img ng-src="uploads/{{x.imageLink}}" class="project-list-image">
+                                </a>
+
+
+                                <div class="readmore-aun">
+                                    <p class="">{{readmoreText(x.programDescription,3)}}</p>
+                                    <a ng-href="/#/projectdetails/{{x.slug}}"
+                                        data-ng-if="x.programDescription.length > 300">{{' READ MORE' | translate }}</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>

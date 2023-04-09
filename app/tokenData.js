@@ -1,0 +1,57 @@
+var tokens = {
+    common: {
+        DATE: "DATE",
+        DONOR_NAME: "DONOR_NAME",
+        DONOR_PROGRAM_DETAIL_ID : "DONOR_PROGRAM_DETAIL_ID",
+        ISVISIBLE : "ISVISIBLE",
+        END_DATE : "END_DATE",
+        MONTHLY : "MONTHLY",
+        YEARLY : "YEARLY",
+        RENEWAL_LINK_MONTHLY : 'RENEWAL_LINK_MONTHLY',
+        RENEWAL_LINK_YEARLY : 'RENEWAL_LINK_YEARLY',
+        SUBSCRIPTION_END_DATE : 'SUBSCRIPTION_END_DATE'
+
+    },
+    pdfTemplate: {
+        CART_ITEMS: "CART_ITEMS",
+        TOTAL_AMOUNT: "TOTAL_AMOUNT",
+        CURRENCY_SYMBOL: "CURRENCY",
+        INVOICE_NUMBER: "INVOICE_NO",
+        ORPHANS_LIST: "ORPHAN_LIST"
+    },
+    emailTemplate: {
+        DISPLAY: "DSP",
+        PAYMENT_PLAN: "PAYMENT_PLAN",
+        NO_OF_ORPHANS: "NO_OF_ORPHANS",
+        PAYMENT_DUE_DATE: "PAYMENT_DUE_DATE",
+        BILLING_AMOUNT: "BILLING_AMOUNT",
+        CARD_INFO: "CARD_INFO",
+        UPDATE_CARD_URL : "UPDATE_CARD_URL",
+        ORPHANS_LIST: "ORPHAN_LIST",
+        PROGRAM_NAME: "PROGRAM_NAME",
+        GRACE_PERIOD_END_DATE : "GRACE_PERIOD_END_DATE",
+        APP_URL : "APP_URL",
+        KHUMS_CONTENT : "KHUMS_CONTENT",
+        MONTH: "MONTH"
+       
+    },
+    installments: {
+        INSTALLMENT_NO: "INSTALLMENT_NO",
+        TOTAL_INSTALLMENT: "TOTAL_INSTALLMENT",
+        INSTALLMENT : "INSTALLMENT",
+        INST_MONTH : "INST_MONTH",
+        NEXT_BILL_DATE : "NEXT_BILL_DATE"
+    },
+    sadaqahRenewalEmail:{
+        SUBSCRIPTION_END_DATE:"SUBSCRIPTION_END_DATE",
+        BUTTON_TEXT_1:"BUTTON_TEXT_1",
+        BUTTON_TEXT_2:"BUTTON_TEXT_2",
+        BUTTON_TEXT_3:"BUTTON_TEXT_3",
+        BUTTON_LINK_1:"BUTTON_LINK_1",
+        BUTTON_LINK_2:"BUTTON_LINK_2",
+        BUTTON_LINK_3:"BUTTON_LINK_3"
+    }
+
+}
+
+module.exports = tokens;

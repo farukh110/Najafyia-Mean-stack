@@ -1,0 +1,245 @@
+<div class="grop-page container padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="projectController as projectVM"
+            data-ng-init="projectVM.getProjectDetail();projectVM.amount=0;">
+            <div class="conainer">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="project-detail-banner prjbanner">
+                            <h1>{{ projectVM.projectDetail.programName === 'Higher Education Loans'?'Higher Education':projectVM.projectDetail.programName}}
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-xs-12">
+                        <a class="printhed" href="#" class="" data-ng-if="!projectVM.printArb"><img
+                                src="images/print-logo.jpg" alt="">
+                            <h2 class="printhed">{{projectVM.projectDetail.programName}}</h2>
+                        </a>
+                        <a class="printhed" href="#" class="" data-ng-if="projectVM.printArb"><img
+                                src="images/print-logo-arb.svg" alt="">
+                            <h2 class="printhed" style="margin-top: 2%;">{{projectVM.projectDetail.programName}}</h2>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-xs-12 dpnone printsc">
+                        <div class="project-calculator">
+                            <div id="projectCalculator">
+                            </div>
+                            <div id="dummyDiv"
+                                ng-show="((projectVM.selectedCategory == null || projectVM.selectedCategory == '') && projectVM.subCategories.length > 0) ? true : false">
+                                <div class="form-group ng-scope">
+                                    <label>{{ 'COUNT' | translate }} </label>
+                                    <input type="text" value="" placeholder="{{'PLEASE SELECT' | translate}}"
+                                        class="form-control" ng-disabled="true">
+                                </div>
+                                <div class="form-group ng-scope">
+                                    <label>{{ 'AMOUNT' | translate }} </label>
+                                    <input type="text" class="form-control" ng-disabled="true">
+                                </div>
+                                <div class="form-group ng-scope">
+                                    <label>{{ 'TOTAL AMOUNT' | translate }} </label>
+                                    <input type="text" class="form-control" ng-disabled="true">
+                                </div>
+                                <div class="row ng-scope">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 no-padding text_center">
+                                        <button class="grop-btn-addcart  grop-btn_submit" ng-disabled="true">
+                                            {{ 'ADD TO CART' | translate }}
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 no-padding text_center">
+                                        <button class="grop-btn-donate  grop-btn_submit" ng-disabled="true">
+                                            {{ 'DONATE NOW' | translate }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="clear: both"></div>
+                        <div class="related-projects dpnones">
+                            <h4>{{'RELATED PROJECTS' | translate}}</h4>
+                            <div class="gap-small"></div>
+                            <div class="project-post"
+                                ng-repeat="x in projectVM.relatedProjects | unique:'x.slug' track by $index">
+                                <h5>{{x.programName}}</h5>
+                                <div class="img-area">
+                                    <a ng-href="/#/projectdetails/{{x.slug}}">
+                                        <img src="uploads/{{x.imageLink}}" class="project-list-thumb-image" />
+                                    </a>
+                                </div>
+                                <div class="readmore-aun">
+                                    <p class="content-aun">{{readmoreText(x.programDescription)}}</p>
+                                    <a ng-href="/#/projectdetails/{{x.slug}}"
+                                        data-ng-if="x.programDescription.length >= 178">{{' READ MORE' | translate }}</a>
+                                </div>
+                                <!-- <div hm-read-more hm-html="{{x.programDescription}}"
+                            hm-link="/#/projectdetails/{{x._id}}" hm-limit="150"
+                            hm-more-text="{{' READ MORE' | translate }}" hm-dots-class="{{toggle-dots-grey}}"
+                            hm-link-class="readMore">
+                        </div> -->
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-9 grop-float_left">
+                        <div class="page-break"></div>
+                        <div id="printableArea content" class="resheight Section1" id="">
+                            <p class="text-justify" data-ng-bind-html="projectVM.projectDetail.programDescription">
+                                <!--{{projectVM.projectDetail.programDescription.substring(0,530)}}-->
+                                <!--    {{projectVM.description.para1}}-->
+                            </p>
+                            <!--<img class="center-block descriptionImage" ng-src="uploads/{{projectVM.projectDetail.imageLink}}">-->
+                            <p class="text-justify">
+                                <!--{{projectVM.projectDetail.programDescription.substring(531)}}-->
+
+                            </p>
+                        </div>
+                        <footer>
+                            <div class="printhed">
+                                <!-- <h5 class="footprint">All original content created on your website is secured by copyright law.</h5> -->
+                                <ul>
+                                    <li><img src="images/bar-footer.jpg" alt=""></li>
+                                </ul>
+                            </div>
+                        </footer>
+                        <div class="col-md-12 col-sm-12 col-xs-12  no-padding" style="float: right;">
+                            <div class=" socialButtons no-padding">
+                                <div class="socialnaj no-padding">
+                                    <div class="shareButtons">
+                                        <div class="showSocialIconsR">
+                                            <div class="ssk-group">
+                                                <p>
+                                                    <a href="" class="ssk ssk-facebook"></a>
+                                                    <a href="" class="ssk ssk-twitter"></a>
+                                                    <!-- <a href="" class="ssk ssk-google-plus"></a>
+                                            <a href="" class="ssk ssk-pinterest"></a>
+                                            <a href="" class="ssk ssk-tumblr"></a> -->
+                                                    <!-- <a href="" class="ssk ssk-instagram"></a> -->
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <i class="fa fa-share-alt"></i>
+                                        <small>{{ 'SHARE' | translate}}</small>
+                                    </div>
+                                </div>
+                                <div class="socialnaj no-padding">
+                                    <div class="">
+                                        <a ng-click="sendMail()" target="_blank">
+                                            <i class="fa fa-envelope-o"></i>
+                                            <small>{{ 'EMAIL' | translate}}</small>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="socialnaj no-padding">
+                                    <div class="" data-ng-click="projectVM.printContent('printableArea');">
+                                        <i class="fa fa-print"></i>
+                                        <small>{{ 'PRINT' | translate}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12 printsc">
+                        <div class="related-projects dpnonesdesk">
+                            <h4>{{'RELATED PROJECTS' | translate}}</h4>
+                            <div class="gap-small"></div>
+                            <div class="project-post"
+                                ng-repeat="x in projectVM.relatedProjects | unique:'x.slug' track by $index">
+                                <h5>{{x.programName}}</h5>
+                                <div class="img-area">
+                                    <a ng-href="/#/projectdetails/{{x.slug}}">
+                                        <img src="uploads/{{x.imageLink}}" class="project-list-thumb-image" />
+                                    </a>
+                                </div>
+                                <div class="readmore-aun" data-ng-if="!projectVM.MobileDevice">
+                                    <p class="content-aun">{{readmoreText(x.programDescription)}}</p>
+                                    <a ng-href="/#/projectdetails/{{x.slug}}"
+                                        data-ng-if="x.programDescription.length >= 178">{{' READ MORE' | translate }}</a>
+                                </div>
+                                <div class="readmore-aun" data-ng-if="projectVM.MobileDevice">
+                                    <p class="content-aun">{{readmoreText(x.programDescription)}}</p>
+                                    <a ng-href="/#/projectdetails/{{x.slug}}"
+                                        data-ng-if="x.programDescription.length >= 178">{{' READ MORE' | translate }}</a>
+                                </div>
+                                <!-- <div style=" text-align: justify;" hm-read-more hm-html="{{x.programDescription}}"
+                            hm-link="/#/projectdetails/{{x._id}}" hm-limit="150"
+                            hm-more-text="{{' READ MORE' | translate }}" hm-dots-class="{{toggle-dots-grey}}"
+                            hm-link-class="readMore">
+                        </div> -->
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-3 no-padding dpnonesdesk">
+                <div class="project-calculator">
+                    <div id="projectCalculator">
+
+                    </div>
+                    <div id="dummyDiv" ng-show="((projectVM.selectedCategory == null || projectVM.selectedCategory == '') && projectVM.subCategories.length > 0) ? true : false">
+                        <div class="form-group ng-scope">
+                            <label>{{ 'COUNT' | translate }} </label>
+                            <input type="text" value="" placeholder="{{'PLEASE SELECT' | translate}}" class="form-control" ng-disabled="true">
+                        </div>
+                        <div class="form-group ng-scope">
+                            <label>{{ 'AMOUNT' | translate }} </label>
+                            <input type="text" class="form-control" ng-disabled="true">
+                        </div>
+                        <div class="form-group ng-scope">
+                            <label>{{ 'TOTAL AMOUNT' | translate }} </label>
+                            <input type="text" class="form-control" ng-disabled="true">
+                        </div>
+                        <div class="row ng-scope">
+                            <div class="col-md-6 col-sm-6 col-xs-6 no-padding text_center">
+                                <button class="grop-btn-addcart  grop-btn_submit" ng-disabled="true">
+                                    {{ 'ADD TO CART' | translate }}
+                                </button>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 no-padding text_center">
+                                <button class="grop-btn-donate  grop-btn_submit" ng-disabled="true">
+                                    {{ 'DONATE NOW' | translate }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                    <div style="clear: both"></div>
+                    <div class="related-projects">
+                        <h4>{{'RELATED PROJECTS' | translate}}</h4>
+                        <div class="gap-small"></div>
+                        <div class="project-post" ng-repeat="x in projectVM.relatedProjects | unique:'x._id' track by $index">
+                            <h5>{{x.programName}}</h5>
+                            <div class="img-area">
+                                <a ng-href="/#/projectdetails/{{x._id}}">
+                                    <img src="uploads/{{x.imageLink}}" class="project-list-thumb-image" />
+                                </a>
+                            </div>
+                            <p data-ng-bind-html="x.programDescription.substring(0,100)">
+
+                                <a ng-href="/#/projectdetails/{{x._id}}" class="readMore">{{'READ MORE' | translate}}</a>
+                            </p>
+                        </div>
+                    </div>
+                
+            </div> -->
+                        <!--<div class="col-md-11 centered sharingButtons">-->
+                        <!--<div class="col-md-9">-->
+                        <!--<h4>{{'SHARE' | translate}}:</h4>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-3">-->
+                        <!--<div class="ssk-group">-->
+                        <!--<a href="" class="ssk ssk-facebook"></a>-->
+                        <!--<a href="" class="ssk ssk-twitter"></a>-->
+                        <!--<a href="" class="ssk ssk-google-plus"></a>-->
+                        <!--<a href="" class="ssk ssk-pinterest"></a>-->
+                        <!--<a href="" class="ssk ssk-tumblr"></a>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!-- <div id="footer" style="position:relative; bottom: 0;"> Sample </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    SocialShareKit.init();
+</script>

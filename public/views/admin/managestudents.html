@@ -1,0 +1,211 @@
+<style>
+    button:hover {
+        background-color: #6e6d72 !important;
+        color: white;
+    }
+
+    button:disabled,
+    button[disabled] {
+        cursor: no-drop !important;
+        background-color: #ce9696 !important;
+    }
+
+    .freezed {
+        background-color: #fff0f0 !important;
+    }
+</style>
+<div data-ng-controller="manageStudentController" data-ng-init="getStudentsRecurring();">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper" style="background:white;">
+
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- Content Header (Page header) -->
+                <section class="content-header" style="padding-top: 0px;">
+                    <h1>
+                        {{'MANAGE STUDENTS' | translate}}
+                    </h1>
+                    <div class="col-md-4  pull-right no-padding" style="margin: 1rem 0;">
+                        <!-- <div class="col-md-12 no-padding">
+                            <input type="text" class="form-control pull-right" data-ng-model="searchValue"
+                                placeholder="{{'SEARCH BY ID'| translate}}" />
+                        </div> -->
+                        <!-- <div class="col-md-3 no-padding">
+                                <button type="button" name="searchBtn" class="btn btn-bitbucket pull-right">{{'SEARCH'| translate}}</button>
+                            </div> -->
+
+                    </div>
+                </section>
+                <br />
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 overflowTable">
+                            <table class="table table-hover">
+                                <thead
+                                    style="background-color: #f0ca4f;font-family: Roboto, Arial, sans-serif !important;">
+                                    <td> {{'Sr.' |translate}}</td>
+                                    <td>{{'DONAR NAME' | translate}}</td>
+                                    <td>{{'STUDENT NAME' | translate}}</td>
+                                    <td>{{'STUDENT ID' | translate}}</td>
+                                    <td>{{'AGE' | translate}}</td>
+                                    <td>{{'DESCENT' | translate}}</td>
+                                    <td ng-show="searchStudentName == 'show dates'">{{'START DATE' | translate}}</td>
+                                    <td ng-show="searchStudentName == 'show dates'">{{'NEXT DONATION DATE' | translate}}
+                                    </td>
+                                    <td ng-show="searchStudentName == 'show dates'">{{'END DATE' | translate}}</td>
+                                    <td>{{'CHANGE STUDENT' | translate}}</td>
+                                    <td>{{'CANCEL STUDENT' | translate}}</td>
+                                    <td>{{'DUE PAYMENTS' | translate}}</td>
+                                    <td>{{'STATUS' | translate}}</td>
+                                </thead>
+                                <tr data-ng-repeat="studentReccurring in studentRecurringList | filter:{studentId: searchValue} | limitTo: recordsLimit"
+                                    ng-class="studentReccurring.freezed ? 'freezed' : ''">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{studentReccurring.donar[0].donarName || '----'}}</td>
+                                    <td>{{studentReccurring.student.studentName || '----'}}</td>
+                                    <td>{{studentReccurring.student.studentId || '----'}}</td>
+                                    <td>{{age(studentReccurring.student.dateOfBirth) || '----'}}</td>
+                                    <td>{{(studentReccurring.student.descent).toUpperCase() | translate }}
+                                    </td>
+                                    <td style="background: #81c9ff;" ng-show="searchStudentName == 'show dates'">
+                                        {{studentReccurring.startDate | date:"dd-MMM-yyyy" || '----'}}</td>
+                                    <td style="background: #81c9ff;" ng-show="searchStudentName == 'show dates'">
+                                        {{studentReccurring.nextDonationDate | date:"dd-MMM-yyyy" || '----'}}</td>
+                                    <td style="background: #81c9ff;" ng-show="searchStudentName == 'show dates'">
+                                        {{studentReccurring.endDate | date:"dd-MMM-yyyy" || '----'}}</td>
+                                    <td>
+                                        <button ng-disabled="!studentReccurring.freezed || studentReccurring.isChanged"
+                                            style="border-radius: 5px;border: 1px solid #00000025; background-color: #a6aaad; color: white;"
+                                            ng-click="getStudents(studentReccurring.donar[0].donarName, studentReccurring);">{{'CHANGE STUDENT' | translate}}</button>
+                                        <span style="color: red; font-size: 12px;"
+                                            ng-show="studentReccurring.isChanged">{{'CHANGED!' | translate}}</span>
+                                    </td>
+                                    <td>
+                                        <button ng-disabled="studentReccurring.freezed"
+                                            style="border-radius: 5px;border: 1px solid #00000025; background-color: #a6aaad; color: white;"
+                                            ng-click="cancelStudent(studentReccurring);">{{'CANCEL STUDENT' | translate}}</button>
+                                    </td>
+                                    <td>
+                                        {{ studentReccurring.freezed ? 'N/A' : dueAmount(studentReccurring)
+                                    <=0 ? 'N/A' : studentReccurring.donationDetails.donation.currency + ' ' + dueAmount(studentReccurring)}}
+                                    </td>
+
+                                    <td>{{studentReccurring.freezed ? 'Freezed' : 'Not-Freezed' }}</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <a class="btn btn-default btn-large alignright"
+                            data-ng-if="recordsLimit < studentRecurringList.length"
+                            data-ng-click="loadMore();">{{'LOAD MORE' | translate}}</a>
+                    </div>
+                </div>
+                <!-- Your Page Content Here -->
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    <!-- MODAL STUDENTS SATRT -->
+    <div class="modal fade" id="studentsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="width: 75%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h2 class="modal-title" id="exampleModalLabel">{{'SELECT STUDENTS' | translate}}</h2>
+
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <p class="text-muted col-md-8" ng-show="studentsList.length > 0 ? false : true">
+                            {{'NO STUDENT(S) AVAILABLE' | translate}}.</p>
+
+                        <div class="col-md-12">
+                            <div class="col-md-4 no-padding">
+                                <div class="col-md-4 no-padding text-left">
+                                    <h4 style="font-weight: bold;">{{'DONAR NAME' | translate}}: </h4>
+                                </div>
+                                <div class="col-md-6 text-left no-padding">
+                                    <h4>{{donarName}}
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="col-md-8 no-padding">
+                                <div class="col-md-6 text-right">
+                                    <h4>{{'SEARCH'| translate}}: </h4>
+                                </div>
+                                <div class="col-md-3" style="float: right;">
+                                    <select class="form-control" ng-model="searchSyed">
+                                        <option value="">{{'--- SELECT DESCENT ---' | translate}}</option>
+                                        <option value="true">{{('Syed').toUpperCase() | translate}}</option>
+                                        <option value="false">{{('Non-Syed').toUpperCase() | translate}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3" style="float: right;">
+                                    <input type="text"
+                                        class="form-control col-md-6 ng-pristine ng-empty ng-invalid ng-invalid-required ng-valid-maxlength ng-touched"
+                                        placeholder="{{'STUDENT NAME' | translate}}" ng-model="searchStudentName"
+                                        style="border-radius: 5px">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12 col-xs-12" style="overflow: auto;    max-height: 400px;">
+                            <table class="table table-hover" style="margin-top: 15px;">
+                                <thead
+                                    style="background-color: #f0ca4f;font-family: Roboto, Arial, sans-serif !important;">
+                                    <td> {{'Sr.' |translate}}</td>
+                                    <td>{{'STUDENT ID' | translate}}</td>
+                                    <td>{{'STUDENT NAME' | translate}}</td>
+                                    <td>{{'AGE' | translate}}</td>
+                                    <td>{{'DESCENT' | translate}}</td>
+                                    <td>{{'PRIORITY' | translate}}</td>
+                                    <td>{{'MALE/FEMALE' | translate}}</td>
+                                    <td>{{'SELECT' | translate}}</td>
+                                </thead>
+                                <tr data-ng-repeat="student in studentsList | unique:'studentId' | filter:{studentName: searchStudentName} | filter:{isSyed: searchSyed} | orderBy:
+                                     'studentId'">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{student.studentId || '----'}}</td>
+                                    <td>{{student.studentName || '----'}}</td>
+                                    <td>{{age(student.dateOfBirth) || '----'}}</td>
+                                    <td>{{(student.descent).toUpperCase() | translate }}
+                                    </td>
+                                    <td>{{student.priority || '----'}}</td>
+                                    <td>{{student.gender.toUpperCase() | translate}}</td>
+                                    <td>
+                                        <input type="checkbox" ng-model="student.checked"
+                                            ng-click="updateStudentSelection(student._id, studentsList, student);">
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">{{'CLOSE' | translate}}</button>
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" ng-click="changeStudent();" style="margin-right: 10px;"
+                            class="btn btn-primary">{{'CHANGE STUDENT' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL STUDENTS END  -->
+
+
+    <!-- HEADER -->
+</div>

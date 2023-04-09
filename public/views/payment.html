@@ -1,0 +1,21 @@
+<div class="container" data-ng-controller="paymentController as paymentVM"
+    data-ng-init="paymentVM.getPayment();">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{paymentVM.program.programName}}</h1>
+            <p>Program End Date: {{paymentVM.donation.donationDetails.endDate | date: 'medium'}}</p>
+            <p>Payments Remaining: {{paymentVM.donation.noOfPaymentsRemaining}}</p>
+        </div>
+        <div class="col-md-2">
+            <img src="uploads/{{paymentVM.orphan.imageLink}}" alt="No Image" class="img-rounded" />
+        </div>
+        <div class="col-md-6">
+            <h5>{{paymentVM.orphan.orphanName}}</h5>
+            <p>Orphan Id: {{paymentVM.orphan.orphanId}}</p>
+            <p>Gender: {{paymentVM.orphan.gender}}</p>
+            <p>Descend: {{paymentVM.orphan.descent}}</p>
+        </div>
+    </div>
+    <hr style="border-top: 1px solid #c7c7c7d5">
+    <button class="btn btn-primary btn-lg" ng-click="paymentVM.donateNow()">Donate Now</button>
+</div>

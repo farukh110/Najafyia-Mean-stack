@@ -1,0 +1,180 @@
+<div class="grop-page container padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="generalCareController as pageVM"
+            data-ng-init="pageVM.getActiveGeneralCares();pageVM.amount=0;">
+            <div class="col-md-12 col-xs-12 project-detail-banner orphnsbanner">
+                <h1>{{ 'BASIC CARE' | translate }}</h1>
+            </div>
+            <div class="row">
+            <div class="col-md-12">
+                <p class="text-justify">
+                    {{pageVM.content}}
+                    <!-- {{'Aytamuna (Our orphans) division of Al Anwar Al Najafyia Foundation was established in 2010, which aimed at fulfilling the basic needs of the orphans. It currently serves thousands of orphans with the number increasing every year as more donors come forward. Most of these orphans are from the holy cities of Najaf and Karbala.' | translate}} -->
+                </p>
+            </div>
+            <!-- <div class="col-md-3 col-xs-12  dpnone"> -->
+                <!-- <div class="project-calculator">
+                    <div class="form-group">
+                        <label for="">{{"SUPPORT TYPE" | translate}} </label>
+                        <select class="form-control" ng-model="selectedGc" data-ng-change="selectGcCalculator()"
+                            data-ng-options="gc.programName for gc in generalCareList">
+                            <option value="">{{"PLEASE SELECT" | translate}}</option>
+                        </select>
+                    </div>
+
+             
+                </div> -->
+                       <!-- <div id="gcCalculator">
+
+                    </div> -->
+                   
+
+
+                    <!-- <div id="dummyDiv" ng-show="(selectedGc == null || selectedGc == '') ? true : false">
+                        <div class="form-group ng-scope">
+                            <label>{{"COUNT" | translate}}</label>
+                            <input type="text" value="" placeholder="{{'PLEASE SELECT' | translate}}"
+                                class="form-control" ng-disabled="true">
+                        </div>
+                        <div class="form-group ng-scope">
+                            <label>{{"AMOUNT" | translate}}</label>
+                            <input type="text" class="form-control" ng-disabled="true">
+                        </div>
+                        <div class="form-group ng-scope">
+                            <label>{{"TOTAL AMOUNT" | translate}}</label>
+                            <input type="text" class="form-control" ng-disabled="true">
+                        </div>
+                        <div class="row ng-scope">
+                            <div class="col-md-6 col-xs-6 text-center no-padding">
+                                <button class="grop-btn-addcart  grop-btn_submit" ng-disabled="true">
+                                    {{"ADD TO CART" | translate}}
+                                </button>
+                            </div>
+                            <div class="col-md-6 col-xs-6 text-center  no-padding">
+                                <button class="grop-btn-donate  grop-btn_submit" ng-disabled="true">
+                                    {{"DONATE NOW" | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+               
+            <!-- </div> -->
+            <donation-calculator-component showorphancategories ="'false'" compactmode="'false'"  ></donation-calculator-component>
+            
+            <div class="col-md-9 customBox no-padding grop-float_left">
+                <div class="col-md-6 contentdyn" data-ng-repeat="x in pageVM.generalCares">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <div class="box-title"> {{x.programName}}</div>
+                        </div>
+                        <div class="box-body">
+                            <a ng-href="/#/generalcaredetails/{{x.slug}}">
+                                <img src="uploads/{{x.imageLink}}" class="project-list-image">
+                            </a>
+                            <div class="readmore-aun">
+                                <p class="content-aun" data-ng-bind-html="x.programDescription.substring(0,168)"></p>
+                                <a ng-href="/#/generalcaredetails/{{x.slug}}" data-ng-if="x.programDescription.length >= 178">{{' READ MORE' | translate }}</a>
+                            </div>
+                            <!-- <div hm-read-more hm-html="{{x.programDescription}}"
+                                hm-link="/#/generalcaredetails/{{x._id}}" hm-limit="300"
+                                hm-more-text="{{' READ MORE' | translate }}" hm-dots-class="{{toggle-dots-grey}}"
+                                hm-link-class="readMore">
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- <div class="modal fade" id="orphanListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true" data-ng-if="(selectedRecurring===false || selectedRecurring) &&
+            (selectedDescend === false || selectedDescend) && 
+            (selectedGender === false || selectedGender) && 
+             amountValue && selectedCount">
+                <div class="modal-dialog txtright" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h2 class="modal-title" id="exampleModalLabel">{{"SELECT ORPHANS" | translate}}</h2>
+                        </div>
+                        <div class="modal-body darachk">
+                            <div class="row">
+                                <p class="text-muted col-md-8"
+                                    ng-if="!pageVM.orphans.length">
+                                    {{'NO ORPHAN(S) MATCHES THE GIVEN CRITERIA.' | translate}}</p>
+                                <div class="col-md-4" ng-repeat="role in pageVM.orphans">
+                                    <div class="box box-warning">
+                                        <div class="box-header with-border">
+                                            <input type="checkbox" checklist-model="user.roles"
+                                                checklist-value="role._id">
+                                            <h3 class="box-title"
+                                                title="{{role.orphanName}}">{{role.orphanName | limitTo:10}}{{role.orphanName.length>10?'...':''}}
+                                        </h3>
+                                        </div>
+                                        <div class="box-body" style="background: #2B2B2B;">
+                                            <div class="mainhd">
+                                                <p style="line-height: 10px;">{{(role.descent).toUpperCase() | translate}}</p>
+                                                <p style="line-height: 10px;">{{role.gender}}</p>
+                                                <p style="line-height: 10px;">{{age(role.dateOfBirth)}}-Years</p>
+                                            </div>
+                                            <img ng-src="{{role.imageLink?'uploads/'+role.imageLink:'/images/default-img.jpg'}}"
+                                                onerror="this.src='/images/default-img.jpg'"
+                                                class="generalCare-list-image img-circle pull-right storp" style="">
+                                        </div>
+                                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <span class="errorspon"
+                                ng-show="(user.roles.length > 0 && selectedCount != user.roles.length) ? true : false">
+                                {{'SELECTED_ORPHAN_COUNT_NOT_EQ' | translate}}
+                            </span>
+                            <button type="button" class="grop-btn  grop-btn_submit" style=""
+                                data-dismiss="modal">{{'SELECT' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <orphan-selection-modal-component  compactmode="'true'" ></orphan-selection-modal-component>
+       
+        </div>
+            <!-- <div class="col-md-3">
+                <div class="project-calculator">
+                    <div class="form-group">
+                        <label for="">generalCare Type <span class="danger">*</span></label>
+                        <select class="form-control" ng-model="pageVM.selectedgeneralCare">
+                            <option value="">Qurbani</option>
+                            <option value="">Madarsah</option>
+                            <option value="">Children</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Count <span class="danger">*</span></label>
+                        <select class="form-control" ng-model="pageVM.selectedCount">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Amount </label>
+                        <input type="text" class="form-control" ng-model="pageVM.amount" />
+                    </div>
+                    <div class="form-group">
+                        <label for="">Total Amount</label>
+                        <input type="text" class="form-control" ng-value="pageVM.amount*pageVM.selectedCount" ng-disabled="true" />
+                    </div>
+                    <div>
+                        <button class="grop-btn  grop-btn_submit">Donate Now</button>
+                    </div>
+                </div>
+
+            </div> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,212 @@
+
+<link rel="stylesheet" href="../../assets/css/checkout/renew_payment_checkout.css">
+
+<div>
+    <div class="payment-checkout-wrapper" data-ng-controller="renewPaymentController as vm"
+        data-ng-init="vm.onPageLoad();">
+        <form id="payment-form" ng-show="!vm.isLoading" ng-if="vm.donationItem">
+            <div class='container-fluid {{vm.donationItem.body.selectedLang.toLowerCase()}}'>
+                <div class="row mobile-only mobile-header">
+                    <div>
+                        <!-- <div class="lnk-back-wrapper">
+                            <a class="lnk-back"
+                                ng-click="vm.onCancelCheckout()"><i class="fa fa-long-arrow-left"></i>{{'BACK_TO_CART' |
+                                translate}}</a>
+                        </div> -->
+                    </div>
+                    <div class="logo-img"><img src="images/logo.png" alt=""></div>
+                </div>
+                <div class='row mainlayout {{vm.selectedLang.toLowerCase()}}'>
+                    <div class='col-lg-6 col-md-6 col-sm-6 cartitem-wrapper vertical-center arb-column'>
+                        <div class='cart-items-column'>
+                            <h2 class="desktop-only cart-item-heading">{{'FAILED_HEADING' | translate }}</h1>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <div class="two-col-layout">
+                                            <div class="prog-name" ng-bind-html="vm.getProgramName(vm.cItem) ">
+                                            </div>
+                                            <div class="cart-header">
+                                                {{vm.donorProgramDetail.amount |
+                                                currency:vm.paymentCheckoutModel.customerInfo.currency }}
+                                            </div>
+                                            </h4>
+
+                                    </li>
+                                </ul>
+                                <div class="hr">&nbsp;</div>
+                                <div class="two-col-layout cart-header">
+                                    <div>{{'TOTAL_PAYABLE' | translate}}</div>
+                                    <div>{{vm.donorProgramDetail.amount |
+                                        currency:vm.paymentCheckoutModel.customerInfo.currency
+                                        }}
+                                    
+                                        </div>
+                                </div>
+                                <!-- <div class="lnk-back-wrapper desktop-only">
+                                    <a class="lnk-back"
+                                        ng-click="vm.onCancelCheckout()"><i class="fa fa-long-arrow-left"></i>{{'BACK_TO_CART' |
+                                        translate}}</a>
+                                </div> -->
+                        </div>
+                    </div>
+                    <div class='col-lg-5 col-md-5 col-sm-6 card-info-column-wrapper vertical-center arb-column'>
+                        <!-- <div class="shadow">&nbsp;</div> -->
+                        <div class='card-info-column'>
+
+                            <div class="row desktop-only logo-wrapper">
+
+                                <div class="col-lg-8 col-md-8 col-sm-8 desktop-col">
+                                    <h2>{{'AL ANWAR NAJAFIYA'|translate}}</h1>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 logo-img"><img src="images/logo.png" alt=""></div>
+
+                            </div>
+
+                            <div class="row card-info-form">
+                                <!-- <div class="form-group">
+                                    <label>{{'USERNAME' | translate}}</label>
+                                    <input type="text" ng-model="vm.paymentCheckoutModel.customerInfo.name"
+                                        disabled="true" />
+                                </div> -->
+
+                                <!-- start email field -->
+
+                                <div class="read-only-form">
+
+                                    <div class="saved-info-summary-email read-only-form-field">
+                                        <div class="row">
+                                            <div class="col-md-3 col-xs-5">
+                                                <p> {{ 'EMAIL' | translate }} </p>
+                                            </div>
+
+                                            <div class="col-md-9 col-xs-7">
+                                                <p> {{vm.paymentCheckoutModel.customerInfo.email}} </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div ng-show="vm.useExistingCard"
+                                        class="saved-info-summary-payment read-only-form-field">
+
+                                        <a href="" ng-click="vm.changePaymentOption()">
+
+                                            <div class="row">
+                                                <div class="col-md-3 col-xs-4">
+                                                    <p>{{ 'PAY_WITH' | translate }}  </p>
+                                                </div>
+
+                                                <div class="col-md-5 col-xs-4 update-card-no">
+                                                    <p> <span
+                                                            class="fa fa-credit-card credit-card-icon"></span>{{vm.cardText}}
+                                                    </p>
+                                                </div>
+
+                                                <div class="col-md-4 col-xs-4 update-card-padding">
+                                                    <p class="text-primary text-right text-capitalize"> {{ 'UPDATE_CARD' | translate }}  </p>
+                                                </div>
+
+                                            </div>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- <div class="form-group"> -->
+                                <!-- <label>{{ 'EMAIL' | translate }}</label> -->
+
+                                <!-- <input type="email" ng-model="vm.paymentCheckoutModel.customerInfo.email"
+                                        disabled="true" /> -->
+                                <!-- </div> -->
+
+                                <!-- start email field -->
+
+                                <div ng-hide="vm.useExistingCard" class="row account-spacing">
+
+                                    <div class="col-md-6">
+
+                                    </div>
+
+                                    <div ng-show="vm.paymentMethod" class="col-md-6 text-right account-padding-right">
+
+                                        <a href="" ng-click="vm.changePaymentOption()" class="account-change-link">
+                                            {{'KEEP_USING' | translate}} {{vm.cardText}} </a>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <!-- <label>{{'CARD_INFORMATION' | translate }}</label> -->
+
+                                    <!-- <div id="prefilled-card"  ng-show="vm.paymentMethod">
+                                        <input type="text" ng-model="vm.cardText"  disabled="true" />
+                                       </div> -->
+
+
+                                        <!-- Stripe Elements will be mounted here -->
+                                    <div id="card-element" class="card-payment" ng-hide="vm.useExistingCard"> 
+                                       
+                                    </div>
+                                    <div class="poweredby">
+                                         
+                                        <i class="fa fa-lock tooltip-icon-lock">
+                                            <span class="tooltip-text"> {{'SECURED_PAYMENT_TEXT' | translate}} </span>
+                                        </i> 
+                                        
+                                         {{'POWERED_BY' | translate }} <a
+                                            href="https://stripe.com/guides/pci-compliance#:~:text=Stripe%20Checkout%20and%20Stripe%20Elements,our%20PCI%20DSS%20validated%20servers."
+                                            target="_blank">
+
+                                            stripe
+
+                                        </a> </div>
+                                    <div id="card-errors" role="alert">
+                                        <!-- Any Stripe Elements error messages will be mounted here -->
+                                    </div>
+                                    <!-- </div>
+                                <div class="form-group">
+                                    <label>{{ 'COUNTRY' | translate }}</label>
+                                    <select class="form-control" ng-model="vm.selectedCountryCode">
+                                      
+                                        <option value="{{ctry.code}}" ng-selected="ctry.code === vm.selectedCountryCode"
+                                            ng-repeat="ctry in vm.countryList">{{ctry.name}}
+                                        </option>
+                                    </select>
+                                </div> -->
+                                    <!-- <option value="">{{'SELECT COUNTRY' | translate}}</option> -->
+                                    <!-- FORM SUBMISSION -->
+                                    <!-- <div class="card-btn"> -->
+                                    <button id="btn_pay_subscribe" class="btn btn-primary btn-lg btn-anim" type="button"
+                                        ng-click="vm.onPaymentFormSubmission()">
+                                          {{'PAY' | translate }} {{vm.donorProgramDetail.amount |
+                                            currency:vm.paymentCheckoutModel.customerInfo.currency
+                                            }} 
+                                        <i class="fa fa-lock float-right"></i>
+                                    </button>
+                                    <!-- </div> -->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div ng-show="vm.isLoading" class="loader-wrapper">
+            <div id="loading" class="loader-card">
+                <div>
+                    <div class="loader"></div>
+                </div>
+                <h3 class="header-blue">{{'PROCESSING' | translate }} <br> {{'YOUR_PAYMENT' | translate }} </h3>
+                <p class="helper-text"> {{'WAIT_FEW' | translate }}</p>
+                <div id="3d_status"></div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,283 @@
+<div class="">
+    <div data-ng-controller="reportsController as reportVM"
+        data-ng-init="reportVM.getSponsorshipRenewalReport();reportVM.getCountryList()">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        {{'SPONSORHSIP RENEWAL REPORT' | translate}}
+                        <small></small>
+                    </h1>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Your Page Content Here -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                </div>
+
+                                <div class="box-body">
+                                    <form role="form" data-ng-submit="reportVM.filterSponsorshipReport();"
+                                        class="form-horizontal reportFilterArea">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'SELECTION FROM' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtFromDate" name="durationStart"
+                                                                class="form-control pull-right readonly"
+                                                                ng-click="setPosFromDate();"
+                                                                ng-change="startDateChange();" autocomplete="off"
+                                                                ng-model="reportVM.searchCriteria.fromDate" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'TO' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtToDate"
+                                                                class="form-control pull-right readonly"
+                                                                ng-click="setPosToDate();" autocomplete="off"
+                                                                ng-model="reportVM.searchCriteria.toDate" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'PAYMENT TYPE' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <select data-ng-model="reportVM.searchCriteria.paymentType"
+                                                            class="form-control">
+                                                            <option value="">{{'SELECT PAYMENT TYPE' | translate}}
+                                                            </option>
+                                                            <option value="true">
+                                                                {{'RECURRING' | translate}}</option>
+                                                            <option value="false">{{'ONETIME' | translate}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'TYPE' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input type="number" class="form-control validateNumber" min='0'
+                                                            data-ng-model="reportVM.searchCriteria.typeSearchField"
+                                                            placeholder="{{'TYPE SEARCH' | translate}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'DONOR REPORT' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control"
+                                                            data-ng-model="reportVM.searchCriteria.donorSearchField"
+                                                            placeholder="{{'SEARCH EMAIL PHONE' | translate}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12 text-right" ng-if="language !== 'ARB'">
+                                                <button type="submit" class="btn btn-primary">{{'GENERATE' | translate}}
+                                                </button>
+                                                <button type="button" class="btn btn-primary"
+                                                    data-ng-click="reportVM.resetForm();">{{'CLEAR' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="col-md-12 text-left" ng-if="language === 'ARB'">
+                                                <button type="button" class="btn btn-primary"
+                                                    data-ng-click="reportVM.resetForm();">{{'CLEAR' | translate}}
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">{{'GENERATE' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <!----------------  Export Data ---------------->
+                                    <div class="row" ng-if="dataListSponsorReport.length">
+                                        <div class="col-md-12">
+                                            <div class="pull-right">
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                    data-ng-click="exportToExcel('SPONSORSHIP_RENEWAL_REPORT','exportTableExcel');">
+                                                    {{'EXCEL' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="pull-right" style="margin-right: 10px;">
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                    data-ng-click="exportToPDF('SPONSORSHIP_RENEWAL_REPORT',8,'p');">
+                                                    {{'PDF' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="pull-right" style="margin-right: 10px;">
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                    data-ng-click="reportVM.printDiv('exportTableExcel')">
+                                                    {{'PRINT' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row overFlow" id="printableArea" ng-if="dataListSponsorReport.length">
+                                        <div class="col-md-12" id="exportTableExcel" style="margin-top: 10px;">
+                                            <table class="table table-striped table-bordered reportsTable"
+                                                style="margin-bottom: 0px;" border="1" cellspacing="0"
+                                                id="exportTableHeader">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="9">
+                                                            {{'SPONSORHSIP RENEWAL REPORT' | translate}} - :
+                                                            {{reportVM.dateToday | date:'dd-MM-yyyy'}}
+                                                            (From :
+                                                            {{reportVM.searchCriteria.fromDate | date : "dd-MM-yyyy"}}
+                                                            To :
+                                                            {{reportVM.searchCriteria.toDate | date : "dd-MM-yyyy"}})
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                            <table class="table table-responsive tableOverflow" id="exportTable"
+                                                style="max-height: 450px">
+                                                <thead>
+                                                    <th style="min-width: 55px; text-align:center">
+                                                        {{'SR NO' | translate}}</th>
+                                                    <th style="min-width: 100px; text-align:center">
+                                                        {{'FILE NUMBER' | translate }}</th>
+                                                    <th style="min-width: 180px; text-align:center">
+                                                        {{'ORPHAN NAME' | translate }}</th>
+                                                    <th style="min-width: 100px; text-align:center">
+                                                        {{'DECENT' | translate }}</th>
+                                                    <th style="min-width: 110px; text-align:center">
+                                                        {{'DOB' | translate }}</th>
+                                                    <th style="min-width: 180px; text-align:center">
+                                                        {{'SPONSOR / DONOR ID' | translate }}</th>
+                                                    <th style="min-width: 150px; text-align:center">
+                                                        {{'SPONSOR NAME' | translate }}</th>
+                                                    <th style="min-width: 120px; text-align:center">
+                                                        {{'START DATE' | translate }}</th>
+                                                    <th style="min-width: 120px; text-align:center">
+                                                        {{'END DATE' | translate }}</th>
+                                                    <th style="min-width: 180px; text-align:center">
+                                                        {{'COMMITMENT DATE' | translate }}</th>
+                                                    <th style="min-width: 110px; text-align:center">
+                                                        {{'AMOUNT IN $' | translate}}</th>
+                                                    <th style="min-width: 110px; text-align:center">
+                                                        {{'AMOUNT IN €' | translate}}</th>
+                                                    <th style="min-width: 110px; text-align:center">
+                                                        {{'AMOUNT IN £' | translate}}</th>
+                                                </thead>
+                                                <tr ng-repeat="data in dataListSponsorReport"
+                                                    style="text-align: center;">
+                                                    <td class="text-center">{{$index+1}}</td>
+                                                    <td class="text-center">{{data.studentId || '--'}}</td>
+                                                    <td class="text-center">{{data.orphanName}}</td>
+                                                    <td class="text-center">{{(data.decent).toUpperCase() | translate}}</td>
+                                                    <td class="text-center">{{data.birthdate | date:'dd-MM-yyyy'}}</td>
+                                                    <td class="text-center">{{data.donarId}}</td>
+                                                    <td class="text-center">{{data.donarName }}</td>
+                                                    <td class="text-center">
+                                                        {{data.programStartDate | date:'dd-MM-yyyy'}}</td>
+                                                    <td class="text-center">{{data.programEndDate | date:'dd-MM-yyyy'}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{data.commitmentDueDate | date:'dd-MM-yyyy'}}</td>
+                                                    <td class="text-center">
+                                                        {{data.currencyTitle == 'USD' ? data.amount : '----'}}</td>
+                                                    <td class="text-center">
+                                                        {{data.currencyTitle == 'EUR' ? data.amount : '----'}}</td>
+                                                    <td class="text-center">
+                                                        {{data.currencyTitle == 'GBP' ? data.amount : '----'}}</td>
+                                                </tr>
+                                                <tr ng-if="dataListSponsorReport.length">
+                                                    <td class="text-center" colspan="13"></td>
+                                                </tr>
+                                                <tr ng-if="dataListSponsorReport.length">
+                                                    <td class="text-center" colspan="2">
+                                                        {{'DECENT SUMMARIZE' | translate}}</td>
+                                                    <td class="text-center" colspan="2">{{'TOTAL' | translate}}</td>
+                                                </tr>
+                                                <tr ng-if="dataListSponsorReport.length">
+                                                    <td class="text-center" colspan="2">{{'SYED MALE' | translate}}:
+                                                    </td>
+                                                    <td class="text-center" colspan="2">{{decentSummarize.syedMale}}
+                                                    </td>
+                                                </tr>
+                                                <tr ng-if="dataListSponsorReport.length">
+                                                    <td class="text-center" colspan="2">{{'NON SYED MALE' | translate}}:
+                                                    </td>
+                                                    <td class="text-center" colspan="2">{{decentSummarize.nonSyedMale}}
+                                                    </td>
+                                                </tr>
+                                                <tr ng-if="dataListSponsorReport.length">
+                                                    <td class="text-center" colspan="2">{{'SYED FEMALE' | translate}}:
+                                                    </td>
+                                                    <td class="text-center" colspan="2">{{decentSummarize.syedFemale}}
+                                                    </td>
+                                                </tr>
+                                                <tr ng-if="dataListSponsorReport.length">
+                                                    <td class="text-center" colspan="2">
+                                                        {{'NON SYED FEMALE' | translate}}:</td>
+                                                    <td class="text-center" colspan="2">
+                                                        {{decentSummarize.nonSyedFemale}}</td>
+                                                </tr>
+                                                <tr ng-if="dataListSponsorReport.length">
+                                                    <td class="text-center" colspan="10">{{'TOTAL' | translate}}</td>
+                                                    <td class="text-center">{{curencyTotal.dollar || '--'}}</td>
+                                                    <td class="text-center">{{curencyTotal.euro || '--'}}</td>
+                                                    <td class="text-center">{{curencyTotal.pound || '--'}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div ng-if="reportVM.toggler && !dataListSponsorReport.length">
+                                        <h4 class="text-danger text-center">{{'DATA NOT FOUND' | translate}}</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- HEADER -->
+
+        </div>
+    </div>
+</div>

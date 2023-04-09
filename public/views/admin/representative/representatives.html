@@ -1,0 +1,84 @@
+<div class="grop-page padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="representativeController as repVM" data-ng-init="repVM.getRepresentative(true);">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12  col-xs-12">
+                        <div class="pageHeadingAreaImg representative-banner">
+                            <h1>{{ 'REPRESENTATIVE LIST' | translate }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-content-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9" style="margin: 0 auto; float: none">
+                            <form class="form-horizontal" ng-submit="repVM.search();" name="queryForm">
+                                <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <br>
+                                    <div class="col-md-6 col-xs-12" style="margin-bottom: 15px; margin-top: 15px;">
+                                        <select ng-model="repVM.queryDetails.country" 
+                                        ng-change="cities=[];repVM.search();" class="form-control"
+                                            >
+                                            <option value="">{{ 'PLEASE SELECT COUNTRY' | translate }}</option>
+                                            <option data-ng-repeat="country in repVM.countryList" ng-value="country">
+                                                {{country.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12" style="margin-bottom: 15px; margin-top: 15px;">
+                                        <!-- <input type="text" class="form-control" data-ng-model="repVM.queryDetails.city"
+                                            placeholder="{{ 'CITY' | translate }}"> -->
+                                        <select ng-model="repVM.queryDetails.city" ng-change="repVM.search();" class="form-control">
+                                            <option value="">{{ 'PLEASE SELECT CITY' | translate }}</option>
+                                            <option data-ng-repeat="city in cities track by $index"
+                                                ng-value="city">
+                                                {{city}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                        <div class="col-md-12 overflowTable tableCurved overflowTable-r17">
+                            <table datatable="ng" class="table table-responsive tableCustom" dt-options="repVM.dtOptions" >
+                                <thead>
+                                    <td >
+                                        {{ 'COUNTRY' | translate }}
+                                    </td>
+                                    <td >
+                                        {{ 'CITY' | translate }}
+                                    </td>
+                                    <td>
+                                        {{ 'REPRESENTATIVE LIST' | translate }}
+                                    </td>
+                                    <td>
+                                        {{ 'NUMBER' | translate }}
+                                    </td>
+                                    <td>
+                                        {{ 'EMAIL' | translate }}
+                                    </td>
+                                </thead>
+                                <tbody >
+                                    <tr ng-repeat="rep in repVM.representativeListFiltered" ng-show="rep.isVisible === undefined || rep.isVisible">
+                                        <td>{{rep.country || '-'}}</td>
+                                        <td>{{rep.city || '-'}}</td>
+                                        <td>{{rep.name}}</td>
+                                        <td style="direction: ltr;">{{rep.phone || '-'}}</td>
+                                        <td>{{rep.email}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

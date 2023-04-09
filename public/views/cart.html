@@ -1,0 +1,135 @@
+<div class="grop-page container padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="cartController as cartVM" data-ng-init="cartVM.getCartDetail();">
+
+            <div class="col-md-12 col-xs-12 project-detail-banner cart-banner">
+                <h1>{{ 'CART' | translate }}</h1>
+            </div>
+
+            <div class="col-md-12  col-xs-12 no-padding">
+                <div id="cart" class="overflowTable">
+                    <Table class="table" style="border: none;">
+                        <thead class="thead">
+                            <td class="text-center">
+                                {{ 'SR NO' | translate }}
+                            </td>
+                            <td class="text-center">
+                                {{ 'DESCRIPTION' | translate }}
+                            </td>
+                            <td class="text-center">
+                                {{ 'PAYMENT PLAN' | translate }}
+                             
+                                
+                            </td>
+                            <td class="text-center">
+                                {{ 'AUTO RENEWAL' | translate }}
+                            </td>
+                            <td class="text-center">
+                                {{ 'QUANTITY' | translate }}
+                            </td>
+                            <td class="text-center">
+                                {{ 'AMOUNT' | translate }}
+                            </td>
+                            <td class="text-center">
+                                {{ 'REMOVE' | translate }}
+                            </td>
+                        </thead>
+                        <tr data-ng-repeat="x in cartVM.cartDetail.items track by $index"
+                            ng-show="cartVM.cartDetail.items.length>0">
+                            <td class="text-center">{{$index+1}}</td>
+
+                            <td class="text-center">
+                                <div>
+                                    {{x.program.programName === 'Higher Education Loans'?'Higher Education':x.program.programName | translate}}
+                                </div>
+                                <div style="margin: 10px 0 5px 0px;"
+                                    data-ng-if="x.otherPersonalityName  || x.programSubCategory.programSubCategoryName || x.otherFieldForNiyaz">
+                                    {{ x.otherFieldForNiyaz|| x.otherPersonalityName ||x.programSubCategory.programSubCategoryName  }}
+                                </div>
+                                <div style="margin: 10px 0 5px 0px;" data-ng-if="x.marhomeenName">
+                                    {{x.marhomeenName}}</div>
+                                <!-- <div style="margin: 10px 0 5px 0px;">{{x.otherPersonalityName}}</div> -->
+                                <!--<p>{{x.occasion != undefined ? x.occasion.occasionName + ' = ' + x.occasion.fixedAmount-->
+                                <!--+ currency.symbol : ' '}}-->
+                                <!--{{x.dua != undefined ? x.dua.duaName + ' = ' + x.dua.fixedAmount-->
+                                <!--+ currency.symbol : ' '}}</p>-->
+                            </td>
+
+                           
+                            <td class="text-center">{{ x.paymentPlan ? x.paymentPlan.value[cartVM.userLanguage] : 'GIVE_ONCE' | translate }}</td>
+                            <td class="text-center">
+
+
+                                <!-- || x.isRecurringProgram == false -->
+
+                                
+                                <span ng-if="x.isRecurringProgram && x.program.slug !='sadaqah-a-day' " class="checkbox"><i ng-show="x.isAutoRenew" class="fa fa-check-circle" ></i>
+                                    <i ng-show="!x.isAutoRenew" class="fa fa-times-circle" ></i>
+                                </span>
+
+                                <!-- <input disabled='true' type="checkbox" ng-if="x.isRecurringProgram "
+                                    data-ng-model="x.isAutoRenew" style="width: 18px; height: 18px;"> -->
+
+
+
+                                <span ng-if="(! x.isRecurringProgram) || x.program.slug =='sadaqah-a-day'">
+                                    --
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span ng-if="x.count">
+                                    {{x.count}}
+                                </span>
+                                <span ng-if="!x.count">
+                                    --
+                                </span>
+                            </td>
+                            <td ng-if="cartVM.userLanguage !== 'ARB'" style="width: 160px;padding-left: 51px;">
+                                <span>
+                                    <span style="margin-right: 5px;">{{currencyObj.symbol}}</span>
+                                    {{x.totalAmount | number: 2}}
+                                </span>
+                            </td>
+                            <td ng-if="cartVM.userLanguage === 'ARB'" style="width: 160px; text-align: left;">
+                                <span>
+                                    {{x.totalAmount | number: 2}}
+                                    <span style="margin-left:10px;margin-right: 5px;">{{currencyObj.symbol}}</span>
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <button type="button" class="btn removeCart" ng-click="cartVM.removeCartItem(x,$index)">
+                                    {{ 'REMOVE' | translate }}
+                                </button>
+                            </td>
+                        </tr>
+                        <tfoot ng-show="cartVM.cartDetail.items.length>0">
+                            <td colspan="3" style="border: none;"></td>
+                            <td class="text-center" style="    border: 1px solid #ececec;">{{ 'TOTAL' | translate }}
+                            </td>
+                            <td ng-if="cartVM.userLanguage !== 'ARB'" class="text-center">
+                                <span style="margin-right: 5px;">{{currencyObj.symbol}}</span>
+                                {{cartVM.totalAmount | number: 2}}</td>
+                            <td ng-if="cartVM.userLanguage === 'ARB'" style="text-align: left;padding-left: 18px;">
+                                {{cartVM.totalAmount | number: 2}} <span
+                                    style="margin-right: 5px;">{{currencyObj.symbol}}</span></td>
+                            <td style="border: none;"></td>
+                        </tfoot>
+                        <tr ng-hide="cartVM.cartDetail.items.length>0">
+                            <td colspan="7">{{'NO ITEMS IN CART' | translate}}</td>
+                        </tr>
+                    </Table>
+
+                </div>
+
+                <div class="col-md-2 col-xs-3 no-padding pull-right cart-checkout">
+                    <a style="margin-left: 0px; width: 100%; text-align: center;" href=""
+                        data-ng-click="clearLocal(); cartVM.checkout();" type="button"
+                        class="grop-btn grop-btn_overly grop-hadr_donate_btn"
+                        data-ng-if="cartVM.cartDetail.items.length>0">{{ 'CHECKOUT' | translate }}</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

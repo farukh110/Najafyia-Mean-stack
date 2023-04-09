@@ -1,0 +1,315 @@
+<div class="grop-page container padding-cnt-no grop-full-width ">
+    <div data-ng-controller="projectController as projectVM" data-ng-init="projectVM.getProjectForUpdate();">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Your Page Content Here -->
+                    <div class="row">
+                        <div class="col-md-10 col-xs-offset-1">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <div class="box-title">
+                                        {{'UPDATE PROJECT' | translate}}
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <form role="form" name="publishForm"
+                                        enctype="multipart/form-data"
+                                        data-ng-submit="projectVM.updateProject(publishForm.$valid)">
+                                        <div class="col-md-6">
+                                            <div class="col-md-12">
+                                                <label class="control-label">{{'PROJECT NAME' | translate}}</label>
+                                                <input type="text" name="projectName" required maxlength="80"
+                                                    data-ng-model="projectVM.projectName" class="form-control col-md-6"
+                                                    ng-disabled="disableHigherEducation()"
+                                                    placeholder="{{'PROJECT NAME' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-md-12">
+                                                <label class="control-label">{{'PROJECT SLUG' | translate}}</label>
+                                                <input type="text" name="projectSlug" required maxlength="80"
+                                                    data-ng-model="projectVM.slug" class="form-control col-md-6"
+                                                    placeholder="{{'PROJECT SLUG' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <label class="control-label">
+                                                    {{'PROJECT DESCRIPTION'| translate}}</label>
+                                                <!--<textarea type="text" name="description" required maxlength="2000"-->
+                                                <!--data-ng-model="projectVM.projectDescription"-->
+                                                <!--class="form-control col-md-6"-->
+                                                <!--placeholder="Project Description"/>-->
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div id="editor" aria-placeholder="Write">
+                                                    <div id='projectDescription' name="projectDescription">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:20px">
+                                            <div class="col-md-4">
+                                                <input type="checkbox" name="hasSubCategory"
+                                                    ng-model="projectVM.hasCategories" />{{'SUB CATEGORIES'| translate}}
+                                            </div>
+                                            <div class="col-md-10" ng-if="projectVM.hasCategories">
+                                                <table class="table table-bordered">
+                                                    <thead class="success">
+                                                        <td class="col-md-2">{{'SELECT' | translate}}</td>
+                                                        <td>{{ 'CATEGORIES' | translate }}</td>
+                                                    </thead>
+                                                    <tr ng-repeat="x in projectVM.projectCategories track by $index">
+                                                        <td>
+                                                            <input id="{{x._id}}" type="checkbox"
+                                                                ng-checked="x.selected" class=""
+                                                                ng-click="projectVM.addOrRemoveSubcategory(x)">
+                                                        </td>
+                                                        <td>{{x.programSubCategoryName}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:20px">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">{{'Project Image' | translate}}</label>
+                                                    <input type="file" name="file" file-model="projectVM.file" git
+                                                        class="image " placeholder="Payment Image" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="col-md-12">
+                                                    <img class="previewImg" ng-src="/uploads/{{projectVM.imageLink}}"
+                                                        data-ng-model="projectVM.imageLink" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:20px">
+                                            <div class="box box-info">
+                                                <div class="box-header">
+                                                    <h3 class="box-title">{{'DONATION PROCESS' | translate}}</h3>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" name="minimumAmount"
+                                                                        ng-model="projectVM.isMinimumAmount" />
+                                                                    {{'MIN AMOUNT' | translate}}</label>
+                                                            </div>
+                                                            <div class="col-md-10" ng-if="projectVM.isMinimumAmount">
+                                                                <label>Value</label>
+                                                                <div class="input-group date">
+                                                                    <input maxlength="8"
+                                                                        class="form-control pull-right validateNumber"
+                                                                        ng-required="projectVM.isMinimumAmount"
+                                                                        type="text" ng-keypress='isNumberKey($event)'
+                                                                        ng-model="projectVM.minimumAmount" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-8">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" name="recurring"
+                                                                        ng-model="projectVM.isRecurring" />
+                                                                    {{'RECURRING' | translate}}
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-10" ng-if="projectVM.isRecurring">
+                                                                <table class="table table-bordered">
+                                                                    <thead class="success">
+                                                                        <td> {{'Select' | translate}}</td>
+                                                                        <td>{{'Donation Duration' | translate}}</td>
+                                                                    </thead>
+                                                                    <tr
+                                                                        ng-repeat="x in projectVM.donationDurations track by $index">
+                                                                        <td>
+                                                                            <input id="{{x._id}}" type="checkbox"
+                                                                                ng-checked="x.selected" class=""
+                                                                                ng-click="projectVM.addorRemoveDonationDuration(x)">
+                                                                        </td>
+                                                                        <td>{{x.donationDurationName}}</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" name="yearAround"
+                                                                        ng-model="projectVM.isYearAround" />
+                                                                    {{'YEAR AROUND' | translate}}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" name="amount"
+                                                                        ng-model="projectVM.isAmount" />
+                                                                    {{'FIXED AMOUNT' | translate}}</label>
+                                                            </div>
+                                                            <div class="col-md-10" ng-if="projectVM.isAmount">
+                                                                <label>{{'Value' | translate}}</label>
+
+                                                                <div class="input-group date">
+                                                                    <input maxlength="8"
+                                                                        class="form-control pull-right validateNumber"
+                                                                        type="text" ng-keypress='isNumberKey($event)'
+                                                                        ng-required="projectVM.isAmount"
+                                                                        ng-model="projectVM.amount" />
+                                                                </div>
+                                                            </div>
+                                                            <!-- <label
+                                                                ng-if="projectVM.isMinimumAmount &&projectVM.minimumAmount > projectVM.amount"
+                                                                class="text-danger">Fixed Amount should be greater than
+                                                                minimum amount</label> -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" name="duration"
+                                                                        ng-model="projectVM.isDuration" />
+                                                                    {{ 'DURATION' | translate }}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12" ng-show="projectVM.isDuration">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>{{'START DATE' | translate}}</label>
+                                                                <div class="input-group date">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </div>
+                                                                    <input type="text" id="txtFromDate"
+                                                                        ng-click="setPosFromDate();"
+                                                                        ng-change="startDateChange()"
+                                                                        class="form-control pull-right"
+                                                                        ng-required="projectVM.isDuration"
+                                                                        ng-model="projectVM.StartDate" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>{{'END DATE' | translate}}</label>
+                                                                <div class="input-group date">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </div>
+                                                                    <input type="text" id="txtToDate"
+                                                                        ng-click="setPosToDate();"
+                                                                        class="form-control pull-right readonly"
+                                                                        ng-required="projectVM.isDuration"
+                                                                        ng-model="projectVM.EndDate" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-2">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" name="isCount"
+                                                                        ng-model="projectVM.isCount" />
+                                                                    {{'COUNT' | translate }}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12" ng-if="projectVM.isCount">
+                                                        <div class="col-md-4">
+                                                            <label>{{'MIN' | translate}}</label>
+                                                            <input type="text" class="form-control validateNumber"
+                                                                ng-model="projectVM.count.min" maxlength="3"
+                                                                ng-required="projectVM.isCount" placeholder="1" />
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>{{'MAX' | translate}}</label>
+                                                            <input type="text" class="form-control validateNumber"
+                                                                ng-model="projectVM.count.max" maxlength="3"
+                                                                ng-required="projectVM.isCount" placeholder="100" />
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>{{'INTERVAL' | translate}}</label>
+                                                            <input type="text" class="form-control validateNumber"
+                                                                ng-model="projectVM.count.interval" maxlength="3"
+                                                                ng-required="projectVM.isCount" placeholder="10" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12" style="margin-top: 10px;">
+                                                        <div class="col-md-4">
+                                                            <label>{{ 'PRIORITY RANK' | translate }}</label>
+                                                            <input type="text" ng-keypress='isNumberKey($event)'
+                                                                class="form-control validateNumber"
+                                                                ng-model="projectVM.programPriority" min='1' required
+                                                                placeholder="1" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2 col-md-offset-10">
+                                                <button name="publish" type="submit" class="btn btn-primary pull-right"
+                                                    style="margin-top:5px;">{{'Update Project' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- HEADER -->
+        </div>
+    </div>
+</div>
+<script>
+    jQuery(document).on('keypress paste', '.validateNumber', function (event) {
+
+        var regex = new RegExp(/^[A-Za-z~`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/);
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (regex.test(key)) {
+            jQuery(this).focus();
+            jQuery(this).parent().next('span:first').html("<span class='inputError'></span>").show().fadeOut();
+            return false;
+        } else {
+            jQuery(this).parent().next('span:first').html("");
+            return true;
+        }
+    });
+    jQuery(".readonly").on('keydown paste', function (e) {
+        e.preventDefault();
+    });
+</script>
+
+
+<script>
+    jQuery(function () {
+        jQuery('#projectDescription').editable({ inlineMode: false, fullPage: true });
+    });
+</script>

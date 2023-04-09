@@ -1,0 +1,129 @@
+<div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+<div class="content-wrapper" ng-controller="notificationController">
+	<!-- Content Header (Page header) -->
+
+
+	<!-- Main content -->
+	<div class="row">
+		<div class="col-md-8 col-xs-12 col-md-offset-1">
+			<section class="content-header nopadding"><br>
+			<h1>
+				{{'SEND NOTIFICATION' | translate}}
+				<small></small>
+			</h1>
+		</section>
+			<div class="box box-primary">
+				<div class="box-header">
+					<!-- <div class="box-title">Send Notification</div> -->
+				</div>
+				<div class="box-body">
+					<section class="content">
+						<!-- Your Page Content Here -->
+						<!-- <a href='#' id="dnperm">Reuqest Permission</a> -->
+						<label>{{'TITLE' | translate}}:</label>
+						<input type="text" id="username" class="form-control" placeholder="{{'ENTER' | translate}} ...">
+						<!-- Title: <input type="text" id="username" /> -->
+						<br/> {{'DESCRIPTION' | translate}}:
+						<!-- <input type="text" id="message" /><br/> -->
+						<textarea class="form-control" rows="3" type="text" id="message" placeholder="{{'ENTER' | translate}} ..."></textarea>
+						<br/>
+						<br/>
+						<input type="button" id="btnGetMessage" value="{{'SEND NOTIFICATION TO USERS' | translate}}" /><br/><br/>
+						<!-- <ul id="comment">
+						</ul> -->
+
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.content -->
+</div>
+	</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+ crossorigin="anonymous"></script>
+
+<!-- <link rel='stylesheet' type='text/css' href='/resources/tutorial/css/example.css'> -->
+<!-- <script>
+    
+
+	var dnperm = document.getElementById('dnperm');
+
+	dnperm.addEventListener('click',function(e){
+		e.preventDefault();
+		if(!window.Notification){
+			alert('Not supported');
+		}else{
+			Notification.requestPermission().then(function(p){
+				if(p=='denied'){
+					alert('You denied to show notification');
+				}else if(p=='granted'){
+					alert('You allowed to show notification');
+				}
+			});
+		}
+	});
+
+
+	function writeUserData(name, message) {
+	  database.push().set({
+	    username: name,
+	    message: message
+	  });
+	}
+
+	function renderUI(obj){
+		var html='';
+		
+		var keys = Object.keys(obj);
+		for(var i=0;i<keys.length;i++){
+			html+="<li><b><i>"+obj[keys[i]].username+"</i></b> says: "+obj[keys[i]].message+"</li>";
+		}
+		jQuery('#comment').html(html);
+	}
+
+	jQuery('#btnGetMessage').click(function(){
+		writeUserData($('#username').val(),$('#message').val());
+		jQuery('#username').val('');
+		jQuery('#message').val('');
+	});
+
+  // Initialize Firebase
+  // TODO: Replace with your project's customized code snippet
+  var config = {
+    apiKey: "AIzaSyCF4BEXcGAGG4Fg1VWRjKaarHMZwU6W-kE",
+    authDomain: "testwebapp-3e317.firebaseapp.com",
+    databaseURL: "https://testwebapp-3e317.firebaseio.com",
+    projectId: "testwebapp-3e317",
+    storageBucket: "testwebapp-3e317.appspot.com",
+    messagingSenderId: "105991904473"
+  };
+  
+  firebase.initializeApp(config);
+
+  var database = firebase.database().ref().child("users");
+
+  database.on('value', function(snapshot) {
+    renderUI(snapshot.val());
+  });
+
+  database.on('child_added', function(data) {
+    	if(Notification.permission!=='default'){
+					var notify;
+					
+						notify= new Notification('New message from '+data.val().username,{
+							'body': data.val().message,
+							'icon': 'images.jpeg',
+							'tag': data.getKey()
+						});
+
+						notify.onclick = function(){
+							alert(this.tag);
+						}
+
+		}else{
+			alert('Please allow the notification first');
+		}
+  });
+</script> -->

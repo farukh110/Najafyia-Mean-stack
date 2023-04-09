@@ -1,0 +1,674 @@
+<!--<style>-->
+<!--.sub-menu {-->
+<!--margin-top: -25px !important;-->
+<!--}-->
+<!--</style>-->
+<script>
+
+    function menuClose() {
+        $btnMenuOpen = document.querySelector('#menu');
+        $html = document.querySelector('html');
+        $menuContainer = document.querySelector('.mm-menu_opened');
+        var isOpen = false;
+
+        if ($btnMenuOpen) {
+            $btnMenuOpen.addEventListener('click', function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                if (isOpen == false) {
+                    $menuContainer.classList.add('active');
+                    $btnMenuOpen.classList.add('active');
+                    $html.classList.add('overflow-scroll');
+                    isOpen = true;
+                } else {
+                    $menuContainer.classList.remove('active');
+                    $btnMenuOpen.classList.remove('active');
+                    $html.classList.remove('overflow-scroll');
+                    isOpen = false;
+                }
+            });
+
+        }
+    }
+</script>
+
+<div data-ng-controller="menuController as menuVM" data-ng-init="menuVM.LoadMainMenu();">
+    <div data-ng-controller="loginController as loginVM" data-ng-init="loginVM.getPopup(); loginVM.getCountries();">
+        <div data-ng-controller="newsLetterController as newsVM">
+            <header class="grop-header_area ">
+                <!--  header top bar start  \-->
+                <div class="grop-header_top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="header">
+                                <a id="menuBtn" href="#menu" onclick="menuClose()"><span></span></a>
+                            </div>
+                            <nav id="menu" class="resmains">
+                                <ul>
+                                    <li data-ng-repeat="x in menuVM.mainMenuList">
+                                        <a href="{{x.link}}" onclick="menuClose()">{{x.menuName}}</a>
+                                        <ul ng-if="x.subMenu.length > 0">
+                                            <li data-ng-repeat="y in x.subMenu | orderBy:'-z.priority'">
+                                                <a href="{{y.link}}" onclick="menuClose()">{{y.menuName}}</a>
+                                                <ul ng-if="y.subMenu.length > 0">
+                                                    <li data-ng-repeat="z in y.subMenu| orderBy:'zy.priority'"><a href="{{z.link}}"
+                                                            onclick="menuClose()">{{z.menuName}}</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <div class="hidden-md hidden-lg col-sm-2 col-xs-3 arposright no-padding">
+                                <!-- <div class="text-left grop-header_info   address-info-5a0d231773235">
+                                 </div>-->
+                                <a href="/#/home"><img class="reslog" src="images/logo.png" alt=""></a>
+                            </div>
+                            <!-- grop-topbar-left -->
+                            <div class="col-md-12 col-sm-10 col-xs-9 arposleft no-padding"
+                                data-ng-init="loginVM.getCartCount();">
+                                <div class="text-left grop-header_info   address-info-5a0d231773235">
+                                    <ul class=" list-inline grop-float_right arposleft">
+                                        <li class="dropdown list-inline grop-float_left arposright">
+                                            <a class="dropdown-toggle" id="langDD" data-toggle="dropdown">
+                                                <img src="/images/flags/32/{{userConfig.lang}}.png" alt="Language"
+                                                    title="">
+                                                <span
+                                                    class="hidden-sm hidden-xs hideall ">{{ userConfig.lang | translate}}</span>
+                                                <span class="hidden-md hidden-lg hideall">{{ userConfig.lang}}</span>
+                                                <i class="fa fa-chevron-down icon"></i>
+                                            </a>
+                                            <ul class="dropdown-menu" style="right: auto;">
+                                                <li data-ng-click="menuVM.changeLanguage('ENG')">
+                                                    <a class="text-center" title="English" href="">
+                                                        <span class="right"> {{'ENGLISH' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                                <li data-ng-click="menuVM.changeLanguage('ARB')">
+                                                    <a class="text-center" title="عربي" href="">
+                                                        <span class="right">{{'ARABIC' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                                <li data-ng-click="menuVM.changeLanguage('FRN')">
+                                                    <a class="text-center" title="French" href="">
+                                                        <span class="right">{{'FRENCH' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                     
+                                        <li class="hidden-sm hidden-xs">
+                                            <a ng-href="/#/pages/{{menuVM.pageId}}">
+                                                <img src="images/icons/donation-01.png" />
+                                                {{ 'DONATION WAYS' | translate }}
+                                            </a>
+                                        </li>
+                                        <li class="hidden-sm hidden-xs">
+                                            <a href="" ui-sref="faq">
+                                                <img src="images/icons/faq-01.png" /> {{ 'FAQ' | translate }}</a>
+                                        </li>
+
+                                        <span class="menuSeperator hidden-sm hidden-xs">|</span>
+
+                                        <li class=" element.style arposright">
+                                            <a ui-sref="cart">
+                                                <span class="label label-success ng-binding" style="
+                                                    position: absolute;" ng-show="badgeShow">{{itemsCount}}</span>
+                                                <img src="images/icons/cart-01.png" /><span class="hideall">
+                                                    {{ 'CART' | translate }}</span>
+                                            </a>
+                                        </li>
+                                        
+
+                                        <!--    <li>
+                                                <a ui-sref="login" ng-hide="isLogin">
+                                                    <img src="images/icons/login-01.png"/> {{ 'LOGIN' | translate }}
+                                                </a>
+                                            </li>-->
+
+                                        <li class="dropdown list-inline" id="headerLoginPopup">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" ng-hide="isLogin"
+                                                data-ng-click="newsVM.showHideNewsletter();loginVM.loginDetails={}">
+                                                <img src="images/icons/login-01.png" /> {{ 'LOGIN' | translate }}
+                                                <i class="fa fa-chevron-down icon"></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <div class="headerLoginPopup">
+                                                    <div class="row btnSwitch">
+                                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                                            <button type="button"
+                                                                class="btn btn-block {{showLogin?'themeBtn1':'themeBtn2'}}"
+                                                                data-ng-click="loginVM.showHideLogin('LOGIN');">
+                                                                {{'LOGIN' | translate}}
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                                            <button type="button"
+                                                                class="btn btn-block {{showLogin?'themeBtn2':'themeBtn1'}}"
+                                                                data-ng-click="loginVM.showHideLogin('SIGNUP');">
+                                                                {{'SIGN_UP' | translate}}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div data-ng-if="showLogin">
+                                                        <br />
+                                                        <form name="loginForm"
+                                                            data-ng-submit="loginVM.donateLogin(loginForm.$valid, 'login')"
+                                                            autocomplete="off">
+                                                            <div class="form-group">
+                                                                <div class="inputPlaceholder">
+                                                                    <label>{{'EMAIL ADDRESS' |
+                                                                        translate}}</label>
+                                                                    <span class="star">*</span>
+                                                                </div>
+                                                                <input type="text" class="form-control"
+                                                                    data-ng-model="loginVM.loginDetails.username"
+                                                                    required data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}" placeholder="{{'EMAIL ADDRESS' |
+                                                                       translate}} *">
+
+                                                                <!-- <p class="text-left warning">
+                                                                    {{'PLEASE TYPE YOUR MOBILE NUMBER ALONG WITH THE COUNTRY CODE' | translate}}
+                                                                </p> -->
+                                                            </div>
+                                                            <div class="form-group" style="margin-bottom: 0;">
+                                                                <input type="text" class="form-control" id="phone"
+                                                                    ng-model="loginVM.loginDetails.phone" maxlength="16"
+                                                                    ng-keypress='isNumberKey($event)' placeholder="{{'PHONE' | translate}}*"
+                                                                    required oninvalid="getValidate(this)"
+                                                                    oninput="this.setCustomValidity('')" autocomplete="off">
+                                                                <span class="text-left warning">
+                                                                    {{'PLEASE TYPE YOUR MOBILE NUMBER ALONG WITH THE COUNTRY CODE' | translate}}
+                                                                </span>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="inputPlaceholder">
+                                                                    <label>{{'PASSWORD' | translate}}</label>
+                                                                    <span class="star">*</span>
+                                                                </div>
+                                                                <input type="password" class="form-control"
+                                                                    data-ng-model="loginVM.loginDetails.password" 
+                                                                    required data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}" autocomplete="new-password"
+                                                                    placeholder="Password*">
+                                                            </div>
+
+                                                            <div class="row forgotPass">
+                                                                <div class="col-md-5 col-xs-5">
+                                                                    <div class="">
+                                                                        <label>
+                                                                            <input type="checkbox"
+                                                                                data-ng-click="saveCredentials();">
+                                                                            {{'REMEMBER_ME' | translate}}
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-7 col-xs-7 text-right">
+                                                                    <a href="" ui-sref="forgotpassword">
+                                                                        {{'FORGOT_PASSWORD' |
+                                                                        translate}}?</a>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row centered">
+                                                                <div class="col-md-7 col-sm-7 col-xs-7">
+                                                                    <button type="submit"
+                                                                        class="grop-btn-login grop-btn_submit">
+                                                                        {{'LOGIN' | translate}}
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+
+                                                        <!-- <h4 class="lineBreak"><span>{{'OR'| translate}}</span></h4>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-xs-6">
+                                                                <a href="/auth/facebook" target="_blank"
+                                                                    class="btn btn-block btn-social2 btn-facebook btn-flat"><i
+                                                                        class="fa fa-facebook-square"></i> Facebook</a>
+                                                            </div>
+                                                            <div class="col-md-6 col-xs-6">
+                                                                <a href="/auth/google" target="_blank"
+                                                                    class="btn btn-block btn-social2 btn-google btn-flat"><i
+                                                                        class="fa fa-google-plus"></i> Google</a>
+                                                            </div>
+                                                        </div> -->
+                                                        <br />
+                                                    </div>
+                                                    <div data-ng-if="!showLogin">
+                                                        <br />
+
+                                                        <form name="registrationForm"
+                                                            data-ng-submit="loginVM.registration(registrationForm.$valid)">
+                                                            <div class="form-group">
+                                                                <div class="inputPlaceholder">
+                                                                    <label>{{'FIRST NAME' | translate}}</label>
+                                                                    <span class="star">*</span>
+                                                                </div>
+                                                                <input type="text" class="form-control"
+                                                                    data-ng-model="loginVM.registrationDetails.firstName"
+                                                                    required data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}" placeholder="First Name*">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="inputPlaceholder">
+                                                                    <label>{{'LAST NAME' | translate}}</label>
+                                                                    <span class="star">*</span>
+                                                                </div>
+                                                                <input type="text" class="form-control"
+                                                                    data-ng-model="loginVM.registrationDetails.lastName"
+                                                                    required data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}" placeholder="Last Name*">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="inputPlaceholder">
+                                                                    <label>{{'EMAIL ADDRESS' |
+                                                                        translate}}</label>
+                                                                    <span class="star">*</span>
+                                                                </div>
+                                                                <input type="email" name="email" class="form-control"
+                                                                    data-ng-model="loginVM.registrationDetails.userName"
+                                                                    required data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                    placeholder="Email Address*">
+
+                                                                <!-- <p class="text-left warning">
+                                                                    {{'PLEASE TYPE YOUR MOBILE NUMBER ALONG WITH THE COUNTRY CODE' | translate}}
+                                                                </p> -->
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="inputPlaceholder">
+                                                                    <label>{{'PASSWORD' | translate}}</label>
+                                                                    <span class="star">*</span>
+                                                                </div>
+                                                                <input type="password" class="form-control"
+                                                                    data-ng-model="loginVM.registrationDetails.password"
+                                                                    required data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}" autocomplete="new-password"
+                                                                    placeholder="Password*">
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-5 col-sm-5 col-xs-5">
+                                                                    <select class="form-control"
+                                                                        data-ng-model="loginVM.registrationDetails.language"
+                                                                        class="selectpicker" required>
+                                                                        <option value="">{{'LANGUAGE' | translate}}<span
+                                                                                class="required">*</span>
+                                                                        </option>
+                                                                        <option value="ENG">{{'ENGLISH' | translate}}
+                                                                        </option>
+                                                                        <option value="ARB">{{'ARABIC' | translate}}
+                                                                        </option>
+                                                                        <option value="FRN">{{'FRENCH' | translate}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-7 col-sm-7 col-xs-7">
+                                                                    <select class="form-control"
+                                                                        ng-model="loginVM.registrationDetails.countryOfResidence"
+                                                                        data-ng-options="x.name as x.name for x in loginVM.countries"
+                                                                        required>
+                                                                        <option value="">{{'COUNTRY OF RESIDENCE' |
+                                                                            translate}}<span class="required">*</span>
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <br />
+
+                                                            <div class="form-group">
+                                                                <label class="text-dark">{{'GENDER' |
+                                                                    translate}}<span class="required">*</span></label>
+
+                                                                <div class="row" style="margin-bottom: 15px;">
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                        <input type="radio" name="gender"
+                                                                            data-ng-model="loginVM.registrationDetails.gender"
+                                                                            value="male" required data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                            style="margin: 0px 5px;">{{'MALE' |
+                                                                        translate}} <input type="radio" name="gender"
+                                                                            data-ng-model="loginVM.registrationDetails.gender"
+                                                                            value="female" style="margin: 0px 5px;"
+                                                                            required>{{'FEMALE' |
+                                                                 translate}}
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="row centered">
+                                                                    <div class="col-md-6 col-sm-6 col-xs-6" s>
+                                                                        <button type="submit"
+                                                                            class=" grop-btn-signup grop-btn_submit">
+                                                                            {{'SIGN_UP' | translate}}
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                        </form>
+
+                                                        <!-- <h4 class="lineBreak"><span>{{'OR'| translate}}</span></h4> -->
+
+                                                        <!-- <div class="row">
+                                                            <div class="col-md-6  col-xs-6">
+                                                                <a href="/auth/facebook" target="_blank"
+                                                                    class="btn btn-block btn-social2 btn-facebook btn-flat"><i
+                                                                        class="fa fa-facebook-square"></i> Facebook</a>
+                                                            </div>
+                                                            <div class="col-md-6 col-xs-6">
+                                                                <a href="/auth/google" target="_blank"
+                                                                    class="btn btn-block btn-social2 btn-google btn-flat"><i
+                                                                        class="fa fa-google-plus"></i> Google</a>
+                                                            </div>
+                                                        </div> -->
+                                                        <br />
+                                                    </div>
+                                                </div>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown list-inline" ng-show="isLogin">
+                                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                                <img class="userProfileImageForHeader"
+                                                    ng-src="{{loggedInUserDetails.file?'/uploads/'+loggedInUserDetails.file:'/images/default-img.jpg'}}"
+                                                    alt="" />
+                                                <span class="hidden-sm hidden-xs">
+                                                    {{loggedInUserDetails.fullName |
+                                                limitTo:5}}{{loggedInUserDetails.fullName.length>5?'...':''}}
+                                                </span>
+                                                <span class="hidden-md hidden-lg">
+                                                    {{loggedInUserDetails.fullName |
+                                                limitTo:5}}{{loggedInUserDetails.fullName.length>5?'...':''}}
+                                                </span>
+
+                                                <i class="fa fa-chevron-down icon"></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="text-center" href="" ui-sref="donarDashboard"
+                                                        ng-show="loggedInUserDetails.role.toUpperCase()==='DONAR' || loggedInUserDetails.role.toUpperCase()==='DONOR'">
+                                                        {{'DONOR PROFILE' | translate}}</a>
+                                                </li>
+                                                <li>
+                                                    <a class="text-center" href="" ng-click="loginVM.logout()">
+                                                        {{'LOGOUT' | translate}}</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <!-- <li class="navbar-custom-menu" style="margin-left: -25px;" ng-show="isLogin">
+                                            <ul class="navbar-nav" style="list-style: none;">
+                                                <li class="dropdown user user-menu">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown">
+                                                        <span ng-show="campaignsList.length >= 1 ? true : false"
+                                                              style="position: absolute ;left : -10px ;"
+                                                              class="label label-warning">
+                                                            {{ campaignsList.length + donationReoccuringList.length}} </span>
+                                                        <i class="fa fa-bell-o"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li data-ng-repeat="campaigns in campaignsList">
+                                                            <a>
+                                                                <i class="fa fa-shopping-cart text-green"></i>
+                                                                {{campaigns.title}}
+                                                            </a>
+                                                        </li>
+                                                        <li data-ng-repeat='program in programList'>
+                                                            <a>
+                                                                <i class="fa fa-cc-stripe "> {{program.programName}}</i>
+                                                            </a>
+                                                        </li>
+                                                        <li data-ng-if="campaignsList.length<1 && donationReoccuringList.length<1">
+                                                            <a>{{"CURRENTLY YOU DON'T HAVE ANY NOTIFICATIONS" |
+                                                                translate}}</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- grop-topbar-right -->
+                        </div>
+                        <!-- Row -->
+                    </div>
+                    <!-- Container -->
+                </div>
+
+            </header>
+
+
+            <!-- Modal -->
+            <div id="newsLetterModel" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <!-- Modal content-->
+                    <div class="modal-content txtright">
+                        <div class="modal-body newsletterBox">
+                            <form name="subscriptionForm" ng-submit="newsVM.addSubscription(subscriptionForm.$valid)">
+                                <div class="form-group">
+                                    <input type="userName" class="form-control" ng-model="newsVM.formData.firstName"
+                                        placeholder="First Name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="userName" class="form-control" ng-model="newsVM.formData.lastName"
+                                        placeholder="Last Name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-model="newsVM.formData.email" required
+                                        placeholder="{{'EMAIL' | translate}}">
+                                </div>
+                                <div class="form-group">
+                                    <select ng-model="newsVM.formData.country" class="form-control"
+                                        data-ng-options="country.name as country.name for country in newsVM.countryList">
+                                        <option value="">Select Country</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Global Login Modal -->
+            <div id="globalLoginModal" class="modal globalLogin fade" role="dialog" style="z-index: 12000;">
+                <div class="modal-dialog modal-md">
+                    <!-- Modal content-->
+                    <div class="modal-content txtright">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h2 class="modal-title">{{'LOGIN' | translate}}</h2>
+                        </div>
+                        <div class="modal-body text-center" style="padding-top: 0px;">
+                            <div class="row centered">
+                                <button type="button" class="btn btn-primary"
+                                    data-ng-click="loginVM.donateWithOutLogin();"
+                                    style="width: auto; padding: 0px 20px;">{{'DONATE WITHOUT LOGIN' | translate}}</button>
+                            </div>
+                            <h4 class="lineBreak"><span>{{'OR'| translate}}</span></h4>
+
+                            <form name="loginForm" ng-init="loginVM.loginDetails={}"
+                                data-ng-submit="loginVM.donateLogin(loginForm.$valid)">
+                                <div class="form-group">
+                                    <div class="inputPlaceholder">
+                                        <label>{{'EMAIL ADDRESS' | translate}}</label>
+                                        <span class="star">*</span>
+                                    </div>
+                                    <input type="text" class="form-control"
+                                        data-ng-model="loginVM.loginDetails.username" required>
+
+                                    <!-- <p class="text-left warning txtright">
+                                        {{'NOTE' | translate}}:
+                                        {{'PLEASE TYPE YOUR MOBILE NUMBER ALONG WITH THE COUNTRY CODE' | translate}}</p> -->
+                                </div>
+                                <div class="form-group">
+                                    <div class="inputPlaceholder">
+                                        <label>{{'PASSWORD' | translate}}</label>
+                                        <span class="star">*</span>
+                                    </div>
+                                    <input type="password" class="form-control"
+                                        data-ng-model="loginVM.loginDetails.password" data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"  required
+                                        autocomplete="new-password">
+                                </div>
+                                <div class="row centered">
+                                    <div class="col-md-3 col-sm-3 col-xs-6">
+                                        <button type="submit" class="grop-btn-login grop-btn_submit">
+                                            {{'LOGIN' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!-- <h4 class="lineBreak"><span>{{'OR'| translate}}</span></h4>
+
+                            <div class="row globalLogin centered">
+                                <div class="col-md-3 col-xs-6">
+                                    <a href="/auth/facebook" target="_blank"
+                                        class="btn btn-block btn-social2 btn-facebook btn-flat"><i
+                                            class="fa fa-facebook-square"></i> Facebook</a>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <a href="/auth/google" target="_blank"
+                                        class="btn btn-block btn-social2 btn-google btn-flat"><i
+                                            class="fa fa-google-plus"></i> Google</a>
+                                </div>
+                            </div> -->
+
+                            <p class="note" style="float: none">{{'NOT A MEMBER?' | translate}}
+                                <a href="" data-ng-click="loginVM.signUp();">{{'SIGN_UP' | translate}}</a>
+                                {{'FOR AN ACCOUNT' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Global Ziyarat Login Modal -->
+            <div id="ziyaratLoginModal" class="modal globalLogin fade" role="dialog" style="z-index: 12000;">
+                <div class="modal-dialog modal-md ">
+                    <!-- Modal content-->
+                    <div class="modal-content txtright">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h2 class="modal-title">{{'LOGIN' | translate}}</h2>
+                        </div>
+                        <div class="modal-body text-center" style="padding-top: 0px;">
+                            <p style="color: #d2d2d2; font-size: 11px; text-align: left;">
+                                {{'LOGIN FOR ZIYARAH OF IMAM HUSSAIN (AS) EVERY THURSDAY ON YOUR BEHALF' |
+                                translate}}</p>
+
+                            <form name="loginForm" ng-init="loginVM.loginDetails={}"
+                                data-ng-submit="loginVM.donateLogin(loginForm.$valid)">
+                                <div class="form-group">
+                                    <div class="inputPlaceholder">
+                                        <label>{{'EMAIL ADDRESS' | translate}}</label>
+                                        <span class="star">*</span>
+                                    </div>
+                                    <input type="text" class="form-control"
+                                        data-ng-model="loginVM.loginDetails.username" required>
+
+                                    <!-- <p class="text-left warning txtright" style="margin-top: 5px;">
+                                        {{'NOTE' | translate}}:
+                                        {{'PLEASE TYPE YOUR MOBILE NUMBER ALONG WITH THE COUNTRY CODE' | translate}}</p> -->
+                                </div>
+                                <div class="form-group">
+                                    <div class="inputPlaceholder">
+                                        <label>{{'PASSWORD' | translate}}</label>
+                                        <span class="star">*</span>
+                                    </div>
+                                    <input type="password" class="form-control"
+                                        data-ng-model="loginVM.loginDetails.password"
+                                         data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"  required
+                                        autocomplete="new-password">
+                                </div>
+                                <div class="row centered">
+                                    <div class="col-md-3 col-sm-3 col-xs-6">
+                                        <button type="submit" class="grop-btn-login grop-btn_submit">
+                                            {{'LOGIN' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!-- <h4 class="lineBreak"><span>{{'OR'| translate}}</span></h4>
+
+                            <div class="row globalLogin centered">
+                                <div class="col-md-3  col-xs-5">
+                                    <a href="/auth/facebook" target="_blank"
+                                        class="btn btn-block btn-social2 btn-facebook btn-flat"><i
+                                            class="fa fa-facebook-square"></i> Facebook</a>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <a href="/auth/google" target="_blank"
+                                        class="btn btn-block btn-social2 btn-google btn-flat"><i
+                                            class="fa fa-google-plus"></i> Google</a>
+                                </div>
+                            </div> -->
+
+                            <p class="note" style="float: none">{{'NOT A MEMBER?' | translate}}
+                                <a href="" data-ng-click="loginVM.ziyaratSignUp();">{{'SIGN_UP' | translate}}</a>
+                                {{'FOR AN ACCOUNT' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<link rel='stylesheet' id='animate-css' href='dist/css/AdminLTE.min.css' type='text/css' media='all' />
+<script>
+    console.log(this);
+    jQuery(document).ready(function () {
+        // jQuery('[data-toggle="popover"]').popover({
+
+        //   placement: 'bottom',
+        //   title: 'User profile',
+        //   html: true,
+        //   content: jQuery('#popup').html()
+        // });
+    });
+
+    
+    jQuery(document).ready(function () {
+        var inputs = document.getElementsByTagName("INPUT");
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].oninvalid = function (e) {
+                e.target.setCustomValidity("");
+                if (!e.target.validity.valid) {
+                    e.target.setCustomValidity(e.target.getAttribute("data-error"));
+                }
+            };
+        }
+    });
+
+
+</script>
+<!-- <script>
+
+    (function () {
+        var inputs = document.getElementsByTagName("INPUT");
+        let lang = localStorage.getItem('lang');
+        let mesg = "Please fill out this field";
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].oninvalid = function (e) {
+
+                if (lang == 'ENG') mesg = 'Please fill out this field';
+                else if (lang == 'FRN') mesg = "S'il vous plaît remplir le champ manquant";
+                else if (lang == 'ARB') mesg = 'Please fill out this field';
+                e.target.setCustomValidity(mesg);
+                if (!e.target.validity.valid) {
+                    e.target.setCustomValidity(e.target.getAttribute("data-error"));
+                }
+            };
+        }
+    })();
+
+    jQuery(document).ready(function () {
+        // jQuery('[data-toggle="popover"]').popover({
+
+        //   placement: 'bottom',
+        //   title: 'User profile',
+        //   html: true,
+        //   content: jQuery('#popup').html()
+        // });
+    });
+
+
+</script> -->

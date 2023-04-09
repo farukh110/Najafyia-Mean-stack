@@ -1,0 +1,85 @@
+<style>
+    .commentTxt {
+        color: #ffffff;
+        font-size: 13px;
+        text-align: justify;
+        width: 100%;
+        background-color: #807e80;
+        float: left;
+        border-radius: 10px 0;
+        border: 1px solid #f0c84c;
+        padding: 12px;
+    }
+    
+    input[type="text"]:disabled, input[type="number"]:disabled{
+        background: #5a595a;
+        }
+
+    .icon-space{
+        margin-left: 5px;
+        color: #f0c84c;
+    }
+</style>
+<div
+    ng-class="{ '' : ctrl.compactmode == 'false',  'compact-wrapper': ctrl.compactmode == 'true' }">
+    <div ng-class="{'': ctrl.compactmode == 'false' , 'compact': ctrl.compactmode == 'true'  } ">
+        <div
+            ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }">
+            <div class='form-group'> <label>{{ 'SADAQAH_PER_DAY' | translate}}</label>
+                
+                <i class="fa fa-info-circle tooltip-icon-lock2">
+                    <span class="tooltip-text2"> {{'SADAQAH_PER_DAY_TEXT' | translate}} </span>
+                </i> 
+                
+                
+                <select class='form-control'
+                    data-ng-model='$parent.pageVM.sadaqa.amount' ng-change='$parent.changeSadaqaAmount()'
+                    data-ng-options='item as ($parent.selectedCurrencySymbol +" "+ item ) for item in $parent.sadaqahCountArray'>
+                    <option value=''>---{{'PLEASE SELECT' | translate}}---</option>
+                </select></div>
+        </div>
+        <div
+            ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }">
+            <div class='form-group'> <label>{{ 'PAYMENT PLAN' | translate }}</label><input type='text' min='1'
+                    disabled='true' autocomplete='off' id='paymentMethod'
+                    ng-value='$parent.selectedPaymentPlan.value[$parent.pageVM.language]' class='form-control' /></div>
+        </div>
+        <div
+            ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }">
+            <div class='form-group'> <label>{{ 'TOTAL_AMOUNT_PER_MONTH' | translate}}</label>
+                <div class='input-group'>
+                    <div class='input-icon' style=''><input type='text' min='1' ng-keypress='isNumberKey($event)'
+                            class='form-control' disabled='true' data-ng-model='$parent.pageVM.sadaqa.totalAmount' /> <i
+                            style='font-style: normal;' class=''>{{$parent.selectedCurrencySymbol}}</i></div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="$parent.paymentChargeMessage"
+            ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-12 col-xs-12': ctrl.compactmode == 'true' }">
+            <label><span class='commentTxt' ng-bind-html="$parent.paymentChargeMessage"></span></label>
+
+        </div>
+
+        <div ng-show="$parent.cancellationMessage"
+            ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-12 col-xs-12': ctrl.compactmode == 'true' }">
+            <label><span class='' ng-bind-html="$parent.cancellationMessage"></span></label>
+
+        </div>
+
+        <div
+            ng-class="{ 'row' : ctrl.compactmode == 'false',  'col-md-12 col-xs-12 centered ng-scope': ctrl.compactmode == 'true' }">
+            <div
+                ng-class="{ 'col-md-6 col-xs-6 text-center no-padding' : ctrl.compactmode == 'false',  'col-md-4 col-sm-5 col-xs-12 btn-donate-wrapper': ctrl.compactmode == 'true' }">
+                <button class='grop-btn-addcart  grop-btn_submit'
+                    data-ng-click='$parent.pageVM.addCartItem();'>{{ 'ADD TO CART' | translate }}</button>
+            </div>
+            <div
+                ng-class="{ 'col-md-6 col-xs-6 text-center no-padding' : ctrl.compactmode == 'false',  'col-md-4 col-sm-5 col-xs-12 btn-donate-wrapper': ctrl.compactmode == 'true' }">
+                <button class='grop-btn-donate  grop-btn_submit' data-ng-click='$parent.pageVM.donate();'>{{
+                    'DONATE NOW' | translate }}</button>
+            </div>
+        </div>
+
+    </div>
+</div>

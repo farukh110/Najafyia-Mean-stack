@@ -1,0 +1,100 @@
+<div data-ng-controller="programController as programVM" data-ng-init="programVM.getProgramTypes();">
+    <!-- Content Wrapper. Contains program content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+    <div class="content-wrapper">
+        <!-- Content Header (program header) -->
+        <!--<section class="content-header">-->
+
+
+        <!--</section>-->
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Your program Content Here -->
+            <div class="row">
+                <div class="col-md-10 col-xs-12 col-md-offset-1">
+                    <div class="col-md-8 nopadding">
+                        <h4>{{'PROGRAM SUB-CATEGORIES'| translate}}</h4>
+                    </div>
+                    <div class="col-md-4 no-padding">
+
+                        <div class="col-md-12 no-padding">
+                            <input type="text" class="form-control pull-right" data-ng-model="programVM.searchValue" placeholder="{{'SEARCH BY NAME'| translate}}"/>
+                        </div>
+                        <!-- <div class="col-md-3 no-padding">
+                            <button type="button" name="searchBtn" class="btn btn-bitbucket pull-right">{{'SEARCH'| translate}}</button>
+                        </div> -->
+
+                    </div>
+                </div>
+
+                <div class="col-md-10 col-xs-12 col-md-offset-1">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <div class="form-group col-md-5">
+                                <label>{{'SELECT PROGRAM TYPE'| translate}}</label>
+                                <select class="form-control" data-ng-model="programVM.selectedProgramType" data-ng-options="x.programTypeName for x in programVM.programTypes"
+                                    data-ng-change="programVM.getCategoriesWithInActive();">
+                                    <option value="">{{'SELECT PROGRAM TYPE'| translate}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="box-body overflowTable">
+                            <form role="form">
+                                <table class="table table-responsive">
+                                    <thead>
+                                    <td>
+                                        S.NO
+                                    </td>
+                                    <td>
+                                        {{'PARENT NAME'| translate}}
+                                    </td>
+                                    <td>
+                                        {{'SUBCATEGORY NAME'| translate}}
+                                    </td>
+
+                                    <td>
+                                        {{'CREATED DATE'| translate}}
+                                    </td>
+                                    <td>
+                                        {{'STATUS'| translate}}
+                                    </td>
+                                    <td>
+                                        {{'ACTIONS'| translate}}
+                                    </td>
+                                    </thead>
+                                    <tr ng-repeat="subcategory in programVM.subcategories | filter: programVM.searchValue">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{subcategory.parent}}</td>
+                                        <td>{{subcategory.programSubCategoryName}}</td>
+                                        <td>{{subcategory.created | date:'MM/dd/yyyy'}}</td>
+                                        <td>
+                                            <p class="{{subcategory.isActive==true?'bg-success':'btn-danger'}}">{{subcategory.isActive==true?'Active':'Inactive' }}</p>
+                                        </td>
+                                        <td> <a href="/#/admin/updateSubcategory?subcategoryId={{subcategory._id}}"><i class="fa fa-edit">{{'EDIT'| translate}}</i></a>                                            |
+                                            <button class="{{subcategory.isActive==true?'btn btn-danger':'btn btn-success'}}" data-ng-click="programVM.deleteSubCategory(subcategory._id,subcategory.isActive);">{{subcategory.isActive==true?'Deactivate':'Activate' }}</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="box-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- HEADER -->
+
+</div>
+    </div>
+<script>
+    jQuery(function () {
+        jQuery('#edit').editable({inlineMode: false, fullprogram: true})
+    });
+
+</script>

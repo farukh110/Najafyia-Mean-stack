@@ -1,0 +1,183 @@
+<div class="grop-page container padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="darAlZahraController as daralzehraVM"
+            data-ng-init="getDaralZahraDetail();daralzehraVM.amount=0;">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="project-detail-banner orphnsbanner">
+                        <h1>{{daralzehraVM.daralzahraDetail.programName}}</h1>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xs-12">
+                    <a class="printhed" href="#" class="" data-ng-if="!daralzehraVM.printArb"><img
+                            src="images/print-logo.jpg" alt="">
+                        <h2 class="printhed">{{daralzehraVM.daralzahraDetail.programName}}</h2>
+                    </a>
+                    <a class="printhed" href="#" class="" data-ng-if="daralzehraVM.printArb"><img
+                            src="images/print-logo-arb.svg" alt="">
+                        <h2 class="printhed" style="margin-top: 2%;">{{daralzehraVM.daralzahraDetail.programName}}</h2>
+                    </a>
+                </div>
+                <div class="col-md-3  col-xs-12 dpnone">
+                    <div class="project-calculator">
+                        <div id="dzCalculator">
+                        </div>
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="related-generalCares dpnones">
+                        <div class="generalCare-post"
+                            ng-repeat="x in generalCareVM.relatedgeneralCares | unique:'x._id' track by $index">
+                            <h3>{{x.programName}}</h3>
+                            <img src="uploads/{{x.imageLink}}" class="generalCare-list-thumb-image" />
+                            <p>
+                                {{x.programDescription.substring(0,100)}}
+                            </p>
+                            <a ng-href="/#/generalcaredetails/{{x._id}}" class="tribe-events-read-more">View
+                                Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9  grop-float_left">
+                    <div id="printableArea" class="resheight">
+                        <p class="text-justify" data-ng-bind-html="daralzehraVM.daralzahraDetail.programDescription">
+                            <!--{{daralzehraVM.daralzahraDetail.programDescription.substring(0,530)}}-->
+
+                        </p>
+                        <!-- <img class="center-block descriptionImage" src="uploads/{{daralzehraVM.daralzahraDetail.imageLink}}"> -->
+                        <!--<p class="text-justify"  data-ng-bind-html="">-->
+                        <!--&lt;!&ndash;{{daralzehraVM.daralzahraDetail.programDescription.substring(531)}}&ndash;&gt;-->
+                        <!-- -->
+                        <!--</p>-->
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                        <div class="col-md-4 col-sm-6 col-xs-12 socialButtons no-padding">
+                            <div class="socialnaj no-padding">
+                                <div class="shareButtons">
+                                    <div class="showSocialIconsR">
+                                        <div class="ssk-group">
+                                            <p>
+                                                <a href="" class="ssk ssk-facebook"></a>
+                                                <a href="" class="ssk ssk-twitter"></a>
+                                                <!-- <a href="" class="ssk ssk-google-plus"></a>
+                                            <a href="" class="ssk ssk-pinterest"></a>
+                                            <a href="" class="ssk ssk-tumblr"></a> -->
+                                                <!-- <a href="" class="ssk ssk-instagram"></a> -->
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <i class="fa fa-share-alt"></i>
+                                    <small>{{ 'SHARE' | translate}}</small>
+                                </div>
+                            </div>
+                            <div class="socialnaj no-padding">
+                                <div class="">
+                                    <a href="mailto:info@najafyia.org" target="_blank">
+                                        <i class="fa fa-envelope-o"></i>
+                                        <small>{{ 'EMAIL' | translate}}</small>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="socialnaj no-padding">
+                                <div class="pull-right" data-ng-click="daralzehraVM.printContent('printableArea');">
+                                    <i class="fa fa-print"></i>
+                                    <small>{{ 'PRINT' | translate}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 no-padding col-xs-12">
+                    <div class="related-generalCares dpnonesdesk">
+                        <div class="generalCare-post"
+                            ng-repeat="x in generalCareVM.relatedgeneralCares | unique:'x._id' track by $index">
+                            <h3>{{x.programName}}</h3>
+                            <img src="uploads/{{x.imageLink}}" class="generalCare-list-thumb-image" />
+                            <p>
+                                {{x.programDescription.substring(0,100)}}
+                            </p>
+                            <a ng-href="/#/generalcaredetails/{{x._id}}" class="tribe-events-read-more">View
+                                Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start Modal -->
+                <div class="modal fade" id="studentListModal" tabindex="-1" role="dialog" data-ng-if="
+            (selectedDonationDuration) &&
+            (selectedRecurring===false || selectedRecurring) &&
+            (selectedDescend === false || selectedDescend) && 
+             amountValue && selectedCount" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog txtright" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h2 class="modal-title" id="exampleModalLabel">{{"SELECT STUDENTS" | translate}}</h2>
+                            </div>
+                            <div class="modal-body darachk">
+                                <div class="row">
+                                    <p class="text-center col-md-12" ng-if="!daralzehraVM.students.length">
+                                        {{'NO STUDENT(S) MATCHES THE GIVEN CRITERIA.' | translate}}</p>
+                                    <div class="col-md-4" ng-repeat="student in daralzehraVM.students">
+                                        <div class="box box-warning">
+                                            <div class="box-header with-border">
+                                                <div class="already-in-cart" ng-if="student.alreadyInCart">
+                                                    {{'Already in Cart' | translate}}</div>
+                                                <input ng-hide="student.alreadyInCart" type="checkbox"
+                                                    checklist-model="user.roles" checklist-value="student._id">
+                                                <h3 class="box-title" title="{{student.studentName}}">{{student.studentName
+                                                       | limitTo:10}}{{student.studentName.length>10?'...':''}}</h3>
+                                            </div>
+                                            <div class="box-body" style="background: #2B2B2B;">
+                                                <div class="mainhd">
+                                                    <p style="line-height: 10px;">
+                                                        {{(student.descent === "Syed" ? "Syed" : "Non-Syed").toUpperCase() | translate}}</p>
+
+                                                    <p style="line-height: 10px;">Class-{{student.grade}}</p>
+
+                                                    <p style="line-height: 10px;">{{age(student.dateOfBirth)}}-Years</p>
+                                                </div>
+                                                <img ng-src="{{student.imageLink?'uploads/'+student.imageLink:'/images/default-img.jpg'}}"
+                                                    onerror="this.src='/images/default-img.jpg'"
+                                                    class="generalCare-list-image img-circle pull-right storp" style="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <span class="errorspon"
+                                    ng-show="(user.roles.length > 0 && selectedCount != user.roles.length) ? true : false">
+                                    {{'SELECTED_COUNT_NOT_EQ' | translate}}
+                                </span>
+                                <button type="button" class="grop-btn  grop-btn_submit"
+                                    data-dismiss="modal">{{'SELECT' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <div class="printhed">
+                    <!-- <h5 class="footprint">All original content created on your website is secured by copyright law.</h5> -->
+                    <ul>
+                        <li><img src="images/bar-footer.jpg" alt=""></li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+    <footer>
+        <div class="printhed">
+            <!-- <h5 class="footprint">All original content created on your website is secured by copyright law.</h5> -->
+            <ul>
+                <li><img src="images/bar-footer.jpg" alt=""></li>
+            </ul>
+        </div>
+</div>
+</footer>
+<script type="text/javascript">
+    SocialShareKit.init();
+
+</script>

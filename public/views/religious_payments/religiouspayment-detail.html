@@ -1,0 +1,61 @@
+<div class="grop-page container padding-cnt-no grop-full-width">
+        <div class="no-sidebar">
+            <div data-ng-controller="religiousPaymentController as religiousPaymentVM" data-ng-init="religiousPaymentVM.getCountryList(); religiousPaymentVM.getReligiousPaymentDetail();religiousPaymentVM.amount=0;">
+                <div class="col-md-12 col-xs-12 project-detail-banner prjbanner">
+                    <h1>{{religiousPaymentVM.religiousPaymentDetail.programName}}</h1>
+                </div>
+
+                <div class="col-md-12">
+                    <p class="text-justify">
+                        Al Anwar al Najafyia Foundation runs a number of fundraising projects throughout the year. Many of these projects are vital
+                        to the survival of thousands of Shias facing extreme adversities of this life and combating poverty.
+                        Other projects such as Arbaeen Rice campaign serve zuwwars from all over the world. The collection of
+                        most of these projects is seasonal, but the work continues throughout the year.
+                    </p>
+                </div>
+    
+                <div class="padding-none"></div>
+
+                    <div class="col-md-9 grop-float_left">
+                        <p ng-bind-html="religiousPaymentVM.religiousPaymentDetail.programDescription.substring(0,300)"></p>
+                        <!-- <img src="uploads/{{religiousPaymentVM.religiousPaymentDetail.imageLink}}">
+                        <p><br>
+                            {{religiousPaymentVM.religiousPaymentDetail.programDescription.substring(301,1000)}}
+                        </p> -->
+                        <!--<h2>Share</h2>-->
+                        <!--<div class="ssk-group">-->
+                            <!--<a href="" class="ssk ssk-facebook"></a>-->
+                            <!--<a href="" class="ssk ssk-twitter"></a>-->
+                            <!--<a href="" class="ssk ssk-google-plus"></a>-->
+                            <!--<a href="" class="ssk ssk-pinterest"></a>-->
+                            <!--<a href="" class="ssk ssk-tumblr"></a>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="col-md-3 no-padding">
+                        <div class="project-calculator">
+                          <div id="religiousPaymentCalculator">
+                          </div>
+                        </div>
+                        <!--<div class="col-md-12">-->
+                            <!--<h2>Related Islamic Payments</h2>-->
+                            <!--<hr>-->
+                            <!--<div class="related-religiousPayments">-->
+    <!-- -->
+                                <!--<div class="religiousPayment-post" ng-repeat="x in religiousPaymentVM.relatedReligiousPayments">-->
+                                    <!--<h3>{{x.programName}}</h3>-->
+                                    <!--<img ng-src="uploads/{{x.imageLink}}" class="project-list-thumb-image" />-->
+                                    <!--<p>-->
+                                        <!--{{x.programDescription.substring(0,100)}}-->
+                                    <!--</p>-->
+                                    <!--<a ng-href="/#/religiouspaymentdetails/{{x._id}}" class="tribe-events-read-more">View Details</a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+    
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        SocialShareKit.init();
+    </script>

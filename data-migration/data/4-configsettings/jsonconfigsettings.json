@@ -1,0 +1,59 @@
+[
+    {
+        "_id": {
+            "$oid": "60e5a232ab728204c1104a72"
+        },
+        "key": "NoteForEndUser",
+        "value": {
+            "slug": ["niyabah-hajj-(by-proxy)", "niyabah-hajj-from-miqat"],
+            "translatedMessage": {
+                "ENG": "<div class=\"alert alert-error\"><i class=\"fa fa-info-circle\"></i>&nbsp;Hajj will be performed next year due to COVID-19 restrictions.</div>",
+                "FRN": "<div class=\"alert alert-error\"><i class=\"fa fa-info-circle\"></i>&nbsp;le Hajj sera effectué l'année prochaine en raison des restrictions liées au COVID-19.</div>",
+                "ARB": "<div class='alert alert-error' style='margin: 0;padding: 5px;' dir='rtl'> COVID-19 ملحوظة: سيتم أداء الحج العام المقبل بسبب قيود.</div>"
+            }
+        }
+    },
+    {
+        "_id": {
+            "$oid": "611f3e921a70e2070f065e39"
+        },
+        "key": "NoteForEndUser",
+        "value": {
+            "slug": ["ziyarah-of-the-masumeen-(as)-in-jannat-al-baqi", "ziyarah-of-the-holy-prophet-(pbuh)"],
+            "translatedMessage": {
+                "ENG": "<div class=\"alert alert-error\"><i class=\"fa fa-info-circle\"></i>&nbsp;Ziyarah will be performed next year due to COVID-19 restrictions.</div>",
+                "FRN": "<div class=\"alert alert-error\"><i class=\"fa fa-info-circle\"></i>&nbsp;le Hajj sera effectué l'année prochaine en raison des restrictions liées au COVID-19.</div>",
+                "ARB": "<div class='alert alert-error' style='margin: 0;padding: 5px;' dir='rtl'> COVID-19 ملحوظة: سيتم أداء الحج العام المقبل بسبب قيود.</div>"
+            }
+        }
+    },
+    {
+        "_id": {
+            "$oid": "611f46d41a70e2070f065e3a"
+        },
+        "key": "NoteForEndUser",
+        "value": {
+            "slug": ["ziyarah-of-imam-ali-(as)", "ziyarah-of-imam-hussain-(as)-&-abul-fadhl-al-abbas-(as)", "ziyarah-of-imam-musa-al-kadhim-(as)-&-imam-muhammad-al-jawad-(as)", "ziyarah-of-imam-ali-al-ridha-(as)", "ziyarah-of-imam-al-hadi-(as)-&-imam-al-askari-(as)", "ziyarah-of-holy-shrines--in-najaf,-karbala,-kadhimiya-&-samarra","ziyarah-of-imam-musa-al-kadhim-(as)-and-imam-muhammad-al-jawad-(as)","ziyarah-of-imam-hussain-(as)-and-abul-fadhl-al-abbas-(as)"],
+            "translatedMessage": {
+                "ENG": "<div class=\"alert alert-error\"><i class=\"fa fa-info-circle\"></i>&nbsp;Please note, requests for Ziyarah on specific occasions must be made 48 hours in advance or else the Ziyarah will be performed on the next possible day.</div>",
+                "FRN": "<div class=\"alert alert-error\"><i class=\"fa fa-info-circle\"></i>&nbsp;Veuillez noter que les demandes de Ziyarah à exécuter lors d'une occasion spécifique doivent être envoyées (48) heures à l'avance, autrement, la Ziyarah pourra être récitée dès que possible, après la date demandée.</div>",
+                "ARB": "<div class='alert alert-error' style='margin: 0;padding: 5px;' dir='rtl'> يرجى ملاحظة أنه يجب تقديم طلب الزيارة في أي مناسبة معينة قبل *48* ساعة وإلا سيتم تنفيذ الزيارة في اليوم التالي المحتمل.  </div>"
+            }
+        }
+    },
+    {
+        "_id": {
+            "$oid": "611f48761a70e2070f065e3b"
+        },
+        "key": "NoteForEndUser",
+        "value": {
+            "slug": ["niyabah-umrah"],
+            "translatedMessage": {
+                "ENG": "<div class=\"alert alert-error\"><i class=\"fa fa-info-circle\"></i>&nbsp;Umrah will be performed next year due to COVID-19 restrictions.</div>",
+                "FRN": "<div class=\"alert alert-error\"><i class=\"fa fa-info-circle\"></i>&nbsp;le Hajj sera effectué l'année prochaine en raison des restrictions liées au COVID-19.</div>",
+                "ARB": "<div class='alert alert-error' style='margin: 0;padding: 5px;' dir='rtl'> COVID-19 ملحوظة: سيتم أداء الحج العام المقبل بسبب قيود.</div>"
+            }
+        }
+    }
+
+]

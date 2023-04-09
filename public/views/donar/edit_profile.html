@@ -1,0 +1,154 @@
+<div class="row">
+    <div class="col-xs-12 col-md-9 col-lg-9 ">
+        <div class="grop-page  padding-cnt-no grop-full-width">
+            <div data-ng-controller="donarController as donarVM"
+                data-ng-init="donarVM.getUserDetails();donarVM.getCountryCode()">
+                <!-- Content Wrapper. Contains page content -->
+
+                <div class="content-wrapper">
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header">
+                        <h1>
+                            {{ 'EDIT PROFILE' | translate}}
+                            <small></small>
+                        </h1>
+                    </section>
+
+                    <!-- Main content -->
+                    <section class="content" style="text-align: left !important">
+                        <!-- Your Page Content Here -->
+                        <div class="row">
+                            <div class="col-md-8 col-xs-12">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <div class="box-title"></div>
+                                    </div>
+                                    <div class="box-body" data-ng-controller="userController as userVM">
+                                        <form role="form" class="form-horizontal" enctype="multipart/form-data"
+                                            data-ng-submit="donarVM.updateProfile(profileForm.$valid)"
+                                            name="profileForm">
+                                            <div class="col-md-12 col-xs-12 txtright">
+                                                <div class="col-md-10 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>{{ 'FULL NAME' | translate}}</label>
+                                                        <input type="text" class="form-control"
+                                                            data-ng-model="donarVM.details.fullName"
+                                                            placeholder="{{ 'FULL NAME' | translate}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ 'EMAIL' | translate}}</label>
+                                                        <input type="text" class="form-control"
+                                                            data-ng-model="donarVM.details.email"
+                                                            placeholder="{{'EMAIL' | translate}}" disabled>
+                                                    </div>
+                                                    <div class="form-group" style="">
+                                                        <label>{{'COUNTRY OF RESIDENCE' | translate}}<span
+                                                                class="required">*</span></label>
+                                                        <select class="form-control"
+                                                            ng-model="donarVM.details.countryOfResidence"
+                                                            ng-change="donarVM.selectCountryCode(donarVM.details.countryOfResidence)"
+                                                            data-ng-options="x.name as x.name for x in userVM.countries"
+                                                            required
+                                                            data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                            oninput="this.setCustomValidity('')">
+                                                            <option value="">{{'COUNTRY OF RESIDENCE' |
+                                                           translate}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <!-- <div class="row">
+                                                        <div style="padding-left: 0px;" class="col-md-4 col-xs-5">
+                                                            <label>{{ 'COUNTRY CODE' | translate }}</label>
+                                                            <select class="form-control"
+                                                                ng-model="donarVM.details.countryCode"
+                                                                ng-disabled="!donarVM.details.countryOfResidence">
+                                                                <option value="">{{'SELECT CODE' | translate}}</option>
+                                                                <option value="{{cc.dialCode}}"
+                                                                    ng-selected="cc.dialCode == donarVM.details.countryCode"
+                                                                    ng-repeat="cc in donarVM.countryCodeList">
+                                                                    {{cc.dialCode}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-8 col-xs-7">
+                                                            <div class="form-group">
+                                                                <label>{{ 'PHONE NUMBER' | translate }}</label>
+                                                                <input ng-keypress="donarVM.leadZeroNotAllowed($event)"
+                                                                    class="form-control" type="text"
+                                                                    ng-model="donarVM.details.mobile"
+                                                                    placeholder="" autocomplete="off" />
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+                                                   <div class="row" style="margin-bottom: 1rem;">
+                                                        <input type="text" class="form-control" id="phone"
+                                                            ng-model="donarVM.details.mobile" maxlength="16"
+                                                            ng-keypress='isNumberKey($event)' placeholder="{{'PHONE' | translate}}*"
+                                                            required oninvalid="getValidate(this)"
+                                                            oninput="this.setCustomValidity('')" autocomplete="off">
+                                                        <span class="text-left warning">
+                                                            {{'PLEASE TYPE YOUR MOBILE NUMBER ALONG WITH THE COUNTRY CODE' | translate}}
+                                                        </span>
+                                                   </div>
+                                                    <div class="row">
+                                                        <div style="padding-left: 0px;" class="col-md-4 col-xs-5">
+                                                            <label>{{'LANGUAGE' | translate}}<span
+                                                                    class="required">*</span></label>
+                                                            <select disabled='true' data-ng-model="donarVM.details.language"
+                                                                class="form-control selectpicker" required
+                                                                data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                oninput="this.setCustomValidity('')">
+                                                                <option value="">{{'LANGUAGE' | translate}}
+                                                                </option>
+                                                                <option value="ENG">{{'ENGLISH' | translate}}</option>
+                                                                <option value="ARB">{{'ARABIC' | translate}}</option>
+                                                                <option value="FRN">{{'FRENCH' | translate}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-8 col-xs-7">
+                                                            <label
+                                                                style="margin: 0px 5px;">{{ 'GENDER' | translate}}</label><br>
+                                                            <input style="margin: 0px 5px;" type="radio" name="gender"
+                                                                data-ng-model="donarVM.details.gender"
+                                                                value="male">{{ 'MALE' | translate}}
+
+                                                            <input style="margin: 0px 5px 0px 10px;" type="radio"
+                                                                name="gender" data-ng-model="donarVM.details.gender"
+                                                                value="female">{{ 'FEMALE' | translate}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ 'ADDRESS' | translate}}</label>
+                                                        <input type="text" class="form-control"
+                                                            data-ng-model="donarVM.details.address"
+                                                            placeholder="{{'ADDRESS' | translate}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ 'PHOTO' | translate}}</label>
+                                                        <input type="file" name="file" file-model="donarVM.file"
+                                                            class="image " placeholder="Image" />
+                                                        <img class="previewImg" data-ng-if="donarVM.details.file"
+                                                            ng-src="/uploads/{{donarVM.details.file}}" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit"
+                                                            class="btn btn-primary">{{ 'SUBMIT' | translate}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <!-- /.content -->
+                </div>
+                <!-- HEADER -->
+            </div>
+        </div>
+
+    </div>
+</div>

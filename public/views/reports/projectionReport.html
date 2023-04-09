@@ -1,0 +1,464 @@
+<style>
+    table tbody tr td {
+        color: black !important;
+        text-align: center;
+    }
+</style>
+
+<div ng-if="underConstruction">
+    <div data-ng-controller="projectionReportController as projeReportVM"
+        data-ng-init="projeReportVM.getRecurringProgramTypes(); projeReportVM.getRecurringDonations();">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        {{'PROJECTION REPORT' | translate}}
+                        <small></small>
+                    </h1>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Your Page Content Here -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                </div>
+
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <div class="fc-button-group">
+                                                <button type="submit"
+                                                    class="btn {{projeReportVM.projectionSelection==='Recurring'?'btn-primary':'btn-default'}}"
+                                                    data-ng-click="projeReportVM.projectionSelection='Recurring';  projeReportVM.resetForm();">
+                                                    {{'RECURRING' | translate}}
+                                                </button>
+                                                <!-- <button type="submit"
+                                                    class="btn {{projeReportVM.projectionSelection==='Non Recurring'?'btn-primary':'btn-default'}}"
+                                                    data-ng-click="projeReportVM.projectionSelection='Non Recurring' ; projeReportVM.resetForm();">
+                                                    Non Recurring
+                                                </button> -->
+                                                <button type="submit"
+                                                    class="btn {{projeReportVM.projectionSelection==='Recurring Auto Renewal'?'btn-primary':'btn-default'}}"
+                                                    data-ng-click="projeReportVM.projectionSelection='Recurring Auto Renewal'; projeReportVM.resetForm();">
+                                                    {{'Auto Renewal Projection' | translate }}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form role="form" data-ng-submit="projeReportVM.showProjectionReport();"
+                                        class="form-horizontal reportFilterArea">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'DATE FROM' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtFromDate" name="durationStart"
+                                                                class="form-control pull-right readonly"
+                                                                autocomplete="off" ng-click="setPosFromDate();"
+                                                                ng-change="startDateChange();"
+                                                                ng-model="projeReportVM.searchCriteria.fromDate"
+                                                                autocomplete="off" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'DATE TO' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtToDate" autocomplete="off"
+                                                                class="form-control pull-right readonly"
+                                                                ng-click="setPosToDate();"
+                                                                ng-model="projeReportVM.searchCriteria.toDate"
+                                                                autocomplete="off" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'CATEGORY' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <select
+                                                            data-ng-change="projeReportVM.getRecurringProgramList(projeReportVM.searchCriteria.category)"
+                                                            data-ng-options="type.slug as type.programTypeName for type in projeReportVM.recurringProgramTypesList"
+                                                            data-ng-model="projeReportVM.searchCriteria.category"
+                                                            class="form-control">
+                                                            <option value="">{{'SELECT CATEGORY' | translate}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'PROGRAM' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <select
+                                                            data-ng-change="projeReportVM.getProgramSubCategoryList(projeReportVM.searchCriteria.subMenu)"
+                                                            data-ng-model="projeReportVM.searchCriteria.subMenu"
+                                                            data-ng-options="progarm.slug as progarm.programName for progarm in projeReportVM.programList"
+                                                            class="form-control">
+                                                            <option value="">{{'SELECT SUB MENU' | translate}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>{{'PAYMENT TYPE' | translate}}</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control pull-right readonly"
+                                                            ng-model="projeReportVM.searchCriteria.type" readonly />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-right" ng-if="language !== 'ARB'">
+                                                <button type="submit" class="btn btn-primary">{{'GENERATE' | translate}}
+                                                </button>
+                                                <button type="button" class="btn btn-primary"
+                                                    data-ng-click="projeReportVM.resetForm();">{{'CLEAR' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="col-md-12 text-left" ng-if="language === 'ARB'">
+                                                <button type="button" class="btn btn-primary"
+                                                    data-ng-click="projeReportVM.resetForm();">{{'CLEAR' | translate}}
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">{{'GENERATE' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <!----------------  Export Data ---------------->
+                                    <div class="row" ng-if="projeReportVM.projectionReport.length">
+                                        <div class="col-md-12">
+                                            <div class="pull-right" style="margin: 0px 0px 0px 10px;">
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                    data-ng-disabled="projeReportVM.donationList.length<1"
+                                                    data-ng-click="exportToExcel('PROJECTION_REPORT','exportTableExcel');">
+                                                    {{'EXCEL' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="pull-right" style="margin: 0px 10px 0px 0px">
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                    data-ng-disabled="projeReportVM.donationList.length<1"
+                                                    data-ng-click="exportToPDF('PROJECTION_REPORT',4,'l');">
+                                                    {{'PDF' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="pull-right" style="margin-right: 10px;">
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                    data-ng-disabled="projeReportVM.donationList.length<1"
+                                                    data-ng-click="projeReportVM.printDiv('printableArea')">
+                                                    {{'PRINT' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" id="printableArea"
+                                        ng-if="projeReportVM.projectionReport.length && selectedMonths.length">
+                                        <div class="col-md-12" id="exportTableExcel"
+                                            style="    width: 99%;overflow: inherit; margin-top: 20px;">
+                                            <table class="table table-striped table-bordered reportsTable"
+                                                style="margin-bottom: 0px;" border="1" cellspacing="0"
+                                                id="exportTableHeader">
+                                                <thead>
+                                                    <tr">
+                                                        <th>
+                                                            {{"PROJECTION REPORT" | translate}} - :
+                                                            {{projeReportVM.dateToday | date : "dd-MM-yyyy"}}
+                                                            (From : <span ng-if="projeReportVM.searchCriteria.fromDate">
+                                                                {{projeReportVM.searchCriteria.fromDate | date : "dd-MM-yyyy"}}
+                                                            </span>
+                                                            <span ng-if="!projeReportVM.searchCriteria.fromDate">
+                                                                --
+                                                            </span> To :
+                                                            <span ng-if="projeReportVM.searchCriteria.toDate">
+                                                                {{projeReportVM.searchCriteria.toDate | date : "dd-MM-yyyy"}}
+                                                            </span>
+                                                            <span ng-if="!projeReportVM.searchCriteria.toDate">
+                                                                --
+                                                            </span>)
+                                                        </th>
+                                                        </tr>
+                                                </thead>
+                                            </table>
+                                            <table class="table table-striped table-bordered reportsTable tableOverflow"
+                                                id="exportTable" style="max-height: 450px">
+                                                <thead>
+                                                    <tr class="tbl-yellow">
+                                                        <th style="line-height: 60px"> {{'Sr.' |translate}}</th>
+                                                        <th class="text-center"
+                                                            style="line-height: 60px; min-width: 250px">
+                                                            {{'CATEGORY' | translate}}</th>
+                                                        <th class="text-center"
+                                                            style="padding: 4px 0 0; line-height: 24px"
+                                                            data-ng-repeat="item in selectedMonths">
+                                                            <table style="margin: 0px">
+                                                                <tr>{{item}}</tr>
+                                                                <tr>
+                                                                    <td class="text-center"
+                                                                        style="min-width:100px; max-width:100px; width:100px; border: 1px solid white; border-left: none;border-bottom:none">
+                                                                        {{'USD'}}</td>
+                                                                    <td class="text-center"
+                                                                        style="min-width:100px; max-width:100px; width:100px; border: 1px solid white;border-bottom:none">
+                                                                        {{'EURO'}}</td>
+                                                                    <td class="text-center"
+                                                                        style="min-width:100px; max-width:100px; width:100px; border: 1px solid white; border-right: none; border-bottom:none">
+                                                                        {{'POUND'}}</td>
+                                                                </tr>
+                                                            </table>
+                                                        </th>
+                                                        <th class="text-center"
+                                                            style="padding: 4px 0 0; line-height: 24px">
+                                                            <table style="margin: 0px">
+                                                                <tr>Total</tr>
+                                                                <tr>
+                                                                    <td class="text-center"
+                                                                        style="min-width:100px; max-width:100px; width:100px; border: 1px solid white; border-left: none;border-bottom:none">
+                                                                        {{'USD'}}</td>
+                                                                    <td class="text-center"
+                                                                        style="min-width:100px; max-width:100px; width:100px; border: 1px solid white;border-bottom:none">
+                                                                        {{'EURO'}}</td>
+                                                                    <td class="text-center"
+                                                                        style="min-width:100px; max-width:100px; width:100px; border: 1px solid white; border-right: none; border-bottom:none">
+                                                                        {{'POUND'}}</td>
+                                                                </tr>
+                                                            </table>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="obj in projeReportVM.projectionReport track by $index">
+                                                        <td>{{$index+1}}</td>
+                                                        <td>{{obj.program["0"].programType["0"].programTypeName}} /
+                                                            {{obj.program["0"].programName}}</td>
+                                                        <td data-ng-repeat="item in selectedMonths"
+                                                            ng-init="ind = $index" style="padding: 0px;">
+                                                            <table>
+                                                                <tr>
+                                                                    <td class="text-center" style="min-width:100px; max-width:100px; width:100px; border: 1px solid white; border-left: none;padding-left: 3px;
+                                                                    padding-right: 3px;">
+                                                                        <span
+                                                                            ng-if="obj.months.indexOf(selectedMonths[ind])>=0">
+                                                                            <span
+                                                                                ng-if="obj.donationDetails.donation.currencyTitle == 'USD'">{{obj.amount | number : 1 }}</span>
+                                                                            <span
+                                                                                ng-if="obj.donationDetails.donation.currencyTitle != 'USD'">--</span>
+                                                                        </span>
+                                                                        <span
+                                                                            ng-if="obj.months.indexOf(selectedMonths[ind])<0">XX</span>
+                                                                    </td>
+                                                                    <td class="text-center" style="min-width:100px; max-width:100px; width:100px; border: 1px solid white; padding-left: 3px;
+                                                                    padding-right: 3px;">
+                                                                        <span
+                                                                            ng-if="obj.months.indexOf(selectedMonths[ind])>=0">
+                                                                            <span
+                                                                                ng-if="obj.donationDetails.donation.currencyTitle == 'EUR'">{{obj.amount | number : 1 }}</span>
+                                                                            <span
+                                                                                ng-if="obj.donationDetails.donation.currencyTitle != 'EUR'">--</span>
+                                                                        </span>
+                                                                        <span
+                                                                            ng-if="obj.months.indexOf(selectedMonths[ind])<0">XX</span>
+                                                                    </td>
+                                                                    <td class="text-center" style="min-width:100px; max-width:100px; width:100px; border: 1px solid white; border-right: none; padding-left: 3px;
+                                                                    padding-right: 3px;">
+                                                                        <span
+                                                                            ng-if="obj.months.indexOf(selectedMonths[ind])>=0">
+                                                                            <span
+                                                                                ng-if="obj.donationDetails.donation.currencyTitle == 'GBP'">{{obj.amount | number : 1 }}</span>
+                                                                            <span
+                                                                                ng-if="obj.donationDetails.donation.currencyTitle != 'GBP'">--</span>
+                                                                        </span>
+                                                                        <span
+                                                                            ng-if="obj.months.indexOf(selectedMonths[ind])<0">XX</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td style="padding: 0px;">
+                                                            <table>
+                                                                <tr>
+                                                                    <td class="text-center" style="min-width:100px; max-width:100px; width:100px; border: 1px solid white; border-left: none;padding-left: 3px;
+                                                                padding-right: 3px;">
+                                                                        <span
+                                                                            ng-if="obj.donationDetails.donation.currencyTitle == 'USD'">{{obj.grandAmount | number : 1 }}</span>
+                                                                        <span
+                                                                            ng-if="obj.donationDetails.donation.currencyTitle != 'USD'">--</span>
+                                                                    </td>
+                                                                    <td class="text-center" style="min-width:100px; max-width:100px; width:100px; border: 1px solid white; padding-left: 3px;
+                                                                padding-right: 3px;">
+                                                                        <span
+                                                                            ng-if="obj.donationDetails.donation.currencyTitle == 'EUR'">{{obj.grandAmount | number : 1 }}</span>
+                                                                        <span
+                                                                            ng-if="obj.donationDetails.donation.currencyTitle != 'EUR'">--</span>
+                                                                    </td>
+                                                                    <td class="text-center" style="min-width:100px; max-width:100px; width:100px; border: 1px solid white; border-right: none; padding-left: 3px;
+                                                                padding-right: 3px;">
+                                                                        <span
+                                                                            ng-if="obj.donationDetails.donation.currencyTitle == 'GBP'">{{obj.grandAmount | number : 1 }}</span>
+                                                                        <span
+                                                                            ng-if="obj.donationDetails.donation.currencyTitle != 'GBP'">--</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+
+                                                        <td colspan="2" class="text-center"
+                                                            style="vertical-align: middle">Total</td>
+                                                        <td ng-repeat="item in MonthArray track by $index">
+                                                            <table>
+                                                                <tr>
+                                                                    <td
+                                                                        style="min-width: 100px; max-width: 100px;width: 100px">
+                                                                        <span ng-if="item.usdAmount">
+                                                                            {{item.usdAmount | number : 1}}
+                                                                        </span>
+                                                                        <span ng-if="!item.usdAmount">
+                                                                            --
+                                                                        </span>
+
+                                                                    </td>
+                                                                    <td
+                                                                        style="min-width: 100px; max-width: 100px;width: 100px">
+                                                                        <span
+                                                                            ng-if="item.eurAmount">{{item.eurAmount | number : 1}}</span>
+                                                                        <span ng-if="!item.eurAmount">
+                                                                            --
+                                                                        </span>
+                                                                    </td>
+                                                                    <td
+                                                                        style="min-width: 100px; max-width: 100px;width: 100px">
+                                                                        <span ng-if="item.gbpAmount">
+                                                                            {{item.gbpAmount | number : 1 }}</span>
+                                                                        <span ng-if="!item.gbpAmount">--</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td>
+                                                            <table>
+                                                                <tr>
+                                                                    <td
+                                                                        style="min-width: 100px; max-width: 100px;width: 100px">
+                                                                        <span ng-if="totalInUSD">
+                                                                            {{totalInUSD | number : 1}}
+                                                                        </span>
+                                                                        <span ng-if="!totalInUSD">
+                                                                            --
+                                                                        </span>
+                                                                    </td>
+                                                                    <td
+                                                                        style="min-width: 100px; max-width: 100px;width: 100px">
+                                                                        <span ng-if="totalInEUR">
+                                                                            {{totalInEUR | number : 1}}
+                                                                        </span>
+                                                                        <span ng-if="!totalInEUR">
+                                                                            --
+                                                                        </span>
+                                                                    </td>
+                                                                    <td
+                                                                        style="min-width: 100px; max-width: 100px;width: 100px">
+                                                                        <span
+                                                                            ng-if="totalInGBP">{{totalInGBP | number : 1}}</span>
+                                                                        <span ng-if="!totalInGBP">--</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div ng-if="projeReportVM.toggler && !projeReportVM.projectionReport.length">
+                                        <h4 class="text-danger text-center">{{'DATA NOT FOUND' | translate}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- HEADER -->
+
+
+            <!-- Modal -->
+            <div id="vewDonorDetails" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <!--  <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Subscribe for Newsletter</h4>
+                      </div>-->
+                        <div class="modal-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" colspan="3">{{'ITERATIONS' | translate}}</th>
+                                    </tr>
+                                    <tr>
+                                        <th> {{'Sr.' |translate}}</th>
+                                        <th> {{'DONOR' | translate}}</th>
+                                        <th> {{'AMOUNT' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="{{$index===(projeReportVM.donorDetailsList.length-1)?'bk-light':''}}"
+                                        data-ng-repeat="item in projeReportVM.donorDetailsList">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.amount}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<h1 style="text-align: center;">Under Construction</h1>

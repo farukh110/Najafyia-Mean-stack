@@ -1,0 +1,428 @@
+<style>
+    select {
+        text-align: center;
+        text-align-last: center;
+        /* webkit*/
+    }
+
+    option {
+        text-align: center;
+        /* reset to left*/
+    }
+
+    .modal-dialog {
+        display: block;
+    }
+
+    table {
+        overflow-x: scroll;
+    }
+</style>
+<div data-ng-controller="donarDashboardController as donarVM"
+    data-ng-init="donarVM.getDAZSchoolDonations(); donarVM.getTheCountforDonation()">
+    <div class="col-xs-12 col-md-10 col-lg-10 ">
+        <!-- <div class="dashboardCounterBoxes ">
+            <div class="small-box boxhght boxPurple">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$
+                        {{donarVM.totalOfAutoRenewUSD + donarVM.totalOfAutoRenewDonationUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€
+                        {{donarVM.totalOfAutoRenewEUR + donarVM.totalOfAutoRenewDonationEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£
+                        {{donarVM.totalOfAutoRenewGBP + donarVM.totalOfAutoRenewDonationGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'RENEWALS' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="renewals"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="renewals"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxPink">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfRecurringUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfRecurringEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfRecurringGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'PERIODIC' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="donarRecurring"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="donarRecurring"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div> -->
+        <!--<div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxNavyBlue">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfOrphanUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfOrphanEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfOrphanGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'BASIC CARE' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="generalCareSponsorship"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="generalCareSponsorship"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxYellow">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfDazUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfDazEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfDazGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'DAZ SCHOOL' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="DAZSchool"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="DAZSchool"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxOrange">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfdonationUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfdonationEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfdonationGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'TOTAL' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="donarDashboard"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="donarDashboard"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>  -->
+    </div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper daralzahra" style="background:white;">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-lg-10 ">
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header no-padding" style="text-align: center">
+                        <h1>
+                            {{'DAR AL ZAHRA SCHOOL' | translate}}
+                        </h1>
+                    </section>
+                    <br />
+                    <div class="col-md-12 col-xs-12 no-padding">
+                        <div class="col-md-10 col-xs-12 no-padding  form-inline">
+                            <h4>{{'SPONSORED STUDENTS' | translate}}</h4>
+                        </div>
+                        <div class="col-md-2 col-xs-12 no-padding form-inline">
+                            <div class="form-group socialButtons">
+                                <label><b>{{'YEAR' | translate}}:</b></label>
+                                <!-- <select class="form-control" data-ng-change="donarVM.recordsLimit=8"
+                                    data-ng-model="donarVM.searchValue">
+                                    <option value="">{{'YEAR' | translate}}</option>
+                                    <option value="2019">2019</option>
+                                    <option ng-selected="true" value="2018">2018</option>
+                                    <option value="2017">2017</option>
+                                </select> -->
+                                <select id="year" class="form-control" ata-ng-change="donarVM.recordsLimit=8"
+                                    data-ng-model="donarVM.searchValue" style="text-align: center;">
+                                    <option value="" selected>{{'YEAR' | translate}}</option>
+                                </select>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xs-12 overflowTable no-padding">
+                            <table class="table table-hover"
+                                ng-if="donarVM.DAZSchoolList.length && (donarVM.DAZSchoolList  | filter : {startDate: donarVM.searchValue} | limitTo: donarVM.recordsLimit).length">
+                                <thead style="background-color: #f0c84c;">
+                                    <td class="tablecntr">{{'SR NO' | translate}}</td>
+                                    <td class="tablecntr">{{'STUDENT ID' | translate}}</td>
+                                    <td class="">{{'STUDENT NAME' | translate}}</td>
+                                    <td class="tablecntr">{{'DESCEND' | translate}}</td>
+                                    <td class="tablecntr">{{'STARTING DATE' | translate}}</td>
+                                    <td class="tablecntr">{{'END DATE' | translate}}</td>
+                                    <td class="tablecntr">{{'STATUS' | translate}}</td>
+                                    <!--<td class="tablecntr">{{'CURRENCY' | translate}}</td>-->
+                                    <td class="tablecntr">{{'AMOUNT' | translate}}</td>
+                                    <td class="tablecntr">{{'PROFILE' | translate}}</td>
+                                </thead>
+                                <tr
+                                    data-ng-repeat="item in donarVM.DAZSchoolList | filter:{startDate: donarVM.searchValue} | limitTo: donarVM.recordsLimit">
+                                    <td class="tablecntr">{{$index+1}}</td>
+                                    <td class="tablecntr">{{item.student.studentId || '----'}}</td>
+                                    <td class="">{{item.student.studentName || '----'}}</td>
+                                    <td class="tablecntr">
+                                        {{(item.student.descent==='Syed'?'Syed':'Non-Syed').toUpperCase() | translate}}
+                                    </td>
+                                    <td class="tablecntr">{{item.startDate | date:'dd-MM-yyyy' || '----'}}</td>
+                                    <td class="tablecntr">{{item.endDate | date:'dd-MM-yyyy' || '----'}}</td>
+                                    <td class="tablecntr">{{setStatus(item) | translate}}
+                                        <!--<td class="tablecntr">{{item.donationDetails.donation.currency || '&#45;&#45;&#45;&#45;'}}</td>-->
+
+                                    <td ng-if="donarVM.userLanguage !== 'ARB'"
+                                        style="width:100px;text-align: left; position: relative;">
+                                        <span>
+                                            <span
+                                                style="margin-left:0px;margin-right: 5px;">{{item.donationDetails.donation.currency}}</span>
+                                            {{item.amount | number: 2}}
+                                        </span>
+                                    </td>
+                                    <td ng-if="donarVM.userLanguage === 'ARB'"
+                                        style="width:100px;text-align: left; position: relative;">
+                                        <span>
+                                            {{item.amount | number: 2}}
+                                            <span
+                                                style="margin-left:0px;margin-right: 5px;">{{item.donationDetails.donation.currency}}</span>
+                                        </span>
+                                    </td>
+                                    <td class="tablecntr"><a class="text-primary" href=""
+                                            data-ng-click="donarVM.getStudentDetails(item.student);" data-toggle="modal"
+                                            data-target="#studentDetailModal">{{'VIEW' | translate}}</a></td>
+                                </tr>
+                            </table>
+                            <table class="table table-hover"
+                                ng-if="!donarVM.DAZSchoolList || !(donarVM.DAZSchoolList | filter : {startDate: donarVM.searchValue} | limitTo: donarVM.recordsLimit).length">
+                                <thead style="background-color: #f0c84c;">
+                                    <td class="tablecntr">{{'SR NO' | translate}}</td>
+                                    <td class="tablecntr">{{'STUDENT ID' | translate}}</td>
+                                    <td class="">{{'STUDENT NAME' | translate}}</td>
+                                    <td class="tablecntr">{{'DESCEND' | translate}}</td>
+                                    <td class="tablecntr">{{'STARTING DATE' | translate}}</td>
+                                    <td class="tablecntr">{{'END DATE' | translate}}</td>
+                                    <!--<td class="tablecntr">{{'CURRENCY' | translate}}</td>-->
+                                    <td class="tablecntr">{{'AMOUNT' | translate}}</td>
+
+                                    <td class="tablecntr">{{'PROFILE' | translate}}</td>
+                                </thead>
+                                <tr>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                    <td class="tablecntr">&nbsp;</td>
+                                </tr>
+                            </table>
+                            <a href="javascript:void(0)" class=" alignright loadmore"
+                                data-ng-if="donarVM.recordsLimit < donarVM.DAZSchoolList.length"
+                                data-ng-click="donarVM.loadMore();"><img src="images/3.gif" width="15"
+                                    height="15">&nbsp;&nbsp;{{ 'LOAD MORE' | translate}}</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Your Page Content Here -->
+        </section>
+        <!-- /.content -->
+
+        <div id="studentDetailModal" class="modal fade customModalContent" role="dialog" data-keyboard="false">
+            <div class="modal-dialog modal-lg" style="width: 95%;">
+                <!-- Modal content-->
+                <div class="modal-content txtright">
+                    <div class="modal-header">
+                        <button style="color: #fff; opacity: 1;" type="button" class="close"
+                            data-dismiss="modal">&times;</button>
+                        <!--<h4 class="modal-title"></h4>-->
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12  col-xs-12 text-center">
+                                <h4>{{'SPONSORED CHILDREN' | translate}}</h4>
+                            </div>
+                            <div class="col-md-12  col-xs-12 overflowTable no-padding">
+                                <table class="table table-hover">
+                                    <thead style="outline: 6.5px solid #f0c84b; outline-offset: -6.5px;">
+                                        <tr>
+                                            <th class=""
+                                                style=" color: #000 !important;  border-right: 1px solid #000; background: #f0c84b !important">
+                                                {{'STUDENT ID' | translate}} </th>
+
+                                            <th class=""
+                                                style=" color: #000 !important; border-right: 1px solid #000; background: #f0c84b !important">
+                                                {{'STUDENT NAME' | translate}} </th>
+                                            <th class=""
+                                                style="color: #000 !important; border-right: 1px solid #000;  background: #f0c84b !important">
+                                                {{'DESCEND' | translate}} </th>
+                                            <th class=""
+                                                style="color: #000 !important; border-right: 1px solid #000; background: #f0c84b !important">
+                                                {{'PROFILE' | translate}} </th>
+                                            <th class=""
+                                                style="color: #000 !important; border-right: 1px solid #000;  background: #f0c84b !important">
+                                                {{'RESULTS' | translate}} </th>
+                                            <!--<th class="" style="width: 200px">{{'FEE PAYMENTS' | translate}}</th>-->
+                                            <th class=""
+                                                style="color: #000 !important; border-right: 1px solid #000; background: #f0c84b !important">
+                                                {{'MEDICAL INFO' | translate}} </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="" style="width: 50px">
+                                                {{donarVM.studentDetails.studentId || '--'}}
+                                            </td>
+                                            <td class="" style="width: 50px">{{donarVM.studentDetails.studentName}}</td>
+                                            <td class="" style="width: 50px">
+                                                {{(donarVM.studentDetails.descent).toUpperCase() | translate}}
+                                            </td>
+                                            <td class="" style="width: 50px">
+                                                <button class="btn btn-default btn-sm" data-toggle="modal"
+                                                    data-target="#viewStudentProfile">{{'VIEW' | translate}}
+                                                </button>
+                                            </td>
+                                            <td class="" style="width: 50px"
+                                                data-ng-click="donarVM.openPDF(donarVM.studentDetails.resultLink)">
+                                                <button class="btn btn-default btn-sm">{{'VIEW' | translate}}</button>
+                                            </td>
+                                            <td class="" style="width: 50px">
+                                                <button class="btn btn-default btn-sm"
+                                                    data-ng-click="donarVM.openPDF(donarVM.studentDetails.medicalLink)">{{'VIEW' | translate}}</button>
+                                            </td>
+                                            <!--<td class="" style="width: 0px">-->
+                                            <!--<button class="btn btn-default btn-sm">{{'VIEW' | translate}}</button>-->
+                                            <!--</td>-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="viewStudentProfile" class="modal fade" role="dialog" data-keyboard="false">
+            <div class="modal-dialog modal-md">
+                <!--  Modal content  -->
+                <div class="modal-content txtright">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!--<h4 class="modal-title"></h4>-->
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12  col-xs-12 text-center">
+                                <img class="studentProfileImg"
+                                    ng-src="{{donarVM.studentDetails.imageLink?'/uploads/'+donarVM.studentDetails.imageLink:'/images/default-img.jpg'}}"
+                                    alt="" />
+                                <h4>{{'PROFILE' | translate}}</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 ">
+                                <table class="table table-hover studentProfiletable">
+                                    <tr>
+                                        <td>{{'STUDENT ID' | translate}}:</td>
+                                        <td>{{donarVM.studentDetails.studentId || '--'}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{{'CLASS' | translate}}:</td>
+                                        <td>{{donarVM.studentDetails.grade || '--'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'DATE OF BIRTH' | translate}}:</td>
+                                        <td>{{donarVM.studentDetails.dateOfBirth || '--'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'GENDER' | translate}}:</td>
+                                        <td>{{((donarVM.studentDetails.gender).toUpperCase() | translate) || '--'}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{{'CITY' | translate}}:</td>
+                                        <td>{{donarVM.studentDetails.city || '--'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'COUNTRY' | translate}}:</td>
+                                        <td>{{donarVM.studentDetails.country || '--'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'DESCENT' | translate}}:</td>
+                                        <td>{{(donarVM.studentDetails.descent==='Syed'?'Syed':'Non Syed').toUpperCase() | translate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'SPONSOR NAME' | translate}}:</td>
+                                        <td>{{donarVM.studentDetails.sponsorName || '--'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'SPONSOR EMAIL' | translate}}:</td>
+                                        <td>{{donarVM.studentDetails.sponsorEmail || '--'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'SPONSOR PHONE' | translate}}:</td>
+                                        <td>{{donarVM.studentDetails.sponsorPhone || '--'}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        let startYear = new Date().getFullYear()
+        for (y = startYear; y >= 2017; y--) {
+            var optn = document.createElement("OPTION");
+            optn.text = y;
+            optn.value = y
+            document.getElementById('year').options.add(optn);
+            document.getElementById('year').style.color = 'black';
+        }
+    </script>
+
+    <!-- HEADER -->
+</div>

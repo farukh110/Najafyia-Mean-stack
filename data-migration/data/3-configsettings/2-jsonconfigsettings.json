@@ -1,0 +1,233 @@
+[
+	{
+		"_id": {
+			"$oid": "60dacc09ab728204c1104a71"
+		},
+		"key": "CurrencyMapping",
+		"value": [{
+			"name": "US Dollar",
+			"symbol": "$",
+			"code": "USD"
+		}, {
+			"name": "Euro",
+			"symbol": "€",
+			"code": "EUR"
+		}, {
+			"name": "British Pound",
+			"symbol": "£",
+			"code": "GBP"
+		}, {
+			"name": "Canadian Dollar",
+			"symbol": "C$",
+			"code": "CAD"
+		}, {
+			"name": "Australian Dollar",
+			"symbol": "AU$",
+			"code": "AUD"
+		}, {
+			"name": "Indian Rupee",
+			"symbol": "₹",
+			"code": "INR"
+		}, {
+			"name": "Singapore Dollar",
+			"symbol": "S$",
+			"code": "SGD"
+		}, {
+			"name": "Swiss Franc",
+			"symbol": "CHF",
+			"code": "CHF"
+		}, {
+			"name": "Malaysian Ringgit",
+			"symbol": "RM",
+			"code": "MYR"
+		}, {
+			"name": "Japanese Yen",
+			"symbol": "¥",
+			"code": "JPY"
+		}, {
+			"name": "Chinese Yuan Renminbi",
+			"symbol": "¥",
+			"code": "CNY"
+		}, {
+			"name": "Argentine Peso",
+			"symbol": "$",
+			"code": "ARS"
+		}, {
+			"name": "Bahraini Dinar",
+			"symbol": "BD",
+			"code": "BHD"
+		}, {
+			"name": "Botswana Pula",
+			"symbol": "P",
+			"code": "BWP"
+		}, {
+			"name": "Brazilian Real",
+			"symbol": "R$",
+			"code": "BRL"
+		}, {
+			"name": "Bruneian Dollar",
+			"symbol": "B$",
+			"code": "BND"
+		}, {
+			"name": "Bulgarian Lev",
+			"symbol": "Лв",
+			"code": "BGN"
+		}, {
+			"name": "Chilean Peso",
+			"symbol": "$",
+			"code": "CLP"
+		}, {
+			"name": "Colombian Peso",
+			"symbol": "$",
+			"code": "COP"
+		}, {
+			"name": "Croatian Kuna",
+			"symbol": "kn",
+			"code": "HRK"
+		}, {
+			"name": "Czech Koruna",
+			"symbol": "Kč",
+			"code": "CZK"
+		}, {
+			"name": "Danish Krone",
+			"symbol": "Kr.",
+			"code": "DKK"
+		}, {
+			"name": "Emirati Dirham",
+			"symbol": "د.إ",
+			"code": "AED"
+		}, {
+			"name": "Hong Kong Dollar",
+			"symbol": "HK$",
+			"code": "HKD"
+		}, {
+			"name": "Hungarian Forint",
+			"symbol": "Ft",
+			"code": "HUF"
+		}, {
+			"name": "Icelandic Krona",
+			"symbol": "kr",
+			"code": "ISK"
+		}, {
+			"name": "Indonesian Rupiah",
+			"symbol": "Rp",
+			"code": "IDR"
+		}, {
+			"name": "Iranian Rial",
+			"symbol": "ريال",
+			"code": "IRR"
+		}, {
+			"name": "Israeli Shekel",
+			"symbol": "₪",
+			"code": "ILS"
+		}, {
+			"name": "Kazakhstani Tenge",
+			"symbol": "₸",
+			"code": "KZT"
+		}, {
+			"name": "Kuwaiti Dinar",
+			"symbol": "KD",
+			"code": "KWD"
+		}, {
+			"name": "Libyan Dinar",
+			"symbol": "LD",
+			"code": "LYD"
+		}, {
+			"name": "Mauritian Rupee",
+			"symbol": "Rs",
+			"code": "MUR"
+		}, {
+			"name": "Mexican Peso",
+			"symbol": "Mex$",
+			"code": "MXN"
+		}, {
+			"name": "Nepalese Rupee",
+			"symbol": "Rp",
+			"code": "NPR"
+		}, {
+			"name": "New Zealand Dollar",
+			"symbol": "$",
+			"code": "NZD"
+		}, {
+			"name": "Norwegian Krone",
+			"symbol": "Kr",
+			"code": "NOK"
+		}, {
+			"name": "Omani Rial",
+			"symbol": "ر.ع.",
+			"code": "OMR"
+		}, {
+			"name": "Pakistani Rupee",
+			"symbol": "Rs",
+			"code": "PKR"
+		}, {
+			"name": "Philippine Peso",
+			"symbol": "₱",
+			"code": "PHP"
+		}, {
+			"name": "Polish Zloty",
+			"symbol": "zł",
+			"code": "PLN"
+		}, {
+			"name": "Qatari Riyal",
+			"symbol": "QR",
+			"code": "QAR"
+		}, {
+			"name": "Romanian New Leu",
+			"symbol": "lei",
+			"code": "RON"
+		}, {
+			"name": "Russian Ruble",
+			"symbol": "₽",
+			"code": "RUB"
+		}, {
+			"name": "Saudi Arabian Riyal",
+			"symbol": "SR",
+			"code": "SAR"
+		}, {
+			"name": "South African Rand",
+			"symbol": "R",
+			"code": "ZAR"
+		}, {
+			"name": "South Korean Won",
+			"symbol": "₩",
+			"code": "KRW"
+		}, {
+			"name": "Sri Lankan Rupee",
+			"symbol": "ரூ",
+			"code": "LKR"
+		}, {
+			"name": "Swedish Krona",
+			"symbol": "kr",
+			"code": "SEK"
+		}, {
+			"name": "Taiwan New Dollar",
+			"symbol": "NT$",
+			"code": "TWD"
+		}, {
+			"name": "Thai Baht",
+			"symbol": "฿",
+			"code": "THB"
+		}, {
+			"name": "Trinidadian Dollar",
+			"symbol": "TT$",
+			"code": "TTD"
+		}, {
+			"name": "Turkish Lira",
+			"symbol": "₺",
+			"code": "TRY"
+		}, {
+			"name": "Venezuelan Bolivar",
+			"symbol": "Bs.F",
+			"code": "VEF"
+		}],
+		"updated": {
+			"$date": "2021-03-30T08:05:39.183Z"
+		},
+		"created": {
+			"$date": "2021-03-24T13:28:44.559Z"
+		},
+		"__v": 0
+	}
+	
+]

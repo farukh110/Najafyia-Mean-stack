@@ -1,0 +1,1254 @@
+<!--<style>-->
+<!--.sub-menu {-->
+<!--margin-top: -25px !important;-->
+<!--}-->
+<!--</style>-->
+
+<style>
+    .currenct-circle {
+        min-height: 22px;
+        min-width: 22px;
+        background-color: #f0c84c;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .currenct-circle label {
+        display: block;
+        text-align: center;
+        color: #3d3e3f;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 1px;
+        margin: 0;
+    }
+    
+</style>
+
+<div data-ng-controller="menuController as menuVM" data-ng-init="menuVM.LoadMainMenu();">
+    <div data-ng-controller="loginController as loginVM"
+        data-ng-init="loginVM.getPopup();loginVM.getCountryCode(); loginVM.getCountries();">
+        <div data-ng-controller="newsLetterController as newsVM">
+            <header class="grop-header_area ">
+                <!--  header top bar start  \-->
+                <div class="grop-header_top">
+                    <div class="container">
+                        <div class="row">
+                            <dt-hamburger-menu ng-if="menuVM.mainMenuList" class="visible-xs">
+                                <div class="hamburger-menu-close-wrapper">
+                                    <div class="hamburger-menu-close">
+                                        <i class="fa fa-chevron-left"
+                                            ng-if="menuVM.localMenuState.hideParent && menuVM.language !== 'ARB'"
+                                            data-ng-click="menuVM.goPreviousMenu()"></i>
+                                        <div class="menu-title">
+                                            {{menuVM.localMenuState.selectedMenu.menuName || 'MENU' | translate}}
+                                        </div>
+                                        <i class="fa fa-chevron-left"
+                                            ng-if="menuVM.localMenuState.hideParent && menuVM.language == 'ARB'"
+                                            data-ng-click="menuVM.goPreviousMenu()"></i>
+                                    </div>
+                                </div>
+                                <div class="sub-menu-child-container" ng-if="!menuVM.localMenuState.hideParent">
+                                    <div class="menu-item" data-ng-repeat="x in menuVM.mainMenuList track by $index">
+                                        <div class="panel-heading"
+                                            ng-class="{'menu-item-active': menuVM.setActiveLink(x.menuName)}">
+                                            <div class="menu-acc-heading">
+                                                <a href="{{x.link}}"
+                                                    ng-click="menuVM.saveActiveLink(x)">{{x.menuName}}</a>
+                                                <a class="menu-icon" ng-click="menuVM.mainMenuClick(x)"
+                                                    data-ng-if="x.subMenu.length">
+                                                    <i ng-if="menuVM.language !== 'ARB'" style="font-size: 16px;"
+                                                        class="fa fa-angle-right"></i>
+                                                    <i ng-if="menuVM.language == 'ARB'" style="font-size: 16px;"
+                                                        class="fa fa-angle-left"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- <li data-ng-repeat="y in x.subMenu">
+                                                <a href="{{y.link}}"></a>
+                                                <ul ng-if="y.subMenu.length">
+                                                    <li data-ng-repeat="z in y.subMenu"><a
+                                                            href="{{z.link}}">{{z.menuName}}</a>
+                                                    </li>
+                                                </ul>
+                                            </li> -->
+                                </div>
+                                <div class="sub-menu-child-container"
+                                    ng-if="menuVM.localMenuState.hideParent  && !menuVM.localMenuState.hideChild">
+                                    <div class="menu-item"
+                                        data-ng-repeat="x in menuVM.localMenuState.childMenu track by $index">
+                                        <div class="panel-heading"
+                                            ng-class="{'menu-item-active': menuVM.setActiveLink(x.menuName)}">
+                                            <div class="menu-acc-heading">
+                                                <a href="{{x.link}}"
+                                                    ng-click="menuVM.saveActiveLink(x)">{{x.menuName}}</a>
+                                                <a class="menu-icon" ng-click="menuVM.childMenuClick(x)"
+                                                    data-ng-if="x.subMenu.length">
+                                                    <i ng-if="menuVM.language !== 'ARB'" style="font-size: 16px;"
+                                                        class="fa fa-angle-right"></i>
+                                                    <i ng-if="menuVM.language == 'ARB'" style="font-size: 16px;"
+                                                        class="fa fa-angle-left"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sub-menu-child-container"
+                                    ng-if="menuVM.localMenuState.hideParent && menuVM.localMenuState.hideChild">
+                                    <div class="menu-item"
+                                        data-ng-repeat="x in menuVM.localMenuState.grandChildMenu track by $index">
+                                        <div class="panel-heading"
+                                            ng-class="{'menu-item-active': menuVM.setActiveLink(x.menuName)}">
+                                            <div class="menu-acc-heading">
+                                                <a href="{{x.link}}"
+                                                    ng-click="menuVM.saveActiveLink(x)">{{x.menuName}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </dt-hamburger-menu>
+                            <div class="header">
+                                <a class="logolink" style="left:5rem; z-index: 1; right: 5rem; width: 50px;"
+                                    href="#/home"><img class="reslog" src="images/logo.png" alt="Logo"></a>
+                            </div>
+
+                            <!-- grop-topbar-left -->
+                            <div style="float: right; margin-right: 1rem;"
+                                class="col-md-12 col-sm-10 col-xs-8 arposleft no-padding"
+                                data-ng-init="loginVM.getCartCount();">
+                                <div class="text-left grop-header_info   address-info-5a0d231773235">
+                                    <ul class=" list-inline grop-float_right arposleft">
+                                        <li class="dropdown list-inline grop-float_left arposright">
+                                            <a class="dropdown-toggle" id="langDD" data-toggle="dropdown">
+                                                <img src="/images/flags/32/{{userConfig.lang}}.png" alt="Language"
+                                                    title="">
+                                                <span class="hidden-sm hidden-xs hideall ">{{ userConfig.lang |
+                                                    translate}}</span>
+                                                <span class="hidden-md hidden-lg hideall">{{ userConfig.lang}}</span>
+                                                <i class="fa fa-chevron-down icon"></i>
+                                            </a>
+                                            <ul class="dropdown-menu" style="right: auto;">
+                                                <li data-ng-click="menuVM.changeLanguage('ENG')">
+                                                    <a class="text-center" title="English" href="">
+                                                        <span class="right"> {{'ENGLISH' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                                <li data-ng-click="menuVM.changeLanguage('ARB')">
+                                                    <a class="text-center" title="عربي" href="">
+                                                        <span class="right">{{'ARABIC' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                                <li data-ng-click="menuVM.changeLanguage('FRN')">
+                                                    <a class="text-center" title="French" href="">
+                                                        <span class="right">{{'FRENCH' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown list-inline grop-float_left arposright">
+                                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                                <!-- <img src="/images/icons/{{userConfig.currency.title}}.png"
+                                                    alt="currency" title=""> -->
+
+
+                                                <span
+                                                    class="currenct-circle"><label>{{userConfig.currency.symbol}}</label></span>
+                                                <span
+                                                    class="hidden-sm hidden-sm hidden-xs-sm hideall">{{userConfig.currency.currencyName
+                                                    | translate}}</span>
+                                                <span
+                                                    class="hidden-md hidden-xs-sm hidden-lg hideall">{{userConfig.currency.currencyName
+                                                    | translate}}</span>
+                                                <span
+                                                    class="hidden-md  hidden-xs-sm hidden-lg hideall">{{userConfig.currency.currencyName
+                                                    | translate}}</span>
+                                                <i class="fa fa-chevron-down icon"></i>
+                                            </a>
+
+
+                                            <ul class="dropdown-menu" style="right: auto;">
+                                                <li ng-repeat="curr in menuVM.currencies"
+                                                    data-ng-click="menuVM.changeCurrency(curr.name,curr.symbol,curr.translatedTitle.value[menuVM.language])">
+                                                    <a href="" class="hidden-sm">{{curr.name}} -
+                                                        {{curr.translatedTitle.value[menuVM.language]}}
+                                                        <!-- {{ curr.name | translate}} -->
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="hidden-sm hidden-xs">
+                                            <a ng-href="/#/pages/donation-ways">
+                                                <img src="images/icons/donation-01.png" />
+                                                {{ 'DONATION WAYS' | translate }}
+                                            </a>
+                                        </li>
+
+                                        <li class="hidden-sm hidden-xs">
+                                            <a href="" ui-sref="faq">
+                                                <img src="images/icons/faq-01.png" /> {{ 'FAQ' | translate }}</a>
+                                        </li>
+
+                                        <span class="menuSeperator hidden-sm hidden-xs">|</span>
+
+                                        <li class=" element.style">
+                                            <a ui-sref="cart">
+                                                <span class="label label-success ng-binding" style="
+                                                    position: absolute;" ng-show="badgeShow">{{itemsCount}}</span>
+                                                <img src="images/icons/cart-01.png" /><span class="hideall">
+                                                    {{ 'CART' | translate }}</span>
+                                            </a>
+                                        </li>
+
+                                        <!--    <li>
+                                                <a ui-sref="login" ng-hide="isLogin">
+                                                    <img src="images/icons/login-01.png"/> {{ 'LOGIN' | translate }}
+                                                </a>
+                                            </li>-->
+
+                                        <li class="dropdown list-inline" id="headerLoginPopup">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" ng-hide="isLogin"
+                                                data-ng-click="newsVM.showHideNewsletter();loginVM.loginDetails={}; loginVM.registrationDetails={}">
+                                                <img src="images/icons/login-01.png" />
+                                                <span ng-if="!loginVM.isMobile">
+                                                    {{ 'LOGIN' | translate }}
+                                                </span>
+                                                <i class="fa fa-chevron-down icon"></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <div class="headerLoginPopup">
+                                                    <div class="row btnSwitch">
+                                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                                            <button type="button"
+                                                                class="btn btn-block {{showLogin?'themeBtn1':'themeBtn2'}}"
+                                                                data-ng-click="loginVM.showHideLogin('LOGIN');">
+                                                                {{'LOGIN' | translate}}
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                                            <button type="button"
+                                                                class="btn btn-block {{showLogin?'themeBtn2':'themeBtn1'}}"
+                                                                data-ng-click="loginVM.showHideLogin('SIGNUP');">
+                                                                {{'SIGN_UP' | translate}}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div data-ng-if="showLogin">
+                                                        <br />
+                                                        <form name="loginForm"
+                                                            data-ng-submit="loginVM.donateLogin(loginForm.$valid, 'login')"
+                                                            autocomplete="off">
+                                                            <div class="form-group">
+                                                                <div class="inputPlaceholder">
+                                                                    <label>{{'EMAIL ADDRESS' | translate}}</label>
+                                                                    <span class="star">*</span>
+                                                                </div>
+                                                                <input type="text" class="form-control"
+                                                                    data-ng-model="loginVM.username"
+                                                                    placeholder="{{'EMAIL ADDRESS' | translate}} *"
+                                                                    title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                    required oninvalid="getValidate(this)"
+                                                                    oninput="this.setCustomValidity('')">
+
+                                                                <!-- <p class="text-left warning">
+                                                                    {{'PLEASE TYPE YOUR MOBILE NUMBER ALONG WITH THE COUNTRY CODE' | translate}}
+                                                                </p> -->
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="inputPlaceholder">
+                                                                    <label>{{'PASSWORD' | translate}}</label>
+                                                                    <span class="star">*</span>
+                                                                </div>
+                                                                <div class="pwd-container">
+                                                                    <input type="{{inputType}}" class="form-control"
+                                                                        data-ng-model="loginVM.loginDetails.password"
+                                                                        autocomplete="new-password"
+                                                                        title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                        placeholder="{{'PASSWORD' | translate}}*">
+                                                                    <i class="glyphicon glyphicon-eye-open pwd-show"
+                                                                        ng-click="hideShowPassword()"
+                                                                        style="font-size: 12px; margin-top: 3px;"></i>
+                                                                </div>
+                                                                <!-- code for password visibility (LOGIN) -->
+                                                            </div>
+
+                                                            <div class="row forgotPass">
+                                                                <div class="col-md-6 col-xs-6">
+                                                                    <div class="">
+                                                                        <label>
+                                                                            <input type="checkbox"
+                                                                                data-ng-click="saveCredentials();">
+                                                                            {{'REMEMBER_ME' | translate}}
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-xs-6 text-right">
+                                                                    <a href="" ui-sref="forgotpassword">
+                                                                        {{'FORGOT_PASSWORD' |
+                                                                        translate}}</a>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row centered">
+                                                                <div class="col-md-7 col-sm-7 col-xs-7">
+                                                                    <button type="submit"
+                                                                        class="grop-btn-login grop-btn_submit">
+                                                                        {{'LOGIN' | translate}}
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+
+                                                        <!-- <h4 class="lineBreak"><span>{{'OR'| translate}}</span></h4>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-xs-6">
+                                                                <a href="/auth/facebook" target="_blank"
+                                                                    class="btn btn-block btn-social2 btn-facebook btn-flat"><i
+                                                                        class="fa fa-facebook-square"></i> Facebook</a>
+                                                            </div>
+                                                            <div class="col-md-6 col-xs-6">
+                                                                <a href="/auth/google" target="_blank"
+                                                                    class="btn btn-block btn-social2 btn-google btn-flat"><i
+                                                                        class="fa fa-google-plus"></i> Google</a>
+                                                            </div>
+                                                        </div> -->
+                                                        <br />
+                                                    </div>
+                                                    <div data-ng-if="!showLogin">
+                                                        <br />
+
+                                                        <form name="registrationForm"
+                                                            ng-init="loginVM.registrationDetails={}"
+                                                            data-ng-submit="loginVM.registration(registrationForm.$valid)">
+                                                            <div class="form-group">
+                                                                <div class="inputPlaceholder">
+                                                                    <label>{{'FIRST NAME' | translate}}</label>
+                                                                    <span class="star">*</span>
+                                                                </div>
+                                                                <input type="text" class="form-control"
+                                                                    data-ng-model="loginVM.registrationDetails.firstName"
+                                                                    required oninvalid="getValidate(this)"
+                                                                    title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                    oninput="this.setCustomValidity('')"
+                                                                    placeholder="{{'FIRST NAME' | translate}}*">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="inputPlaceholder">
+                                                                    <label>{{'LAST NAME' | translate}}</label>
+                                                                    <span class="star">*</span>
+                                                                </div>
+                                                                <input type="text" class="form-control"
+                                                                    data-ng-model="loginVM.registrationDetails.lastName"
+                                                                    required oninvalid="getValidate(this)"
+                                                                    oninput="this.setCustomValidity('')"
+                                                                    title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                    placeholder="{{'LAST NAME' | translate}}*">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="inputPlaceholder">
+                                                                    <label>{{'EMAIL ADDRESS' |
+                                                                        translate}}</label>
+                                                                    <span class="star">*</span>
+                                                                </div>
+                                                                <input type="email" name="email" class="form-control"
+                                                                    data-ng-model="loginVM.registrationDetails.userName"
+                                                                    required oninvalid="getValidate(this)"
+                                                                    title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                    oninput="this.setCustomValidity('')" placeholder="{{'EMAIL ADDRESS' |
+                                                                       translate}}*">
+
+                                                                <!-- <p class="text-left warning">
+                                                                    {{'PLEASE TYPE YOUR MOBILE NUMBER ALONG WITH THE COUNTRY CODE' | translate}}
+                                                                </p> -->
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="inputPlaceholder">
+                                                                    <label>{{'PASSWORD' | translate}}</label>
+                                                                    <span class="star">*</span>
+                                                                </div>
+                                                                <div class="pwd-container">
+                                                                    <input type="{{inputType}}" class="form-control"
+                                                                        data-ng-model="loginVM.registrationDetails.password"
+                                                                        required oninvalid="getValidate(this)"
+                                                                        oninput="this.setCustomValidity('')"
+                                                                        title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                        autocomplete="new-password"
+                                                                        placeholder="{{'PASSWORD' | translate}}*">
+                                                                    <i class="glyphicon glyphicon-eye-open pwd-show"
+                                                                        ng-click="hideShowPassword()"
+                                                                        style="font-size: 12px;  margin-top: 3px;"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4 col-sm-3 col-xs-4 loghom">
+                                                                    <select
+                                                                        style="padding:6px 0px;background: transparent;"
+                                                                        class="form-control "
+                                                                        title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                        data-ng-model="loginVM.registrationDetails.language"
+                                                                        class="selectpicker" required>
+                                                                        <option value="">{{'LANGUAGE' | translate}}<span
+                                                                                class="required">*</span>
+                                                                        </option>
+                                                                        <option value="ENG">{{'ENGLISH' | translate}}
+                                                                        </option>
+                                                                        <option value="ARB">{{'ARABIC' | translate}}
+                                                                        </option>
+                                                                        <option value="FRN">{{'FRENCH' | translate}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-8 col-xs-8">
+                                                                    <div class="form-group">
+                                                                        <div class="inputPlaceholder">
+                                                                            <label>{{'COUNTRY OF RESIDENCE' |
+                                                                                translate}}<span
+                                                                                    class="star">*</span></label>
+                                                                        </div>
+                                                                        <select class="form-control"
+                                                                            title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                            ng-model="loginVM.registrationDetails.countryOfResidence"
+                                                                            ng-change="loginVM.selectCountryCode(loginVM.registrationDetails.countryOfResidence)"
+                                                                            data-ng-options="x.name as x.name for x in loginVM.countries"
+                                                                            required
+                                                                            data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                            oninput="this.setCustomValidity('')">
+                                                                            <option value="">{{'COUNTRY OF RESIDENCE' |
+                                                                                translate}}
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4 col-xs-4 pr-0-imp">
+                                                                    <div style="line-height: 14px;"
+                                                                        class="inputPlaceholder">
+                                                                        <label style="font-size: 11px;">{{ 'COUNTRY
+                                                                            CODE' | translate }}</label>
+                                                                    </div>
+                                                                    <select data-ng-if="menuVM.language !== 'ARB'"
+                                                                        style="padding: 9px 0px;background: transparent; z-index: 100;"
+                                                                        class="form-control"
+                                                                        title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                        ng-model="loginVM.registrationDetails.selectedCountryCode"
+                                                                        ng-disabled="!loginVM.registrationDetails.countryOfResidence"
+                                                                        ng-style="{ 'cursor' : loginVM.registrationDetails.countryOfResidence ? 'pointer' : '' }">
+                                                                        <option value="">{{'SELECT CODE' | translate}}
+                                                                        </option>
+                                                                        <option value="{{cc.dialCode}}"
+                                                                            ng-selected="cc.dialCode == loginVM.registrationDetails.selectedCountryCode"
+                                                                            ng-repeat="cc in loginVM.countryCodeList">
+                                                                            {{cc.dialCode}}
+                                                                        </option>
+                                                                    </select>
+                                                                    <select data-ng-if="menuVM.language == 'ARB'" style="padding: 3px 0px;background: transparent; z-index: 100;
+                                                                    width: 82px;" class="form-control"
+                                                                        title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                        ng-model="loginVM.registrationDetails.selectedCountryCode"
+                                                                        ng-disabled="!loginVM.registrationDetails.countryOfResidence"
+                                                                        ng-style="{ 'cursor' : loginVM.registrationDetails.countryOfResidence ? 'pointer' : '' }">
+                                                                        <option value="">{{'SELECT CODE' | translate}}
+                                                                        </option>
+                                                                        <option value="{{cc.dialCode}}"
+                                                                            ng-selected="cc.dialCode == loginVM.registrationDetails.selectedCountryCode"
+                                                                            ng-repeat="cc in loginVM.countryCodeList">
+                                                                            {{cc.dialCode}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-8 col-xs-8">
+                                                                    <div class="form-group">
+                                                                        <label>{{ 'PHONE NUMBER' | translate }}</label>
+                                                                        <input type="number"
+                                                                            ng-keypress="loginVM.leadZeroNotAllowed($event)"
+                                                                            class="form-control" type="text"
+                                                                            title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                            ng-model="loginVM.registrationDetails.mobile"
+                                                                            maxlength="12" placeholder=""
+                                                                            autocomplete="off" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+
+                                                                <div class="col-md-8 col-sm-8 col-xs-5 gender-box">
+                                                                    <label style="font-size: 11px;">{{'GENDER' |
+                                                                        translate}}<span
+                                                                            class="required">*</span></label>
+
+                                                                    <div class="row" style="margin-bottom: 15px;">
+                                                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                            <input type="radio" name="gender"
+                                                                                data-ng-model="loginVM.registrationDetails.gender"
+                                                                                value="male" required
+                                                                                style="margin: 0px 5px;">{{'MALE' |
+                                                                            translate}} <input type="radio"
+                                                                                name="gender"
+                                                                                data-ng-model="loginVM.registrationDetails.gender"
+                                                                                value="female" style="margin: 0px 5px;"
+                                                                                required>{{'FEMALE' |
+                                                                            translate}}
+                                                                        </div>
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+                                                            <br />
+
+                                                            <div class="row centered">
+                                                                <div class="col-md-6 col-sm-6 col-xs-6" s>
+                                                                    <button type="submit"
+                                                                        class=" grop-btn-signup grop-btn_submit">
+                                                                        {{'SIGN_UP' | translate}}
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        <!-- <h4 class="lineBreak"><span>{{'OR'| translate}}</span></h4>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6  col-xs-6">
+                                                                <a href="/auth/facebook" target="_blank"
+                                                                    class="btn btn-block btn-social2 btn-facebook btn-flat"><i
+                                                                        class="fa fa-facebook-square"></i> Facebook</a>
+                                                            </div>
+                                                            <div class="col-md-6 col-xs-6">
+                                                                <a href="/auth/google" target="_blank"
+                                                                    class="btn btn-block btn-social2 btn-google btn-flat"><i
+                                                                        class="fa fa-google-plus"></i> Google</a>
+                                                            </div>
+                                                        </div> -->
+                                                        <br />
+                                                    </div>
+                                                </div>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown list-inline" ng-show="isLogin">
+                                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                                <img class="userProfileImageForHeader"
+                                                    ng-src="{{loggedInUserDetails.file?'/uploads/'+loggedInUserDetails.file:'/images/default-img.jpg'}}"
+                                                    alt="" />
+                                                <span class="hidden-sm hidden-xs">
+                                                    {{loggedInUserDetails.fullName |
+                                                    limitTo:5}}{{loggedInUserDetails.fullName.length>5?'...':''}}
+                                                </span>
+                                                <span class="hidden-md hidden-xs hidden-lg">
+                                                    {{loggedInUserDetails.fullName |
+                                                    limitTo:5}}{{loggedInUserDetails.fullName.length>5?'...':''}}
+                                                </span>
+
+                                                <i class="fa fa-chevron-down icon"></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="text-center" href="" ui-sref="donarDashboard"
+                                                        ng-if="loggedInUserDetails.role && ( loggedInUserDetails.role.toUpperCase() == 'DONOR' || loggedInUserDetails.role[0].toUpperCase() === 'DONOR')">
+                                                        {{'DONOR PROFILE' | translate}}</a>
+                                                </li>
+                                                <li>
+                                                    <a class="text-center" href="" ng-click="loginVM.logout()">
+                                                        {{'LOGOUT' | translate}}</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <!-- <li class="navbar-custom-menu" style="margin-left: -25px;" ng-show="isLogin">
+                                            <ul class="navbar-nav" style="list-style: none;">
+                                                <li class="dropdown user user-menu">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown">
+                                                        <span ng-show="campaignsList.length >= 1 ? true : false"
+                                                              style="position: absolute ;left : -10px ;"
+                                                              class="label label-warning">
+                                                            {{ campaignsList.length + donationReoccuringList.length}} </span>
+                                                        <i class="fa fa-bell-o"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li data-ng-repeat="campaigns in campaignsList">
+                                                            <a>
+                                                                <i class="fa fa-shopping-cart text-green"></i>
+                                                                {{campaigns.title}}
+                                                            </a>
+                                                        </li>
+                                                        <li data-ng-repeat='program in programList'>
+                                                            <a>
+                                                                <i class="fa fa-cc-stripe "> {{program.programName}}</i>
+                                                            </a>
+                                                        </li>
+                                                        <li data-ng-if="campaignsList.length<1 && donationReoccuringList.length<1">
+                                                            <a>{{"CURRENTLY YOU DON'T HAVE ANY NOTIFICATIONS" |
+                                                                translate}}</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- grop-topbar-right -->
+                        </div>
+                        <!-- Row -->
+                    </div>
+                    <!-- Container -->
+                </div>
+
+                <div class="grop-header_navigations grop-header_sticky">
+                    <div class="container">
+                        <div class="">
+                            <div class="col-sm-12 grop-nav-br no-padding">
+                                <div class="col-md-2 grop-logo-br displayFloatRight no-padding">
+                                    <div
+                                        class="grop-hadr_logos  hav-default-logo hav-default-retina-logo dhav-mobile-logo hidden-sm hidden-xs">
+                                        <a ui-sref="home" class="grop-logo default-logo">
+                                            <img src="images/logo.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-10 grop-nav-br no-padding">
+
+
+                                    <!--  header nav right side btns end-->
+                                    <div class="grop-mobil_menu_warp">
+                                        <ul id="grop-mobil_menu" class="slimmenu">
+                                            <li id="menu-item-1568"
+                                                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-1568">
+                                                <a href="#0">Home</a>
+                                                <ul class="sub-menu">
+                                                    <li id="menu-item-652"
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-652">
+                                                        <a href="https://victorthemes.com/themes/groppe/">Home One</a>
+                                                    </li>
+                                                    <li id="menu-item-619"
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-619">
+                                                        <a href="https://victorthemes.com/themes/groppe/home-2/">Home
+                                                            Two
+                                                        </a>
+                                                    </li>
+                                                    <li id="menu-item-622"
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-342 current_page_item menu-item-622">
+                                                        <a href="index.html">Home Three</a>
+                                                    </li>
+                                                    <li id="menu-item-623"
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-623">
+                                                        <a href="https://victorthemes.com/themes/groppe/home-4/">Home
+                                                            Four
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li id="menu-item-624"
+                                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-624">
+                                                <a href="#">Pages</a>
+                                                <ul class="sub-menu">
+                                                    <li
+                                                        class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent  menu-item-1568">
+                                                        <a href="index.html">Home</a>
+
+                                                </ul>
+                                            </li>
+                                            <li
+                                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-646">
+                                                <a href="#">Sadaqa</a>
+                                                <ul class="sub-menu">
+                                                    <li
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-643">
+                                                        <a href="#">Daily Sadaqa</a>
+                                                    </li>
+                                                    <li
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-644">
+                                                        <a href="#"> Religious Personalities Sadaqa</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li
+                                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1567">
+                                                <a href="#0">Get Involved</a>
+                                                <ul class="sub-menu">
+                                                    <li
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-649">
+                                                        <a href="shop/index.html">Donation Ways</a>
+                                                    </li>
+                                                    <li
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1564">
+                                                        <a href="cart/index.html">Fund Raise</a>
+                                                    </li>
+                                                    <li
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1565">
+                                                        <a href="checkout/index.html">Volenteer with Us</a>
+                                                    </li>
+                                                    <li
+                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1566 menu-item-has-children">
+                                                        <a href="my-account/index.html">Supplies</a>
+                                                        <ul class="sub-menu">
+                                                            <li
+                                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1564">
+                                                                <a href="cart/index.html">Medical Supplies</a>
+                                                            </li>
+                                                            <li
+                                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1565">
+                                                                <a href="checkout/index.html">Clothing Supplies</a>
+                                                            </li>
+
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        </li>
+                                        </ul>
+                                    </div>
+                                    <div class=" grop-mainmenu_warp" style="margin-top: 55px;">
+                                        <ul id="grop-mainmenu" class="grop-list_unstyled whiteMenu">
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-624"
+                                                data-ng-repeat="x in menuVM.mainMenuList">
+                                                <a class="linkUrl link-title-style" href="{{x.link}}">{{x.menuName}}
+                                                    <i class="fa fa-chevron-down" data-ng-show="x.subMenu.length>0"></i>
+                                                </a>
+                                                <ul class="sub-menu" data-ng-show="x.subMenu.length>0">
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-625"
+                                                        data-ng-repeat="y in x.subMenu | orderBy:'-y.priority'">
+                                                        <a href="{{y.link}}">{{y.menuName}}
+                                                            <i class="fa fa-chevron-right "
+                                                                data-ng-show="y.subMenu.length>0"></i>
+                                                        </a>
+                                                        <ul class="sub-menu" data-ng-show="y.subMenu.length>0">
+                                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-625"
+                                                                data-ng-repeat="z in y.subMenu | orderBy:'-z.priority'">
+                                                                <a href="{{z.link}}">{{z.menuName}}</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <div class="grop-hadr_search">
+                                                    <!-- <a href="#">
+                                                    <i class="fa fa-search" style=""></i>
+                                                </a> -->
+                                                    <ul class="sub-menu" data-ng-show="x.subMenu.length>0">
+                                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-625"
+                                                            data-ng-repeat="y in x.subMenu | orderBy:'-y.priority'">
+                                                            <a href="{{y.link}}">{{y.menuName}}
+                                                                <i class="fa fa-chevron-right pull-right"
+                                                                    data-ng-show="y.subMenu.length>0"></i>
+                                                            </a>
+                                                            <ul class="sub-menu" data-ng-show="y.subMenu.length>0">
+                                                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-625"
+                                                                    data-ng-repeat="z in y.subMenu| orderBy:'-z.priority'">
+                                                                    <a href="{{z.link}}">{{z.menuName}}</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                            </li>
+                                            <li>
+                                                <div class="grop-hadr_search">
+                                                    <!-- <a href="#">
+                                                    <i class="fa fa-search" style=""></i>
+                                                </a> -->
+                                                    <ul class="sub-menu" data-ng-show="x.subMenu.length>0">
+                                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-625"
+                                                            data-ng-repeat="y in x.subMenu | orderBy:'-y.priority'">
+                                                            <a href="{{y.link}}">{{y.menuName}}
+                                                                <i class="fa fa-chevron-right pull-right"
+                                                                    data-ng-show="y.subMenu.length>0"></i>
+                                                            </a>
+                                                            <ul class="sub-menu" data-ng-show="y.subMenu.length>0">
+                                                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-625"
+                                                                    data-ng-repeat="z in y.subMenu| orderBy:'z.priority'">
+                                                                    <a href="{{z.link}}">{{z.menuName}}</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                            </li>
+                                            <li>
+                                                <div class="grop-hadr_search">
+                                                    <a href="#">
+                                                        <i class="fa fa-search"></i>
+                                                    </a>
+
+                                                    <div class="grop-hadrsrch_form_warp">
+                                                        <div class="grop-hadrsrch_form">
+                                                            <form method="get" id="searchform"
+                                                                data-ng-submit="menuVM.searchPage()" autocomplete="off">
+                                                                <input type="search" data-ng-model="menuVM.searchValue"
+                                                                    placeholder="{{'SEARCH HERE' | translate}}">
+                                                                <button type="submit">
+                                                                    <span class="grop-srchicon"></span>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="btnewsl grop-float_right grop-naviga_btns displayFloatLeft  hidden-sm hidden-xs"
+                                                    style="margin-top: 0px;">
+
+                                                    <button class="btn btn-primary grop-btn"
+                                                        data-ng-click="newsVM.fillLoggedInUserDetails()">
+                                                        <span>{{'NEWSLETTER' | translate}}</span>
+                                                    </button>
+                                                    <div class="newsletterPopupBox" ng-if="newsVM.showNewsModal">
+                                                        <div class="newsletterBox">
+                                                            <form name="subscriptionForm"
+                                                                ng-submit="newsVM.addSubscription(subscriptionForm.$valid)">
+                                                                <div class="form-group">
+                                                                    <input type="userName" class="form-control"
+                                                                        title="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                                        ng-model="newsVM.formData.firstName"
+                                                                        placeholder="{{'FIRST NAME' | translate}}"
+                                                                        required oninvalid="getValidate(this)"
+                                                                        oninput="this.setCustomValidity('')">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="userName" class="form-control"
+                                                                        ng-model="newsVM.formData.lastName"
+                                                                        placeholder="{{'LAST NAME' | translate}}"
+                                                                        required oninvalid="getValidate(this)"
+                                                                        oninput="this.setCustomValidity('')">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="email" class="form-control"
+                                                                        ng-model="newsVM.formData.email" required
+                                                                        oninvalid="getValidate(this)"
+                                                                        oninput="this.setCustomValidity('')"
+                                                                        placeholder="{{'EMAIL' | translate}}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <select ng-model="newsVM.formData.country"
+                                                                        class="form-control" required
+                                                                        oninvalid="getValidate(this)"
+                                                                        oninput="this.setCustomValidity('')"
+                                                                        data-ng-options="country.name as country.name for country in newsVM.countryList">
+                                                                        <option value="">
+                                                                            {{'SELECT COUNTRY' | translate}}</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <select ng-model="newsVM.formData.language"
+                                                                        class="form-control" required
+                                                                        oninvalid="getValidate(this)"
+                                                                        oninput="this.setCustomValidity('')">
+                                                                        <option value="">
+                                                                            {{'SELECT LANGUAGE' | translate}}</option>
+                                                                        <option value="English">
+                                                                            {{'ENGLISH' | translate}}
+                                                                        </option>
+                                                                        <option value="عربى">{{'ARABIC' | translate}}
+                                                                        </option>
+                                                                        <option value="Français">
+                                                                            {{'FRENCH' | translate}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <button type="submit" class="btn btn-primary">
+                                                                    {{ 'SUBSCRIBE' | translate}}
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+            <!-- Modal -->
+            <div id="newsLetterModel" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <!-- Modal content-->
+                    <div class="modal-content txtright">
+                        <div class="modal-body newsletterBox">
+                            <form name="subscriptionForm" ng-submit="newsVM.addSubscription(subscriptionForm.$valid)">
+                                <div class="form-group">
+                                    <input type="userName" class="form-control" ng-model="newsVM.formData.firstName"
+                                        placeholder="First Name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="userName" class="form-control" ng-model="newsVM.formData.lastName"
+                                        placeholder="Last Name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-model="newsVM.formData.email" required
+                                        placeholder="{{'EMAIL' | translate}}">
+                                </div>
+                                <div class="form-group">
+                                    <select ng-model="newsVM.formData.country" class="form-control"
+                                        data-ng-options="country.name as country.name for country in newsVM.countryList">
+                                        <option value="">Select Country</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">{{'SUBSCRIBE' | translate }}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Global Login Modal -->
+            <div data-ng-controller="cartController as cartVM" id="globalLoginModal" class="modal globalLogin fade"
+                role="dialog" style="z-index: 12000;">
+                <div class="modal-dialog modal-md" style="max-width: 350px;">
+                    <!-- Modal content-->
+                    <div class="modal-content txtright" style="padding: 20px;">
+                        <div class="modal-header">
+                            <div class="row">
+                                <button ng-if="cartVM.quickCheckout && cartVM.userLanguage == 'ARB'" type="button"
+                                    style="background: transparent; border: none;margin-bottom: 10px;"
+                                    ng-click="cartVM.quickCheckout=false">
+                                    <i class="glyphicon glyphicon-chevron-right"></i>
+                                    {{'Back' | translate}}
+                                </button>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <button ng-if="cartVM.quickCheckout && cartVM.userLanguage !== 'ARB'" type="button"
+                                    style="background: transparent; border: none;margin-bottom: 10px;"
+                                    ng-click="cartVM.quickCheckout=false">
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    {{'Back' | translate}}
+                                </button>
+                            </div>
+                            <h2 ng-if="!cartVM.quickCheckout" class="modal-title">{{'LOGIN' | translate}}</h2>
+                            <h2 ng-if="cartVM.quickCheckout" class="modal-title">{{'CHECKOUT' | translate}}</h2>
+                        </div>
+                        <div ng-if="!cartVM.quickCheckout">
+                            <p class="note">{{'Existing user? Please Login by entering below details' | translate}}
+                            </p>
+                            <form name="loginForm" ng-init="loginVM.loginDetails={}"
+                                data-ng-submit="loginVM.donateLogin(loginForm.$valid, true)" autocomplete="off">
+                                <div class="form-group">
+                                    <div class="inputPlaceholder">
+                                        <label>{{'EMAIL ADDRESS' | translate}}</label>
+                                        <span class="star">*</span>
+                                    </div>
+                                    <input type="text" class="form-control"
+                                        data-ng-model="loginVM.loginDetails.username"
+                                        placeholder="{{'EMAIL ADDRESS' | translate}} *" required
+                                        data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                        oninput="this.setCustomValidity('')">
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="inputPlaceholder">
+                                        <label>{{'PASSWORD' | translate}}</label>
+                                        <span class="star">*</span>
+                                    </div>
+                                    <input type="password" class="form-control popupIput"
+                                        data-ng-model="loginVM.loginDetails.password" required
+                                        data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                        oninput="this.setCustomValidity('')" autocomplete="new-password"
+                                        placeholder="{{'PASSWORD' | translate}} *">
+                                    <p style="text-align: left; margin-top: 1rem; margin-left: 1rem;"><a
+                                            ng-click="gotoForgot()">
+                                            {{'FORGOT_PASSWORD' |
+                                            translate}}</a>
+                                    </p>
+                                </div>
+                                <div class="row centered">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 arabic-login-column">
+                                        <button type="submit" class="grop-btn-login grop-btn_submit">
+                                            {{'LOGIN' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <p class="note" style="text-align: center; margin:20px 0;">{{'NOT A MEMBER?' | translate}}
+                                <a href="" data-ng-click="loginVM.signUp();">{{'SIGN_UP' | translate}}</a>
+                                {{'FOR AN ACCOUNT' | translate}}
+                            </p>
+
+                            <h4 class="lineBreak" style="margin:30px 0;"><span>{{'OR'| translate}}</span></h4>
+
+                            <button type="button" class="btn btn-primary btn-checkout"
+                                data-ng-click="cartVM.quickCheckout = true;"
+                                style="padding: 10px 20px;margin: auto;display: block; color:black;">{{'QUICK CHECKOUT'
+                                | translate}}</button>
+                        </div>
+
+                        <div class="row" ng-if="cartVM.quickCheckout">
+                            <!-- Donor Form -->
+                            <p class="note" style="margin: 16px;">
+                                {{'Want to donate without signing up? Please provide minimum details' | translate}}
+                            </p>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <form name="donorForm" ng-init="cartVM.donorDetails={}"
+                                    data-ng-submit="cartVM.registerDonorAndCheckout()" autocomplete="off">
+                                    <div class="form-group">
+                                        <div class="inputPlaceholder">
+                                            <label>{{'DONOR NAME' | translate}}</label>
+                                            <span class="star">*</span>
+                                        </div>
+                                        <input type="text" class="form-control"
+                                            data-ng-model="cartVM.donorDetails.donarName"
+                                            placeholder="{{'DONAR NAME' | translate}} *" required
+                                            data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                            oninput="this.setCustomValidity('')">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="inputPlaceholder">
+                                            <label>{{'EMAIL ADDRESS' | translate}}</label>
+                                            <span class="star">*</span>
+                                        </div>
+                                        <input type="text" class="form-control"
+                                            data-ng-model="cartVM.donorDetails.username"
+                                            placeholder="{{'EMAIL ADDRESS' | translate}} *" required
+                                            data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                            oninput="this.setCustomValidity('')">
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control" ng-model="cartVM.donorDetails.selectedCountry"
+                                            data-ng-options="x as x.name for x in loginVM.countries"
+                                            id="checkoutCountry" required>
+                                            <option value="">{{'SELECT COUNTRY' | translate}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="row centered">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <button type="submit" class="grop-btn-login grop-btn_submit">
+                                                {{'DONATE NOW' | translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- <div  class="modal-body text-center" style="padding-top: 0px;">
+                            <div class="row centered">
+                                <button type="button" class="btn btn-primary"
+                                    data-ng-click="cartVM.donateWithOutLogin();"
+                                    style="width: auto; padding: 0px 20px;">{{'DONATE WITHOUT LOGIN' | translate}}</button>
+                                
+                            </div> -->
+
+
+
+                        <!-- <h4 class="lineBreak"><span>{{'OR'| translate}}</span></h4>
+
+                            <div class="row globalLogin centered">
+                                <div class="col-md-3 col-xs-6">
+                                    <a href="/auth/facebook" target="_blank"
+                                        class="btn btn-block btn-social2 btn-facebook btn-flat"><i
+                                            class="fa fa-facebook-square"></i> Facebook</a>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <a href="/auth/google" target="_blank"
+                                        class="btn btn-block btn-social2 btn-google btn-flat"><i
+                                            class="fa fa-google-plus"></i> Google</a>
+                                </div> 
+                            </div> -->
+
+
+                    </div>
+                    <div ng-if="cartVM.quickCheckout" class="modal-body text-center">
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+ <!--Global Login Modal Secure Pages -->
+ <div data-ng-controller="cartController as cartVM" id="globalLoginModalSecure" data-backdrop="static" data-keyboard="false" class="modal globalLogin login-popup fade"
+ role="dialog" style="z-index: 12000;">
+ <div class="modal-dialog modal-md login-model">
+     <!-- Modal content-->
+     <div class="modal-content txtright" style="padding: 20px;">
+         <div class="modal-header">
+             <h2 ng-if="!cartVM.quickCheckout" class="modal-title">{{'LOGIN' | translate}}</h2>
+         </div>
+         <div ng-if="!cartVM.quickCheckout">
+             <p class="note">{{'Existing user? Please Login by entering below details' | translate}}
+             </p>
+             <form name="loginForm" ng-init="loginVM.loginDetails={}"
+                 data-ng-submit="loginVM.donateLogin(loginForm.$valid, true)" autocomplete="off">
+                 <div class="form-group">
+                     <div class="inputPlaceholder">
+                         <label>{{'EMAIL ADDRESS' | translate}}</label>
+                         <span class="star">*</span>
+                     </div>
+                     <input type="text" class="form-control"
+                         data-ng-model="loginVM.loginDetails.username"
+                         placeholder="{{'EMAIL ADDRESS' | translate}} *" required
+                         data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                         oninput="this.setCustomValidity('')">
+                 </div>
+
+                 <div class="form-group">
+                   
+                     <div class="inputPlaceholder">
+                         <label>{{'PASSWORD' | translate}}</label>
+                         <span class="star">*</span>
+                     </div>
+                  
+                     <input type="password" class="form-control popupIput"
+                         data-ng-model="loginVM.loginDetails.password" required
+                         data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                         oninput="this.setCustomValidity('')" 
+                         placeholder="{{'PASSWORD' | translate}} *">
+                     <p style="text-align: left; margin-top: 1rem; margin-left: 1rem;"><a
+                             ng-click="gotoForgot()">
+                             {{'FORGOT_PASSWORD' |
+                             translate}}</a>
+                     </p>
+                 </div>
+                 <div class="row centered">
+                     <div class="col-md-6 col-sm-6 col-xs-6 arabic-login-column">
+                         <button type="submit" class="grop-btn-login grop-btn_submit">
+                             {{'LOGIN' | translate}}
+                         </button>
+                     </div>
+                 </div>
+             </form>
+             <p class="note" style="text-align: center; margin:20px 0;">{{'NOT A MEMBER?' | translate}}
+                 <a href="" data-ng-click="loginVM.signUp();">{{'SIGN_UP' | translate}}</a>
+                 {{'FOR AN ACCOUNT' | translate}}
+             </p>
+         </div>
+
+       
+ </div>
+</div>
+
+        </div>
+
+
+        <!--Global Ziyarat Login Modal -->
+        <div id="ziyaratLoginModal" class="modal globalLogin fade" role="dialog" style="z-index: 12000;">
+            <div class="modal-dialog modal-md ">
+                <!-- Modal content-->
+                <div class="modal-content txtright">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title">{{'LOGIN' | translate}}</h2>
+                    </div>
+                    <div class="modal-body text-center" style="padding-top: 0px;">
+                        <p style="color: #d2d2d2; font-size: 11px; ">
+                            {{'LOGIN FOR ZIYARAH OF IMAM HUSSAIN (AS) EVERY THURSDAY ON YOUR BEHALF' |
+                            translate}}</p>
+
+                        <form name="loginForm" ng-init="loginVM.loginDetails={}"
+                            data-ng-submit="loginVM.donateLogin(loginForm.$valid)" autocomplete="off">
+                            <div class="form-group">
+                                <div class="inputPlaceholder">
+                                    <label>{{'EMAIL ADDRESS' | translate}}</label>
+                                    <span class="star">*</span>
+                                </div>
+                                <input type="text" class="form-control" data-ng-model="loginVM.loginDetails.username"
+                                    placeholder="{{'EMAIL ADDRESS' | translate}} *" required
+                                    data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                    oninput="this.setCustomValidity('')">
+
+                                <!-- <p class="text-left warning txtright" style="margin-top: 5px;">
+                                        {{'NOTE' | translate}}:
+                                        {{'PLEASE TYPE YOUR MOBILE NUMBER ALONG WITH THE COUNTRY CODE' | translate}}</p> -->
+                            </div>
+                            <div class="form-group">
+                                <div class="inputPlaceholder">
+                                    <label>{{'PASSWORD' | translate}}</label>
+                                    <span class="star">*</span>
+                                </div>
+                                <input type="password" class="form-control"
+                                    data-ng-model="loginVM.loginDetails.password" required
+                                    data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                    oninput="this.setCustomValidity('')" autocomplete="new-password"
+                                    placeholder="{{'PASSWORD' | translate}} *">
+                                <p style="text-align: left; margin-top: 1rem; margin-left: 1rem;"><a
+                                        ng-click="gotoForgot()">
+                                        {{'FORGOT_PASSWORD' |
+                                        translate}}</a></p>
+                            </div>
+                            <div class="row centered">
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <button type="submit" class="grop-btn-login grop-btn_submit">
+                                        {{'LOGIN' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- 
+                            <h4 class="lineBreak"><span>{{'OR'| translate}}</span></h4>
+
+                            <div class="row globalLogin centered">
+                                <div class="col-md-3  col-xs-5">
+                                    <a href="/auth/facebook" target="_blank"
+                                        class="btn btn-block btn-social2 btn-facebook btn-flat"><i
+                                            class="fa fa-facebook-square"></i> Facebook</a>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <a href="/auth/google" target="_blank"
+                                        class="btn btn-block btn-social2 btn-google btn-flat"><i
+                                            class="fa fa-google-plus"></i> Google</a>
+                                </div>
+                            </div> -->
+
+                        <p class="note" style="float: none">{{'NOT A MEMBER?' | translate}}
+                            <a href="" data-ng-click="loginVM.ziyaratSignUp();">{{'SIGN_UP' | translate}}</a>
+                            {{'FOR AN ACCOUNT' | translate}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+
+<link rel='stylesheet' id='animate-css' href='dist/css/AdminLTE.min.css' type='text/css' media='all' />
+<script>
+    jQuery('.form-control').removeAttr('title');
+    //for login and signup module 
+    let lang = localStorage.getItem('lang');
+
+    function getValidate(input) {
+        if (input.value == '' && lang == 'ARB') {
+            input.setCustomValidity("يرجى ملء الحقول الفارغة");
+        } else if (input.value == '' && lang == 'FRN') {
+            input.setCustomValidity("S'il vous plaît remplir le champ manquant");
+        } else {
+            input.setCustomValidity("Please fill out this field.");
+        }
+    }
+
+    // jQuery(document).ready(function () {
+    //     var inputs = document.getElementsByTagName("INPUT");
+    //     for (var i = 0; i < inputs.length; i++) {
+    //         inputs[i].oninvalid = function (e) {
+    //             e.target.setCustomValidity("");
+    //             if (!e.target.validity.valid) {
+    //                 e.target.setCustomValidity(e.target.getAttribute("data-error"));
+    //             }
+    //         };
+    //     }
+    // });
+
+    jQuery(document).ready(function () {
+        // jQuery('[data-toggle="popover"]').popover({
+
+        //   placement: 'bottom',
+        //   title: 'User profile',
+        //   html: true,
+        //   content: jQuery('#popup').html()
+        // });
+    });
+</script>

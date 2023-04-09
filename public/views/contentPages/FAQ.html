@@ -1,0 +1,80 @@
+<div class="grop-page padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="pageContentController as pageVM"
+            data-ng-init="pageVM.getPageContentByName(('FAQ'|translate)); pageVM.getProgramTypes();">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="pageHeadingAreaImg faq-banner">
+                            <h1>{{'FAQ' | translate}}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container page-content-area faqar">
+                <div class="col-md-3 col-xs-12 paddleft">
+                    <div class="col-md-12 col-xs-12 no-padding">
+                        <h4>{{'TOPICS' | translate}}</h4>
+                    </div>
+                    <div class="col-md-12 col-xs-12 faqsearchicon no-padding">
+                        <input type="text" name="search" class="form-control" ng-model="pageVM.searchTopic"
+                            placeholder="{{'SEARCH HERE' | translate}}" autocomplete="off" />
+                    </div>
+                    <!--<div class="gap"></div>-->
+                    <div class="col-md-12 col-xs-12 mt-16 no-padding">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="" data-ng-click="pageVM.getTopicFAQs();"><b>{{'SHOW ALL' | translate}}</b></a>
+                            </li>
+                            <li class="mt-8"
+                                data-ng-repeat="type in pageVM.programTypesList | filter: {programTypeName: pageVM.searchTopic}">
+                                <a href="" data-ng-click="pageVM.getTopicFAQs(type._id);">{{type.programTypeName | translate}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-9 col-xs-12 mt-56 no-padding ">
+                    <!--<div class="gap"></div>-->
+                    <div class="col-md-12 col-xs-12 no-padding ">
+                        <p>{{'TO SEE AN ANSWER, SIMPLY SELECT THE QUESTIONS BELOW' | translate}}</p>
+                    </div>
+                    <!--<div class="gap"></div>-->
+                    <div class="col-md-12 col-xs-12 mt-16  no-padding">
+                        <div class="clearfix"></div>
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                            <div class="panel panel-default mv-20"
+                                data-ng-repeat="data in pageVM.faqQuestionAnswersList">
+                                <div class="panel-heading" role="tab" id="heading{{$index}}">
+                                    <h4 class="panel-title ">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                            data-target="#collapse{{$index}}" aria-expanded="false"
+                                            aria-controls="collapse{{$index}}">
+                                            Q{{$index+1}}. {{data.question}}
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel"
+                                    aria-labelledby="heading{{$index}}">
+                                    <div class="panel-body">
+                                        {{data.answer}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="faqContent" id="pageContent">
+                        </div>
+                    </div>
+                    <!--<div class="gap"></div>-->
+                    <!-- <div class="col-md-12 text-center">
+                         <h3>Wanna Quick support? <b>Ask Us</b></h3>
+                         <p>{{pageVM.pageData.faqSupportText}}</p>
+                         <button class="themeBtn1" href="">Email Your Questions</button>
+                     </div>-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

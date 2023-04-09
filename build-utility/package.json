@@ -1,0 +1,20 @@
+{
+  "name": "build-utility",
+  "version": "1.0.0",
+  "description": "This utility is created for bundling najafyia application. It uses latest version of node.",
+  "main": "index.js",
+  "scripts": {
+    "build:frontendqa": "node ./index.js qa",
+    "build:frontend": "node ./index.js prod",
+    "build:jobs": "node ./scheduler.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Talverse",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "minify": "^7.0.1",
+    "node-html-parser": "^3.0.4",
+    "rimraf": "^3.0.2"
+  }
+}

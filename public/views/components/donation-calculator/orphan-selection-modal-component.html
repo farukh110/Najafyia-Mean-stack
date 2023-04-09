@@ -1,0 +1,150 @@
+<style>
+    .section-heading {
+        padding-bottom: 5px;
+        border-top: 0;
+        border-bottom: 2px solid;
+        color: #f39c12;
+    }
+
+    .alert-warning {
+        background-color: #fcf8e3 !important;
+        border-color: #faebcc !important;
+        padding: 5px;
+        color: #8a6d3b !important;
+        margin: 0;
+    }
+
+    .section-heading label {
+        color: #2B2B2B;
+        font-weight: bold;
+    }
+
+    .box-header {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .box-header h3 {
+        flex: 1;
+    }
+
+    .modal-content .box-title {
+        font-size: 14px;
+    }
+</style>
+<div class="modal fade" id="orphanListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="z-index:10000">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal">×</button> -->
+                <h3 class="modal-title" id="exampleModalLabel">{{'SELECT ORPHANS' | translate}}</h3>
+                <div class="alert alert-warning" role="alert"
+                    ng-show="($parent.user.roles.length > 0 && $parent.selectedCount != $parent.user.roles.length) ? true : false">
+                    <span>
+                        {{'SELECTED_ORPHAN_COUNT_NOT_EQ' | translate}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="modal-body darachk" style="overflow-y: scroll;height: 480px;">
+                <div class="row">
+                    <div
+                        ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }">
+                        <label> <b> {{ 'DESCEND' | translate }}</b></label>
+                        <select class='form-control' ng-model='$parent.selectedDescend'
+                            ng-change='$parent.clearOrphans()'>
+                            <!-- <option ng-value=''>---{{'PLEASE SELECT' | translate}}---</option> -->
+                            <option value='Any'>{{'ANY' | translate}}</option>
+                            <option value='Syed'>{{'SYED' | translate}}</option>
+                            <option value='Non-Syed'>{{'NONSYED' | translate}}</option>
+                        </select>
+                    </div>
+
+                    <div
+                        ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }">
+                        <label><b>{{ 'GENDER' | translate}} </b></label>
+                        <select class='form-control' ng-model='$parent.selectedGender'
+                            ng-change='$parent.clearOrphans()'>
+                            <!-- <option ng-value=''>---{{'PLEASE SELECT' | translate}}---</option> -->
+                            <option value='Any'>{{'ANY' | translate}}</option>
+                            <option value='Male'>{{'MALE' | translate}}</option>
+                            <option value='Female'>{{'FEMALE' | translate}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row selected-orphan">
+                    <h5 class="box box-warning section-heading">
+                     {{'SELECTED_OPRHAN' | translate}} <label>[{{$parent.user.roles.length}} {{'OF' | translate}} {{$parent.selectedCount}}] </label>
+                    </h5>
+                    <div ng-repeat="role in $parent.pageVM.orphanCompleteList"
+                        ng-show="$parent.$parent.user.roles.indexOf(role._id) != -1">
+                        <div class="col-md-4 col-xs-12">
+                            <div class="box box-warning">
+                                <div class="box-header with-border">
+                                    <div class="already-in-cart" ng-if="role.alreadyInCart">
+                                        {{'Already in Cart' | translate}}</div>
+                                    <input ng-hide="role.alreadyInCart" type="checkbox"
+                                        checklist-model="$parent.$parent.user.roles" checklist-value="role._id">
+
+                                    <h3 class="box-title" title="{{role.orphanName}}">{{role.orphanName |
+                                        limitTo:30}}{{role.orphanName.length>30?'..':''}}</h3>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h5 class="box box-warning section-heading">
+                        {{'AVAILABLE_ORPHAN' | translate}}
+
+                    </h5>
+                    <p class="text-muted col-md-8 col-xs-12" ng-if="!$parent.pageVM.orphans.length">
+                        {{'NO ORPHAN(S) MATCHES THE GIVEN CRITERIA.' | translate}}</p>
+                    <div ng-repeat="role in $parent.pageVM.orphans">
+                        <div class="col-md-4 col-xs-12" ng-show="$parent.$parent.user.roles.indexOf(role._id) == -1">
+                            <div class="box box-warning">
+                                <div class="box-header with-border">
+                                    <div class="already-in-cart" ng-if="role.alreadyInCart">
+                                        {{'Already in Cart' | translate}}</div>
+                                    <div ng-show='$parent.$parent.user.roles.length !== $parent.$parent.selectedCount'>
+                                        <input ng-hide="role.alreadyInCart" type="checkbox"
+                                            checklist-model="$parent.$parent.user.roles" checklist-value="role._id">
+                                    </div>
+                                    <div ng-show='$parent.$parent.user.roles.length === $parent.$parent.selectedCount'>
+                                        <input type="checkbox"
+                                            disabled="true">
+                                    </div>
+                                    <h3 class="box-title" title="{{role.orphanName}}">{{role.orphanName |
+                                        limitTo:11}}{{role.orphanName.length>11?'..':''}}</h3>
+                                </div>
+                                <div class="box-body" style="background: #2B2B2B;">
+                                    <div class="mainhd">
+                                        <p style="line-height: 10px;">
+                                            {{(role.descent).toUpperCase() | translate}}</p>
+
+                                        <p style="line-height: 10px;">{{(role.gender).toUpperCase() | translate}}</p>
+
+                                        <p style="line-height: 10px;">{{$parent.$parent.age(role.dateOfBirth)}}-Years</p>
+                                    </div>
+                                    <img ng-src="{{role.imageLink?'uploads/'+role.imageLink:'/images/default-img.jpg'}}"
+                                        onerror="this.src='/images/default-img.jpg'"
+                                        class="generalCare-list-image img-circle pull-right storp" style="">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="grop-btn  grop-btn_submit" style="" data-dismiss="modal">
+                    {{'SELECT' | translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

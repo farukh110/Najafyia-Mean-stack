@@ -1,0 +1,107 @@
+<div data-ng-controller="representativeController as repVM" data-ng-init="repVM.getRepresentative(false)">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+
+            </section>
+
+            <!-- Main content -->
+            <div class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+
+
+                    <div class="col-md-10 col-xs-12 col-md-offset-1">
+                        <div class="col-md-8 content-header nopadding">
+                            <h1>{{'REPRESENTATIVE' | translate}}</h1>
+                        </div>
+                        <div class="col-md-4 no-padding" style="margin-bottom: 10px;">
+
+                            <div class="col-md-12 no-padding">
+                                <input type="text" class="form-control pull-right" data-ng-model="repVM.searchValue"
+                                    placeholder="{{ 'SEARCH BY NAME' | translate }}" />
+                            </div>
+                            <!-- <div class="col-md-3 no-padding">
+                                <button type="button" name="searchBtn" class="btn btn-bitbucket pull-right">{{ 'SEARCH'
+                                    | translate }}
+                                </button>
+                            </div> -->
+
+                        </div>
+
+                        <div class="box box-primary" style="float: left">
+                            <div class="box-header">
+                                <div class="box-title">
+
+                                </div>
+                            </div>
+                            <div class="box-body overflowTable">
+                                <form role="form">
+                                    <table datatable="ng" dt-options="repVM.dtOptions" class="table table-responsive" >
+                                        <thead>
+                                            <td>
+                                                {{ 'IMAGE' | translate }}
+                                            </td>
+                                            <td>
+                                                {{ 'NAME' | translate }}
+                                            </td>
+                                            <td>
+                                                {{ 'DESIGNATION' | translate }}
+                                            </td>
+                                            <td>
+                                                {{ 'EMAIL' | translate }}
+                                            </td>
+                                            <td>
+                                                {{ 'PHONE' | translate }}
+                                            </td>
+                                            <td>
+                                                {{ 'ACTIONS' | translate }}
+                                            </td>
+                                        </thead>
+                                        <tr
+                                            ng-repeat="rep in repVM.representativeList | filter:{name: repVM.searchValue}">
+                                            <td><img class="previewImg2" ng-src="/uploads/{{rep.image}}"></td>
+                                            <td>{{rep.name}}</td>
+                                            <td>{{rep.designation}}</td>
+                                            <td>{{rep.email}}</td>
+                                            <td>{{rep.phone}}</td>
+                                            <td>
+                                                <button title="Edit" data-ng-click="repVM.OpenEditPage(rep._id);">
+                                              <i class="fa fa-edit"></i></button>
+                                                |
+                                                <button title="Delete" data-ng-click="repVM.deleteRepresentative(rep._id);"><i
+                                                        class="fa fa-trash-o"></i></button>
+                                                        |
+
+                                                        <button  title="{{ rep.isActive ? 'Visible - Click to hide' : ' Hidden - Click to display'}}"  data-ng-click="repVM.ChangeRepresentativeStatus(rep._id);">
+                                                          <i ng-class="{'fa fa-eye':rep.isActive, 'fa fa-eye-slash':!rep.isActive}"   ></i></button>
+
+                                                        
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                            <div class="box-footer">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- HEADER -->
+
+        </div>
+    </div>
+</div>
+<script>
+    jQuery(function () {
+        jQuery('#edit').editable({ inlineMode: false, fullPage: true })
+    });
+
+</script>

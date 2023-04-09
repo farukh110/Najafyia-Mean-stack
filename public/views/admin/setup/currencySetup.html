@@ -1,0 +1,212 @@
+<div class="grop-page padding-cnt-no grop-full-width">
+    <div data-ng-controller="currencyController as currencyVM" data-ng-init="currencyVM.getCurrency()">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+
+
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Your Page Content Here -->
+                    <div class="row">
+                        <div class="col-md-8 col-xs-12 col-md-offset-1">
+                            <section class="content-header nopadding">
+                                <h1>
+                                    {{'CURRENCY RATE'| translate}}
+                                    <small></small>
+                                </h1>
+                            </section>
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <div class="box-title"> {{currencyVM.formTitle | translate}}</div>
+                                </div>
+                                <div class="box-body">
+                                    <form role="form" class="form-horizontal" enctype="multipart/form-data"
+                                        name="webSettingsForm" data-ng-submit="currencyVM.setCurrency();">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <!--<label>Currency:</label>-->
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+
+
+                                                            <div class="col-md-2">
+                                                                <label>Currency</label>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <select
+                                                                    data-ng-options="item as (item.code +' - ' + item.name) for item in currencyVM.allCurrencyList track by item.code"
+                                                                    class="form-control"
+                                                                    required
+                                                                    ng-model="currencyVM.selectedCurrency"
+                                                                    data-ng-change="currencyVM.getSelectedCurrencyData()">
+                                                                    <option value="">{{'PLEASE SELECT' | translate}}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-md-2">
+                                                                <label>Currency Code</label>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control"
+                                                                    data-ng-model="currencyVM.details.name"
+                                                                    disabled="true" placeholder=" {{'NAME'| translate}}"
+                                                                    required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </br>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+
+                                                            <div class="col-md-2">
+                                                                <label>Currency Rate</label>
+                                                            </div>
+                                                          
+                                                            <div class="col-md-4">
+                                                               
+                                                                <input type="number" step="any" class="form-control"
+                                                                    data-ng-model="currencyVM.details.rate"
+                                                                    placeholder=" {{'RATE'| translate}}" required>
+
+                                                            </div>
+
+                                                            <div class="col-md-2">
+                                                                <label>Currency Symbol</label>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control"
+                                                                    data-ng-model="currencyVM.details.symbol"
+                                                                    placeholder=" {{'SYMBOL'| translate}}"
+                                                                    disabled="true" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </br>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+
+                                                            <div class="col-md-2">
+                                                                <label>English Title</label>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control"
+                                                                    data-ng-model="currencyVM.details.translatedTitle.value.ENG"
+                                                                    placeholder=" {{'English_Title'| translate}}"
+                                                                    required>
+                                                            </div>
+
+                                                            <div class="col-md-2">
+                                                                <label>French Title</label>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control"
+                                                                    data-ng-model="currencyVM.details.translatedTitle.value.FRN"
+                                                                    placeholder=" {{'French_Title'| translate}}"
+                                                                    required>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </br>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+
+                                                            <div class="col-md-2">
+                                                                <label>Display Order</label>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control"
+                                                                    data-ng-model="currencyVM.details.displayOrder"
+                                                                    placeholder=" {{'Display_Order'| translate}}"
+                                                                    required>
+                                                            </div>
+
+                                                            <div class="col-md-2">
+                                                                <label>Arabic Title</label>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control"
+                                                                    data-ng-model="currencyVM.details.translatedTitle.value.ARB"
+                                                                    placeholder=" {{'Arabic_Title'| translate}}"
+                                                                    required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary"> {{
+                                                    currencyVM.submitButtonText | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="box box-primary">
+                                                <div class="box-header">
+                                                    <div class="box-title">
+                                                        {{'CURRENCY RATE DETAILS'| translate}}
+                                                    </div>
+                                                </div>
+                                                <div class="box-body">
+                                                    <form role="form">
+                                                        <table class="table table-responsive">
+                                                            <thead>
+                                                                <td>
+                                                                    {{'Display Order'| translate}}
+                                                                </td>
+                                                                <td>
+                                                                    {{'NAME'| translate}}
+                                                                </td>
+                                                                <td>
+                                                                    {{'RATE'| translate}}
+                                                                </td>
+                                                                <td>
+                                                                    {{'SYMBOL'| translate}}
+                                                                </td>
+                                                                <td>
+                                                                    {{'Actions'| translate}}
+                                                                </td>
+                                                            </thead>
+                                                            <tr ng-repeat="currency in currencyVM.currencyList ">
+                                                                <td>{{currency.displayOrder}}</td>
+                                                                <td>{{currency.name}}</td>
+                                                                <td>{{currency.rate}}</td>
+                                                                <td>{{currency.symbol}}</td>
+                                                          
+                                                                <td>
+                                                                    <button type="button" title="{{'EDIT'|translate}}" data-ng-click="currencyVM.editCurrency(currency);">
+                                                                  <i class="fa fa-edit"></i></button>
+                                                                    |
+                                                                     <button type="button" title="{{ currency.isActive ?   ( 'VISIBLE' | translate )  : ( 'HIDDEN' | translate  ) }}"  data-ng-click="currencyVM.changeCurrencyStatus(currency.name,currency.isActive);">
+                                                                              <i ng-class="{'fa fa-eye':currency.isActive, 'fa fa-eye-slash':!currency.isActive}"  ></i></button>
+                    
+                                                                            
+                                                                </td>
+                                                             
+                                                            </tr>
+                                                        </table>
+                                                    </form>
+                                                </div>
+                                                <div class="box-footer">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- HEADER -->
+
+        </div>
+
+    </div>
+</div>

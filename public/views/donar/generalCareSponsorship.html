@@ -1,0 +1,359 @@
+<style>
+    select {
+        text-align: center;
+        text-align-last: center;
+        /* webkit*/
+    }
+
+    option {
+        text-align: center;
+        padding: 0px 30px;
+        /* reset to left*/
+    }
+</style>
+<div data-ng-controller="donarDashboardController as donarVM"
+    data-ng-init="donarVM.getUserGeneralCareDonations(); donarVM.getTheCountforDonation()">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-xs-12 col-md-10 col-lg-10 ">
+        <!-- <div class="dashboardCounterBoxes ">
+            <div class="small-box boxhght boxPurple">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$
+                        {{donarVM.totalOfAutoRenewUSD + donarVM.totalOfAutoRenewDonationUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€
+                        {{donarVM.totalOfAutoRenewEUR + donarVM.totalOfAutoRenewDonationEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£
+                        {{donarVM.totalOfAutoRenewGBP + donarVM.totalOfAutoRenewDonationGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'RENEWALS' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="renewals"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="renewals"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxPink">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfRecurringUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfRecurringEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfRecurringGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'PERIODIC' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="donarRecurring"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="donarRecurring"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div> -->
+      <!--  <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxNavyBlue">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfOrphanUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfOrphanEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfOrphanGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'BASIC CARE' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="generalCareSponsorship"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="generalCareSponsorship"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxYellow">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfDazUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfDazEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfDazGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'DAZ SCHOOL' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="DAZSchool"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="DAZSchool"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>
+        <div class="dashboardCounterBoxes">
+            <div class="small-box boxhght boxOrange">
+                <div class="inner">
+                    <h2 style="font-size: 18px">$ {{donarVM.totalOfdonationUSD | number}}</h2>
+                    <h2 style="font-size: 18px">€ {{donarVM.totalOfdonationEUR | number}}</h2>
+                    <h2 style="font-size: 18px">£ {{donarVM.totalOfdonationGBP | number}}</h2>
+                    <h4 style="font-size:16px;margin: 5px 0;">{{ 'TOTAL' | translate}}</h4>
+                </div>
+                <a href="" ng-if="donarVM.userLanguage !== 'ARB'" ui-sref="donarDashboard"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="" ng-if="donarVM.userLanguage == 'ARB'" ui-sref="donarDashboard"
+                    class="small-box-footer">{{ 'MORE INFO' | translate}} <i class="fa fa-arrow-circle-left"></i></a>
+            </div>
+        </div>  -->
+    </div>
+    <div class="content-wrapper daralzahra" style="background:white;">
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-lg-10 ">
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header no-padding">
+                        <h1 style="text-align: center">
+                            {{ 'Orphan Basic Care' | translate}}
+                        </h1>
+                    </section>
+                    <br />
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 no-padding">
+                                <div class="col-md-10 col-xs-12 no-padding form-inline">
+                                    <h4>{{ 'Sponsored Orphan' | translate}}</h4>
+                                </div>
+                                <!-- <div class="col-md-1 col-xs-4 text-right">
+                            <h4>{{ 'YEAR' | translate}}:</h4>
+                        </div> -->
+                                <div class="col-md-2 col-xs-12 no-padding form-inline">
+                                    <div class="form-group socialButtons">
+                                        <label><b>{{ 'YEAR' | translate}}:</b></label>
+                                        <!-- <select class="form-control" data-ng-change="donarVM.recordsLimit=8"
+                                            ng-model="donarVM.searchValue" style="text-align: center">
+                                            <option value="">{{ 'YEAR' | translate}}</option>
+                                            <option style="text-align: center" value="2019">2019</option>
+                                            <option style="text-align: center" ng-selected="true" value="2018">2018
+                                            </option>
+                                            <option style="text-align: center" value="2017">2017</option>
+                                        </select> -->
+                                        <select id="year" class="form-control" ata-ng-change="donarVM.recordsLimit=8"
+                                            data-ng-model="donarVM.searchValue" style="text-align: center;">
+                                            <option value="" selected>{{'YEAR' | translate}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-xs-12 overflowTable no-padding">
+                                <table class="table table-hover"
+                                    ng-if="donarVM.orphanSponsorshipList.length && (donarVM.orphanSponsorshipList  | limitTo: donarVM.recordsLimit).length">
+                                    <!-- | filter : {startDate: donarVM.searchValue} -->
+                                    <thead style="background-color: #f0c84c;">
+                                        <td class="tablecntr">{{ 'SR NO' | translate}}</td>
+                                        <td class="tablecntr">{{ 'ORPHANNAME' | translate}}</td>
+                                        <td class="tablecntr">{{ 'FILE NO' | translate}}</td>
+                                        <td class="tablecntr">{{ 'DESCENT' | translate}}</td>
+                                        <td class="tablecntr">{{ 'STARTING DATE' | translate}}</td>
+                                        <td class="tablecntr">{{ 'END DATE' | translate}}</td>
+                                        <td class="tablecntr">{{ 'AMOUNT' | translate}}</td>
+                                        <td class="tablecntr">{{ 'STATUS' | translate}}</td>
+
+                                        <td class="tablecntr">{{ 'PROFILE' | translate}}</td>
+                                    </thead>
+                                    <tr
+                                        data-ng-repeat="item in donarVM.orphanSponsorshipList  | limitTo: donarVM.recordsLimit">
+                                        <!-- | filter : {startDate: donarVM.searchValue} -->
+
+                                        <td class="tablecntr">{{$index+1}}</td>
+                                        <td class="tablecntr">{{item.orphan.orphanName || '----'}}</td>
+                                        <td class="tablecntr">
+                                            {{item.orphan.fileNumber || item.orphan.orphanId || '----'}}</td>
+                                        <td class="tablecntr">{{(item.orphan.descent === 'Syed'?'Syed':'Non-Syed').toUpperCase() | translate}}</td>
+                                        <td class="tablecntr">{{item.startDate  | date:'dd-MM-yyyy' || '----'}}</td>
+                                        <td class="tablecntr">{{item.endDate  | date:'dd-MM-yyyy' || '----'}}</td>
+
+                                        <td ng-if="donarVM.userLanguage !== 'ARB'"
+                                            style="width:100px;text-align: left; position: relative;">
+                                            <span style="position: absolute; left: 0px;   bottom: 10px;">
+                                                <span
+                                                    style="margin-left:10px;margin-right: 5px;">{{item.donationDetails.donation.currency}}</span>
+                                                {{item.amount | number: 2}}
+                                            </span>
+                                        </td>
+                                        <td ng-if="donarVM.userLanguage === 'ARB'"
+                                            style="width:100px;text-align: left; position: relative;">
+                                            <span style="position: absolute; left: 0px;   bottom: 10px;">
+                                                {{item.amount | number: 2}}
+                                                <span
+                                                    style="margin-left:10px;margin-right: 5px;">{{item.donationDetails.donation.currency}}</span>
+                                            </span>
+                                        </td>
+                                        <td class="tablecntr">{{setStatus(item) | translate}}
+                                        </td>
+
+                                        <td class="tablecntr"><a href=""
+                                                data-ng-click="donarVM.getOrphanDetails(item.orphan);"
+                                                data-toggle="modal"
+                                                data-target="#orpahnDetailModal">{{ 'VIEW' | translate}}</a></td>
+                                    </tr>
+                                </table>
+                                <table class="table table-hover"
+                                    ng-if="!donarVM.orphanSponsorshipList || !(donarVM.orphanSponsorshipList  | filter : {startDate: donarVM.searchValue} | limitTo: donarVM.recordsLimit).length">
+                                    <thead style="background-color: #f0c84c;">
+                                        <td class="tablecntr">{{ 'SR NO' | translate}}</td>
+                                        <td class="tablecntr">{{ 'ORPHANNAME' | translate}}</td>
+                                        <td class="tablecntr">{{ 'FILE NO' | translate}}</td>
+                                        <td class="tablecntr">{{ 'DESCENT' | translate}}</td>
+                                        <td class="tablecntr">{{ 'STARTING DATE' | translate}}</td>
+                                        <td class="tablecntr">{{ 'END DATE' | translate}}</td>
+                                        <td class="tablecntr">{{ 'AMOUNT' | translate}}</td>
+
+                                        <td class="tablecntr">{{ 'PROFILE' | translate}}</td>
+                                    </thead>
+                                    <tr>
+                                        <td class="tablecntr"></td>
+                                        <!--<td>{{donation.donationdetails[0].program[0].programName || '&#45;&#45;&#45;&#45;'}}</td>-->
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr"></td>
+                                        <!--<td>{{donation.donationdetails[0].program[0].programName || '&#45;&#45;&#45;&#45;'}}</td>-->
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr"></td>
+                                        <!--<td>{{donation.donationdetails[0].program[0].programName || '&#45;&#45;&#45;&#45;'}}</td>-->
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr"></td>
+                                        <!--<td>{{donation.donationdetails[0].program[0].programName || '&#45;&#45;&#45;&#45;'}}</td>-->
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tablecntr"></td>
+                                        <!--<td>{{donation.donationdetails[0].program[0].programName || '&#45;&#45;&#45;&#45;'}}</td>-->
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                        <td>&nbsp;</td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                        <td class="tablecntr"></td>
+                                    </tr>
+                                </table>
+                                <a href="javascript:void(0)" class=" alignright loadmore"
+                                data-ng-if="donarVM.recordsLimit < donarVM.orphanSponsorshipList.length"
+                                data-ng-click="donarVM.loadMore();"><img src="images/3.gif" width="15"
+                                    height="15">&nbsp;&nbsp;{{ 'LOAD MORE' | translate}}</a>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Your Page Content Here -->
+            </section>
+            <!-- /.content -->
+            <!-- Modal -->
+            <div id="orpahnDetailModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-md">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <!-- <h4 class="modal-title"></h4>-->
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12 centered">
+                                    <img class="studentProfileImg"
+                                        ng-src="{{donarVM.orphanDetails.imageLink?'/uploads/'+donarVM.orphanDetails.imageLink:'/images/default-img.jpg'}}"
+                                        alt="orphanImage" />
+                                </div>
+                                <div class="col-md-12 col-xs-12 no-padding centered">
+                                    <h4>{{donarVM.orphanDetails.orphanName}}</h4>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-hover studentProfiletable">
+                                        <tr>
+                                            <td>{{ 'FILE NO' | translate}}:</td>
+                                            <td>{{donarVM.orphanDetails.fileNumber || donarVM.orphanDetails.orphanId ||  '--'}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ 'AGE' | translate}}:</td>
+                                            <td>{{age(donarVM.orphanDetails.dateOfBirth) || '--'}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ 'DESCENT' | translate}}:</td>
+                                            <td>{{(donarVM.orphanDetails.descent).toUpperCase() | translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ 'GENDER' | translate}}:</td>
+                                            <td>{{(donarVM.orphanDetails.gender && donarVM.orphanDetails.gender.toUpperCase()) | translate }}
+                                            </td>
+                                        </tr>
+                                        <!-- <tr>
+                                            <td>{{ 'Cause of Father Death' | translate}}:</td>
+                                            <td>{{donarVM.orphanDetails.fatherOccupation || '--'}}</td>
+                                        </tr> -->
+                                        <!-- <tr>
+                                        <td>{{ 'CONTACT DETAILS' | translate}}:</td>
+                                        <td>{{donarVM.orphanDetails.contactDetails || '--'}}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>{{ 'CATEGORY' | translate}}:</td>
+                                        <td>{{donarVM.orphanDetails.category || 'Orphan'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ 'CITY' | translate}}:</td>
+                                        <td>{{donarVM.orphanDetails.city || '--'}}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>Mother's Name:</td>
+                                        <td>{{donarVM.orphanDetails.motherName || '--'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Father Name:</td>
+                                        <td>{{donarVM.orphanDetails.fatherName || '--'}}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>Family Name:</td>
+                                        <td>{{donarVM.orphanDetails.familyName || '--'}}</td>
+                                    </tr> -->
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            let startYear = new Date().getFullYear()
+            for (y = startYear; y >= 2017; y--) {
+                var optn = document.createElement("OPTION");
+                optn.text = y;
+                optn.value = y;
+                document.getElementById('year').options.add(optn);
+                document.getElementById('year').style.color = 'black';
+            }
+        </script>
+        <!-- HEADER -->
+    </div>

@@ -1,0 +1,93 @@
+<div data-ng-controller="newsLetterController as newsVM" data-ng-init="newsVM.getNewsLetter()">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <!--<section class="content-header">-->
+
+
+            <!--</section>-->
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+                    <div class="col-md-10 col-xs-12 col-md-offset-1">
+                        <div class="col-md-8">
+                            <h4>{{ 'NEWSLETTER LIST' | translate }}</h4>
+                        </div>
+                        <div class="col-md-4 no-padding">
+
+                            <div class="col-md-12 no-padding">
+                                <input type="text" class="form-control pull-right" data-ng-model="newsVM.searchValue"
+                                    placeholder="{{ 'SEARCH BY NAME' | translate }}" />
+                            </div>
+                            <!-- <div class="col-md-3 no-padding">
+                                <button type="button" name="searchBtn" class="btn btn-bitbucket pull-right">{{ 'SEARCH' | translate }}</button>
+                            </div> -->
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-10 col-xs-12 col-md-offset-1">
+                        <div class="box box-primary">
+                            <div class="col-md-12 ">
+                                <div class="form-group">
+                                    <label class="control-label">{{'ADD CONTENT'|translate}}</label>
+                                    <div id="editor0" aria-placeholder="Write">
+                                        <div id='newsLetterContent' name="newsLetterContent">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-body overflowTable">
+                                <form role="form">
+                                    <table class="table table-responsive">
+                                        <thead>
+                                            <td>
+                                                {{ 'S NO' | translate }}
+                                            </td>
+                                            <td>
+                                                {{ 'NAME' | translate }}
+                                            </td>
+                                            <td>
+                                                {{ 'EMAIL' | translate }}
+                                            </td>
+                                            <td>
+                                                {{ 'COUNTRY' | translate }}
+                                            </td>
+                                            <td>
+                                                {{ 'LANGUAGE' | translate }}
+                                            </td>
+                                            <td>
+                                                {{ 'SUBSCRIBE AT' | translate }}
+                                            </td>
+                                        </thead>
+                                        <tr class="newsletter-css"
+                                            ng-repeat="getNewsLetter in newsVM.newsletterList | filter: newsVM.searchValue">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{getNewsLetter.firstName}} {{getNewsLetter.lastName}}</td>
+                                            <td>{{getNewsLetter.email}}</td>
+                                            <td>{{getNewsLetter.country}}</td>
+                                            <td>{{getNewsLetter.language}}</td>
+                                            <td>{{getNewsLetter.created | date:'dd-MM-yyyy'}}</td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                            <div class="box-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<script>
+    jQuery(function () {
+
+        jQuery('#newsLetterContent').editable({ inlineMode: false, fullPage: true });
+    });
+</script>

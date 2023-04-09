@@ -1,0 +1,81 @@
+<div data-ng-controller="donarDashboardController as donarVM"
+     data-ng-init="donarVM.getStudentDetails()">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="background:white;">
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    {{donarVM.studentDetails.studentName}}
+                </h1>
+            </section>
+
+            <br/>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-hover">
+                            <thead>
+                            <td> {{'Sr.' |translate}}</td>
+                            <td>Admission Number</td>
+                            <td>Admission Date</td>
+                            <td>Student Name</td>
+                            <td>Syed</td>
+                            <td>Profile</td>
+                            <td>Results</td>
+                            <td>Fee Payments</td>
+                            <td>Medical Info.</td>
+                            </thead>
+                            <tr>
+                                <td>{{$index+1}}</td>
+                                <td>{{donarVM.studentDetails.fileNumber || '----'}}</td>
+                                <td>{{donarVM.studentDetails.admissionDate || '----'}}</td>
+                                <td>{{donarVM.studentDetails.studentName || '----'}}</td>
+                                <td>{{(donarVM.studentDetails.descent).toUpperCase() | translate}}</td>
+                                <td><a href=""> <a class="" href="" data-toggle="modal"
+                                                   data-target="#studentDetailModal"><span>View</span></a></a></td>
+                                <td><a href="">View</a></td>
+                                <td><a href="">View</a></td>
+                                <td><a href="">View</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Your Page Content Here -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- HEADER -->
+
+
+    <!-- Modal -->
+    <div id="studentDetailModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Subscribe for Newsletter</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img class="userProfileImage"
+                                 ng-src="/images/default-img.jpg"
+                                 alt=""/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Admission Date</div>
+                        <div class="col-md-8">{{donarVM.studentDetails.admissionDate}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en" data-ng-app="mainApp">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-compatible" content="IE-edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="viewport" content="width=device-width, user-scalable=no">
+   <meta name="msapplication-TileColor" content="">
+   <meta name="theme-color" content="">
+   <base href="/">
+   <link rel="icon" href="images/alNajafiya-16x16.png" type="image/x-icon" />
+   <!-- <title>Al-Najafiya </title> -->
+   <link rel='dns-prefetch' href='https://fonts.googleapis.com/' />
+   <link rel='dns-prefetch' href='https://s.w.org/' />
+   <!-- theme files -->
+   <script>
+      dataLayer = [];
+   </script>
+   <!-- Google Tag Manager -->
+   <!--GoogleTagManagerCode-->
+   <!-- End Google Tag Manager -->
+   <script>
+      var forceSSL = function () {
+         if (window.location.protocol !== 'https:' && window.location.host.indexOf("najafyia.org") > -1) {
+            window.location.href = window.location.href.replace('http', 'https');//redirect to ssl URL only for LIVE site
+         }
+
+      };
+      forceSSL();
+   </script>
+   <!-- JQuery -->
+   <script src="/libs/jquery/jquery.min.js"></script>
+   <link rel='stylesheet' href='assets/css/jquery.mmenu.css' type='text/css' media='all' />
+   <script type='text/javascript' src='js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+   <script type='text/javascript' src='js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+   <script type='text/javascript'
+      src='plugins/revslider/public/assets/js/jquery.themepunch.tools.min035f.js?ver=5.4.6.2'></script>
+   <script type='text/javascript'
+      src='plugins/revslider/public/assets/js/jquery.themepunch.revolution.min035f.js?ver=5.4.6.2'></script>
+   <link rel='stylesheet' href='assets/css/jquery-ui.css' type='text/css' media='all' />
+   <script type='text/javascript' src='assets/js/jquery.validate.min8162.js?ver=1.9.0'></script>
+   <script src="plugins/input-mask/jquery.inputmask.js"></script>
+   <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+   <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+   <script src="/assets/js/jquery.swipebox.js" type="text/javascript"></script>
+   <script type='text/javascript' src='js/jquery-ui.js'></script>
+   <script type="text/javascript" src="/libs/jquery.base64.js"></script>
+   <script src="assets/js/jquery.mmenu.js" type="text/javascript"></script>
+   <!-- DatTable  -->
+   <script src="libs/Datatable/jquery.dataTables.min.js"></script>
+   <link rel="stylesheet" href="libs/Datatable/bootstrap3.3.7.min.css">
+   <link rel="stylesheet" href="libs/Datatable/angular-datatables.min.css">
+   <!-- DatTable  -->
+   <link rel='stylesheet' id='rs-plugin-settings-css'
+      href='plugins/revslider/public/assets/css/settings035f.css?ver=5.4.6.2' type='text/css' media='all' />
+   <link rel='stylesheet' id='wp-pagenavi-css' href='plugins/wp-pagenavi/pagenavi-css44fd.css?ver=2.70' type='text/css'
+      media='all' />
+   <link rel='stylesheet' id='font-roboto-css'
+      href='https://fonts.googleapis.com/css?family=Roboto%3A300%2C400%2C500%2C700&amp;ver=3.3.7' type='text/css'
+      media='all' />
+   <link rel='stylesheet' id='font-dosis-css'
+      href='https://fonts.googleapis.com/css?family=Dosis%3A400%2C500%2C600&amp;ver=3.3.7' type='text/css'
+      media='all' />
+   <link rel='stylesheet' id='font-arvo-css' href='https://fonts.googleapis.com/css?family=Arvo&amp;ver=3.3.7'
+      type='text/css' media='all' />
+   <link rel='stylesheet' id='ui-carousel' href='libs/angular-ui-carousel/fonts/ui-carousel.svg' type='text/css'
+      media='all' />
+   <link rel='stylesheet' id='font-awesome-css'
+      href='plugins/js_composer/assets/lib/bower/font-awesome/css/font-awesome.min7661.css?ver=5.4.2' type='text/css'
+      media='all' />
+   <link rel='stylesheet' id='owl-carousel-css' href='assets/css/owl.carousel.min7793.css?ver=2.4' type='text/css'
+      media='all' />
+   <link rel='stylesheet' id='animate-css' href='assets/css/animate7793.css?ver=2.4' type='text/css' media='all' />
+   <link rel='stylesheet' id='flipclock-css' href='assets/css/flipclock7793.css?ver=2.4' type='text/css' media='all' />
+   <link rel='stylesheet' id='slimmenu-css' href='assets/css/slimmenu.min7793.css?ver=2.4' type='text/css'
+      media='all' />
+   <link rel='stylesheet' id='progressbar-css' href='assets/css/progressbar7793.css?ver=2.4' type='text/css'
+      media='all' />
+   <link rel='stylesheet' id='bootstrap-css' href='assets/css/bootstrap.min7433.css?ver=3.3.7' type='text/css'
+      media='all' />
+   <link rel='stylesheet' id='groppe-style-css' href='assets/css/styles4963.css?ver=1.1' type='text/css' media='all' />
+   <link rel='stylesheet' id='groppe-colors-css' href='assets/css/colors4963.css?ver=1.1' type='text/css' media='all' />
+   <link rel='stylesheet' id='groppe-responsive-css' href='assets/css/responsive4963.css?ver=1.1' type='text/css'
+      media='all' />
+   <link rel='stylesheet' id='groppe-google-fonts-css'
+      href='https://fonts.googleapis.com/css?family=Arvo%3A400%7CRoboto%3A400%7CDosis%3A400&amp;subset=latin'
+      type='text/css' media='all' />
+   <link rel='stylesheet' id='js_composer_front-css'
+      href='plugins/js_composer/assets/css/js_composer.min7661.css?ver=5.4.2' type='text/css' media='all' />
+   <!-- <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/droid-arabic-kufi" type="text/css"/> -->
+   <link rel='stylesheet' href='/assets/css/swipebox.css' type='text/css' media='all' />
+   <link rel='stylesheet' href='assets/css/demo.css' type='text/css' media='all' />
+   <link rel='stylesheet' href='/libs/angular-ui-carousel/ui-carousel.min.css' type='text/css' media='all' />
+   <link rel='stylesheet' id='groppe-responsive-css' href='index_css.css' type='text/css' media='all' />
+   <link href="https://fonts.googleapis.com/css?family=Dosis:600%7CRoboto:700" rel="stylesheet" property="stylesheet"
+      type="text/css" media="all">
+   <!-- <script>
+         window.fbAsyncInit = function () {
+             FB.init({
+                 appId: '422872528412709',
+                 autoLogAppEvents: true,
+                 xfbml: true,
+                 version: 'v2.10'
+             });
+             FB.AppEvents.logPageView();
+         };
+         
+         (function (d, s, id) {
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) { return; }
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+      </script> -->
+   <!--ourscript-->
+   <script type="text/javascript" src="js/revolution.extension.slideanims.min.js"></script>
+   <script type="text/javascript" src="js/revolution.extension.layeranimation.min.js"></script>
+   <script type="text/javascript" src="js/revolution.extension.navigation.min.js"></script>
+   <script type='text/javascript' src='assets/js/vendor/modernizr-2.8.3.min7bcd.js?ver=4.8.3'></script>
+   <script type='text/javascript' src='assets/js/vendor/respond.min7bcd.js?ver=4.8.3'></script>
+   <script type='text/javascript' src='assets/js/vendor/flexibility7bcd.js?ver=4.8.3'></script>
+   <link rel='stylesheet' href='/libs/pieCharts/angular-chart.css' type='text/css' media='all' />
+   <script type="text/javascript">
+      var lang = localStorage.getItem('lang') || "ENG";
+      lang = lang.toUpperCase();
+      if (lang === "ARB") {
+         document.write("<link rel='stylesheet' href='assets/css/customCSS_AR.css' type='text/css' media='all'/>");
+         document.write("<link rel='stylesheet' id='groppe-default-style-css' href='style7bcd_AR.css?ver=4.8.3' type='text/css' media='all'/>");
+      } else if (lang === "FRN") {
+         document.write("<link rel='stylesheet' href='assets/css/customCSS_FR.css' type='text/css' media='all'/>");
+         document.write("<link rel='stylesheet' id='groppe-default-style-css' href='style7bcd_FR.css?ver=4.8.3' type='text/css' media='all'/>");
+      } else {
+         document.write("<link rel='stylesheet' href='assets/css/customCSS.css' type='text/css' media='all'/>");
+         document.write("<link rel='stylesheet' id='groppe-default-style-css' href='style7bcd.css?ver=4.8.3' type='text/css' media='all'/>");
+      }
+   </script>
+   <link rel='stylesheet' href='assets/css/customResponsiveCSS.css' type='text/css' media='all' />
+
+   <meta name="generator" content="WordPress 4.8.3" />
+   <meta name="generator" content="WooCommerce 3.2.1" />
+   <!-- Facebook meta tags -->
+   <meta property="og:url" content="https://najafyia.org" />
+   <meta property="og:type" content="website" />
+   <meta property="og:title" content="Najafyia Foundation" />
+   <meta property="og:image" content="https://najafyia.org/images/logo.png">
+   <meta property="og:description"
+      content="Najafyia Foundation is a Najaf based Non Governmental Organisation founded in 2003 under the auspices of Grand Ayatollah Sheikh Bashir Al-Najafi (may Allah prolong his life) with the mission to play a significant role in the development of Shia Muslim communities in Iraq and around the world. The foundation has achieved this through creating and supporting initiatives for: religious and secular education, health care, economic development, relief and emergency aid." />
+   <link rel="canonical" href="index.html" />
+   <script type="text/javascript">
+      function setREVStartSize(e) {
+         try {
+            var i = jQuery(window).width(), t = 9999, r = 0, n = 0, l = 0, f = 0, s = 0, h = 0;
+            if (e.responsiveLevels && (jQuery.each(e.responsiveLevels, function (e, f) {
+               f > i && (t = r = f, l = e), i > f && f > r && (r = f, n = e)
+            }), t > r && (l = n)), f = e.gridheight[l] || e.gridheight[0] || e.gridheight, s = e.gridwidth[l] || e.gridwidth[0] || e.gridwidth, h = i / s, h = h > 1 ? 1 : h, f = Math.round(h * f), "fullscreen" == e.sliderLayout) {
+               var u = (e.c.width(), jQuery(window).height());
+               if (void 0 != e.fullScreenOffsetContainer) {
+                  var c = e.fullScreenOffsetContainer.split(",");
+                  if (c) jQuery.each(c, function (e, i) {
+                     u = jQuery(i).length > 0 ? u - jQuery(i).outerHeight(!0) : u
+                  }), e.fullScreenOffset.split("%").length > 1 && void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 ? u -= jQuery(window).height() * parseInt(e.fullScreenOffset, 0) / 100 : void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 && (u -= parseInt(e.fullScreenOffset, 0))
+               }
+               f = u
+            } else void 0 != e.minHeight && f < e.minHeight && (f = e.minHeight);
+            e.c.closest(".rev_slider_wrapper").css({ height: f })
+         } catch (d) {
+         }
+      };
+   </script>
+   <meta name="generator" content="Give v1.8.14" />
+   <meta name="tec-api-version" content="v1">
+   <!-- other plugins -->
+   <link href='/libs/froala-editor/css/froala_editor.min.css' rel='stylesheet' type='text/css' />
+   <link href='/libs/froala-editor/css/froala_style.min.css' rel='stylesheet' type='text/css' />
+   <link href="/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css">
+   <script src="/libs/sweetalert2/dist/sweetalert2.all.min.js"></script>
+   <link href="/plugins/toastr/toastr.css" rel="stylesheet" type="text/css">
+   <link href="/libs/loading-bar/loading-bar-style.css" rel="stylesheet" type="text/css">
+   <link rel="stylesheet" href="libs/social-share-kit/dist/css/social-share-kit.css" type="text/css">
+   <link rel="stylesheet" type="text/css" href="/libs/dt-hamburger/hamburger-menu.css" />
+</head>
+
+<body
+   class="page-template-default page page-id-275 give-test-mode give-page tribe-no-js wpb-js-composer js-comp-ver-5.4.2 vc_responsive calrel ">
+   <!-- Google Tag Manager (noscript) -->
+   <!--GoogleTagManager(noscript)ToReplace-->
+   <!-- End Google Tag Manager (noscript) -->
+   <div class="global-wrap" ui-i18n="{{userConfig.lang}}" data-ng-controller="menuController">
+      <div id="grop_page">
+         <div ui-view="header"></div>
+         <div class="pageHeadingAreaImg donarProfileBanner"
+            ng-style="isDonarProfilePage?'display:block !important':'display:hidden'" ng-cloak>
+            <h1>{{'DONOR PROFILE PAGE' | translate}}</h1>
+         </div>
+         <div ui-view="sidebar" class=""></div>
+         <div ui-view="mainContent" class=""></div>
+         <div ui-view="footer" class="footer" style="margin-top: 20px; width: 100%; float: left"></div>
+      </div>
+   </div>
+   <!--scripts start-->
+   <script type='text/javascript' src='assets/js/bootstrap.min7433.js?ver=3.3.7'></script>
+   <script type='text/javascript' src='assets/js/plugins4963.js?ver=1.1'></script>
+   <script type='text/javascript' src='assets/js/scripts4963.js?ver=1.1'></script>
+   <!--theme scripts -->
+   <script type='text/javascript' src='js/wp-embed.min7bcd.js?ver=4.8.3'></script>
+   <script type='text/javascript'
+      src='plugins/js_composer/assets/js/dist/js_composer_front.min7661.js?ver=5.4.2'></script>
+   <!--cutom scripts starts -->
+   <script src="/libs/angular/angular.js"></script>
+   <script src="/libs/angular-sanitize/angular-sanitize.js"></script>
+   <script src="libs/angular-filter.min.js"></script>
+   <script src="libs/angular-read-more/readmore.min.js"></script>
+   <script src="libs/angular-file-upload/angular-file-upload.min.js"></script>
+   <script src="libs/angular-file-upload/angular-file-upload.js"></script>
+   <script src="libs/papa-parse.min.js"></script>
+   <script src="/libs/dropit.js"></script>
+   <script src="/libs/angular-translate/angular-translate.min.js"></script>
+   <script src="/libs/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+   <script type='text/javascript' src="assets/js/customJS.js"></script>
+   <script src="/libs/angular-ui-router/release/angular-ui-router.js"></script>
+   <script src="/libs/angular-password/angular-password.js"></script>
+   <script src="/libs/angular-validation-match/src/angular-validation-match.js"></script>
+   <script src="/libs/ng-idle/angular-idle.js"></script>
+   <script src="/libs/lodash/dist/lodash.js"></script>
+   <script src="/js/app.js"></script>
+   <script src="/js/appRoutes.js"></script>
+   <script src="/plugins/datepicker/bootstrap-datepicker.js"></script>
+   <script src="https://js.stripe.com/v3/"></script>
+   <script src="/js/filters/filters.js"></script>
+   <script src="/libs/loading-bar/loading-bar.js"></script>
+   <script src="/libs/pieCharts/Chart.min.js"></script>
+   <script src="/libs/pieCharts/angular-chart.min.js"></script>
+   <script src="/libs/angular-ui-carousel/ui-carousel.min.js"></script>
+   <!-- Hamburger -->
+   <script src="/libs/dt-hamburger/hamburger-menu.js"></script>
+   <script src="/libs/angular-ui-carousel/ui-carousel.min.js"></script>
+   <script src="/plugins/toastr/toastr.js"></script>
+   <!--  DataTable -->
+   <script src="libs/Datatable/angular-datatables.min.js"></script>
+   <!--  DataTable -->
+   <!--Controllers-->
+   <script src="/js/services/sessionService.js"></script>
+   <script src="/js/services/logService.js"></script>
+   <script src="/js/services/programService.js"></script>
+   <script src="/js/services/donationService.js"></script>
+   <script src="/js/services/metaService.js"></script>
+   <script src="/js/controllers/testController.js"></script>
+   <script src="/js/services/testService.js"></script>
+   <script src="/js/services/paymentService.js"></script>
+   <script src="/js/controllers/menuController.js"></script>
+   <script src="/js/services/menuService.js"></script>
+   <script src="/js/services/countryService.js"></script>
+   <script src="/js/controllers/cartController.js"></script>
+   <script src="./js/controllers/paymentCheckoutController.js"></script>
+   <script src="./js/controllers/renewPaymentController.js"></script>
+   <script src="/js/controllers/stripeController.js"></script>
+   <script src="/js/controllers/setupController.js"></script>
+   <script src="/js/services/cartService.js"></script>
+   <script src="/js/controllers/loginController.js"></script>
+   <script src="/js/controllers/pagecontroller.js"></script>
+   <script src="/js/controllers/paymentController.js"></script>
+   <script src="/js/services/pageservice.js"></script>
+   <script src="/js/controllers/postController.js"></script>
+   <script src="/js/services/postService.js"></script>
+   <script src="/js/services/multipartForm.js"></script>
+   <script src="/js/directives/checkList.js"></script>
+   <script src="/js/directives/fileModel.js"></script>
+   <script src="/js/controllers/userController.js"></script>
+   <script src="/js/services/userService.js"></script>
+   <script src="/js/services/evenLogsService.js"></script>
+   <script src="/js/controllers/programController.js"></script>
+   <script src="/js/controllers/currencyController.js"></script>
+   <script src="/js/services/currencyService.js"></script>
+   <script src="/js/controllers/notificationController.js"></script>
+   <script src="/js/controllers/projectController.js"></script>
+   <script src="/js/controllers/receiptController.js"></script>
+   <script src="/js/controllers/religiousPaymentController.js"></script>
+   <script src="/js/controllers/sadaqaController.js"></script>
+   <script src="/js/services/sadaqaService.js"></script>
+   <script src="/js/controllers/orphanController.js"></script>
+   <script src="/js/services/orphanService.js"></script>
+   <script src="/js/controllers/generalCareController.js"></script>
+   <script src="/js/services/generalCareService.js"></script>
+   <script src="/js/controllers/occasionController.js"></script>
+   <script src="/js/services/occasionService.js"></script>
+   <script src="/js/controllers/duaController.js"></script>
+   <script src="/js/services/duaService.js"></script>
+   <script src="/js/controllers/studentProfileController.js"></script>
+   <script src="/js/services/studentProfileService.js"></script>
+   <script src="/js/controllers/darAlZahraController.js"></script>
+   <script src="/js/services/utilService.js"></script>
+   <script src="/js/services/darAlZahraService.js"></script>
+   <script src="/js/services/receiptService.js"></script>
+   <script src="/js/services/projectService.js"></script>
+   <script src="/js/services/religiousPaymentService.js"></script>
+   <script src="/js/services/programTypeService.js"></script>
+   <script src="/js/services/donationProcessService.js"></script>
+   <script src="/js/services/programSubCategoryService.js"></script>
+   <script src="/js/services/loginService.js"></script>
+   <script src="/js/controllers/pageContentController.js"></script>
+   <script src="/js/controllers/socialLoginController.js"></script>
+   <script src="/js/services/pageContentService.js"></script>
+   <script src="/js/controllers/mainController.js"></script>
+   <script src="/js/controllers/dynamicPageContentController.js"></script>
+   <script src="/js/services/dynamicPageContentService.js"></script>
+   <script src="/js/controllers/newsLetterController.js"></script>
+   <script src="/js/services/newsLetterService.js"></script>
+   <script src="/js/controllers/representativeController.js"></script>
+   <script src="/js/services/representativeService.js"></script>
+   <script src="/js/controllers/webSettingsController.js"></script>
+   <script src="/js/services/webSettingsService.js"></script>
+   <script src="/js/controllers/campaignController.js"></script>
+   <script src="/js/services/campaignService.js"></script>
+   <script src="/js/controllers/donarController.js"></script>
+   <script src="/js/services/donarService.js"></script>
+   <script src="/js/controllers/donarDashboardController.js"></script>
+   <script src="/js/controllers/donorProgramController.js"></script>
+   <script src="/js/services/donarDashboardService.js"></script>
+   <script src="/js/services/donorProgramService.js"></script>
+   <script src="/js/controllers/suggestedDonationsController.js"></script>
+   <script src="/js/services/suggestedDonationsService.js"></script>
+   <script src="/js/controllers/ziyaratController.js"></script>
+   <script src="/js/services/ziyaratService.js"></script>
+   <script src="/js/services/smsAPIService.js"></script>
+   <script src="/js/controllers/reportsController.js"></script>
+   <script src="/js/services/reportsService.js"></script>
+   <script src="/js/controllers/manageOrphanController.js"></script>
+   <script src="/js/services/manageOrphanService.js"></script>
+   <script src="/js/controllers/manageStudentController.js"></script>
+   <script src="/js/services/manageStudentService.js"></script>
+   <script src="/js/controllers/intermediatepageController.js"></script>
+
+   <!-- Porjection Report Controller -->
+   <script src="/js/controllers/projectionReportController.js"></script>
+   <!-- Translation -->
+   <script src="/js/controllers/translateController.js"></script>
+   <script src="/js/services/translateService.js"></script>
+   <script src="views/components/donation-calculator/donation-calculator-component.js"></script>
+   <script src="views/components/donation-calculator/orphan-selection-modal-component.js"></script>
+   <script src="views/components/donation-calculator/sadaqah-component.js"></script>
+   <script src="views/components/card-component/sadaqah-card-component.js"></script>
+   <script src="views/components/card-component/orphan-sponsorship-card-component.js"></script>
+   <!-- Froala editor script -->
+   <script src="/libs/froala-editor/js/froala_editor.min.js"></script>
+   <script src="/libs/froala-editor/js/plugins/tables.min.js"></script>
+   <script src="/libs/froala-editor/js/plugins/urls.min.js"></script>
+   <script src="/libs/froala-editor/js/plugins/lists.min.js"></script>
+   <script src="/libs/froala-editor/js/plugins/colors.min.js"></script>
+   <script src="/libs/froala-editor/js/plugins/font_family.min.js"></script>
+   <script src="/libs/froala-editor/js/plugins/font_size.min.js"></script>
+   <script src="/libs/froala-editor/js/plugins/block_styles.min.js"></script>
+   <script src="/libs/froala-editor/js/plugins/media_manager.min.js"></script>
+   <script src="/libs/froala-editor/js/plugins/video.min.js"></script>
+   <script src="/libs/froala-editor/js/plugins/char_counter.min.js"></script>
+   <script src="/libs/froala-editor/js/plugins/entities.min.js"></script>
+   <!-- export report library -->
+   <script type="text/javascript" src="/libs/tableExport.js"></script>
+   <script type="text/javascript" src="/libs/html2canvas.js"></script>
+   <script type="text/javascript" src="/libs/jspdf/jspdf.debug.js"></script>
+   <script type="text/javascript" src="/libs/jspdf/jspdf.plugin.autotable.js"></script>
+   <script type="text/javascript" src="libs/social-share-kit/dist/js/social-share-kit.js"></script>
+   <link href="libs/noty/lib/noty.css" rel="stylesheet">
+   <script src="libs/noty/lib/noty.js" type="text/javascript"></script>
+</body>
+<script>
+   jQuery(document).ready(function () {
+      var lang = localStorage.getItem('lang');
+      jQuery("#grop_page").css("overflow", "hidden");
+      if (lang === 'ARB') {
+         jQuery("#grop_page").css("direction", "rtl");
+      }
+      else {
+         jQuery("#grop_page").css("direction", "ltr");
+      }
+   })
+   window.onload = function () {
+      jQuery('nav#menu').mmenu();
+      jQuery('.swipebox').swipebox();
+
+      /* Video */
+      jQuery('.swipebox-video').swipebox();
+      jQuery('.swipebox').swipebox({
+         useCSS: true, // false will force the use of jQuery for animations
+         useSVG: true, // false to force the use of png for buttons
+         initialIndexOnArray: 0, // which image index to init when a array is passed
+         hideCloseButtonOnMobile: false, // true will hide the close button on mobile devices
+         removeBarsOnMobile: true, // false will show top bar on mobile devices
+         hideBarsDelay: 3000, // delay before hiding bars on desktop
+         videoMaxWidth: 1140, // videos max width
+         beforeOpen: function () { }, // called before opening
+         afterOpen: null, // called after opening
+         afterClose: function () { }, // called after closing
+         loopAtEnd: false // true will return to the first image after the last image is reached
+      });
+
+      injectPaddingForAmountFields();
+
+
+   }
+   function addStyle(styleString) {
+      const style = document.createElement('style');
+      style.textContent = styleString;
+      document.head.append(style);
+   }
+   function injectPaddingForAmountFields(){
+      let curr =JSON.parse(sessionStorage.getItem('currency'));
+      let len = curr.symbol ? curr.symbol.length : 0;
+      let spaceValue;
+      if (len > 0)
+         spaceValue = 20 + (len * 5);
+      else
+         spaceValue = 25;
+      addStyle(`
+      .input-icon > input {
+    padding-left: ${spaceValue}px;
+    padding-right: ${spaceValue}px;
+   }`);
+
+   }
+
+</script>
+
+</html>

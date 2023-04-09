@@ -1,0 +1,111 @@
+<div data-ng-controller="occasionController as occasionVM" data-ng-init="occasionVM.getOccasions();">
+    <!-- Content Wrapper. Contains project content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (project header) -->
+            <section class="content-header">
+
+
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your project Content Here -->
+                <div class="row">
+                    <div class="col-md-10 col-xs-12 col-md-offset-1">
+                        <div class="col-md-8 nopadding">
+                            <h4>{{'OCCASION'| translate}}</h4>
+                        </div>
+                        <div class="col-md-4 no-padding">
+
+                            <!-- <div class="col-md-12 no-padding">
+                                <input type="text" class="form-control pull-right"
+                                    data-ng-model="occasionVM.searchValue"
+                                    placeholder="{{'SEARCH BY NAME'| translate}}" />
+                            </div> -->
+                            <!-- <div class="col-md-3 no-padding">
+                            <button type="button" name="searchBtn" class="btn btn-bitbucket pull-right">{{'SEARCH'| translate}}</button>
+                        </div> -->
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-10 col-xs-12 col-md-offset-1">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="box-title">
+
+                                </div>
+                            </div>
+                            <div class="box-body overflowTable">
+                                <form role="form">
+                                    <table class="table table-responsive">
+                                        <thead>
+                                            <td>
+                                                {{'OCCASION NO.'|  translate}}
+                                            </td>
+                                            <td>
+                                                {{'OCCASION NAME'| translate}}
+                                                <input type="text" class="form-control pull-right"
+                                                data-ng-model="occasionVM.searchValue"
+                                                placeholder="{{'SEARCH BY NAME'| translate}}" />
+                                            </td>
+                                            <td>
+                                                {{'SUB CATEGORY'| translate}}
+                                                <input type="text" class="form-control pull-right"
+                                                data-ng-model="occasionVM.searchSubCategory"
+                                                placeholder="{{'SEARCH BY SUPPORT TYPE'| translate}}" />
+                                            </td>
+
+                                            <td>
+                                                {{'CREATED DATE'| translate}}
+                                            </td>
+                                            <td>
+                                                {{'STATUS'| translate}}
+                                            </td>
+                                            <td>
+                                                {{'ACTIONS'| translate}}
+                                            </td>
+                                        </thead>
+                                        <tr
+                                            ng-repeat="occasion in occasionVM.occasions 
+                                            | filter : {occasionName : occasionVM.searchValue} 
+                                            | filter : {programSubCategory : { programSubCategoryName :occasionVM.searchSubCategory}}
+                                            ">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{occasion.occasionName}}</td>
+                                            <td>{{occasion.programSubCategory[0].programSubCategoryName}}</td>
+                                            <td>{{occasion.created | date:'MM/dd/yyyy'}}</td>
+                                            <td>
+                                                <p class="{{occasion.isActive==true?'bg-success':'btn-danger'}}">
+                                                    {{occasion.isActive==true?'Active':'Inactive' }}</p>
+                                            </td>
+                                            <td> <a href="/#/admin/updateOccasion?occasionid={{occasion._id}}"><i
+                                                        class="fa fa-edit">{{'EDIT'| translate}}</i></a> |
+                                                <button
+                                                    class="{{occasion.isActive==true?'btn btn-danger':'btn btn-success'}}"
+                                                    data-ng-click="occasionVM.deleteOccasion(occasion._id,occasion.isActive);">{{occasion.isActive==true?'Deactivate':'Activate'}}</button>
+                                            </td>
+                                    </table>
+                                </form>
+                            </div>
+                            <div class="box-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- HEADER -->
+
+    </div>
+</div>
+<script>
+    jQuery(function () {
+        jQuery('#edit').editable({ inlineMode: false, fullproject: true })
+    });
+
+</script>

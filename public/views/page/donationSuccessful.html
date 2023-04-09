@@ -1,0 +1,29 @@
+<div class="grop-page container padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="cartController as cartVM" data-ng-init="cartVM.donationSuccessful();">
+            
+            <div class="row">
+
+                <div class="col-md-2 col-xs-12">
+
+                </div>
+
+                <div class="col-md-8 col-xs-12">
+                    <div id="pageContent">
+                        <div class="col-md-12 col-xs-12" style="text-align:center; text-transform: capitalize">
+                            <img src="images/icons/tick.png"/>
+                            <h1 style="text-align:center; text-transform: capitalize">{{'THANK YOU' | translate}} </h1>
+                            <h3 style="text-align:center; text-transform: initial;" ng-bind-html="cartVM.message"> </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-xs-12">
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

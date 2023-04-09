@@ -1,0 +1,301 @@
+<div class="grop-page padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="cartController as cartVM"
+            data-ng-init="cartVM.getCartDetail();cartVM.getCountryCode(); cartVM.getCountries();cartVM.getDonar();">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="pageHeadingAreaImg" style="background-image:url(/images/titleBannerImage1.png)">
+                            <h1>{{ 'PAYMENT INFO' | translate }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-content-area">
+                <div class="container">
+                    <div class=" centered ">
+                        <div class="col-md-6 checkoutArea" style="display: inline-block">
+                            <!-- without login-->
+                            <div class="heading">
+                                <h3><img src="images/creditcard.png">{{ 'CREDIT CARD' | translate}} </h3>
+                            </div>
+
+                            <div id="checkout">
+                                <form role="form" id="payment-form" ng-submit="cartVM.RegisterUserAndPay()"
+                                    class="form-horizantol">
+                                    <div class="form-group">
+                                        <label>{{ 'EMAIL' | translate }}<span class="required">*</span></label>
+                                        <div class="input-group">
+                                            <input id="email" class="form-control" type="email" ng-model="cartVM.donarEmail"
+                                                ng-disabled="userEmail" maxlength="200" placeholder=""
+                                                autocomplete="off" required />
+                                            <div class="input-group-addon" style="padding: 0px;width: 7%;">
+                                                <!-- <span class="glyphicon glyphicon-question-sign"
+                                                    id="showHideBtn"></span>-->
+                                                <img id="showHideBtn" src="../images/question-mark.png"
+                                                    style="padding-right: 6px;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="alert alert-gray showHelp">
+                                        Please provide valid Email address so that we can contact you 
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{{ 'COUNTRY' | translate }}<span class="required">*</span></label>
+                                        <select class="form-control" ng-model="cartVM.selectedCountry"
+                                            ng-change="selectCountryCode(cartVM.selectedCountry)"
+                                            data-ng-options="x as x.name for x in cartVM.countries" id="checkoutCountry"
+                                            required>
+                                            <option value="">{{'SELECT COUNTRY' | translate}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4 col-xs-5">
+                                            <label>{{ 'COUNTRY CODE' | translate }}</label>
+                                            <select class="form-control" ng-model="cartVM.selectedCountryCode"
+                                                ng-disabled="!cartVM.selectedCountry">
+                                                <option value="">{{'SELECT CODE' | translate}}</option>
+                                                <option value="{{cc.dialCode}}"
+                                                    ng-selected="cc.dialCode == cartVM.selectedCountryCode"
+                                                    ng-repeat="cc in cartVM.countryCodeList">{{cc.dialCode}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-8 col-xs-7">
+                                            <div class="form-group">
+                                                <label>{{ 'PHONE NUMBER' | translate }}</label>
+                                                <input ng-keypress="cartVM.leadZeroNotAllowed($event)" class="form-control" type="number" ng-model="cartVM.donarPhone"
+                                                    maxlength="12" placeholder="" autocomplete="off" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{{'CARD HOLDER NAME' | translate}}<span class="required">*</span></label>
+                                        <input id="card-name" class="form-control" type="text"
+                                            ng-model="cartVM.cardHolderName" maxlength="100" placeholder=""
+                                            autocomplete="off" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{{'CREDIT CARD NUMBER' | translate}}<span
+                                                class="required">*</span></label>
+                                        <div class="input-group">
+                                            <input id="card-number" class="form-control" type="text"
+                                                ng-model="cartVM.creditCardNumber" maxlength="16" autocomplete="off"
+                                                placeholder="" data-ng-change="setCreditCard(cartVM.creditCardNumber)"
+                                                required />
+                                            <div class="input-group-addon" style="padding: 0px;width: 7%;">
+                                                <img id="creditCardImage"
+                                                    src="{{imgsrc || '../images/credit_card-01.png'}}"
+                                                    style="padding: 0px 6px;" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>{{ 'EXPIRATION MONTH' | translate}}<span
+                                                class="required">*</span></label>
+                                        <select class="form-control" ng-model="cartVM.ExpirationMonth"
+                                            data-ng-options="month for month in cartVM.months" required>
+                                            <option value="">{{'EXPIRE MONTH' | translate}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>{{ 'EXPIRATION YEAR' | translate}}<span class="required">*</span></label>
+                                        <input id="card-name" class="form-control" type="number"
+                                            ng-model="cartVM.ExpirationYear" min="2020" max="2050" placeholder="YYYY"
+                                            autocomplete="off" required
+                                            data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                            oninput="this.setCustomValidity('')" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>CVV<span class="required">*</span></label>
+                                        <input id="card-cvc" type="text" class="form-control " ng-model="cartVM.CVC"
+                                            maxlength="4" placeholder="" autocomplete="off" required />
+                                    </div>
+
+                                    <div class="row centered">
+                                        <div class="col-md-4 col-xs-12 ">
+
+                                            <div class="currency">{{userConfig.currency.title}} |
+                                                <span style="color: #ffff;">{{cartVM.totalAmount || '0000'}}</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="gap-small hide-on-mobile"></div>
+                                    <div class="row centered mobile-donate-row" style="position: relative;">
+                                        <div class="stripe-secure">
+                                            <img src="assets/images/stripe-secure.png" alt="">
+                                        </div>
+                                        <div class="col-md-4 col-xs-8">
+
+                                            <button type="submit" class="grop-btn-donate grop-btn_submit ng-binding" ng-disabled="cartVM.processing">
+                                                {{ 'DONATE NOW' | translate }}
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Modal-->
+            <div class="checkoutArea modal fade globalLogin " id="rootModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="exampleModalLabel">{{ 'CARD DETAIL' | translate}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <form data-ng-submit="cartVM.addDonarAccountDetail();" ng-show="isLogin">
+                                        <!-- <div class="form-group">
+                                            <label>{{ 'EMAIL' | translate }}<span class="required">*</span></label>
+                                            <input class="form-control" type="text" ng-model="cartVM.donarEmail"
+                                                   maxlength="200" placeholder="" required/>
+                                        </div> -->
+                                        <div class="form-group">
+                                            <label>{{ 'COUNTRY' | translate }}<span class="required">*</span></label>
+                                            <select class="form-control" ng-model="cartVM.selectedCountry"
+                                                data-ng-options="x.name as x.name for x in cartVM.countries"
+                                                ng-change="selectCountryCode(cartVM.selectedCountry)" required>
+                                                <option value="">{{'SELECT COUNTRY' | translate}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-xs-5">
+                                                <label>{{ 'COUNTRY CODE' | translate }}<span
+                                                        class="required">*</span></label>
+                                                <select class="form-control" ng-model="cartVM.selectedCountryCode"
+                                                    ng-disabled="!cartVM.selectedCountry" required>
+                                                    <option value="">{{'SELECT CODE' | translate}}</option>
+                                                    <option ng-repeat="cc in cartVM.countryCodeList"
+                                                        ng-selected="cc.dialCode == cartVM.selectedCountryCode">
+                                                        {{cc.dialCode}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-8 col-xs-7">
+                                                <div class="form-group">
+                                                    <label>{{ 'PHONE NUMBER' | translate }}<span
+                                                            class="required">*</span></label>
+                                                    <input  ng-keypress="cartVM.leadZeroNotAllowed($event)" class="form-control" type="number" ng-model="cartVM.donarPhone"
+                                                        maxlength="12" placeholder="" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ 'CARD HOLDER NAME' | translate}}<span
+                                                    class="required">*</span></label>
+                                            <input class="form-control" type="text" ng-model="cartVM.accountHolderName"
+                                                maxlength="100" placeholder="" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ 'CREDIT CARD NUMBER' | translate}}<span
+                                                    class="required">*</span></label>
+                                            <div class="input-group">
+                                                <input id="card-number" class="form-control" type="text"
+                                                    ng-model="cartVM.creditCardNumber" maxlength="16" placeholder=""
+                                                    data-ng-change="setCreditCard(cartVM.creditCardNumber)" required />
+                                                <div class="input-group-addon" style="padding: 0px;width: 7%;">
+                                                    <img id="creditCardImageForDialogue"
+                                                        src="{{imgsrc || '../images/credit_card-01.png'}}"
+                                                        style="padding: 0px 6px;" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>{{ 'EXPIRATION MONTH' | translate}}<span
+                                                            class="required">*</span></label>
+                                                    <select class="form-control" ng-model="cartVM.expiryMonth"
+                                                        data-ng-options="month for month in cartVM.months" required>
+                                                        <option value="">{{'EXPIRE MONTH' | translate}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>{{ 'EXPIRATION YEAR' | translate}}<span
+                                                            class="required">*</span></label>
+                                                    <input id="card-name" class="form-control" type="number" min="2020"
+                                                        max="2050" ng-model="cartVM.expiryYear" maxlength="100"
+                                                        placeholder="YYYY" autocomplete="off" required
+                                                        data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                        oninput="this.setCustomValidity('')" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>CVV<span class="required">*</span></label>
+                                                    <input type="text" class="form-control " ng-model="cartVM.CVC"
+                                                        maxlength="4" placeholder="XXX" required />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button type="submit" class="btn grop-btn-donate grop-btn_submit"
+                                                style="margin: auto;display: block; padding-left: 0px; background-image: none;">{{ 'ADD' | translate}}</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    // $(function () {
+    //     var inputs = document.getElementsByTagName("INPUT");
+    //     for (var i = 0; i < inputs.length; i++) {
+    //         inputs[i].oninvalid = function (e) {
+    //             e.target.setCustomValidity("");
+    //             if (!e.target.validity.valid) {
+    //                 e.target.setCustomValidity(e.target.getAttribute("data-error"));
+    //             }
+    //         };
+    //     }
+    // });
+
+
+    // let card = document.getElementById('selectCard');
+    // card.oninvalid = function () {
+    //     if (!this.value) {
+    //         let lang = localStorage.getItem('lang');
+    //         if (card && !card.value && lang == 'ENG') {
+    //             card.setCustomValidity('No credit card has been selected');
+    //         } else if (card && !card.value && lang == 'FRN') {
+    //             card.setCustomValidity('Aucune carte de crédit enregistrée');
+    //         } else if (card && !card.value && lang == 'ARB') {
+    //             card.setCustomValidity('لم يتم اختيار بطاقة ائتمان');
+    //         }
+    //     } else {
+    //         this.setCustomValidity("")
+    //     }
+    // };
+</script>

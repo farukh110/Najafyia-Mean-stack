@@ -1,0 +1,59 @@
+<div data-ng-controller="orphanController as orphanVM" data-ng-init="orphanVM.getOrphans();">
+        <!-- Content Wrapper. Contains orphan content -->
+        <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (orphan header) -->
+            <section class="content-header">
+    
+    
+            </section>
+    
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your orphan Content Here -->
+                <div class="row">
+                    <div class="col-md-10 col-xs-12 col-md-offset-1">
+                        <div class="col-md-8 nopadding">
+                            <h4>{{'ORPHANS LIST'| translate}}</h4>
+                        </div>
+                        <!-- <div class="col-md-4 no-padding">
+    
+                            <div class="col-md-12 no-padding">
+                                <input type="text" class="form-control pull-right" data-ng-model="orphanVM.searchValue" placeholder="{{'SEARCH BY NAME'| translate}}" />
+                            </div>
+                            <div class="col-md-3 no-padding">
+                                <button type="button" name="searchBtn" class="btn btn-bitbucket pull-right">{{'SEARCH'| translate}}</button>
+                            </div>
+    
+                        </div> -->
+                    </div>
+    
+                    <div class="col-md-10 col-xs-12 col-md-offset-1">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                    <label class="control-label ng-binding">{{'ADD ORPHAN CONTENT' | translate}}</label>
+                                        <textarea rows="4" style="width: 100%; resize: none;" cols="50" data-ng-model="orphanVM.content"></textarea>
+                                    <button data-ng-click="orphanVM.saveOrphanContent()" class="btn btn-default pull-right">{{'SAVE ORPHAN CONTENT' | translate}}</button>
+                                </div>
+                            </div>
+                            <div class="box-footer">
+    
+                            </div>
+                        </div>
+                    </div></div>
+                </div>
+    
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- HEADER -->
+    
+    </div></div>
+    <script>
+        jQuery(function () {
+            jQuery('#edit').editable({ inlineMode: false, fullorphan: true })
+        });
+    
+    </script>

@@ -1,0 +1,27 @@
+public/uploads/nic.jpgabhe t
+node_modules/
+errors/
+public/uploads/19598763_10203445092764427_4913476664930294642_n.jpg
+public/uploads/1366_768_20100915091649560251.jpg
+.idea/
+public/uploads/Daily Sadaqa.jpg
+public/uploads/doremon__character__by_ncontreras207-dbew08t.png
+node
+.idea/al-najafyia.iml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+.idea/jsLinters/jscs.xml
+public/uploads/doremon__character__by_ncontreras207-dbew08t.png
+package-lock.json
+al-najafyia.iml
+public/pdf
+*.env
+DbData
+public/uploads
+logs
+cache
+build
+config/ssl
+build-utility/environment-files
+
+

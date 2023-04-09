@@ -1,0 +1,88 @@
+<div data-ng-controller="ziyaratController as ziyaratVM"
+    data-ng-init="ziyaratVM.getSelectedZiyaratList('admin');">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <!--<section class="content-header">-->
+
+
+            <!--</section>-->
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+                    <div class="col-md-11 col-xs-12 col-md-offset-1">
+                        <div class="col-md-3">
+                            <h4>{{ 'ZIYARAT LIST' | translate }}</h4>
+                        </div>
+                        <!-- <div class="col-md-8 no-padding" style="float: right;">
+                            <form name="ziyaratForm" data-ng-submit="ziyaratVM.saveZiyaratList(ziyaratForm.$valid)">
+                                <div class="col-md-6 no-padding">
+                                    <input type="text" class="form-control pull-right"
+                                        data-ng-model="ziyaratVM.details.consultantEmail"
+                                        placeholder="{{ 'ENTER EMAIL' | translate }}" ng-disabled="!(check)"
+                                        autocomplete="off" required />
+                                </div>
+                                <div class="col-md-2 no-padding">
+                                    <button type="submit"
+                                        class="btn btn-primary pull-right">{{ 'SAVE MAIL' | translate }}</button>
+                                </div>
+                                <input type="checkbox" value="hello" style="margin-left: 3%;" data-ng-model="check">
+                                {{'Check and Edit Email' | translate }}
+                            </form>
+
+                        </div> -->
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" ng-click="sendMailConsultant()">Send Mail To Consultant</button>
+                    </div>
+                    <div class="col-md-10 col-xs-12 col-md-offset-1">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="box-title">
+
+                                </div>
+                            </div>
+                            <div class="box-body overflowTable">
+                                <form role="form">
+                                    <table class="table table-responsive">
+                                        <thead>
+                                            <td> {{'Sr.' |translate}}</td>
+                                            <td> {{'NAME'| translate}}</td>
+                                            <td> {{'EMAIL' | translate}}</td>
+                                            <td> {{'PHONE' | translate}}</td>
+                                            <td> {{'DATE' | translate}}</td>
+                                            <td> {{'TIME' | translate}}</td>
+                                            <td> {{'COUNTRY' | translate}}</td>
+                                        </thead>
+                                        <tr ng-repeat="ziyarat in ziyaratVM.selectedZiyaratList">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{ziyarat.fullName}}</td>
+                                            <td>{{ziyarat.email}}</td>
+                                            <td>{{ziyarat.phone || '--'}}</td>
+                                            <td>{{ziyarat.date | date : 'dd-MM-yyyy'}}</td>
+                                            <td>{{ziyarat.created | date:'hh:mm a'}}</td>
+                                            <td>{{ziyarat.country}}</td>
+                                        </tr>
+                                        <tr data-ng-if="ziyaratVM.selectedZiyaratList.length<1">
+                                            <td colspan="8">
+                                                {{'Record not found' | translate}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                            <div class="box-footer">
+
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            function sendMailZiyarat() {
+                                let consultantEmail = 'amansultanbaig@gmail.com';
+                                let ziyaratLink = `mailto:${consultantEmail}?subject=Message from Aman&body=(http://ec2-3-87-159-228.compute-1.amazonaws.com/#/zaireenList)`;
+                                console.log(ziyaratLink)
+                            }
+                        </script>
+                    </div>

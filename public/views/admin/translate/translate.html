@@ -1,0 +1,68 @@
+<style>
+    button:hover {
+        background-color: #6e6d72 !important;
+        color: white;
+    }
+
+    button:disabled,
+    button[disabled] {
+        cursor: no-drop !important;
+        background-color: #ce9696 !important;
+    }
+
+    .freezed {
+        background-color: #fff0f0 !important;
+    }
+</style>
+<div data-ng-controller="translateController as transVM" data-ng-init="transVM.getTranslations();">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper" style="background:white;">
+
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        {{'TRANSLATE' | translate}}
+                    </h1>
+                </section>
+                <br />
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 overflowTable">
+                            <table class="table table-hover">
+                                <thead
+                                    style="background-color: #f0ca4f;font-family: Roboto, Arial, sans-serif !important;">
+                                    <td> {{'Sr.' |translate}}</td>
+                                    <td>{{'ORIGINAL' | translate}}</td>
+                                    <td>{{'TRANSLATE KEY' | translate}}</td>
+                                    <th>{{'ACTION' | translate}}</th>
+                                </thead>
+                                <tr data-ng-repeat="trans in transVM.translateList track by $index"
+                                    ng-class="orphanReccurring.freezed ? 'freezed' : ''">
+                                    <td>{{$index+1}}</td>
+                                    <td ng-repeat="key in trans  track by $index"  id="{{$index}}">
+                                        <input type="text" ng-model="key" size="50" name="{{key}}">
+                                    </td>
+                                    <td><button ng-click="transVM.saveTranslations($event)">
+                                            <i class="fa fa-save"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <a class="btn btn-default btn-large alignright"
+                            data-ng-if="recordsLimit < transVM.translateList.length"
+                            data-ng-click="loadMore();">{{'LOAD MORE' | translate}}</a>
+                    </div>
+                </div>
+                <!-- Your Page Content Here -->
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    <!-- HEADER -->
+</div>

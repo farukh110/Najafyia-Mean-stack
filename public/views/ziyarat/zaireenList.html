@@ -1,0 +1,75 @@
+<div class="grop-page container padding-cnt-no grop-full-width">
+    <div data-ng-controller="ziyaratController as ziyaratVM" data-ng-init="ziyaratVM.getSelectedZiyaratList();">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>
+                            Zaireen List
+                            <small></small>
+                        </h1>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-body">
+                                <form role="form">
+                                    <table class="table table-responsive">
+                                        <thead>
+                                        <td> {{'Sr.' |translate}}</td>
+                                        <td> Name</td>
+                                        <td> Email</td>
+                                        <td> Phone</td>
+                                        <td> Date</td>
+                                        <td> Time</td>
+                                        <td> Country</td>
+                                        </thead>
+                                        <tr ng-repeat="ziyarat in ziyaratVM.selectedZiyaratList">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{ziyarat.fullName}}</td>
+                                            <td>{{ziyarat.email}}</td>
+                                            <td>{{ziyarat.phone || '--'}}</td>
+                                            <td>{{ziyarat.date | date : mediumDate}}</td>
+                                            <td>{{ziyarat.created | date:'hh:mm a'}}</td>
+                                            <td>{{ziyarat.country}}</td>
+                                        </tr>
+                                        <tr data-ng-if="ziyaratVM.selectedZiyaratList.length<1">
+                                            <td colspan="8">
+                                                No records found!
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                            <div class="box-footer" data-ng-if="ziyaratVM.selectedZiyaratList.length>0">
+                                <a class="grop-btn grop-btn_overly btn-primary" href=""
+                                   data-ng-click="ziyaratVM.sendEmailtoZaireen()">
+                                    <span>Send Email</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- HEADER -->
+
+    </div>
+</div>
+<script>
+    jQuery(function () {
+        jQuery('#edit').editable({inlineMode: false, fullPage: true})
+    });
+
+</script>

@@ -1,0 +1,279 @@
+<div data-ng-controller="orphanController as orphanVM"
+    data-ng-init="orphanVM.getOrphanDataForUpdate();orphanVM.getCountryList();">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-xs-offset-0">
+                        <div class="box box-primary {{orphanVM.language.toLowerCase()}}">
+                            <div class="box-header text-center">
+                                <div class="box-title orphan-box">
+ 
+                                    <h3 class="update-orphan-title"> {{'Update Orphan' | translate}} </h3>
+                               
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <form role="form" name="publishForm" enctype="multipart/form-data"
+                                    data-ng-submit="orphanVM.updateOrphan()">
+
+                                    <div class="row orphan-row-margin">
+
+                                        <div class="col-md-6">
+
+                                            <label class="control-label">{{'ORPHAN ID'| translate}}</label>
+                                            <fieldset>
+                                                <input type="text" name="orphanId" id="orphanId"
+                                                    class="form-control col-md-6"
+                                                    placeholder="{{'ORPHAN ID'| translate}}" required
+                                                    data-ng-model="orphanVM.orphanId">
+                                            </fieldset>
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                   
+                                                    <label class="control-label">{{'NAME'| translate}}</label>
+                                            <input type="text" name="orphanName" required maxlength="100"
+                                                data-ng-model="orphanVM.orphanName" class="form-control col-md-6"
+                                                placeholder="{{'NAME'| translate}}" />
+                                                    
+                                                </div>
+
+                                                <div class="col-md-6">
+
+                                                    <label class="control-label">{{'FATHER NAME'| translate}}</label>
+                                            <input type="text" name="fatherName" required maxlength="100"
+                                                data-ng-model="orphanVM.fatherName" class="form-control col-md-6"
+                                                placeholder="{{'NAME'| translate}}" />
+                                                    
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row orphan-row-margin">
+
+                                        <div class="col-md-6">
+
+                                            <label class="control-label">{{'DATE OF BIRTH' | translate}}</label>
+                                                <div class="input-group date">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </div>
+                                                    <input type="text" id="txtDOB1" ng-click="setPosDOB();"
+                                                        name="dateOfBirth" ng-change="dobDateChange()"
+                                                        data-ng-model="orphanVM.dateOfBirth"
+                                                        class="form-control readonly pull-right"
+                                                        placeholder="{{'DATE OF BIRTH' | translate}}"
+                                                        value="{{orphanVM.dateOfBirth |  date:'dd/MM/yyyy'}}" />
+                                                </div>
+                                            
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <div class="row">
+
+                                                <div class="col-md-5">
+
+                                                    <label class="control-label">{{'GENDER' | translate}}</label>
+                                            <fieldset>
+                                                <input type="radio" id="rd_male" name="gender"
+                                                    data-ng-model="orphanVM.gender" value="Male">
+                                                <label for="rd_male"> {{'MALE' |
+                                                    translate}}</label>
+                                                <input type="radio" id="rd_female" name="gender"
+                                                    data-ng-model="orphanVM.gender" value="Female">
+                                                <label for="rd_female"> {{'FEMALE' |
+                                                    translate}} </label>
+                                                <br>
+                                            </fieldset>
+
+                                                </div>
+
+                                                <div class="col-md-5">
+
+                                                    <label class="control-label">{{'DECEND'| translate}}</label>
+                                                    <fieldset>
+                                                        <input type="radio" id="rd_nonsyed" name="isSyed"
+                                                            data-ng-model="orphanVM.isSyed" ng-value="false">
+                                                        <label for="rd_nonsyed">{{'NONSYED' | translate}}</label>
+        
+                                                        <input type="radio" id="rd_syed" name="isSyed"
+                                                            data-ng-model="orphanVM.isSyed" ng-value="true">
+                                                        <label for="rd_syed">{{'SYED' |
+                                                            translate}}</label>
+                                                    </fieldset>
+
+                                                </div>
+
+                                            </div>
+                                            
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row orphan-row-margin">
+
+                                        <div class="col-md-6">
+
+                                            <label class="control-label">{{'NATIONALITY'| translate}}</label>
+                                            <select ng-model="orphanVM.selectedCountry" autocomplete="off"
+                                                class="form-control" data-ng-options="x.name for x in orphanVM.country">
+                                                <option value="">{{'PLEASE SELECT COUNTRY' | translate }}</option>
+                                            </select>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <label class="control-label">{{'CITY' | translate}}</label>
+                                            <input type="text" name="{{'CITY' | translate}}"
+                                                data-ng-model="orphanVM.city" required maxlength="25"
+                                                class="form-control col-md-6" placeholder="City" />
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row orphan-row-margin">
+
+                                        <div class="col-md-6">
+
+                                            <label class="control-label">{{'MOTHER NAME' | translate}}</label>
+                                                <input type="text" name="motherName" maxlength="100"
+                                                    data-ng-model="orphanVM.motherName" class="form-control col-md-6"
+                                                    placeholder="{{'MOTHER NAME' | translate}}" />
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <label class="control-label">{{'CAUSE OF FATHER DEATH' | translate}}</label>    
+                                                <input type="text" name="causeOfDeath" required maxlength="100"
+                                                    data-ng-model="orphanVM.causeOfDeath" class="form-control col-md-6"
+                                                    placeholder="{{'CAUSE OF FATHER DEATH'| translate}}" />    
+                                                    
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row orphan-row-margin">
+
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+
+                                                <label class="control-label">{{'ORPHAN PROFILE PICTURE' |
+                                                    translate}}</label>
+                                                <br>
+                                                <div class="orphan-btn-wrapper">
+                                            
+                                                    <button class="btn"> {{'UPLOAD IMAGE' |
+                                                        translate}} </button>
+                                                <input type="file" name="file" file-model="orphanVM.file" class="image "
+                                                placeholder="{{'SADAQA IMAGE' | translate}}" />
+
+                                                </div>
+                                                    
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <img class="previewImg" ng-src="/uploads/{{orphanVM.imageLink}}"
+                                                data-ng-model="orphanVM.imageLink" />
+                                        </div>
+
+                                    </div>
+                                    
+                                    <!-- <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <label class="control-label">{{'FAMILY NAME' | translate}}</label>
+                                            <input type="text" name="familyName" required maxlength="100"
+                                                data-ng-model="orphanVM.familyName" class="form-control col-md-6"
+                                                placeholder="{{'FAMILY NAME' | translate}}" />
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="col-md-6" style="margin-top:10px">
+                                        <div class="col-md-12">
+                                            <label class="control-label">Start Sponsorship</label>
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="text" id="txtFromDate" ng-click="setPos();"
+                                                    ng-change="startDateChange()" name="startingDate" required
+                                                    data-ng-model="orphanVM.startingDate"
+                                                    class="form-control pull-right readonly"
+                                                    placeholder="Starting Date" />
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="col-md-6" style="margin-top:10px">
+                                        <div class="col-md-12">
+                                            <label class="control-label">End Sponsorship</label>
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="text" id="txtToDate" ng-click="setPos();" name="endingDate"
+                                                    required data-ng-model="orphanVM.endingDate"
+                                                    class="form-control pull-right readonly"
+                                                    placeholder="Ending Date" />
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                
+                                    <!-- <div class="col-md-6" style="margin-top:10px;">
+                                        <div class="col-md-12">
+                                            <label class="control-label">{{'CONTACT DETAILS' | translate}}</label>
+                                            <textarea style="resize: horizontal; max-width: 400px; min-width: 350px;"
+                                                type="text" name="contactDetails" required maxlength="255"
+                                                data-ng-model="orphanVM.contactDetails" class="form-control col-md-6"
+                                                placeholder="{{'CONTACT DETAILS' | translate}}" />
+
+                                            </div>
+                                </div> -->
+
+                                   
+                                    <!-- <div class="col-md-6">
+                                    <div class="col-md-12" style="margin-top:10px">
+                                        <label class="control-label">{{'FATHER NAME' | translate}}</label>
+                                        <input type="text" name="fatherName" maxlength="100" data-ng-model="orphanVM.fatherName" class="form-control col-md-6" placeholder="{{'FATHER NAME' | translate}}"
+                                        />
+                                    </div>
+                                </div> -->
+                                   
+                                    <div class="form-group">
+                                        <!-- <div class="col-md-2 col-md-offset-10"> -->
+                                            <button name="publish" type="submit" class="btn btn-primary pull-right btn-update-button"
+                                                style="margin-top:5px;">{{'Update Orphan' | translate}}</button>
+                                        <!-- </div> -->
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- HEADER -->
+    </div>
+</div>

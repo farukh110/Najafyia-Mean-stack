@@ -1,0 +1,306 @@
+<div class="grop-page  padding-cnt-no grop-full-width">
+    <div data-ng-controller="menuController as menuVM"
+        data-ng-init="menuVM.fillMenuList();menuVM.getMenus(); menuVM.getSubMenus();">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+
+
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Your Page Content Here -->
+                    <div class="row">
+                        <div class="col-md-8 col-xs-12 col-md-offset-1">
+                            <section class="content-header nopadding">
+                                <h1>
+                                    {{'MENU SETTINGS' | translate}}
+                                    <small></small>
+                                </h1>
+
+                            </section>
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <div class="col-md-10 box-title">{{'ADD ROOT MENU' | translate}}</div>
+                                </div>
+                                <div class="box-body">
+                                    <form role="form" class="form-horizontal">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class=" col-md-5">
+                                                    <label>{{'ROOT NODE' | translate}}</label>
+
+                                                    <input type="text" class="form-control"
+                                                        data-ng-model="menuVM.menuName">
+                                                    <div class=" col-md-5">
+                                                        <label>Priority{{'' | translate}}</label>
+                                                        <input type="number" min="1" class="form-control"
+                                                            data-ng-model="menuVM.priority" placeholder="1">
+                                                    </div>
+                                                    <div class=" col-md-2 padding-sm">
+
+                                                        <button type="button" ng-click="menuVM.addRootNode()"
+                                                            class="btn btn-primary">{{'ADD' | translate}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <hr>
+                                                </div>
+
+                                                <div class="col-md-12 no-padding">
+                                                    <div class=" col-md-5">
+                                                        <label>{{'ALL SITE LINKS' | translate}}</label>
+
+                                                        <select class="form-control txtTranform"
+                                                            data-ng-model="menuVM.selectedSiteLink"
+                                                            data-ng-options="x.menuName for x in menuVM.mainMenuList">
+                                                        </select>
+                                                    </div>
+                                                    <div class=" col-md-5">
+                                                        <label>{{'PRIORITY' | translate}}</label>
+                                                        <input type="number" min="1" class="form-control"
+                                                            data-ng-model="menuVM.rootPriority" placeholder="1">
+                                                    </div>
+                                                    <div class=" col-md-2 padding-sm">
+
+                                                        <button type="button" ng-click="menuVM.addRootMenu()"
+                                                            class="btn btn-primary">{{'ADD' | translate}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="box box-info">
+                                                    <div class="box-header">
+                                                        <div class="box-title">{{'MENU LIST' | translate}}</div>
+                                                    </div>
+                                                    <div class="box-body">
+                                                        <table>
+                                                            <thead>
+                                                                <td>{{'MENU TITLE' | translate}}</td>
+                                                                <td>{{'PRIORITY' | translate}}</td>
+                                                                <td>{{'ACTIONS' | translate}}</td>
+                                                            </thead>
+                                                            <tr data-ng-repeat="x in menuVM.rootMenuList">
+                                                                <td class="txtTranform">
+                                                                    {{x.menuName}}
+                                                                </td>
+                                                                <td>
+                                                                    {{x.priority}}
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-info" data-toggle="modal"
+                                                                        ng-click="menuVM.bindMenuModal(x)">{{'EDIT' | translate}}
+                                                                    </button>
+                                                                    |
+                                                                    <button class="btn btn-danger"
+                                                                        data-ng-click="menuVM.deleteRootMenu(x._id);">{{'DELETE' | translate}}
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <div class="col-md-10 box-title">{{'ADD SUB MENU' | translate}}</div>
+                                </div>
+                                <div class="box-body">
+                                    <form role="form" class="form-horizontal">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class=" col-md-4">
+                                                    <label>{{'ROOT MENU' | translate}}</label>
+                                                    <select class="form-control txtTranform"
+                                                        data-ng-model="menuVM.selectedRootMenuLink"
+                                                        data-ng-options="x.menuName for x in menuVM.rootMenuList"
+                                                        data-ng-change="menuVM.getSubMunuList();">
+
+                                                    </select>
+                                                </div>
+                                                <div class=" col-md-4">
+                                                    <label>{{'ALL SITE LINKS' | translate}}</label>
+
+                                                    <select class="form-control txtTranform"
+                                                        data-ng-model="menuVM.selectedSubMenuLink"
+                                                        data-ng-options="x.menuName for x in menuVM.menuListByCategory">
+
+                                                    </select>
+                                                </div>
+
+                                                <div class=" col-md-2">
+                                                    <label>{{'PRIORITY' | translate}}</label>
+                                                    <input type="number" min="1" class="form-control"
+                                                        data-ng-model="menuVM.subPriority" placeholder="1">
+                                                </div>
+                                                <div class=" col-md-2 padding-sm">
+
+                                                    <button type="button" ng-click="menuVM.addSubMenu('child')"
+                                                        class="btn btn-primary">{{'ADD' | translate}}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="box box-info">
+                                                <div class="box-header">
+                                                    <div class="box-title">{{'MENU LIST' | translate}}</div>
+                                                </div>
+                                                <div class="box-body overflowTable">
+                                                    <table>
+                                                        <thead>
+                                                            <td>{{'MENU TITLE' | translate}}</td>
+                                                            <td>{{'PRIORITY' | translate}}</td>
+                                                            <td>{{'ACTIONS' | translate}}</td>
+                                                        </thead>
+                                                        <tr data-ng-repeat="x in menuVM.subMenuList">
+                                                            <td class="txtTranform">
+                                                                {{x.menuName}}
+                                                            </td>
+                                                            <td>
+                                                                {{x.priority}}
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-info" data-toggle="modal"
+                                                                    ng-click="menuVM.bindMenuModal(x)">{{'EDIT' | translate}}
+                                                                </button>
+                                                                <span ng-if="checkForDpMenu(x.menuName)">|</span>
+                                                                <button class="btn btn-danger" ng-if="checkForDpMenu(x.menuName)"
+                                                                    data-ng-click="menuVM.deleteMenu(x._id);">{{'DELETE' | translate}}
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <div class="col-md-10  box-title">{{'ADD SUB MENU LEVEL' | translate}} 2</div>
+                                </div>
+                                <div class="box-body">
+                                    <form role="form" class="form-horizontal">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class=" col-md-4">
+                                                    <label>{{'ROOT MENU' | translate}}</label>
+                                                    <select class="form-control txtTranform"
+                                                        data-ng-model="menuVM.selectedRootMenuLink2"
+                                                        data-ng-options="x.menuName for x in menuVM.subMenusList"
+                                                        data-ng-change="menuVM.getSubMunuList2();">
+
+                                                    </select>
+                                                </div>
+                                                <div class=" col-md-4">
+                                                    <label> {{'ALL SITE LINKS' | translate}}</label>
+
+                                                    <select class="form-control txtTranform"
+                                                        data-ng-model="menuVM.selectedSubMenuLink2"
+                                                        data-ng-options="x.menuName for x in menuVM.menuList">
+
+                                                    </select>
+                                                </div>
+
+                                                <div class=" col-md-2">
+                                                    <label>{{'PRIORITY' | translate}}</label>
+                                                    <input type="number" min="1" class="form-control"
+                                                        data-ng-model="menuVM.subPriority2" placeholder="1">
+                                                </div>
+                                                <div class=" col-md-2 padding-sm">
+
+                                                    <button type="button" ng-click="menuVM.addSubMenu('grandChild')"
+                                                        class="btn btn-primary">{{'ADD' | translate}}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="box box-info">
+                                                <div class="box-header">
+                                                    <div class="box-title">{{'MENU LIST' | translate}}</div>
+                                                </div>
+                                                <div class="box-body overflowTable">
+                                                    <table>
+                                                        <thead>
+                                                            <td>{{'MENU TITLE' | translate}}</td>
+                                                            <td>{{'PRIORITY' | translate}}</td>
+                                                            <td>{{'ACTIONS' | translate}}</td>
+                                                        </thead>
+                                                        <tr data-ng-repeat="x in menuVM.subMenuList2">
+                                                            <td class="txtTranform">
+                                                                {{x.menuName}}
+                                                            </td>
+                                                            <td>
+                                                                {{x.priority}}
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-info" data-toggle="modal"
+                                                                    ng-click="menuVM.bindMenuModal(x)">{{'EDIT' | translate}}
+                                                                </button>
+                                                                |
+                                                                <button class="btn btn-danger"
+                                                                    data-ng-click="menuVM.deleteMenuLevel2(x._id);">{{'DELETE' | translate}}
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <!-- /.content -->
+            </div>
+        </div>
+        <!-- modal -->
+        <div class="modal fade" id="rootModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                        <h4 class="modal-title">{{'EDIT MENU ITEM' | translate}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>{{'MENU NAME' | translate}}</label>
+                            <input type="text" min="0" class="form-control" data-ng-model="menuVM.menuNameEdit" />
+                        </div>
+                        <div class="form-group">
+                            <label>{{'PRIORITY' | translate}}</label>
+                            <input type="number" min="0" class="form-control" data-ng-model="menuVM.priorityEdit" />
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-info"
+                                data-ng-click="menuVM.SaveEdit()">{{'SAVE' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                            data-dismiss="modal">{{'CLOSE' | translate}}</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

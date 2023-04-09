@@ -1,0 +1,643 @@
+<div data-ng-controller="pageContentController as pageVM" data-ng-init="pageVM.getProgramTypes();">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <!--<section class="content-header">-->
+
+            <!--</section>-->
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+                    <div class="col-md-10 col-xs-12 col-md-offset-1">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="col-md-10 box-title">
+                                    {{ 'ADD PAGE CONTENT' | translate }}
+                                </div>
+                                <div class="gap-mini"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6" style="margin-right:20px;">
+                                        <label class="control-label">{{ 'SELECT PAGE' | translate }} </label>
+                                        <select class="form-control" id="query" name="query" ng-model="pageVM.pageName"
+                                            data-ng-change="pageVM.getPageContentByName(pageVM.pageName);" required>
+                                            <option value="">{{ 'SELECT PAGE' | translate }}</option>
+                                            <option value="{{'HOME'|translate}}">{{'HOME'|translate}}</option>
+                                            <option value="{{'ABOUT US'|translate}}">{{'ABOUT US'|translate}}</option>
+                                            <option value="{{'GALLERY PAGE'|translate}}">{{'GALLERY PAGE'|translate}}
+                                            </option>
+                                            <option value="{{'CONTACT US'|translate}}">{{'CONTACT US'|translate}}
+                                            </option>
+                                            <option value="{{'FAQ'|translate}}">{{'FAQ'|translate}}</option>
+                                            <option value="{{'GET INVOLVED'|translate}}">{{'GET INVOLVED'|translate}}
+                                            </option>
+                                            <option value="{{'VOLUNTEER'|translate}}">{{'VOLUNTEER'|translate}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-body" data-ng-show="pageVM.pageName==('CONTACT US'|translate)">
+                                <form role="form" ng-submit="pageVM.savePageContentByName(contactPageForm.$valid)"
+                                    name="contactPageForm">
+                                    <!--     <div class="col-md-6">
+                                         <div class="form-group">
+                                             <label class="control-label">Title Image</label>
+                                             <input type="file" name="file" ng-required="!pageVM.editRow"
+                                                    file-model="pageVM.pageDetails.file"
+                                                    class="image" placeholder="Slider Image"/>
+                                         </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                         <div class="form-group">
+                                             <img class="previewImg" data-ng-if="pageVM.imegeURL"
+                                                  ng-src="{{pageVM.imegeURL}}"/>
+                                         </div>
+                                     </div>-->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">{{'PAGE DESCRIPTION'|translate}}</label>
+                                            <textarea type="text" name="description" required maxlength="500"
+                                                data-ng-model="pageVM.pageDetails.pageDescription" class="form-control"
+                                                placeholder="{{'PAGE DESCRIPTION'|translate}}" />
+                                            </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'GET IN TOUCH AREA'|translate}}</label>
+                                        <!-- <input type="text" name="postTitle"
+                                               data-ng-model="pageVM.pageDetails.contactGetInTouch"
+                                               class="form-control"/> -->
+                                               <div id="editor" aria-placeholder="Write">
+                                                    <div id='contactGetInTouch' name="contactGetInTouch">
+                                                    </div>
+                                                </div>
+                                               
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'HEAD OFFICE'|translate}}</label>
+                                        <!-- <textarea class="form-control"
+                                                  data-ng-model="pageVM.pageDetails.contactHeadOffice">
+                                        </textarea> -->
+
+                                            <div id="editor" aria-placeholder="Write">
+                                                <div id='contactHeadOffice' name="contactHeadOffice">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">{{'CONTACT EMAIL ADDRESS'|translate}}</label>
+                                            <input type="email" name="contactEmailAddress"
+                                                data-ng-model="pageVM.pageDetails.contactEmailAddress"
+                                                class="form-control " />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">{{'JOIN US'|translate}}</label>
+                                            <input type="text" name="contactJoinUsText"
+                                                data-ng-model="pageVM.pageDetails.contactJoinUsText"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="gap"></div>
+
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">{{'SOCIAL MEDIA TITLE'|translate}}</label>
+                                            <select class="form-control" id="social" name="social"
+                                                data-ng-model="pageVM.socialMedia.socialMedia">
+                                                <option value="">{{'SELECT PAGE'|translate}}</option>
+                                                <option value="FACEBOOK">Facebook</option>
+                                                <option value="TWITTER">{{'TWITTER'|translate}}</option>
+                                                <option value="INSTAGRAM">Instagram</option>
+                                                <option value="YOUTUBE">Youtube</option>
+                                                <option value="{{'EMAIL' | translate}}">{{'EMAIL' | translate}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">{{'SOCIAL MEDIA URL'|translate}}</label>
+                                            <input type="text" name="postTitle" data-ng-model="pageVM.socialMedia.link"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="control-label">&nbsp;</label>
+                                            <button style="    margin-top: 25px;" type="button" name="publish"
+                                                data-ng-model="publish" class="btn btn-default pull-right"
+                                                ng-click="pageVM.addSocialMedia()">
+                                                {{'ADD'|translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <table class="table table-responsive">
+                                                <thead>
+                                                    <td> {{'Sr.' |translate}}</td>
+                                                    <td>{{'SOCIAL MEDIA'|translate}}</td>
+                                                    <td>{{'URL' | translate}}</td>
+                                                    <td>{{'ACTIONS'|translate}}</td>
+                                                </thead>
+                                                <tr ng-repeat="sm in pageVM.socialMediaList">
+                                                    <td>{{$index+1}}</td>
+                                                    <td>{{sm.socialMedia}}</td>
+                                                    <td>{{sm.link}}</td>
+                                                    <td>
+                                                        <button type="button"
+                                                            data-ng-click="pageVM.deleteSocialMedia($index);"><i
+                                                                class="fa fa-trash-o"></i></button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-ng-if="pageVM.socialMediaList.length<1">
+                                                    <td>{{'ADD SOCIAL MEDIA'|translate}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-2 col-md-offset-10">
+                                            <button type="submit" name="publish" data-ng-model="publish"
+                                                class="btn btn-primary pull-right"
+                                                style="margin-top:5px;">{{'SAVE PAGE CONTENT'|translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="box-body" data-ng-show="pageVM.pageName==('FAQ'|translate)">
+                                <form role="form" ng-submit="pageVM.savePageContentByName(faqPageForm.$valid)"
+                                    name="faqPageForm">
+                                    <!--  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label class="control-label">Title Image</label>
+                                          <input type="file" name="file" ng-required="!pageVM.editRow"
+                                                 file-model="pageVM.pageDetails.file"
+                                                 class="image " placeholder="Slider Image"/>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <img class="previewImg" data-ng-if="pageVM.imegeURL"
+                                               ng-src="{{pageVM.imegeURL}}"/>
+                                      </div>
+                                  </div>-->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">{{'PAGE DESCRIPTION'|translate}}</label>
+                                            <textarea type="text" name="description" required maxlength="500"
+                                                data-ng-model="pageVM.pageDetails.pageDescription" class="form-control"
+                                                placeholder="{{'PAGE DESCRIPTION'|translate}}" />
+                                            </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'TOPIC'|translate}}</label>
+                                        <select ng-model="pageVM.faqQuestionAnswers.topic"
+                                                class="form-control"
+                                                data-ng-options="type._id as type.programTypeName for type in pageVM.programTypesList">
+                                            <!-- <option value="">{{'abde ali'|translate}}</option> -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'QUESTION'|translate}}</label>
+                                        <input type="text" name="question"
+                                               data-ng-model="pageVM.faqQuestionAnswers.question"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'ANSWER'|translate}}</label>
+                                        <input type="text" name="answer"
+                                               data-ng-model="pageVM.faqQuestionAnswers.answer"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button type="button" name="publish"
+                                                data-ng-model="publish" class="btn btn-default pull-right"
+                                                ng-click="pageVM.addQuestionAnswers()">{{'ADD'|translate}}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="gap-mini"></div>
+                                    <div class="form-group">
+                                        <table class="table table-responsive">
+                                            <thead>
+                                            <td> {{'Sr.' |translate}}</td>
+                                            <td> {{'QUESTION'|translate}}</td>
+                                            <td> {{'ANSWER'|translate}}</td>
+                                            <td> {{'ACTIONS'|translate}}</td>
+                                            </thead>
+                                            <tr ng-repeat="qa in pageVM.faqQuestionAnswersList">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{qa.question}}</td>
+                                                <td>{{qa.answer}}</td>
+                                                <td>
+                                                    <button type="button"
+                                                            data-ng-click="pageVM.deleteQuestionAnswers($index);"><i
+                                                            class="fa fa-trash-o"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-ng-if="pageVM.faqQuestionAnswersList.length<1">
+                                                <td>{{'ADD QUESTION ANSWERS'|translate}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'SUPPORT TEXT'|translate}}</label>
+                                        <input type="text" name="postTitle"
+                                               data-ng-model="pageVM.pageDetails.faqSupportText"
+                                               class="form-control" required/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button type="submit" name="publish" data-ng-model="publish"
+                                                class="btn btn-primary pull-right">{{'SAVE PAGE CONTENT'|translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="box-body" data-ng-show="pageVM.pageName==('HOME'|translate)">
+                            <form role="form" enctype="multipart/form-data"
+                                  ng-submit="pageVM.addSlider(homePageForm.$valid)" name="homePageForm">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'IMAGE'|translate}}</label>
+                                        <input type="file" name="file" required
+                                               file-model="pageVM.homeSlider.file"
+                                               class="image " placeholder="Slider Image"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'DESCRIPTION'|translate}}</label>
+                                        <textarea type="text" name="description" required maxlength="500"
+                                                  style="width:100%;"
+                                                  data-ng-model="pageVM.homeSlider.description"
+                                                  placeholder="{{'PAGE DESCRIPTION'|translate}}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button type="submit" name="publish"
+                                                data-ng-model="publish"
+                                                class="btn btn-default pull-right">{{'ADD'|translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="col-md-12">
+                                <div class="gap-mini"></div>
+                                <div class="form-group">
+                                    <table class="table table-responsive">
+                                        <thead>
+                                        <td> {{'Sr.' |translate}}</td>
+                                        <td> {{'IMAGE'|translate}}</td>
+                                        <td> {{'DESCRIPTION'|translate}}</td>
+                                        <td> {{'ACTIONS'|translate}}</td>
+                                        </thead>
+                                        <tr ng-repeat="slider in pageVM.sliderImagesList">
+                                            <td>{{$index+1}}</td>
+                                            <td><img class="previewImg2" ng-src="/uploads/{{slider.file}}"></td>
+                                            <td>{{slider.description}}</td>
+                                            <td>
+                                                <button type="button"
+                                                        data-ng-click="pageVM.deleteSlider($index);"><i
+                                                        class="fa fa-trash-o"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr data-ng-if="pageVM.sliderImagesList.length<1">
+                                            <td>{{'ADD SLIDER'|translate}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <div class="form-group">
+                                    <label class="control-label">{{'CAMPAIGN BANNER'|translate}}</label>
+
+                                    <div id="editor" aria-placeholder="Write">
+                                        <div id='homeCampaignBanners' name="homeCampaignBanners">
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        <input type="text" class="form-control" ng-model="pageVM.campaignUrl" placeholder="{{'CAMPAIGN URL'|translate}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <div class="form-group">
+                                    <label class="control-label">{{'INFO GRAPHICS BANNER'|translate}}</label>
+
+                                    <div id="editor0" aria-placeholder="Write">
+                                        <div id='homeInfoGraphicsBanner' name="homeInfoGraphicsBanner">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <div class="form-group">
+                                    <label class="control-label">{{'BANNER 1'|translate}}</label>
+
+                                    <div id="editor1" aria-placeholder="Write">
+                                        <div id='homeBanner1' name="homeBanner1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="form-group">
+                                    <label class="control-label">{{'BANNER 2'|translate}}</label>
+
+                                    <div id="editor2" aria-placeholder="Write">
+                                        <div id='homeBanner2' name="homeBanner2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="form-group">
+                                    <label class="control-label">{{'BANNER 3'|translate}}</label>
+
+                                    <div id="editor3" aria-placeholder="Write">
+                                        <div id='homeBanner3' name="homeBanner3">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <div class="form-group">
+                                    <button type="button" name="save" data-ng-model="save"
+                                            class="btn btn-primary pull-right"
+                                            data-ng-click="pageVM.savePageContentByName(true);">{{'SAVE PAGE CONTENT'|translate}}
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="box-body" data-ng-show="pageVM.pageName==('GALLERY PAGE'|translate)">
+                            <form role="form" enctype="multipart/form-data"
+                                  ng-submit="pageVM.addMedia(galleryPageForm.$valid)" name="galleryPageForm">
+                                <!--    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Title Image</label>
+                                            <input type="file" name="file" ng-required="!pageVM.editRow"
+                                                   file-model="pageVM.pageDetails.file"
+                                                   class="image " placeholder="Slider Image"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <img class="previewImg" data-ng-if="pageVM.imegeURL"
+                                                 ng-src="{{pageVM.imegeURL}}"/>
+                                        </div>
+                                    </div>-->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'PAGE DESCRIPTION'|translate}}</label>
+                                        <textarea type="text" name="description" required maxlength="500"
+                                                  data-ng-model="pageVM.pageDetails.pageDescription"
+                                                  class="form-control"
+                                                  placeholder="{{'PAGE DESCRIPTION'|translate}}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="radio" name="gallery" value="PHOTO" data-ng-model="mediaType">
+                                    {{'PHOTO' | translate}}
+                                    <input type="radio" name="gallery" value="VIDEO" data-ng-model="mediaType">
+                                    {{'VIDEOS' | translate}}
+                                </div>
+                                <div class="col-md-12 red box1" data-ng-if="mediaType=='PHOTO'">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'MEDIA FILE'|translate}}</label>
+                                        <input type="file" name="file" required
+                                               file-model="pageVM.galleryMedia.file"
+                                               class="image " placeholder="image"/>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12 " data-ng-if="mediaType=='VIDEO'">
+                                    <input data-ng-model="pageVM.galleryMedia.file" type="text" name="youtubeurl" required
+                                           class="form-control"
+                                           placeholder="{{'YOUTUBE URL'| translate}}"/>
+                                </div>
+
+                                <div class="col-md-12 red box1">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'DESCRIPTION'|translate}}</label>
+                                        <textarea type="text" name="description" maxlength="500"
+                                                  data-ng-model="pageVM.galleryMedia.description"
+                                                  class="form-control"
+                                                  placeholder="{{'MEDIA DESCRIPTION'|translate}}"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button type="submit" name="publish"
+                                                data-ng-model="publish"
+                                                class="btn btn-default pull-right">{{'ADD'|translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="col-md-12">
+                                <div class="gap-mini"></div>
+                                <div class="form-group">
+                                    <table class="table table-responsive">
+                                        <thead>
+                                        <td> {{'Sr.' |translate}}</td>
+                                        <td> {{'MEDIA'|translate}}</td>
+                                        <td> {{'DESCRIPTION'|translate}}</td>
+                                        <td> {{'ACTIONS'|translate}}</td>
+                                        </thead>
+                                        <tr ng-repeat="gallery in pageVM.galleryMediaList track by $index">
+                                            <td>{{$index+1}}</td>
+                                            <td><img class="previewImg2" ng-src="/uploads/{{gallery.file}}"
+                                                     alt="{{gallery.file}}"></td>
+                                            <td>{{gallery.description}}</td>
+                                            <td>
+                                                <button type="button"
+                                                        data-ng-click="pageVM.deleteMedia($index);"><i
+                                                        class="fa fa-trash-o"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr data-ng-if="pageVM.galleryMediaList.length<1">
+                                            <td>{{'ADD MEDIA'|translate}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="form-group">
+                                    <button type="button" name="save" data-ng-model="save"
+                                            class="btn btn-primary pull-right"
+                                            data-ng-disabled="pageVM.galleryMediaList.length<1"
+                                            data-ng-click="pageVM.savePageContentByName(true);">{{'SAVE PAGE CONTENT'|translate}}
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="box-body" data-ng-show="pageVM.pageName==('ABOUT US'|translate)">
+                            <form role="form" enctype="multipart/form-data"
+                                  ng-submit="pageVM.savePageContentByName(true);" name="pageForm">
+                                <!--    <div class="col-md-6">
+                                        <div class="form-group"><label class="control-label">Title Image</label>
+                                            <input type="file" name="file" ng-required="!pageVM.editRow"
+                                                   file-model="pageVM.pageDetails.file"
+                                                   class="image " placeholder="Slider Image"/>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <img class="previewImg" data-ng-if="pageVM.imegeURL"
+                                                 ng-src="{{pageVM.imegeURL}}"/>
+                                        </div>
+                                    </div>-->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'PAGE DESCRIPTION'|translate}}</label>
+                                        <textarea type="text" name="description" required maxlength="500"
+                                                  data-ng-model="pageVM.pageDetails.pageDescription"
+                                                  class="form-control"
+                                                  placeholder="{{'PAGE DESCRIPTION'|translate}}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <button type="submit" name="save" data-ng-model="save"
+                                                class="btn btn-primary pull-right">{{'SAVE PAGE CONTENT'|translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="box-body" data-ng-show="pageVM.pageName==('GET INVOLVED'|translate)">
+                            <form role="form" enctype="multipart/form-data"
+                                  ng-submit="pageVM.savePageContentByName(true);" name="pageForm">
+                                <!--      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label class="control-label">Title Image</label>
+                                              <input type="file" name="file" ng-required="!pageVM.editRow"
+                                                     file-model="pageVM.pageDetails.file"
+                                                     class="image " placeholder="Slider Image"/>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <img class="previewImg" data-ng-if="pageVM.imegeURL"
+                                                   ng-src="{{pageVM.imegeURL}}"/>
+                                          </div>
+                                      </div>-->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'PAGE DESCRIPTION'|translate}}</label>
+                                        <textarea type="text" name="description" required maxlength="500"
+                                                  data-ng-model="pageVM.pageDetails.pageDescription"
+                                                  class="form-control"
+                                                  placeholder="{{'PAGE DESCRIPTION'|translate}}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <button type="submit" name="save" data-ng-model="save"
+                                                class="btn btn-primary pull-right">{{'SAVE PAGE CONTENT'|translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="box-body" data-ng-show="pageVM.pageName==('VOLUNTEER'|translate)">
+                            <form role="form" enctype="multipart/form-data"
+                                  ng-submit="pageVM.savePageContentByName(true);" name="pageForm">
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">{{'TITLE IMAGE'|translate}}</label>
+                                            <input type="file" name="file" ng-required="!pageVM.editRow"
+                                                   file-model="pageVM.pageDetails.file"
+                                                   class="image " placeholder="{{'SLIDER IMAGE'|translate}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <img class="previewImg" data-ng-if="pageVM.imegeURL"
+                                                 ng-src="{{pageVM.imegeURL}}"/>
+                                        </div>
+                                    </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{'PAGE DESCRIPTION'|translate}}</label>
+                                        <textarea type="text" name="description" required maxlength="500"
+                                                  data-ng-model="pageVM.pageDetails.pageDescription"
+                                                  class="form-control"
+                                                  placeholder="{{'PAGE DESCRIPTION'|translate}}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <button type="submit" name="save" data-ng-model="save"
+                                                class="btn btn-primary pull-right">{{'SAVE PAGE CONTENT'|translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- HEADER -->
+</div></div>
+
+<script>
+    jQuery(function () {
+        jQuery('#homeCampaignBanners').editable({ inlineMode: false, fullPage: true });
+        jQuery('#homeInfoGraphicsBanner').editable({ inlineMode: false, fullPage: true });
+        jQuery('#homeBanner1').editable({ inlineMode: false, fullPage: true });
+        jQuery('#homeBanner2').editable({ inlineMode: false, fullPage: true });
+        jQuery('#homeBanner3').editable({ inlineMode: false, fullPage: true });
+        jQuery('#contactHeadOffice').editable({ inlineMode: false, fullPage: true });
+        jQuery('#contactGetInTouch').editable({ inlineMode: false, fullPage: true });
+
+    });
+</script>

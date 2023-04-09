@@ -1,0 +1,107 @@
+<div data-ng-controller="religiousPaymentController as religiousPaymentVM" data-ng-init="religiousPaymentVM.getReligiousPayments();">
+    <!-- Content Wrapper. Contains religiousPayment content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+    <div class="content-wrapper">
+        <!-- Content Header (religiousPayment header) -->
+        <section class="content-header">
+
+
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Your religiousPayment Content Here -->
+            <div class="row">
+                <div class="col-md-10 col-xs-12 col-md-offset-1">
+                    <div class="col-md-8 nopadding">
+                        <h4>{{ 'RELIGIOUS PAYMENTS' | translate }}</h4>
+                    </div>
+                    <div class="col-md-4 no-padding">
+
+                        <div class="col-md-12 no-padding">
+                            <input type="text" class="form-control pull-right" data-ng-model="religiousPaymentVM.searchValue" placeholder="{{ 'SEARCH BY RELIGIOUS PAYMENT NAME' | translate }}"
+                            />
+                        </div>
+                        <!-- <div class="col-md-3 no-padding">
+                            <button type="button" name="searchBtn" class="btn btn-bitbucket pull-right">{{ 'SEARCH' | translate }}</button>
+                        </div> -->
+
+                    </div>
+                </div>
+
+                <div class="col-md-10 col-xs-12 col-md-offset-1">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label ng-binding">{{'ADD PAGE CONTENT' | translate}}</label>
+                                    <textarea rows="4" cols="50" style="width: 100%; resize: none;"  data-ng-model="religiousPaymentVM.content" id="islamicPaymentTxt" placeholder="{{'PLEASE ENTER CONTENT' | translate}}"></textarea> 
+                                    <p style="color: red;" id="showError"></p>
+                                    <button data-ng-click="religiousPaymentVM.saveIslamicContent()" class="btn btn-default pull-right">
+                                        {{'SAVE RELIGIOUSPAYMENT' | translate}}</button>
+                            </div>
+                        </div>
+                        </div>
+                    
+                        <div class="box-body overflowTable">
+                            <form role="form">
+                                <table class="table table-responsive">
+                                    <thead>
+                                        <td>
+                                            {{ 'RELIGIOUS PAYMENT NO.' | translate }}
+                                        </td>
+                                        <td>
+                                            {{ 'RELIGIOUS PAYMENT NAME' | translate }}
+                                        </td>
+                                        <td>
+                                                {{ 'SUB CATEGORY' | translate }}
+                                        </td>
+                                        <td>
+                                            {{ 'CREATED DATE' | translate }}
+                                        </td>
+                                        <td>
+                                            {{ 'STATUS' | translate }}
+                                        </td>
+                                        <td>
+                                            {{ 'ACTIONS' | translate }}
+                                        </td>
+                                    </thead>
+                                    <tr ng-repeat="religiousPayment in religiousPaymentVM.religiousPayments | filter:{programName: religiousPaymentVM.searchValue}">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{religiousPayment.programName}}</td>
+                                        <td>
+                                        <p ng-repeat="religiousSubcats in religiousPayment.programSubCategory">
+                                                -{{religiousSubcats.programSubCategoryName}}
+
+                                        </p>
+                                        </td>
+                                        <td>{{religiousPayment.created | date:'MM/dd/yyyy'}}</td>
+                                        <td>
+                                            <p class="{{religiousPayment.isActive==true?'bg-success':'btn-danger'}}">{{religiousPayment.isActive==true?'Active':'Inactive' }}</p>
+                                        </td>
+                                        <td> <a href="/#/admin/updatereligiousPayment?religiousPaymentId={{religiousPayment._id}}"><i class="fa fa-edit">Edit</i></a>                                            |
+                                            <button class="{{religiousPayment.isActive==true?'btn btn-danger':'btn btn-success'}}" data-ng-click="religiousPaymentVM.deleteReligiousPayment(religiousPayment._id,religiousPayment.isActive);">{{religiousPayment.isActive==true?'Deactivate':'Activate'}}</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="box-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- HEADER -->
+</div>
+</div>
+<script>
+    jQuery(function () {
+        jQuery('#edit').editable({ inlineMode: false, fullreligiousPayment: true })
+    });
+
+</script>

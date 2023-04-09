@@ -1,0 +1,302 @@
+<style>
+    .div-table {
+        display: table;
+    }
+
+    .div-table input,
+    .div-table label {
+        display: table-cell;
+        vertical-align: middle;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 4px;
+        font-size: 11px;
+    }
+    .div-table input{
+        transform: none;
+    }
+
+    .cancel-sub {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .cancel-sub a {
+        color : #1784D0;
+    }
+
+    .cardItem.inactive {
+        border: 1px solid #4e4e4e;
+    }
+
+    .cardItem.active {
+        border: 1px solid #f0c84b;
+    }
+
+    .cardItem.failed {
+        border: 1px solid #F54336;
+    }
+
+    .cardItem.renewal-required {
+        border: 1px solid #0074d4;
+    }
+
+    .cardItem.cancelled {
+        border: 1px solid #0074d4;
+    }
+
+    .statusActive {
+        background-color: #f0c84b;
+        height: 50px;
+        border-bottom-left-radius: 22px;
+        border-bottom-right-radius: 22px;
+    }
+
+    .statusInactive {
+        background-color: #4e4e4e;
+        height: 50px;
+        border-bottom-left-radius: 22px;
+        border-bottom-right-radius: 22px;
+    }
+
+    .statusFailed {
+        background-color: #F54336;
+        height: 50px;
+        border-bottom-left-radius: 22px;
+        border-bottom-right-radius: 22px;
+    }
+
+    .statusGracePeriod {
+        background-color: #0074d4;
+        height: 50px;
+        border-bottom-left-radius: 22px;
+        border-bottom-right-radius: 22px;
+    }
+
+    .modal-dialog {
+        max-width: 95%;
+    }
+
+    .see-more-link {
+        color: #1784D0;
+        /* text-decoration: underline; */
+    }
+
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .cardItem {
+        flex: 0 0 275px;
+        margin: 10px;
+        /* border: 1px solid gray; */
+        border-radius: 25px;
+        box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+        line-height: 1.9;
+    }
+
+    .cardItem .text {
+        padding: 0 20px 20px;
+        /* min-height: 350px; */
+        color : #707070;
+    }
+
+
+
+    .CardfooterText {
+        font-size: 18px;
+        margin-top: 12px;
+    }
+
+    .text-color {
+        color: white;
+    }
+
+    .button {
+        font: bold 11px Arial;
+        text-decoration: none;
+        background-color: #EF4B4B;
+        color: white;
+        padding: 2px 6px 2px 6px;
+        border-top: 1px solid #333333;
+        border-right: 1px solid #333333;
+        border-bottom: 1px solid #333333;
+        border-left: 1px solid #333333;
+        border-radius: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+        white-space: nowrap;
+    }
+
+    .table-wrapper {
+        max-height: 350px;
+        overflow: auto;
+    }
+
+    .small-text {
+        font-size: 10px;
+    }
+    .header-footer-text {
+        color : #5D5D5D;
+    }
+    .gray-text {
+        color : gray;
+    }
+    .heading-pading{
+        padding-bottom: 10px;
+    }
+
+    .schedule-position {
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #1784D0;
+    }
+    .flex-container-empty {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .flex-item-empty {
+    padding: 5px;
+    width: auto;
+    height: auto;
+    margin: 10px;
+    line-height: 20px;
+    color : #5D5D5D;
+    font-size: 24px;
+    text-align: center;
+    line-height: 1.9;
+    }
+
+   .cancel-sub a.disabled {
+        color: rgb(184, 179, 179);
+        pointer-events: none;
+
+    }
+    .search-dropdown{
+        margin : 20px 0px 20px 0px;
+    }
+
+    /* tooltips */
+
+  .tooltip-icon-lock
+  {
+     position: relative;
+     display: inline-block;  
+  }
+
+  .tooltip-icon-lock .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: #1A1A1A;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    line-height: 14px;
+    font-size: 11px;
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-right: -22px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip-icon-lock .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1A1A1A transparent transparent transparent;
+  }
+  
+  .tooltip-icon-lock:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* ------------ start media queries------------- */
+
+    @media (max-width: 480px) {
+
+        .tooltip-icon-lock .tooltip-text
+        {
+            margin-right: -22px;       
+        }
+        
+    }
+
+    @media (max-width: 768px) {
+
+        .tooltip-icon-lock .tooltip-text
+        {
+            margin-right: -22px;       
+        }
+        
+    }
+
+  /* ------------ end media queries------------- */
+
+</style>
+
+<div data-ng-controller="donorProgramController as donarVM"
+    data-ng-init="donarVM.getUserDonations(); donarVM.getTheCountforDonation(); donarVM.getUserDetails();">
+
+
+    <div class="col-xs-12 col-md-10 col-lg-10 ">
+    </div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper daralzahra" style="background:white;">
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-lg-10 ">
+                    <div class="flex-container-empty" ng-show="donarVM.userProgramList.length == 1 && donarVM.userProgramList[0].showMessage" >
+                        <div class="flex-item-empty" >{{ 'EMPTY_DATA_MESSAGE' | translate}}</div></div>
+                    <main class="cards" ng-if="donarVM.userProgramList.length > 0 && !donarVM.userProgramList[0].showMessage"> 
+                        <div class="col-md-10 col-xs-12 form-inline search-dropdown">
+                            <div class="form-group">
+                                <select ng-model="donarVM.programType"
+                                    ng-change="donarVM.filteredDonations(donarVM.programType)" class="form-control">
+                                    <option value="">{{ 'SEARCH_PROGRAM' | translate}}</option>
+                                    <option ng-value="donation.program.programDetails.programName"
+                                        data-ng-repeat="donation in donarVM.filterOption | unique:'program.programDetails.programName'">
+                                        {{donation.program.programDetails.programName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <article class="cardItem" ng-class="donarVM.getCardItemCSSClass(donorProgram)"
+                            ng-repeat="donorProgram in donarVM.userProgramList">
+                            <div ng-if="donorProgram.program.programDetails.slug == 'sadaqah-a-day'">
+                                <sadaqah-card-component>
+                                </sadaqah-card-component>
+                            </div>
+
+                            <div ng-if="donorProgram.program.programDetails.slug == 'orphan-sponsorship'">
+                                <orphan-sponsorship-card-component>
+                                </orphan-sponsorship-card-component>
+                            </div>
+                            <div style="display: none;">{{$index+1}} </div>
+                        </article>
+                    </main>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

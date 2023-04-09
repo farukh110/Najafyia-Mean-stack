@@ -1,0 +1,72 @@
+<div data-ng-controller="pagecontroller as pageVM">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <!--<section class="content-header">-->
+        <!--</section>-->
+        <!-- Main content -->
+        <section class="content">
+            <!-- Your Page Content Here -->
+            <div class="row">
+                <div class="col-md-10 col-xs-12 col-md-offset-1">
+                    <div class="col-md-10 box box-primary">
+                        <div class="box-header">
+                            <div class="box-title">
+                                {{ 'ADD PAGE' | translate }}
+                        </div>
+                        </div>
+                        <div class="box-body">
+                            <form role="form">
+                                <div class="form-group col-md-12 no-padding">
+                                    <label class="col-md-12 control-label no-padding">{{ 'PAGE TITLE' | translate }}</label>
+                                    <div class="col-md-12 no-padding" style="">
+                                        <input type="text" required name="pagetitle" data-ng-model="pageVM.pageTitle"
+                                               class="form-control col-md-12" placeholder="{{ 'PAGE TITLE' | translate }}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12 no-padding">
+                                    <label class="col-md-12 control-label no-padding">{{ 'SLUG' | translate }}</label>
+                                    <div class="col-md-12 no-padding">
+                                        <input type="text" required data-ng-model="pageVM.slug"
+                                               class="form-control col-md-12" placeholder="{{ 'SLUG' | translate }}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 no-padding">
+                                    <label class="col-md-12 control-label no-padding">{{ 'PAGE CONTENT' | translate }}</label>
+                                </div>
+                                <div class="form-group col-md-12 no-padding">
+                                    <section id="editor" aria-placeholder="Write" class="no-padding">
+                                        <div id='edit' name="content" data-ng-model="pageVM.content">
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="form-group" style="margin-top:20px">
+                                    <div class="col-md-1">
+                                        <button name="publish " data-ng-model="publish "
+                                                data-ng-click="pageVM.publishPage()" class="btn btn-primary pull-right "
+                                                style="margin-top:5px; ">{{ 'PUBLISH' | translate }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="box-footer ">
+                            <span class="alert-success" data-ng-bind="pageVM.result"> </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- HEADER -->
+        </div>
+</div>
+<script>
+    jQuery(function ($) {
+        $(function () {
+            $('#edit').editable({inlineMode: false, fullPage: true})
+        });
+    });
+</script>

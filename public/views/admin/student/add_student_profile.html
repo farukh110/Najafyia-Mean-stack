@@ -1,0 +1,189 @@
+<div data-ng-controller="studentProfileController as studentVM"
+    ng-init="studentVM.getCountryList(); studentVM.getLanguagesList()">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+                    <div class="col-md-10 col-xs-12 col-md-offset-1">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="col-md-10 box-title">
+                                    {{'ADD STUDENT'| translate}}
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <form role="form" name="publishForm" enctype="multipart/form-data"
+                                    data-ng-submit="studentVM.addStudent(publishForm.$valid)">
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 no-padding">
+                                            <label class="control-label">{{'STUDENT ID'| translate}}</label>
+                                            <input type="text" name="studentId" required maxlength="100"
+                                                autocomplete="off" data-ng-model="studentVM.studentId"
+                                                class="form-control col-md-6"
+                                                placeholder="{{'STUDENT ID'| translate}}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 no-padding">
+                                            <label class="control-label">{{'NAME'| translate}}</label>
+                                            <input type="text" name="studentName" required maxlength="100"
+                                                data-ng-model="studentVM.studentName" class="form-control col-md-6"
+                                                autocomplete="off" placeholder="{{'NAME'| translate}}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="margin-top:10px">
+                                        <div class="col-md-12 no-padding">
+                                            <label class="control-label">{{'DATE OF BIRTH'| translate}}</label>
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="text" id="txtDOB" ng-click="setPosDOB();"
+                                                    ng-change="dobDateChange()" name="dateOfBirth"
+                                                    data-ng-model="studentVM.dateOfBirth" autocomplete="off"
+                                                    class="form-control pull-right readonly"
+                                                    placeholder="{{'DATE OF BIRTH'| translate}}" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6" style="margin-top:10px;">
+                                        <div class="col-md-12 no-padding">
+                                            <label class="control-label">{{'GENDER'| translate}}</label>
+                                            <fieldset>
+                                                <input type="radio" name="gender" data-ng-model="studentVM.gender"
+                                                    autocomplete="off" value="Male"> {{'MALE'| translate}}
+                                                <input type="radio" name="gender" data-ng-model="studentVM.gender"
+                                                    value="Female"> {{'FEMALE'| translate}}
+                                                <br>
+                                            </fieldset>
+                                            <br />
+                                            <label class="control-label">{{'DESCEND'| translate}}</label>
+                                            <fieldset>
+                                                <input type="radio" name="isSyed" data-ng-model="studentVM.isSyed"
+                                                    autocomplete="off" value="false"> {{'NONSYED'| translate}}
+                                                <input type="radio" name="isSyed" data-ng-model="studentVM.isSyed"
+                                                    value="true"> {{'SYED' | translate}}
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 no-padding" style="margin-top:10px">
+                                            <label class="control-label">{{'CLASS' | translate}}</label>
+                                            <input type="text" name="class" required maxlength="25" autocomplete="off"
+                                                data-ng-model="studentVM.grade" class="form-control col-md-6"
+                                                placeholder="{{'CLASS' | translate}}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 no-padding" style="margin-top:10px">
+                                            <label class="control-label">{{'NATIONALITY'| translate}}</label>
+                                            <select ng-model="studentVM.selectedCountry" autocomplete="off"
+                                                class="form-control"
+                                                data-ng-options="x.name for x in studentVM.country">
+                                                <option value="">{{'PLEASE SELECT COUNTRY' | translate }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 no-padding" style="margin-top:10px">
+                                            <label class="control-label">{{'CITY'| translate}}</label>
+                                            <input type="text" name="city" maxlength="25" data-ng-model="studentVM.city"
+                                                autocomplete="off" class="form-control col-md-6"
+                                                placeholder="{{'CITY'| translate}}" />
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-6">
+                                    <div class="col-md-12 no-padding" style="margin-top:10px">
+                                        <label class="control-label">{{'MEDICAL CONDITION'| translate}}</label>
+                                        <input type="text" name="medicalCondition" maxlength="255" data-ng-model="studentVM.medicalCondition" class="form-control col-md-6"
+                                            placeholder="{{'MEDICAL CONDITION'| translate}}" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-12 no-padding" style="margin-top:10px">
+                                        <label class="control-label">{{'SPONSOR NAME'| translate}}</label>
+                                        <input type="text" name="sponsorName" maxlength="80" data-ng-model="studentVM.sponsorName" class="form-control col-md-6"
+                                            placeholder="{{'SPONSOR NAME'| translate}}" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-12 no-padding" style="margin-top:10px">
+                                        <label class="control-label">{{'SPONSOR EMAIL'| translate}}</label>
+                                        <input type="text" name="sponsorEmail" data-ng-model="studentVM.sponsorEmail" class="form-control col-md-6 validateEmail"
+                                            placeholder="Sponsor@email.com" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-12 no-padding" style="margin-top:10px">
+                                        <label class="control-label">{{'SPONSOR PHONE'| translate}}</label>
+                                        <input type="text" name="sponsorPhone" data-ng-model="studentVM.sponsorPhone" class="form-control col-md-6 validateNumber"
+                                            maxlength="25" placeholder="{{'SPONSOR PHONE'| translate}}" />
+                                    </div>
+                                </div> -->
+                                    <div class="col-md-6" style="margin-top:10px">
+                                        <div class="form-group">
+                                            <div class="col-md-12 no-padding">
+                                                <label
+                                                    class="control-label">{{'STUDENT PROFILE PICTURE'| translate}}</label>
+                                                <input type="file" name="file" file-model="studentVM.file"
+                                                    class="image " placeholder="{{'ORPHAN IMAGE'| translate}}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-2 col-md-offset-10">
+                                            <button name="publish" type="submit" class="btn btn-primary pull-right"
+                                                style="margin-top:5px;">{{'ADD STUDENT'| translate}}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- HEADER -->
+    </div>
+</div>
+<script>
+    //Email Validation
+    jQuery(".validateEmail").bind('change blur paste', function () {
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (jQuery(this).val().length > 0) {
+            if (!filter.test(jQuery(this).val())) {
+                jQuery(this).parent().next('span:first').html("<span class='inputError'></span>").show().fadeOut();
+                jQuery(this).focus();
+                return false;
+            } else {
+                jQuery(this).parent().next('span:first').html("");
+                return true;
+            }
+        }
+    });
+    //Number Validation
+    jQuery(document).on('keypress paste', '.validateNumber', function (event) {
+        var regex = new RegExp(/^[A-Za-z~`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/);
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (regex.test(key)) {
+            jQuery(this).focus();
+            jQuery(this).parent().next('span:first').html("<span class='inputError'></span>").show().fadeOut();
+            return false;
+        } else {
+            jQuery(this).parent().next('span:first').html("");
+            return true;
+        }
+    });
+    jQuery(".readonly").on('keydown paste', function (e) {
+        e.preventDefault();
+    });
+</script>

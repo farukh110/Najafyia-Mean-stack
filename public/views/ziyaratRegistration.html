@@ -1,0 +1,160 @@
+<div class="grop-page container padding-cnt-no grop-full-width" style="">
+    <div class="no-sidebar">
+        <div class="col-md-12 ziyarah-banner">
+            <h1>{{'LOGIN FOR ZIYARAH OF IMAM HUSSAIN (AS) EVERY THURSDAY ON YOUR BEHALF' | translate}}</h1>
+        </div>
+
+        <div class="centered">
+            <div class="col-md-6 checkoutArea" style="display: inline-block">
+                <div data-ng-controller="userController as userVM" data-ng-init="userVM.getCountryCode()">
+                    <div class="heading">
+                    </div>
+
+                    <form data-ng-submit="userVM.registerUser()">
+                        <div class="gap-small"></div>
+                        <div class="form-group">
+                            <label>{{'FIRST NAME' | translate}}<span class="required">*</span></label>
+                            <input type="text" class="form-control" data-ng-model="userVM.firstName" required
+                                data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <div class="form-group">
+                            <label>{{'LAST NAME' | translate}}<span class="required">*</span></label>
+                            <input type="text" class="form-control" data-ng-model="userVM.lastName" required
+                                data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <div class="form-group">
+                            <label>{{'EMAIL ADDRESS' | translate}}<span class="required">*</span></label>
+                            <input type="text" class="form-control" data-ng-model="userVM.userName" required
+                                autocomplete="off" data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                oninput="this.setCustomValidity('')">
+                            <!-- <p class="text-left warning txtright" style="color: #CCCBCB; font-size: 10px; margin-top: 5px;">
+                                {{'NOTE' | translate}}: {{'PLEASE TYPE YOUR MOBILE NUMBER ALONG WITH THE COUNTRY CODE' | translate}}</p> -->
+                        </div>
+                        <div class="form-group">
+                            <label>{{'PASSWORD' | translate}}<span class="required">*</span></label>
+                            <input type="password" class="form-control" data-ng-model="userVM.password"
+                                data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}" required
+                                oninput="this.setCustomValidity('')" autocomplete="off">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <label>{{'LANGUAGE' | translate}}<span class="required">*</span></label>
+                                <select data-ng-model="userVM.language" class="form-control selectpicker" required
+                                    data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                    oninput="this.setCustomValidity('')">
+                                    <option value="">{{'LANGUAGE' | translate}}
+                                    </option>
+                                    <option value="ENG">{{'ENGLISH' | translate}}</option>
+                                    <option value="ARB">{{'ARABIC' | translate}}</option>
+                                    <option value="FRN">{{'FRENCH' | translate}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                <div class="form-group" style="">
+                                    <label>{{'COUNTRY OF RESIDENCE' | translate}}<span class="required">*</span></label>
+                                    <select class="form-control" ng-model="userVM.countryOfResidence"
+                                        ng-change="selectCountryCode(userVM.countryOfResidence)"
+                                        data-ng-options="x.name as x.name for x in userVM.countries" required
+                                        data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                        oninput="this.setCustomValidity('')">
+                                        <option value="">{{'COUNTRY OF RESIDENCE' |
+                                   translate}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-4">
+                                <label>{{ 'COUNTRY CODE' | translate }}</label>
+                                <select class="form-control" ng-model="userVM.selectedCountryCode"
+                                    ng-disabled="!userVM.countryOfResidence">
+                                    <option value="">{{'SELECT CODE' | translate}}</option>
+                                    <option value="{{cc.dialCode}}"
+                                        ng-selected="cc.dialCode == userVM.selectedCountryCode"
+                                        ng-repeat="cc in userVM.countryCodeList">{{cc.dialCode}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-8 col-xs-8">
+                                <div class="form-group">
+                                    <label>{{ 'PHONE NUMBER' | translate }}</label>
+                                    <input ng-keypress="userVM.leadZeroNotAllowed($event)" class="form-control"
+                                        type="number" ng-model="userVM.mobile" maxlength="12" placeholder=""
+                                        autocomplete="off" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2 col-xs-10 arres">
+                                <label>{{'GENDER' | translate}}<span class="required">*</span></label>
+                            </div>
+                            <div class="col-md-5 col-sm-5 col-xs-10 arres " style="font-size: 14px;">
+                                <input type="radio" name="gender" data-ng-model="userVM.gender" value="male" required
+                                    style="vertical-align: top;"
+                                    data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                    oninput="this.setCustomValidity('')">
+                                {{'MALE' | translate}} &nbsp; &nbsp;
+                                <input type="radio" name="gender" data-ng-model="userVM.gender" value="female" required
+                                    style="vertical-align: top; margin-left: 0px;"
+                                    data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                    oninput="this.setCustomValidity('')"> {{'FEMALE' | translate}}
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="form-group text-center" style="margin-top: 25px; float: left; width: 100%;">
+                            <button type="submit" ng-disabled="userVM.disable"
+                                class="btn themeBtn1">{{'SUBMIT' | translate}}
+                            </button>
+                        </div>
+                    </form>
+                    <!--<div>-->
+                    <!--&lt;!&ndash;<a  href="/auth/facebook" target="_blank"><button type="button" class="btn btn-success">Facebook</button></a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; <a href="/auth/twitter" target="_blank"><button type="button" class="btn btn-success">twitter</button></a> &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<a href="/auth/google" target="_blank"><button type="button" class="btn btn-success">google</button></a>&ndash;&gt;-->
+                    <!--<a ui-sref="forgotpassword" target="_blank">-->
+                    <!--<button type="button" class="btn btn-success">Forgot Password</button>-->
+                    <!--</a>-->
+                    <!--</div>-->
+
+                </div>
+
+                <script>
+                    $(function () {
+                        var inputs = document.getElementsByTagName("INPUT");
+                        for (var i = 0; i < inputs.length; i++) {
+                            inputs[i].oninvalid = function (e) {
+                                e.target.setCustomValidity("");
+                                if (!e.target.validity.valid) {
+                                    e.target.setCustomValidity(e.target.getAttribute("data-error"));
+                                }
+                            };
+                        }
+                    });
+
+                    // this function is specifically country dropdown
+                    // let card = document.getElementById('countryDD');
+                    // card.oninvalid = function () {
+                    //     if (!this.value) {
+                    //         let lang = localStorage.getItem('lang');
+                    //         if (card && !card.value && lang == 'ENG') {
+                    //             card.setCustomValidity('No credit card has been selected');
+                    //         } else if (card && !card.value && lang == 'FRN') {
+                    //             card.setCustomValidity('Aucune carte de crédit enregistrée');
+                    //         } else if (card && !card.value && lang == 'ARB') {
+                    //             card.setCustomValidity('لم يتم اختيار بطاقة ائتمان');
+                    //         }
+                    //     } else {
+                    //         this.setCustomValidity("")
+                    //     }
+                    // };
+                </script>
+
+            </div>
+        </div>
+    </div>
+</div>

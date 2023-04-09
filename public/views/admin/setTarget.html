@@ -1,0 +1,58 @@
+<div class="grop-page  padding-cnt-no grop-full-width">
+    <div data-ng-controller="userController as userVM">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+                    <div class="col-md-8 col-xs-12 col-md-offset-1">
+                        <section class="content-header nopadding">
+                            <h1>
+                                {{ 'setTarget' | translate}}
+                            </h1>
+                        </section>
+                        <div class="box box-primary">
+                            <div class="box-body">
+                                <form role="form" class="form-horizontal">
+                                    <div class="col-md-12" style="padding-top: 20px;">
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <label>{{ 'Target' | translate}}</label>
+                                                <input type="number" min="1" class="form-control validateNumber" data-ng-model="userVM.target"
+                                                       placeholder="{{ 'Target' | translate}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>{{ 'Achieved' | translate}}</label>
+                                                <input type="number" min="1" class="form-control validateNumber" data-ng-model="userVM.achieved"
+                                                       placeholder="{{ 'Achieved' | translate}}" required>
+                                            </div>
+                                         
+                                            <div class="form-group">
+                                                <button type="button" ng-disabled="!userVM.achieved || !userVM.target" ng-click="addTarget()"
+                                                        class="btn btn-primary">{{ 'SUBMIT' | translate}}
+                                                </button>
+                                              
+                                            </div>
+                                        </div>
+                                   
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- HEADER -->
+
+    </div>
+
+</div>

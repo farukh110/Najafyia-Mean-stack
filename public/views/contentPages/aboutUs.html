@@ -1,0 +1,65 @@
+<div class="grop-page padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="pageContentController as pageVM"
+            data-ng-init="pageVM.getPageContentByName(('ABOUT US'|translate)); pageVM.getPagesListByTitle('ABOUT_US');">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12  col-xs-12">
+                        <div class="pageHeadingAreaImg project-detail-banner about-banner">
+                            <h1>{{ 'ABOUT US' | translate }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-content-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>{{pageVM.pageData.pageDescription}}</p>
+                        </div>
+                        <!--<div class="gap"></div>-->
+                        <div class="centered customBox no-padding">
+                            <div class="col-md-4 " data-ng-repeat="x in pageVM.pagesList">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <div class="box-title text-dark">{{x.title | translate}}</div>
+                                    </div>
+                                    <div class="box-body">
+                                        <a
+                                            ng-href="{{(x.title != 'Gallery' && x.title != 'Galerie' && x.title != 'أرشيف')? bindUrl(x.slug): '/#/gallery'}}">
+                                            <img ng-src="uploads/{{x.titleImage}}" class="project-list-image"></a>
+                                        <p class="text-justify">
+                                            {{x.description || "&nbsp" | limitTo:135}}
+                                            {{x.description.length>135?'':''}}
+                                            <a ng-href="{{(x.title != 'أرشيف' && x.title != 'Gallery' && x.title != 'Galerie')? bindUrl(x.slug): '/#/gallery'}}"
+                                                class="readMore" data-ng-if="x.description.length">
+                                                {{ 'READ MORE' | translate}}</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-4">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <div class="box-title text-dark">{{ 'GALLERY' | translate }}</div>
+                                    </div>
+                                    <div class="box-body">
+                                        <a ng-href="/#/gallery"><img ng-src="images/gallery.jpg" class="project-list-image"></a>
+                                        <p class="text-justify">
+                                            {{ 'Lorem Ipsum' | translate }}
+                                            <a ng-href="/#/gallery" class="readMore"> {{ 'READ MORE' | translate}}</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

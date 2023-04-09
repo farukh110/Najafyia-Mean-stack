@@ -1,0 +1,28 @@
+[
+	{
+		"_id": {
+			"$oid": "60cb26675e1814df2d63d707"
+		},
+		"key": "OrphanSponsorshipsReminders",
+		"value": {
+			"orphanSponsorshipReminders": {
+				"ReminderInterval": 15,
+				"BerforeEnd": [{
+					"reminderNo": 1,
+					"templateName": "BEFORE_END_DATE"
+				}, {
+					"reminderNo": 2,
+					"templateName": "BEFORE_END_DATE"
+				}],
+				"AfterEnd": [{
+					"reminderNo": 1,
+					"templateName": "AFTER_END_DATE"
+				}, {
+					"reminderNo": 2,
+					"templateName": "AFTER_END_DATE"
+				}]
+			}
+		}
+	}
+	
+]

@@ -1,0 +1,74 @@
+<div class="grop-page padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="pageContentController as pageVM"
+            data-ng-init="pageVM.getPageContentByName(('GET INVOLVED'|translate)); pageVM.getPagesListByTitle('GET_INVOLVED');">
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12  col-xs-12">
+                        <div class="pageHeadingAreaImg get-involved-banner">
+                            <h1>{{ 'GET INVOLVED' | translate }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-content-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-justify">{{pageVM.pageData.pageDescription}}</p>
+                        </div>
+                        <div class="col-md-12 centered  customBox no-padding">
+                            <div class="col-md-4 contentdyn" data-ng-repeat="x in pageVM.pagesList">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <div class="box-title"> {{x.title}}</div>
+                                    </div>
+                                    <div class="box-body">
+                                        <a ng-href="/#/pages/{{x.slug}}"><img ng-src="uploads/{{x.titleImage}}"
+                                                class="project-list-image"></a>
+
+                                        <div class="readmore-aun">
+                                            <p class="content-aun" data-ng-bind-html="x.description.substring(0,130)">
+                                            </p>
+                                            <a ng-href="/#/pages/{{x.slug}}"
+                                                ng-if='x.description.length >= 178'>{{' READ MORE' | translate }}</a>
+                                        </div>
+
+                                        <div style=" text-align: justify;" hm-read-more
+                                            hm-html="{{x.programDescription}}" hm-link="/#/pages/{{x.slug}}"
+                                            hm-limit="300" hm-more-text="{{' READ MORE' | translate }}"
+                                            hm-dots-class="{{toggle-dots-grey}}" hm-link-class="readMore">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <div class="box-title">{{ 'VOLUNTEER WITH US' | translate }}</div>
+                                    </div>
+                                    <div class="box-body">
+                                        <a ng-href="/#/volunteer">
+                                            <img ng-src="images/ran-image.png" class="project-list-image"></a>
+                                        <div class="readmore-aun">
+                                            <!-- <p class="content-aun" >{{ 'Lorem Ipsum' | translate }}</p> -->
+                                            <!-- <a ng-href="/#/volunteer"
+                                                    class="content-aun">{{' READ MORE' | translate }}</a> -->
+                                            <p class="text-justify">
+                                                {{ 'Volunteers are the lifeblood of our organisation. We would not be able to have the same lasting impact on the community if it was not for our volunteers.' | translate }} <a ng-href="/#/volunteer"
+                                                    class="readMore">{{ 'READ MORE' | translate}}</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

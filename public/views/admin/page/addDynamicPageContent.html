@@ -1,0 +1,181 @@
+<div data-ng-controller="dynamicPageContentController as pageVM" data-ng-init="pageVM.getAllPagesList();">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Your Page Content Here -->
+            <div class="row">
+                <div class="col-md-10 col-xs-12 col-md-offset-1">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <div class="col-md-10 box-title">
+                                {{ 'ADD NEW PAGE' | translate }}
+                            </div>
+                            <div class="gap-mini"></div>
+                        </div>
+                        <div class="box-body">
+                            <form role="form" enctype="multipart/form-data"
+                                  ng-submit="pageVM.savePageContentByName(true);" name="pageForm">
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{ 'SELECT PARENT PAGE' | translate }}</label>
+                                        <select class="form-control" id="query" name="query"
+                                                data-ng-change="pageVM.getPagesListByTitle();"
+                                                data-ng-model="pageVM.pageDetails.parentPageName" required>
+                                            <option value="">{{ 'SELECT PARENT PAGE' | translate }}</option>
+                                            <option value="ABOUT_US">{{'ABOUT US' | translate}}</option>
+                                            <option value="GET_INVOLVED">{{'GET INVOLVED' | translate}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{ 'SELECT SUB PARENT PAGE' | translate }}</label>
+                                        <select class="form-control" id="parent" name="parent"
+                                                data-ng-model="pageVM.pageDetails.subParentPageId"
+                                                data-ng-options="parent._id as parent.title for parent in pageVM.pagesList">
+                                            <option value="">{{ 'SELECT SUB PARENT PAGE' | translate }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{ 'PAGE TITLE' | translate }}</label>
+                                        <input type="text" name="title" required maxlength="100"
+                                               data-ng-model="pageVM.pageDetails.title"
+                                               class="form-control"
+                                               placeholder="{{ 'PAGE TITLE' | translate }}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{ 'PAGE SLUG' | translate }}</label>
+                                        <input type="text" name="slug" required maxlength="100"
+                                               data-ng-model="pageVM.pageDetails.slug"
+                                               class="form-control"
+                                               placeholder="{{ 'PAGE SLUG' | translate }}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">{{ 'THUMBNAIL IMAGE' | translate }}</label>
+                                        <input type="file" name="file" ng-required="!pageVM.editRow"
+                                               file-model="pageVM.pageDetails.file"
+                                               class="image " placeholder="Slider Image"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <img class="previewImg" data-ng-if="pageVM.imegeURL"
+                                             ng-src="{{pageVM.imegeURL}}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">{{ 'PAGE DESCRIPTION' | translate }}</label>
+                                        <textarea type="text" name="description" required maxlength="1200"
+                                                  data-ng-model="pageVM.pageDetails.description"
+                                                  class="form-control"
+                                                  placeholder="{{ 'PAGE DESCRIPTION' | translate }}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <label class="control-label">{{ 'PAGE CONTENT' | translate }}</label>
+                                        <div id="editor" aria-placeholder="Write">
+                                            <div id='pageContent' name="pageContent">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <div class="form-group text-right">
+                                        <button type="button" name="save" data-ng-click="pageVM.resetForm();"
+                                                class="btn btn-deafult">{{ 'RESET' | translate }}
+                                        </button>
+                                        <button type="submit" name="save" data-ng-model="save"
+                                                class="btn btn-primary">{{'SAVE PAGE CONTENT'|translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Filter for PAges -->
+                        <div class="box-body">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="text" class="form-control pull-right" data-ng-model="pageVM.searchValue"
+                                    placeholder="{{'SEARCH PAGE'| translate}}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                    <select class="form-control" id="query" name="query"
+                                    data-ng-change="pageVM.getPagesListByTitle();"
+                                    data-ng-model="pageVM.pageDetails.parentPageName" required>
+                                    
+                                    <option value="">{{ 'SELECT PARENT PAGE' | translate }}</option>
+                                    <option value="ABOUT_US">{{'ABOUT US' | translate}}</option>
+                                    <option value="GET_INVOLVED">{{'GET INVOLVED' | translate}}</option>
+                            </select>
+                            </div>
+                            <div class="col-md-4">
+                                    <select class="form-control" id="parent" name="parent"
+                                    data-ng-model="pageVM.pageDetails.subParentPageId"
+                                    data-ng-options="parent._id as parent.title for parent in pageVM.pagesList">
+                                <option value="">{{ 'SELECT SUB PARENT PAGE' | translate }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <table class="table table-responsive">
+                                        <thead>
+                                        <td> {{'Sr.' |translate}}</td>
+                                        <td> {{'PAGE PARENT'|translate}}</td>
+                                        <td> {{ 'PAGE TITLE' | translate }}</td>
+                                        <td> {{ 'ACTIONS' | translate }}</td>
+                                        </thead>
+                                        <tr ng-repeat="page in pageVM.allPagesList  | filter:pageVM.searchValue || pageVM.pageDetails.subParentPageId">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{page.parentPageName}}</td>
+                                            <td>{{page.title | translate}}</td>
+                                            <td>
+                                                <button type="button"
+                                                        data-ng-click="pageVM.deletePage(page._id);"><i
+                                                        class="fa fa-trash-o"></i></button>
+                                                <button type="button"
+                                                        data-ng-click="pageVM.editPage(page);"><i
+                                                        class="fa fa-pencil"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr data-ng-if="pageVM.sliderImagesList.length<1">
+                                            <td> {{ 'ADD SLIDER' | translate }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- HEADER -->
+</div>
+</div>
+<script>
+    jQuery(function () {
+        jQuery('#pageContent').editable({inlineMode: false, fullPage: true});
+    });
+</script>

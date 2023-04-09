@@ -1,0 +1,50 @@
+<div class="grop-page container padding-cnt-no grop-full-width" style="">
+    <div class="no-sidebar">
+        <div data-ng-controller="postController as postVM" data-ng-init="postVM.getPostDetail();">
+            <div class="col-md-12 post-detail-banner">
+                <h1>{{postVM.PostDetail.postName}}</h1>
+            </div>
+            <div class="padding-none"></div>
+            <div class="col-md-9">
+                <div class="col-md-12">
+                    <img src="uploads/{{postVM.PostDetail.imageLink}}">
+                </div>
+                <div class="col-md-12">
+                   <div id="postContent">
+
+                   </div>
+                </div>
+                <div class="col-md-12">
+                    <h2>Share</h2>
+                    <div class="ssk-group">
+                        <a href="" class="ssk ssk-facebook"></a>
+                        <a href="" class="ssk ssk-twitter"></a>
+                        <a href="" class="ssk ssk-google-plus"></a>
+                        <a href="" class="ssk ssk-pinterest"></a>
+                        <a href="" class="ssk ssk-tumblr"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h2>Related Posts</h2>
+                <hr>
+                <div class="related-posts">
+
+                    <div class="post-post" ng-repeat="x in postVM.relatedPosts track by $index">
+                        <h3>{{x.postName}}</h3>
+                        <img src="uploads/{{x.imageLink}}" class="project-list-thumb-image" />
+                        <p>
+                            {{x.description.substring(0,100)}}
+                        </p>
+                        <a ng-href="/#/postdetail/{{x._id}}" class="tribe-events-read-more">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    SocialShareKit.init();
+
+</script>

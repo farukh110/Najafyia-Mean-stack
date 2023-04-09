@@ -1,0 +1,84 @@
+<div data-ng-controller="pagecontroller as pageVM" data-ng-init="pageVM.getPageForUpdate()">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+
+
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+                    <div class="col-md-10 col-xs-offset-1">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="box-title">
+                                    Update Page
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <form role="form">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-12 no-padding">
+                                            <label class="control-label">Page Title*</label>
+                                        </div>
+                                        <div class="col-md-12  no-padding" style="margin-right:0px">
+                                            <input type="text" required name="pagetitle"
+                                                data-ng-model="pageVM.pageTitle" class="form-control col-md-6"
+                                                placeholder="Page Title" />
+                                        </div>
+                                        <div class="form-group col-md-12 no-padding">
+                                            <label
+                                                class="col-md-12 control-label no-padding">{{ 'SLUG' | translate }}</label>
+                                            <div class="col-md-12 no-padding">
+                                                <input type="text" required data-ng-model="pageVM.slug"
+                                                    class="form-control col-md-12"
+                                                    placeholder="{{ 'SLUG' | translate }}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12  no-padding" style="margin-top:20px">
+                                            <label class="control-label">Page Content</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12  no-padding">
+                                            <section id="editor">
+                                                <div id='edit' name="content" data-ng-model="pageVM.content"
+                                                    style="margin-top: 2px;">
+
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-1">
+                                            <button name="Update" data-ng-model="publish"
+                                                data-ng-click="pageVM.updatePage()" class="btn btn-primary pull-right"
+                                                style="margin-top:5px;">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="box-footer">
+                                <span class="alert-success" data-ng-bind="pageVM.result"> </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- HEADER -->
+
+    </div>
+</div>
+<script>
+    jQuery(function () {
+        jQuery('#edit').editable({ inlineMode: false, fullPage: true })
+    });
+
+</script>

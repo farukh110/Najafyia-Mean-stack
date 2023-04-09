@@ -1,0 +1,281 @@
+<div class="grop-page padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="dynamicPageContentController as pageVM"
+            data-ng-init="pageVM.getPageContentById();  pageVM.getPagesListById();">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="pageHeadingAreaImg get-involved-banner">
+                            <h1>{{pageVM.pageData.subParentPageId.title || pageVM.pageData.title}} </h1>
+                        </div>
+                        <a class="printhed" href="#" class="" data-ng-if="!pageVM.printArb"><img src="images/print-logo.jpg" alt="">
+                            <h2 class="printhed">{{pageVM.pageData.subParentPageId.title || pageVM.pageData.title}}
+                            </h2>
+                        </a>
+                        <a class="printhed" href="#" class="" data-ng-if="pageVM.printArb"><img src="images/print-logo-arb.svg" alt="">
+                            <h2 class="printhed" style="margin-top: 2%;">{{pageVM.pageData.subParentPageId.title || pageVM.pageData.title}}
+                            </h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="page-content-area">
+                <div class="container">
+                    <div class="row">
+                        <!-- show page content-->
+                        <div class="col-md-12 col-xs-12"
+                            ng-if="pageVM.pageData.subParentPageId && pageVM.pageData.subParentPageId.title">
+                            <h3 style="margin-top: 20px; margin-bottom:10px; text-align: center">
+                                {{pageVM.pageData.title}}</h3>
+                        </div>
+                        <div class="col-md-12 col-xs-12 prntss" data-ng-bind-html="pageVM.pageData.pageContent"
+                            data-ng-if="pageVM.showPageContent">
+                        </div>
+                        <div class="col-md-12 col-xs-12">
+                            <hr class="brdrline"
+                                ng-if="pageVM.pagesList.length && pageVM.pageData.pageContent && pageVM.pageData.pageContent != ' '">
+                        </div>
+                        <!-- <hr class="brdrline" ng-if="pageVM.pageData.pageContent && pageVM.pageData.pageContent !=' '"> -->
+                    </div>
+                    <div class="row">
+                        <div id="printableArea">
+                            <div class="col-md-12 col-xs-12" data-ng-hide="pageVM.showPageContent">
+                                <p>{{pageVM.pageData.description}}</p>
+
+                            </div>
+
+                            <!-- <div class="gap-small"></div> -->
+
+                            <!-- template 1 -->
+                            <div class="centered"
+                                data-ng-if="(pageVM.pageData.title | uppercase) ==='DONATE SUPPLIES' || pageVM.pageData.title  ==='Fournitures' || pageVM.pageData.title  ==='التبرع بالإمدادات'">
+                                <div class="col-md-4" data-ng-repeat="x in pageVM.pagesList" style="margin: 0px 0px;">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4 class="box-title text-dark">
+                                                <b>{{x.title}}</b></h4>
+                                            <p>
+                                                <a ng-href="/#/pages/{{x.slug}}" data-ng-if="x.pageContent!==' ' "
+                                                    class="readMore"><img ng-src="uploads/{{x.titleImage}}"
+                                                        class="pagesPostImage"
+                                                        style="width: 100% !important; height: 251px !important;"></a>
+                                                <img ng-src="uploads/{{x.titleImage}}" data-ng-if="x.pageContent===' ' "
+                                                    class="pagesPostImage"
+                                                    style="width: 100% !important; height: 251px !important;">
+                                                <!-- this code is commeted for read more issue in Donate Supplies -->
+                                                <!-- <div class="readmore-aun"> 
+                                                            <p class="content-aun" data-ng-bind-html="x.description.substring(0,178)"></p>
+                                                            <a ng-href="/#/pages/{{x._id}}"
+                                                                class="content-aun" data-ng-if="x.description.length >= 178">{{' READ MORE' | translate }}</a>
+                                                        </div> -->
+                                                <div style="text-align: justify; margin-top: 10px; float: left;"
+                                                    hm-read-more hm-html="{{x.description}}"
+                                                    hm-link="/#/pages/{{x.slug}}" hm-limit="155"
+                                                    hm-more-text="{{' READ MORE' | translate }}"
+                                                    hm-dots-class="{{toggle-dots-grey}}" hm-link-class="readMore">
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <hr style="border-color: #f0c84c;" />
+                                </div>
+                            </div>
+
+                            <!-- template 2 -->
+                            <div
+                                data-ng-if="(pageVM.pageData.title | uppercase) ==='NEWS' || (pageVM.pageData.title | uppercase) ==='SUCCESS STORIES' || pageVM.pageData.title === 'Nos réussites' || pageVM.pageData.title === 'Actualités' || pageVM.pageData.title === 'قصص النجاح' || pageVM.pageData.title ===  'الأخبار'">
+                                <div class="col-md-12"
+                                    data-ng-repeat="x in pageVM.pagesList | startFrom:pageVM.currentPage*pageVM.pageSize | limitTo:pageVM.pageSize">
+                                    <div class="row">
+
+                                        <p style="line-height: 16px;">
+                                            <div class="col-md-2 ">
+                                                <a ng-href="/#/pages/{{x.slug || x._id}}"
+                                                    data-ng-if="x.pageContent!==' ' " class="readMore"><img
+                                                        ng-src="uploads/{{x.titleImage}}" class="pagesPostImage2 "></a>
+                                                <img ng-src="uploads/{{x.titleImage}}" data-ng-if="x.pageContent===' ' "
+                                                    class="pagesPostImage2 ">
+                                            </div>
+                                            <div class="col-md-10">
+                                                <span class="pagesPostImageText">
+                                                    <span class="pagesPostImageDate"
+                                                        data-ng-if="(pageVM.pageData.title | uppercase) ===''">
+                                                        {{x.created | date:'M/dd/yyyy' }}</span>
+                                                    <br
+                                                        data-ng-if="(pageVM.pageData.title | uppercase) === 'SUCCESS STORIES' || (pageVM.pageData.title | uppercase) === 'قصص النجاح' || (pageVM.pageData.title | uppercase) === 'Nos réussites'" />
+                                                    <span class="pagesPostHeading">
+                                                        <p style="font-weight: normal; margin: 0px;"
+                                                            data-ng-if="(pageVM.pageData.title | uppercase) !== 'SUCCESS STORIES' && pageVM.pageData.title !== 'قصص النجاح' && pageVM.pageData.title  !== 'Nos réussites'">
+                                                            {{x.created | date:'M/dd/yyyy' }}</p>{{x.title}}.
+                                                    </span>
+                                                    <div style="text-align: justify;" hm-read-more
+                                                        hm-html="{{x.description}}"
+                                                        hm-link="/#/pages/{{x.slug || x._id}}" hm-limit="350"
+                                                        hm-more-text="{{' READ MORE' | translate }}"
+                                                        hm-dots-class="{{toggle-dots-grey}}" hm-link-class="readMore">
+                                                    </div>
+                                                </span>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <hr style="border-color: #f0c84c;" />
+                            </div>
+
+                            <!-- pagination-->
+                            <div class="col-md-12 col-xs-12 pagination"
+                                data-ng-if="pageVM.pagesList.length && pageVM.pagesList.length > pageVM.pageSize">
+                                <button ng-hide="pageVM.currentPage == 0"
+                                    ng-click="pageVM.currentPage=pageVM.currentPage-1">
+                                    {{'PREV' | translate}}
+                                </button>
+                                <!--  Page {{pageVM.currentPage+1}} of {{numberOfPages()}}-->
+                                <a data-ng-repeat="page in numberOfPages()"
+                                    class="{{pageVM.currentPage+1 === page?'active':''}}"
+                                    ng-click="pageVM.currentPage=page-1">{{page}}</a>
+                                <button ng-hide="pageVM.currentPage >= pageVM.pagesList.length/pageVM.pageSize - 1"
+                                    ng-click="pageVM.currentPage=pageVM.currentPage+1">
+                                    {{'NEXT' | translate}}
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <!-- template 3 -->
+
+                        <div class="col-md-12"
+                            data-ng-repeat="x in pageVM.pagesList | startFrom:pageVM.currentPage*pageVM.pageSize | limitTo:pageVM.pageSize"
+                            data-ng-if="(pageVM.pageData.title | uppercase) !=='DONATE SUPPLIES' &&  pageVM.pageData.title !=='Nos réussites' && pageVM.pageData.title !=='Fournitures' && pageVM.pageData.title !== 'Actualités' && (pageVM.pageData.title | uppercase) !=='NEWS' && (pageVM.pageData.title | uppercase) !=='SUCCESS STORIES' && pageVM.pageData.title !== 'قصص النجاح'  && pageVM.pageData.title !==  'الأخبار' && pageVM.pageData.title !==  'التبرع بالإمدادات'">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4 class="box-title text-dark"
+                                        data-ng-if="((pageVM.pageData.title | uppercase) === 'OUR STORY' || pageVM.pageData.title === 'Notre histoire' || (pageVM.pageData.title | uppercase) === 'قصتنا') || (pageVM.pageData.title | uppercase) ==='DONATION WAYS'">
+                                        <b>{{x.title}}</b>
+                                    </h4>
+                                    <h4 class="box-title text-dark"
+                                        data-ng-if="((pageVM.pageData.title | uppercase) !== 'OUR STORY' && pageVM.pageData.title !== 'Notre histoire' && (pageVM.pageData.title | uppercase) !== 'قصتنا') && (pageVM.pageData.title | uppercase) !=='DONATION WAYS'">
+                                        <b>{{x.title}}</b>
+                                    </h4>
+                                    <p style="line-height: 20px;" class="text-justify">
+                                        <div class="col-md-2 col-xs-12 paddleft">
+                                            <!-- <a ng-href="/#/pages/{{x._id}}" data-ng-if="x.pageContent!==' ' "
+                                                class="readMore"><img ng-src="uploads/{{x.titleImage}}"
+                                                    class="pagesPostImage"></a> -->
+                                            <div data-ng-if="x.pageContent!==' ' " class="readMore"><img
+                                                    ng-src="uploads/{{x.titleImage}}" class="pagesPostImage"></div>
+                                            <img ng-src="uploads/{{x.titleImage}}" data-ng-if="x.pageContent===' ' "
+                                                class="pagesPostImage">
+                                        </div>
+                                        <div class="col-md-10 col-xs-12 no-padding">
+                                            <span class="pagesPostImageText2">
+                                                <span
+                                                    ng-if="(pageVM.pageData.title | uppercase) === 'OUR STORY' || pageVM.pageData.title === 'Notre histoire' || (pageVM.pageData.title | uppercase) === 'قصتنا'">
+                                                    {{x.description}}
+                                                </span>
+                                                <span
+                                                    ng-if="(pageVM.pageData.title | uppercase) !== 'OUR STORY' && pageVM.pageData.title !== 'Notre histoire' && (pageVM.pageData.title | uppercase) !== 'قصتنا'">
+                                                    {{x.description }}
+                                                </span>
+
+                                                <!-- <a ng-href="/#/pages/{{x._id}}" data-ng-if="x.pageContent"
+                                                   class="readMore">
+                                                    {{ 'READ MORE' | translate}}</a> -->
+                                            </span>
+                                        </div>
+                                    </p>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-xs-12 socialButtons">
+                                    <div class="socialnaj no-padding">
+                                        <div class="shareButtons">
+                                            <div class="showSocialIconsR">
+                                                <div class="ssk-group">
+                                                    <p>
+                                                        <a href="" class="ssk ssk-facebook"></a>
+                                                        <a href="" class="ssk ssk-twitter"></a>
+                                                        <!-- <a href="" class="ssk ssk-google-plus"></a>
+                                                        <a href="" class="ssk ssk-pinterest"></a>
+                                                        <a href="" class="ssk ssk-tumblr"></a> -->
+                                                        <!-- <a href="" class="ssk ssk-instagram"></a> -->
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <i class="fa fa-share-alt"></i>
+                                            <small>{{ 'SHARE' | translate}}</small>
+                                        </div>
+                                    </div>
+                                    <div class="socialnaj no-padding">
+                                        <div class="">
+                                            <a data-ng-click="sendMail()" target="_blank">
+                                                <i class="fa fa-envelope-o"></i>
+                                                <small>{{ 'EMAIL' | translate}}</small>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="socialnaj no-padding">
+                                        <div class="" data-ng-click="pageVM.printContent('');">
+                                            <i class="fa fa-print"></i>
+                                            <small>{{ 'PRINT' | translate}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="border-color: #f0c84c;" />
+                        </div>
+
+
+                        <div>
+
+
+
+                            <div class="col-md-3 col-sm-6 col-xs-12 socialButtons"
+                                data-ng-if="pageVM.pagesList.length<1">
+                                <div class="socialnaj no-padding">
+                                    <div class="shareButtons">
+                                        <div class="showSocialIconsR">
+                                            <div class="ssk-group">
+                                                <p>
+                                                    <a href="" class="ssk ssk-facebook"></a>
+                                                    <a href="" class="ssk ssk-twitter"></a>
+                                                    <!-- <a href="" class="ssk ssk-instagram"></a> -->
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <i class="fa fa-share-alt"></i>
+                                        <small>{{ 'SHARE' | translate}}</small>
+                                    </div>
+                                </div>
+                                <div class="socialnaj no-padding">
+                                    <div class="">
+                                        <a data-ng-click="sendMail()" target="_blank">
+                                            <i class="fa fa-envelope-o"></i>
+                                            <small>{{ 'EMAIL' | translate}}</small>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="socialnaj no-padding">
+                                    <div class="" data-ng-click="pageVM.printContent('printableArea');">
+                                        <i class="fa fa-print"></i>
+                                        <small>{{ 'PRINT' | translate}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<footer>
+    <div class="printhed">
+        <!-- <h5 class="footprint">All original content created on your website is secured by copyright law.</h5> -->
+        <ul>
+            <li><img src="images/bar-footer.jpg" alt=""></li>
+        </ul>
+    </div>
+</footer>
+<!-- <script type="text/javascript">
+    SocialShareKit.init();
+</script> -->

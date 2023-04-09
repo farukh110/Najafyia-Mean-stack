@@ -1,0 +1,143 @@
+<div class="text">
+    <h3 class="header-footer-text">
+        {{$parent.donorProgram.program.programDetails.programName}}
+    </h3>
+
+    <p>
+        <b><span class="heading-pading">{{ 'SADAQAH_PER_DAY' | translate}}</span></b>
+        <i class="fa fa-info-circle" title="{{'SADAQAH_PER_DAY_TEXT' | translate}}"></i>
+        <br>
+        {{$parent.donorProgram.currency}}{{$parent.donorProgram.totalAmount / 30}}
+    </p>
+
+    <p
+        ng-show="$parent.donorProgram.subscriptionStatus == 'Active' && $parent.donorProgram.lastPaymentStatus != 'Unpaid'">
+        <b><span class="heading-pading">{{ 'SADAQAH_START_DATE' | translate}}</span></b>
+        <br>
+        {{  $parent.donarVM.getStartDate($parent.donorProgram.startDate) | date:"dd/MM/yyyy"}}
+    </p>
+
+    <p
+        ng-show="$parent.donorProgram.subscriptionStatus != 'Active' || $parent.donorProgram.lastPaymentStatus == 'Unpaid'">
+        <b><span class="heading-pading">{{ 'SADAQAH_TILL' | translate}}</span></b>
+        <br>
+        <span>{{$parent.donorProgram.endDate | date:"dd/MM/yyyy"}}</span>
+    </p>
+
+    <p><b>{{ 'PAYMENT PLAN' | translate}}
+
+        </b>
+        <a class="schedule-position" ng-show="$parent.donorProgram.showInvoiceLink == true" href="{{$parent.donorProgram.invoiceLink}}"
+            target="_blank">
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="small-text"> {{'INVOICE' |
+                translate}}</span>
+        </a>
+
+        <a class="schedule-position" data-ng-show="$parent.donorProgram.showInstallmentPlanLink == true" 
+            ng-click="$parent.donarVM.getDonorProgramDetails($parent.donorProgram)" data-toggle="modal"
+            data-target="#sadaqahDonorProgramDetailModal">
+            <span><i class="fa fa-file-pdf-o"
+                    aria-hidden="true"></i>
+                <span class="small-text"> {{'INVOICES' | translate}}
+                </span>
+            </span>
+        </a>
+
+        <br>
+        {{$parent.donorProgram.paymentPlan.value[$parent.donarVM.userLanguage]}} -
+        {{$parent.donorProgram.currency}} {{$parent.donorProgram.totalAmount}}
+    </p>
+
+    <p><b>{{ 'CARD DETAIL' | translate}} </b> <span class="small-text">({{'CARD_DETAIL_ITEM'
+            | translate}})</span>
+        <i class="fa fa-info-circle" title="{{'CARD_INFO_TEXT' | translate}}"></i>
+        <br>
+        <span title="Last 4 digits">{{'****' +
+            $parent.donorProgram.donor.cardDetail.last4}}</span>
+        |
+        <span title="Expiry Date">{{$parent.donorProgram.donor.cardDetail.exp_month}} -
+            {{$parent.donorProgram.donor.cardDetail.exp_year}} </span>
+        <a class="button" ng-href="{{$parent.donorProgram.updateCardUrl}}" target="_blank"
+            data-ng-show="$parent.donorProgram.lastPaymentStatus == 'Unpaid' && $parent.donorProgram.showUpdateCardLink == true && $parent.donorProgram.subscriptionStatus == 'Active'">{{'UPDATE_CARD'
+            | translate}} </a>
+    </p>
+
+    <p
+        data-ng-show="$parent.donorProgram.subscriptionStatus != 'Active' || $parent.donorProgram.lastPaymentStatus == 'Unpaid'">
+        <b>{{ 'LAST PAYMENT ATTEMPT' | translate}}</b> <br>{{$parent.donorProgram.lastPaymentDate |
+        date:"dd/MM/yyyy"}}
+    </p>
+
+    <p
+        data-ng-show="$parent.donorProgram.subscriptionStatus == 'Active' && $parent.donorProgram.lastPaymentStatus == 'Paid'">
+        <b>{{ 'NEXT_BILLING_DATE' | translate}}</b> <br>{{$parent.donorProgram.nextBillingDate |
+        date:"dd/MM/yyyy"}}
+    </p>
+
+    <div class="cancel-sub">
+        <a ng-href="" target="_blank"
+            ng-disabled="$parent.donorProgram.subscriptionStatus == 'Inactive' || $parent.donorProgram.subscriptionStatus == 'Cancelled'"
+            ng-class="{disabled: $parent.donorProgram.subscriptionStatus == 'Inactive' || $parent.donorProgram.subscriptionStatus == 'Cancelled'}"
+            data-ng-click="$parent.donarVM.cancelSubscription($parent.donorProgram.stripeSubscriptionId);">
+            <i class="fa fa-power-off" style="font-size:16px" aria-hidden="true"></i>
+        </a>
+    </div>
+
+</div>
+<div data-ng-if="$parent.donorProgram.subscriptionStatus == 'Active' && $parent.donorProgram.showUpdateCardLink == false"
+    class="statusActive tablecntr"> <label class="CardfooterText header-footer-text">
+        {{'Active' | translate}}</label></div>
+<div data-ng-if="$parent.donorProgram.subscriptionStatus == 'Inactive'" class="statusInactive tablecntr"> <label
+        class="CardfooterText text-color">
+        {{'Inactive' | translate}}</label></div>
+<div class="statusFailed tablecntr"
+    data-ng-if="$parent.donorProgram.lastPaymentStatus == 'Unpaid' && $parent.donorProgram.showUpdateCardLink == true && $parent.donorProgram.subscriptionStatus == 'Active'">
+    <label class="CardfooterText text-color">{{'PAYMENT_FAILED' | translate}} </label>
+</div>
+<div data-ng-if="$parent.donorProgram.subscriptionStatus == 'Cancelled'" class="statusGracePeriod tablecntr">
+    <label class="CardfooterText text-color">
+        {{'SUBSCRIPTION_CANCELED' | translate}}
+    </label>
+</div>
+
+<!---- Payments Detail Popup --->
+<div id="sadaqahDonorProgramDetailModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title tablecntr">{{'MONTHLY_PAYMENTS' | translate}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-wrapper">
+                    <table ng="datatable" class="table table-hover table-responsive"
+                        dt-options="$parent.donarVM.dtOptions">
+                        <thead style="background: #f0c84c;">
+                            <td class="tablecntr">{{ 'S.NO' | translate}}</td>
+                            <td class="tablecntr">{{ 'INSTALLMENT_DATE' | translate}}</td>
+                            <td class="tablecntr">{{ 'BILLING_AMOUNT' | translate}}</td>
+                            <!-- <td class="tablecntr">{{ 'BALANCE' | translate}}</td> -->
+                            <td class="tablecntr">{{ 'STATUS' | translate}}</td>
+                            <td class="tablecntr">{{ 'INVOICE' | translate}}</td>
+                        </thead>
+                        <tr data-ng-repeat="installment in $parent.$parent.donarVM.installmentPlanList">
+                            <td class="tablecntr">{{$index+1}}</td>
+                            <td class="tablecntr"> {{installment.installmentDate | date:"dd/MM/yyyy"
+                                }} </td>
+                            <td class="tablecntr"> {{installment.currency}} {{installment.amount}} </td>
+                            <!-- <td class="tablecntr"> {{installment.currency}} {{installment.remainingAmount}} </td> -->
+                            <td class="tablecntr"> {{'Installment' + '_' + installment.paymentStatus |
+                                translate}} </td>
+                            <td><a href="{{installment.invoiceLink}}" target="_blank"
+                                    data-ng-if="installment.paymentStatus == 'Paid' && installment.invoiceLink != ''"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i></a>
+                                <label data-ng-if="installment.paymentStatus == 'Unpaid'">N/A</label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

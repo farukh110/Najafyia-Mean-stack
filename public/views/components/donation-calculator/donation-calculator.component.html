@@ -1,0 +1,362 @@
+<style>
+    .auto-renew-message {
+        font-size: 14px;
+        text-align: justify;
+        margin: 20px 0;
+    }
+
+    .compact-wrapper .auto-renew-message {
+        margin: 20px;
+    }
+
+    .auto-renew-message label {
+        color: #f0c84c;
+    }
+
+    /* .compact-wrapper .auto-renew-message .form-check-label {
+        display: block;
+    } */
+
+    .auto-renew-message .form-check-label {
+        display: table;
+        flex-direction: row;
+        color: #f0c84c;
+    }
+
+    .auto-renew-message .form-check-label .left {
+        width: 25px;
+        display: table-cell;
+        vertical-align: top;
+    }
+
+    .auto-renew-message .form-check-label .left input {
+        margin-top: 5px;
+    }
+
+    .auto-renew-message .form-check-label .right {
+        /* flex: 1; */
+        display: table-cell;
+    }
+
+    .commentTxt {
+        color: #ffffff;
+        font-size: 13px;
+        text-align: justify;
+        width: 100%;
+        background-color: #807e80;
+        float: left;
+        border-radius: 10px 0;
+        border: 1px solid #f0c84c;
+        padding: 12px;
+    }
+
+    .floatRight {
+        float: right;
+    }
+
+    .floatRightWithText {
+        float: right;
+        word-wrap: break-word;
+        padding-bottom: 5px;
+    }
+
+    button[disabled],
+    html input[disabled] {
+        cursor: not-allowed;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .btn-donate-wrapper {
+            padding: 5px;
+            display: block !important;
+            text-align: center !important;
+        }
+    }
+
+    .orphan-id-column {
+        margin-top: 2px;
+        margin-bottom: 8px;
+    }
+
+    .orpan-ctrl-row .orphan-id-column {
+        width: 50%;
+    }
+
+    .orpan-ctrl-row .orphan-id-column:last-child:nth-child(odd) {
+        width: 100%;
+    }
+
+    @media (max-width: 480px) {
+
+        .orpan-ctrl-row .orphan-id-column {
+            width: 100%;
+        }
+    }
+</style>
+<div
+    ng-class="{ 'col-md-3 col-xs-12 dpnone' : ctrl.compactmode == 'false',  'compact-wrapper': ctrl.compactmode == 'true' }">
+    <div ng-class="{'project-calculator': ctrl.compactmode == 'false' , 'compact': ctrl.compactmode == 'true'  } ">
+
+        <div ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }"
+            ng-show="!ctrl.showorphancategories">
+            <label for="">{{"ORPHAN SUPPORT TYPE" | translate}} </label>
+            <select class="form-control" ng-model="$parent.orphanType"
+                data-ng-change="$parent.pageVM.clearOrphanCalculator()">
+                <option value="">{{'PLEASE SELECT' | translate}}</option>
+                <option value="gc">{{'BASIC CARE' | translate}}</option>
+                <option value="dz">{{'DAR AL ZAHRA' | translate}}</option>
+            </select>
+        </div>
+
+        <div ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }"
+            ng-show="!ctrl.showsubcategories">
+            <label for="">{{"SUB CATEGORY" | translate}} </label>
+            <select class="form-control" ng-show="!$parent.orphanType">
+                <option value="">{{'PLEASE SELECT' | translate}}</option>
+            </select>
+            <select class="form-control" ng-show="$parent.orphanType == 'gc'" ng-model="$parent.selectedGc"
+                data-ng-change="$parent.selectGcCalculator(); $parent.getCountValues();"
+                data-ng-options="gc.programName for gc in $parent.generalCareList">
+                <option value="">{{'PLEASE SELECT' | translate}}</option>
+            </select>
+            <select class="form-control" ng-show="$parent.orphanType == 'dz'" ng-model="$parent.selectedDz"
+                data-ng-change="$parent.selectDzCalculator()"
+                data-ng-options="dz.programName for dz in $parent.daralzahraCat">
+                <option value="">{{'PLEASE SELECT' | translate}}</option>
+            </select>
+        </div>
+
+
+
+
+        <div ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }"
+            ng-show="$parent.sponsorshipPlanText.length > 0  ">
+            <label>{{'SPONSORSHIP PLAN' | translate}}</label>
+            <div class='input-group'>
+                <div class='input-icon'><input type='text' data-ng-disabled='true' class='form-control'
+                        data-ng-model='$parent.sponsorshipPlanText' /><i> {{$parent.selectedCurrencySymbol}} &nbsp;</i>
+                </div>
+            </div>
+        </div>
+
+        <div ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }"
+            ng-show="$parent.selectedGc.donationProcess[0].isCount ">
+            <label>{{ 'ORPHAN COUNT' | translate }}</label>
+
+            <select class='form-control' data-ng-model='$parent.selectedCount' ng-change='$parent.countChangeGc()'
+                data-ng-options="item for item in $parent.countArray">
+                <option value=''>{{'PLEASE SELECT' | translate}}</option>
+            </select>
+        </div>
+
+        <div ng-show="$parent.pageVM.orphanRenewal && $parent.selectedCount != null && $parent.selectedCount <=5">
+
+            <label> {{'ORPHAN_IDS' | translate}} </label>
+
+            <div class="row orpan-ctrl-row">
+
+                <div class='input-icon col-md-6 col-sm-6 col-xs-6 orphan-id-column orphan-odd-column'
+                    ng-repeat='x in [].constructor($parent.selectedCount) track by $index'>
+
+                    <input type="text" class="form-control" data-ng-model='$parent.$parent.pageVM.orphanIds[$index]'>
+                    <i style='font-style: normal;'>{{$index +1}}. &nbsp;</i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div ng-show=" !$parent.sponsorshipPlanText.length > 0  "
+            ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }">
+            <label id='amountLabel'>{{ 'AMOUNT' | translate }}</label>
+            <label id='fixedAmountValue'></label>
+            <div class='input-group'>
+
+
+                <div class='input-icon'
+                    ng-show="($parent.selectedGc.donationProcess[0].isRecurring && $parent.selectedGc.donationProcess[0].isAmount) || ( !$parent.selectedGc.donationProcess[0].isRecurring && !$parent.selectedGc.donationProcess[0].isAmount && !$parent.selectedGc.donationProcess[0].isCount) || (!$parent.selectedGc.donationProcess[0].isRecurring && $parent.selectedGc.donationProcess[0].isAmount  ) ">
+                    <input type='text' ng-keypress='$parent.isNumberKey($event)' min='1' id='amountTextBox'
+                        ng-keyup='$parent.countChangeGc()' data-ng-model='$parent.amountValue' class='form-control'
+                        ng-disabled='$parent.amountIsAmount ' />
+                    <i style='font-style: normal;' class=''>{{$parent.selectedCurrencySymbol}} &nbsp;</i>
+                </div>
+
+
+                <div class='input-icon'
+                    ng-show="(!$parent.selectedGc.donationProcess[0].isRecurring && !$parent.selectedGc.donationProcess[0].isAmount && $parent.selectedGc.donationProcess[0].isCount )   ">
+                    <select class='form-control' ng-change='$parent.countChangeGc()'
+                        ng-model='$parent.amountValueForNonFixed'>
+                        <option value=''>---{{'PLEASE SELECT' | translate}}---</option>
+                        <option data-ng-repeat='price in $parent.prices' ng-value='price'>
+                            {{$parent.$parent.selectedCurrencySymbol}} {{price}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <br>
+
+            <div data-ng-show="$parent.pageVM.oprhanGift">
+                <label>{{'DESCRIPTION' | translate}} {{'MAX_CHARCTER_50' | translate}}</label>
+
+                <div class='input-group'>
+
+                    <textarea class="form-control" maxlength="50" data-ng-model="$parent.pageVM.orphanGiftDescription"
+                        rows='3'></textarea>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }"
+            ng-show=" (($parent.selectedGc.donationProcess[0].isCount && ($parent.selectedPaymentPlan.Name == 'GIVE_ONCE' || $parent.selectedPaymentPlan == undefined  ) )|| $parent.orphanType == null)   ">
+            <label>{{ 'TOTAL AMOUNT' | translate }}</label>
+            <div class='input-group'>
+                <div class='input-icon'><input type='text' ng-keypress='$parent.isNumberKey($event)' min='1'
+                        data-ng-disabled='true' class='form-control'
+                        data-ng-model='$parent.totalAmount' /><i>{{$parent.selectedCurrencySymbol}} &nbsp; </i></div>
+            </div>
+        </div>
+
+
+
+
+        <div ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }"
+            ng-show=" ($parent.selectedGc.donationProcess[0].isCount && $parent.selectedPaymentPlan.Name == 'MONTHLY' )   ">
+            <label>{{'TOTAL AMOUNT' | translate }}</label>
+            <div class='input-group'>
+                <div class='input-icon'><input type='text' ng-keypress='$parent.isNumberKey($event)' min='1'
+                        data-ng-disabled='true' class='form-control'
+                        data-ng-model='$parent.totalSubscriptionAmount' /><i>{{$parent.selectedCurrencySymbol}}
+                        &nbsp;</i>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <div ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }"
+            ng-show="$parent.selectedGc.donationProcess[0].isRecurring">
+
+            <div class='form-group'>
+                <label>{{ 'PAYMENT PLAN' | translate }}</label>
+                <select class='form-control' ng-model='$parent.selectedPaymentPlan'
+                    data-ng-change='$parent.checkPaymentPlan(); $parent.getCountValues();'
+                    data-ng-options='pp.value[$parent.pageVM.language] for pp in $parent.paymentPlans'>
+                    <option value=''> {{'PLEASE SELECT' | translate}}</option>
+                </select>
+            </div>
+
+            <div class='form-group' data-ng-show="!
+            $parent.selectedGc.donationProcess[0].isAmount">
+                <label>{{ 'DURATION' | translate }}</label>
+                <select class='form-control' ng-model='$parent.selectedDonationDuration'
+                    ng-options='x.donationDurationName for x in $parent.donationDuration'>
+                </select>
+            </div>
+
+
+        </div>
+
+        <!-- Might need to add duration here when amount is not fixed  -->
+
+
+        <!-- <div ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }"
+            ng-show="$parent.selectedGc.donationProcess[0].isRecurring && $parent.selectedGc.donationProcess[0].isAmount">
+            <label>{{ 'DESCEND' | translate }}</label>
+            <select class='form-control' ng-model='$parent.selectedDescend' ng-change='$parent.clearOrphans()'>
+                <option ng-value=''>---{{'PLEASE SELECT' | translate}}---</option>
+                <option value='Any'>{{'ANY' | translate}}</option>
+                <option ng-value='true'>{{'SYED' | translate}}</option>
+                <option ng-value='false'>{{'NONSYED' | translate}}</option>
+            </select>
+        </div>
+
+        <div ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-6 col-xs-12': ctrl.compactmode == 'true' }"
+            ng-show="$parent.selectedGc.donationProcess[0].isRecurring && $parent.selectedGc.donationProcess[0].isAmount">
+            <label>{{ 'GENDER' | translate}}</label>
+            <select class='form-control' ng-model='$parent.selectedGender' ng-change='$parent.clearOrphans()'>
+                <option ng-value=''>---{{'PLEASE SELECT' | translate}}---</option>
+                <option value='Any'>{{'ANY' | translate}}</option>
+                <option value='Male'>{{'MALE' | translate}}</option>
+                <option value='Female'>{{'FEMALE' | translate}}</option>
+            </select>
+        </div> -->
+
+
+        <!--if count-->
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="form-check auto-renew-message"
+            ng-show="$parent.autoRenewMessage.length > 0 && $parent.selectedGc.donationProcess[0].isRecurring ">
+            <div class="form-check-label">
+                <div class="left">
+                    <input type="checkbox" data-ng-model="$parent.isAutoRenew" class="form-check-input"
+                        id="chkBoxAutoRenew">
+                </div>
+                <label class="right" for="chkBoxAutoRenew" ng-bind-html="$parent.autoRenewMessage"></label>
+            </div>
+        </div>
+
+        <div ng-show="$parent.isRecurringPaymentPlan && $parent.paymentChargeMessage"
+            ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-12 col-xs-12': ctrl.compactmode == 'true' }">
+            <label><span class='commentTxt' ng-bind-html="$parent.paymentChargeMessage"></span></label>
+
+        </div>
+
+        <div ng-show="$parent.selectedGc.slug == 'eidiya' "
+            ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'col-md-12 col-xs-12': ctrl.compactmode == 'true' }">
+            <label><span class='commentTxt'>{{'EidhyaSponsorship' | translate}}</span></label>
+        </div>
+
+        <div ng-show='($parent.selectedGc.slug == "orphan-sponsorship" && $parent.selectedPaymentPlan != null )  && $parent.selectedCount > 0 ? true : false'
+            ng-class="{ 'form-group' : ctrl.compactmode == 'false',  'form-group col-md-6 col-xs-12': ctrl.compactmode == 'true' }">
+            <button class='grop-btn  grop-btn_submit' data-toggle='modal' data-target='#orphanListModal'
+                ng-click='$parent.getOrphansByCount($parent.selectedCount)'>{{'SELECT ORPHANS' | translate}}</button>
+        </div>
+
+
+        <div ng-class="{ 'form-group' : ctrl.compactmode == 'false',  '': ctrl.compactmode == 'true' }"
+            ng-show="$parent.pageVM.isPaymentEnabled() || $parent.pageVM.orphanRenewal || $parent.pageVM.oprhanGift ">
+            <div
+                ng-class="{ 'row' : ctrl.compactmode == 'false',  'col-md-12 col-xs-12 centered ng-scope': ctrl.compactmode == 'true' }">
+                <div
+                    ng-class="{ 'col-md-6 col-xs-6 text-center no-padding' : ctrl.compactmode == 'false',  'col-md-4 col-sm-5 col-xs-12 btn-donate-wrapper': ctrl.compactmode == 'true' }">
+                    <button class='grop-btn-addcart  grop-btn_submit' ng-disabled="!$parent.pageVM.isPaymentEnabled()"
+                        data-ng-click='$parent.addCartItem();'>{{
+                        'ADD TO CART' |
+                        translate }}</button>
+                </div>
+                <div
+                    ng-class="{ 'col-md-6 col-xs-6 text-center no-padding' : ctrl.compactmode == 'false',  'col-md-4 col-sm-5 col-xs-12 btn-donate-wrapper': ctrl.compactmode == 'true' }">
+                    <button class='grop-btn-donate  grop-btn_submit' ng-disabled="!$parent.pageVM.isPaymentEnabled()"
+                        data-ng-click='$parent.donate();'>{{
+                        'DONATE NOW' |
+                        translate }}</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,309 @@
+<div data-ng-controller="programController as  programVM" ng-init="programVM.getProgramTypesForCategoryUpdate()">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+                    <div class="col-md-8 col-xs-offset-1">
+                        <section class="content-header nopadding">
+                            <h1>
+                                {{ 'UPDATE SUBCATEGORY' | translate }}<br>
+                                <small></small>
+                            </h1>
+                        </section>
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="box-title"></div>
+                            </div>
+                            <div class="box-body">
+
+                                <form role="form" class="form-horizontal arabic-css" name="publishForm"
+                                    enctype="multipart/form-data"
+                                    data-ng-submit="programVM.updateProgramSubcategory(publishForm.$valid)">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">{{ 'SUBCATEGORY NAME' | translate
+                                            }}</label>
+
+                                        <div class="col-md-7">
+                                            <input type="text" name="firstName" required maxlength="80"
+                                                data-ng-model="programVM.programSubcategoryName"
+                                                placeholder="Sub category" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">{{ 'SUBCATEGORY SLUG' | translate
+                                            }}</label>
+
+                                        <div class="col-md-7">
+                                            <input type="text" name="firstName" required maxlength="80"
+                                                data-ng-model="programVM.programSubcategorySlug"
+                                                placeholder="Sub category" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">{{ 'PROGRAM TYPE' | translate }}e</label>
+
+                                        <div class="col-md-7">
+
+                                            <select ng-model="programVM.selectedProgramType" class="form-control"
+                                                readonly
+                                                data-ng-options="x.programTypeName for x in programVM.programTypes">
+                                                <option ng-value="?">{{'SELECT' | translate}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"
+                                        ng-show="programVM.selectedProgramType.programTypeName=='Religious Payments' || programVM.selectedProgramType.programTypeName=='المدفوعات الدينية' || programVM.selectedProgramType.programTypeName == 'Paiements religieux'">
+                                        <label class="col-md-3 control-label">{{ 'IMAGE' | translate }}</label>
+
+                                        <div class="col-md-7">
+                                            <input type="file" name="file" file-model="programVM.file" class="image "
+                                                placeholder="SubCategory  Image" />
+                                        </div>
+                                        <div class="col-md-6" style="margin-top:10px">
+                                            <img ng-src="/uploads/{{programVM.imageLink}}"
+                                                data-ng-model="programVM.imageLink" width="150" height="150" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group"
+                                        ng-show="programVM.selectedProgramType.programTypeName=='Religious Payments' || programVM.selectedProgramType.programTypeName=='المدفوعات الدينية' || programVM.selectedProgramType.programTypeName == 'Paiements religieux'">
+                                        <label class="col-md-3 control-label">{{ 'LANDING' | translate }}</label>
+
+                                        <div class="col-md-2 ">
+                                            <input type="checkbox" ng-model="programVM.isLanding" class="" />
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group"
+                                        ng-show="programVM.selectedProgramType.programTypeName=='Religious Payments' || programVM.selectedProgramType.programTypeName=='المدفوعات الدينية' || programVM.selectedProgramType.programTypeName == 'Paiements religieux'">
+                                        <label class="col-md-3 control-label">{{ 'COUNTRY OF ZIYARAT' | translate
+                                            }}</label>
+
+                                        <div class="col-md-2 ">
+                                            <input type="checkbox" ng-model="programVM.isCountryFoZiyarat" class="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="programVM.isCountryFoZiyarat">
+                                        <label class="col-md-3 control-label">{{ 'SELECT COUNTRY' | translate }}</label>
+
+                                        <div class="col-md-7">
+                                            <select ng-required="programVM.isCountryFoZiyarat"
+                                                ng-model="programVM.selectedCountry" class="form-control"
+                                                data-ng-options="x.name for x in programVM.country">
+                                                <option ng-value="">{{'SELECT' | translate}}</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group"
+                                        ng-show="programVM.selectedProgramType.programTypeName=='Religious Payments' || programVM.selectedProgramType.programTypeName=='المدفوعات الدينية' || programVM.selectedProgramType.programTypeName == 'Paiements religieux'">
+                                        <label class="col-md-3 control-label">{{ 'SPECIAL DAYS OF ZIYARAT' | translate
+                                            }}</label>
+
+                                        <div class="col-md-2 ">
+                                            <input type="checkbox" ng-model="programVM.isSDOZ" class="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="programVM.isSDOZ">
+                                        <label class="col-md-3 control-label">{{ 'SELECT TYPE' | translate }}</label>
+
+                                        <div class="col-md-7">
+                                            <table class="table table-bordered">
+                                                <thead class="success">
+                                                    <td class="col-md-2"> {{ 'SELECT' | translate }}</td>
+                                                    <td>{{ 'FITRAH SUB TYPE' | translate }}</td>
+                                                </thead>
+                                                <tr ng-repeat="x in programVM.sdoz track by $index">
+                                                    <td>
+                                                        <input id="{{x._id}}" type="checkbox" class=""
+                                                            ng-checked="x.selected"
+                                                            ng-click="programVM.addOrRemoveSDOZ(x)">
+                                                    </td>
+                                                    <td>{{x.name}}</td>
+                                                </tr>
+                                                <!-- <tr ng-repeat="x in projectVM.projectCategories track by $index">
+                                                    <td>
+                                                        <input id="{{x._id}}" type="checkbox" ng-checked="x.selected" class="" ng-click="projectVM.addOrRemoveSubcategory(x)">
+                                                    </td>
+                                                    <td>{{x.programSubCategoryName}}</td>
+                                                </tr> -->
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"
+                                        ng-show="programVM.selectedProgramType.programTypeName=='Religious Payments' || programVM.selectedProgramType.programTypeName=='المدفوعات الدينية' || programVM.selectedProgramType.programTypeName == 'Paiements religieux'">
+                                        <label class="col-md-3 control-label">{{ 'FITRAH SUBTYPE' | translate }}</label>
+
+                                        <div class="col-md-2 ">
+                                            <input type="checkbox" ng-model="programVM.isFirtahSubType" class="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="programVM.isFirtahSubType">
+                                        <label class="col-md-3 control-label">{{ 'SELECT SUBTYPE' | translate }}</label>
+
+                                        <div class="col-md-7">
+                                            <table class="table table-bordered">
+                                                <thead class="success">
+                                                    <td class="col-md-2"> {{ 'SELECT' | translate }}</td>
+                                                    <td>{{ 'FITRAH SUB TYPE' | translate }}</td>
+                                                    <td>{{ 'AMOUNT' | translate }}</td>
+                                                </thead>
+                                                <tr ng-repeat="x in programVM.fitrahSubTypes track by $index"
+                                                    ng-form="innerform">
+                                                    <td>
+                                                        <input type="checkbox" ng-model="checkBoxCheck"
+                                                            ng-checked="x.selected" class=""
+                                                            ng-click="programVM.addOrRemoveFitrahSubTypeWithAmount(x)">
+
+                                                    </td>
+                                                    <td>{{x.name}}</td>
+                                                    <td>
+                                                        <input type="number" ng-model="x.fitrahSubTypeAmount"
+                                                            ng-required="x.checkBoxCheck" class="col-md-6"
+                                                            ng-change="programVM.updateFitrahSubTypeAmount(x)">
+                                                    </td>
+
+
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"
+                                        ng-show="programVM.selectedProgramType.programTypeName=='Religious Payments' || programVM.selectedProgramType.programTypeName=='المدفوعات الدينية' || programVM.selectedProgramType.programTypeName == 'Paiements religieux'">
+                                        <label class="col-md-3 control-label">{{ 'SAHM' | translate }}</label>
+
+                                        <div class="col-md-2 ">
+                                            <input type="checkbox" ng-model="programVM.isSahm" class="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="programVM.isSahm">
+                                        <label class="col-md-3 control-label">{{ 'SELECT SAHM' | translate }}</label>
+
+                                        <div class="col-md-7">
+                                            <table class="table table-bordered">
+                                                <thead class="success">
+                                                    <td class="col-md-2"> {{ 'SELECT' | translate }}</td>
+                                                    <td>{{ 'SAHM' | translate }}</td>
+                                                </thead>
+                                                <tr ng-repeat="x in programVM.sahms track by $index">
+                                                    <td>
+                                                        <input type="checkbox" class="" ng-checked="x.selected"
+                                                            ng-click="programVM.addOrRemoveSahm(x)">
+                                                    </td>
+                                                    <td>{{x.name}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"
+                                        ng-show="programVM.selectedProgramType.programTypeName=='Religious Payments' || programVM.selectedProgramType.programTypeName=='المدفوعات الدينية' || programVM.selectedProgramType.programTypeName == 'Paiements religieux'">
+                                        <label class="col-md-3 control-label">{{ 'COUNTRY_WISE_AMOUNT' | translate
+                                            }}</label>
+                                        <div class="col-md-2 ">
+                                            <input type="checkbox" ng-model="programVM.amountBasedOnCountry" class="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group " ng-show="programVM.amountBasedOnCountry">
+
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <center>
+                                                    <button class="btn btn-primary" type="button"
+                                                        ng-click="programVM.addAnotherCountry()">{{'ADD_COUNTRY' |
+                                                        translate }}</button>
+                                                </center>
+                                            </div>
+                                            <div class="col-md-2">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="box-body">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <td> {{ 'KEY' | translate }}</td>
+                                                    <td>{{ 'PRICE' | translate }}</td>
+                                                    <td >{{ programVM.language | translate }}</td>
+                                                    <td>{{ 'ACTIONS' | translate }}</td>
+                                                </thead>
+                                                <tr ng-repeat="x in programVM.countryWiseAmount track by $index ">
+
+                                                    <td> <input type="text" required data-ng-model="x.key"></td>
+                                                    <td> <input type="number" required data-ng-model="x.price"></td>
+                                                    <td > <input type="text" required
+                                                            data-ng-model="x[programVM.language]"> </td>
+                                                    <td>
+                                                        <button type="button"
+                                                            data-ng-click="programVM.removeCountry($index)">
+                                                            <i class="fa fa-trash"></i></button>
+
+
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group"
+                                        ng-show="programVM.selectedProgramType.programTypeName=='Religious Payments' || programVM.selectedProgramType.programTypeName=='المدفوعات الدينية' || programVM.selectedProgramType.programTypeName == 'Paiements religieux'">
+                                        <label class="col-md-3 control-label">{{ 'DESCRIPTION' | translate }}</label>
+
+                                        <div class="col-md-7">
+                                            <!--<textarea ng-model="programVM.description" class="form-control">-->
+                                            <!--</textarea>-->
+                                            <div id="editor" aria-placeholder="Write">
+                                                <div id='upsubcat' name="upsubcat">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">{{ 'FIXED AMOUNT' | translate }}</label>
+
+                                        <div class="col-md-2 ">
+                                            <input type="checkbox" ng-model="programVM.isFixedAmount" class="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="programVM.isFixedAmount">
+                                        <label class="col-md-3 control-label"></label>
+
+                                        <div class="col-md-2">
+                                            <input type="text" class="form-control pull-right validateNumber"
+                                                maxlength="8" ng-required="programVM.isFixedAmount"
+                                                ng-model="programVM.fixedAmount" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group"
+                                        ng-if="programVM.selectedProgramType.programTypeName=='Religious Payments' || programVM.selectedProgramType.programTypeName=='المدفوعات الدينية' || programVM.selectedProgramType.programTypeName == 'Paiements religieux'">
+                                        <label class="col-md-3 control-label">{{ 'PRIORITY RANK' | translate }}</label>
+                                        <div class="col-md-4">
+                                            <input type="number" class="form-control validateNumber"
+                                                ng-model="programVM.programPriority" min='1' required placeholder="1" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-2 col-md-offset-10">
+                                            <button name="publish" type="submit" class="btn btn-primary pull-right"
+                                                style="margin-top:5px;">{{ 'UPDATE' | translate }}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- HEADER -->
+    </div>
+</div>
+<script>
+    jQuery(function () {
+        jQuery('#upsubcat').editable({ inlineMode: false, fullPage: true });
+    });
+</script>

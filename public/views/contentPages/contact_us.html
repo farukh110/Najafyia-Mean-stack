@@ -1,0 +1,248 @@
+<style>
+    .emailtemp table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin: 0px;
+        border: none !important;
+    }
+
+    .emailtemp th {
+        border: 1px solid #dddddd;
+        background: #f0c84c !important;
+        text-align: center !important;
+        color: #000 !important;
+        padding: 8px;
+    }
+
+    .emailtemp td {
+        text-align: center !important;
+    }
+
+    .btn.focus,
+    .btn:focus,
+    .btn:hover {
+        color: #fff !important;
+        text-decoration: none;
+    }
+</style>
+
+<div class="grop-page padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="pageContentController as pageVM"
+            data-ng-init="pageVM.getPageContentByName(('CONTACT US'|translate)); pageVM.getRepresentative();">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12  col-xs-12">
+
+                        <div class="project-detail-banner"
+                            style="background-image:url(/images/contact-us.png); margin-bottom: 30px;">
+
+                            <h1>{{'CONTACT US' | translate}}</h1>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-content-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5 col-xs-12">
+                            <h3 style="margin-top:  0px;"><b>{{'GET IN TOUCH' | translate}}</b></h3>
+                            <!-- <p class="text-justify">{{pageVM.pageData.contactGetInTouch}}</p> -->
+                            <span class="text-justify" data-ng-bind-html="pageVM.pageData.contactGetInTouch"></span>
+                            <h3><b>{{'HEAD OFFICE' | translate}}</b></h3>
+                            <span class="text-justify" data-ng-bind-html="pageVM.pageData.contactHeadOffice"></span>
+                            <p class="text-justify">{{pageVM.pageData.contactEmailAddress}}</p>
+                            <div class="gap" style="margin: 0px 0px;"></div>
+                            <div id="contactMap" style="width:100%;height:163px;background:#e5e5e5; border-radius: 10px; "></div>
+                        </div>
+                        <div class="col-md-7 contus">
+                            <form class="form-horizontal" ng-submit="pageVM.sendEmailContactUs(queryForm.$valid);"
+                                name="queryForm">
+                                <div class="">
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-xs-12" style="margin-top: 10px">
+                                            <input type="text" class="form-control" id="firstName"
+                                                ng-model="pageVM.queryDetails.firstName"
+                                                placeholder="{{'FIRST NAME' | translate}}" required autocomplete="off"
+                                                data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                oninput="this.setCustomValidity('')">
+                                        </div>
+                                        <div class="col-md-6 col-xs-12" style="margin-top: 10px">
+                                            <input type="text" class="form-control" id="lastName"
+                                                ng-model="pageVM.queryDetails.lastName"
+                                                placeholder="{{'LAST NAME' | translate}}" required autocomplete="off"
+                                                data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                oninput="this.setCustomValidity('')">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="col-md-12  col-xs-12">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="email"
+                                                ng-model="pageVM.queryDetails.email" autocomplete="off"
+                                                placeholder="{{'EMAIL' | translate}}" required autocomplete="off"
+                                                data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                oninput="this.setCustomValidity('')">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="form-group">
+                                            <select class="form-control" id="subject" name="subject"
+                                                ng-model="pageVM.queryDetails.subject" required
+                                                data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                oninput="this.setCustomValidity('')">
+                                                <option value="">{{'PLEASE SELECT' | translate}}</option>
+                                                <option value="Technical Assistance">{{'Technical Assistance' | translate}}</option>
+                                                <option value="Query From Najafyia">
+                                                    {{'Payment Related Queries'| translate}} </option>
+                                                <option value="other">{{'OTHERS' | translate}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="" data-ng-if="pageVM.queryDetails.subject=='other'">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" autocomplete="off" id="other"
+                                                ng-model="pageVM.queryDetails.other" required
+                                                placeholder="{{'PLEASE TYPE YOUR SUBJECT HERE' | translate}}"
+                                                data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                oninput="this.setCustomValidity('')">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control" ng-model="pageVM.queryDetails.message"
+                                                placeholder="{{'ENTER YOUR MESSAGE' | translate}}"
+                                                style="    min-height: 175px;resize: none;" required
+                                                data-error="{{'PLEASE FILL THE MISSING FIELD' | translate}}"
+                                                oninput="this.setCustomValidity('')"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-xs-12 no-padding">
+                                <button type="submit" class="btn themeBtn2 btn-contact-us">{{'SEND MESSAGE' | translate}}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <script>
+                    function myMap() {
+                        var map = new google.maps.Map(document.getElementById('contactMap'), {
+                            center: { lat: 31.977373, lng: 44.353453 },
+                            zoom: 12,
+                            styles: [
+                                { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
+                                { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
+                                { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
+                                {
+                                    featureType: 'administrative.locality',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{ color: '#d59563' }]
+                                },
+                                {
+                                    featureType: 'poi',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{ color: '#d59563' }]
+                                },
+                                {
+                                    featureType: 'poi.park',
+                                    elementType: 'geometry',
+                                    stylers: [{ color: '#263c3f' }]
+                                },
+                                {
+                                    featureType: 'poi.park',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{ color: '#6b9a76' }]
+                                },
+                                {
+                                    featureType: 'road',
+                                    elementType: 'geometry',
+                                    stylers: [{ color: '#38414e' }]
+                                },
+                                {
+                                    featureType: 'road',
+                                    elementType: 'geometry.stroke',
+                                    stylers: [{ color: '#212a37' }]
+                                },
+                                {
+                                    featureType: 'road',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{ color: '#9ca5b3' }]
+                                },
+                                {
+                                    featureType: 'road.highway',
+                                    elementType: 'geometry',
+                                    stylers: [{ color: '#746855' }]
+                                },
+                                {
+                                    featureType: 'road.highway',
+                                    elementType: 'geometry.stroke',
+                                    stylers: [{ color: '#1f2835' }]
+                                },
+                                {
+                                    featureType: 'road.highway',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{ color: '#f3d19c' }]
+                                },
+                                {
+                                    featureType: 'transit',
+                                    elementType: 'geometry',
+                                    stylers: [{ color: '#2f3948' }]
+                                },
+                                {
+                                    featureType: 'transit.station',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{ color: '#d59563' }]
+                                },
+                                {
+                                    featureType: 'water',
+                                    elementType: 'geometry',
+                                    stylers: [{ color: '#17263c' }]
+                                },
+                                {
+                                    featureType: 'water',
+                                    elementType: 'labels.text.fill',
+                                    stylers: [{ color: '#515c6d' }]
+                                },
+                                {
+                                    featureType: 'water',
+                                    elementType: 'labels.text.stroke',
+                                    stylers: [{ color: '#17263c' }]
+                                }
+                            ]
+                        });
+                    }
+
+                    $(function () {
+                        var inputs = document.getElementsByTagName("INPUT");
+                        for (var i = 0; i < inputs.length; i++) {
+                            inputs[i].oninvalid = function (e) {
+                                e.target.setCustomValidity("");
+                                if (!e.target.validity.valid) {
+                                    e.target.setCustomValidity(e.target.getAttribute("data-error"));
+                                }
+                            };
+                        }
+                    });
+                </script>
+                <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN9XuVCecBNm-YMdA7M5qRAZc6Uyz2VPA&callback=myMap"></script>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

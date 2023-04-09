@@ -1,0 +1,202 @@
+<div class="grop-page container padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="generalCareController as pageVM"
+            data-ng-init="pageVM.getGeneralCareDetail();pageVM.amount=0; getOrphans();">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="project-detail-banner orphnsbanner">
+                        <h1>{{pageVM.generalCareDetail.programName}} </h1>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xs-12">
+                    <a class="printhed" href="#" class="" data-ng-if="!pageVM.printArb"><img
+                            src="images/print-logo.jpg" alt="">
+                        <h2 class="printhed">{{pageVM.generalCareDetail.programName}}</h2>
+                    </a>
+                    <a class="printhed" href="#" class="" data-ng-if="pageVM.printArb"><img
+                            src="images/print-logo-arb.svg" alt="">
+                        <h2 class="printhed" style="margin-top: 2%;">{{pageVM.generalCareDetail.programName}}
+                        </h2>
+                    </a>
+                </div>
+                <donation-calculator-component showorphancategories="'false'" showsubcategories="'false'" compactmode="'false'"  ></donation-calculator-component>
+                <div class="col-md-3  col-xs-12 dpnone">
+
+                    
+                    <!-- <div class="project-calculator">
+                        <div id="gcCalculator">
+                        </div>
+                    </div> -->
+                    <div style="clear: both"></div>
+                    <div class="related-generalCares dpnones">
+                        <div class="generalCare-post"
+                            ng-repeat="x in pageVM.relatedgeneralCares track by $index">
+                            <h3>{{x.programName}}</h3>
+                            <img src="uploads/{{x.imageLink}}" class="generalCare-list-thumb-image" />
+                            <p>
+                                {{x.programDescription.substring(0,100)}}
+                            </p>
+                            <a ng-href="/#/generalcaredetails/{{x._id}}" class="tribe-events-read-more">View
+                                Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9  grop-float_left">
+                    <div id="printableArea" class="resheight">
+                        <p class="text-justify" data-ng-bind-html="pageVM.generalCareDetail.programDescription">
+
+                            <!--  {{pageVM.generalCareDetail.programDescription.substring(0,530)}}-->
+
+                        </p>
+                        <!--<img class="center-block descriptionImage"-->
+                        <!--src="uploads/{{pageVM.generalCareDetail.imageLink}}">-->
+                        <!--<p class="text-justify">-->
+                        <!--&lt;!&ndash; {{pageVM.generalCareDetail.programDescription.substring(531)}}&ndash;&gt;-->
+                        <!--{{pageVM.description.para2}}-->
+                        <!--</p>-->
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                        <div class="col-md-4 col-sm-6 col-xs-12 socialButtons no-padding">
+                            <div class="socialnaj no-padding">
+                                <div class="shareButtons ">
+                                    <div class="showSocialIconsR">
+                                        <div class="ssk-group">
+                                            <p>
+                                                <a href="" class="ssk ssk-facebook"></a>
+                                                <a href="" class="ssk ssk-twitter"></a>
+                                                <!-- <a href="" class="ssk ssk-google-plus"></a>
+                                        <a href="" class="ssk ssk-pinterest"></a>
+                                        <a href="" class="ssk ssk-tumblr"></a> -->
+                                                <!-- <a href="" class="ssk ssk-instagram"></a> -->
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <i class="fa fa-share-alt"></i>
+                                    <small>{{ 'SHARE' | translate}}</small>
+                                </div>
+                            </div>
+                            <div class="socialnaj no-padding">
+                                <div class="">
+                                    <a data-ng-click="sendMail()" target="_blank">
+                                        <i class="fa fa-envelope-o"></i>
+                                        <small>{{ 'EMAIL' | translate}}</small>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="socialnaj no-padding">
+                                <div class="" data-ng-click="pageVM.printContent('printableArea');">
+                                    <i class="fa fa-print"></i>
+                                    <small>{{ 'PRINT' | translate}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 no-padding col-xs-12">
+
+                    <div class="related-generalCares dpnonesdesk">
+                        <div class="generalCare-post"
+                            ng-repeat="x in pageVM.relatedgeneralCares track by $index">
+                            <h3>{{x.programName}}</h3>
+                            <img src="uploads/{{x.imageLink}}" class="generalCare-list-thumb-image" />
+                            <p>
+                                {{x.programDescription.substring(0,100)}}
+                            </p>
+                            <a ng-href="/#/generalcaredetails/{{x._id}}" class="tribe-events-read-more">View
+                                Details</a>
+                        </div>
+                    </div>
+                    <footer>
+                        <div class="printhed">
+                            <!-- <h5 class="footprint">All original content created on your website is secured by copyright law.</h5> -->
+                            <ul>
+                                <li><img src="images/bar-footer.jpg" alt=""></li>
+                            </ul>
+                        </div>
+                    </footer>
+
+                </div>
+
+                <!-- <div class="col-md-3 no-padding dpnones">
+                <div class="project-calculator">
+                    <div id="gcCalculator">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="related-generalCares">
+                            <div class="generalCare-post" ng-repeat="x in pageVM.relatedgeneralCares track by $index">
+                                <h3>{{x.programName}}</h3>
+                                <img src="uploads/{{x.imageLink}}" class="generalCare-list-thumb-image"/>
+                                <p>
+                                    {{x.programDescription.substring(0,100)}}
+                                </p>
+                                <a ng-href="/#/generalcaredetails/{{x._id}}" class="tribe-events-read-more">View
+                                    Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+                <!-- Start Modal -->
+                <!-- <div class="modal fade" id="orphanListModal" tabindex="-1" role="dialog" data-ng-if="(selectedRecurring===false || selectedRecurring) &&
+            (selectedDescend === false || selectedDescend) && 
+             amountValue && selectedCount && selectedGender" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog txtright" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h2 class="modal-title" id="exampleModalLabel">{{"SELECT ORPHANS" | translate}}</h2>
+                            </div>
+                            <div class="modal-body darachk">
+                                <div class="row">
+                                    <p class="text-muted col-md-8" ng-if="!pageVM.orphans.length">
+                                        {{'NO ORPHAN(S) MATCHES THE GIVEN CRITERIA.' | translate}}</p>
+                                    <div class="col-md-4" ng-repeat="role in pageVM.orphans">
+                                        <div class="box box-warning">
+                                            <div class="box-header with-border">
+                                                <div class="already-in-cart" ng-if="role.alreadyInCart">
+                                                    {{'Already in Cart' | translate}}</div>
+                                                <input type="checkbox" checklist-model="user.roles"
+                                                    checklist-value="role._id">
+                                                <h3 class="box-title" title="{{role.orphanName}}">{{role.orphanName |
+                                                limitTo:10}}{{role.orphanName.length>10?'...':''}}</h3>
+                                            </div>
+                                            <div class="box-body" style="background: #2B2B2B;">
+                                                <div class="mainhd">
+                                                    <p style="line-height: 10px;">
+                                                        {{(role.descent).toUpperCase() | translate}}</p>
+                                                    <p style="line-height: 10px;">{{role.gender}}</p>
+                                                    <p style="line-height: 10px;">{{age(role.dateOfBirth)}}-Years</p>
+                                                </div>
+                                                <img ng-src="{{role.imageLink?'uploads/'+role.imageLink:'/images/default-img.jpg'}}"
+                                                    onerror="this.src='/images/default-img.jpg'"
+                                                    class="generalCare-list-image img-circle pull-right storp" style="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <span class="errorspon"
+                                    ng-show="(user.roles.length > 0 && selectedCount != user.roles.length) ? true : false">
+                                    {{'SELECTED_ORPHAN_COUNT_NOT_EQ' | translate}}
+                                </span>
+                                <button type="button" class="grop-btn  grop-btn_submit" style=""
+                                    data-dismiss="modal">{{'SELECT' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <orphan-selection-modal-component  compactmode="'true'" ></orphan-selection-modal-component>
+
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        SocialShareKit.init();
+
+    </script>

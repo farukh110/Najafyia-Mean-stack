@@ -1,0 +1,287 @@
+<style>
+    .height {
+        min-height: 200px;
+    }
+
+    .icon {
+        font-size: 47px;
+        color: #5CB85C;
+    }
+
+    .iconbig {
+        font-size: 77px;
+        color: #5CB85C;
+    }
+
+    .table>tbody>tr>.emptyrow {
+        border-top: none;
+    }
+
+    .table>thead>tr>.emptyrow {
+        border-bottom: none;
+    }
+
+    .table>tbody>tr>.highrow {
+        border-top: 3px solid;
+    }
+</style>
+
+
+<div data-ng-controller="receiptController" data-ng-init="getAllReceipts()">
+    <!-- Content Wrapper. Contains religiousPayment content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (religiousPayment header) -->
+            <!--<section class="content-header">-->
+            <!--</section>-->
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your religiousPayment Content Here -->
+                <div class="row">
+                    <div class="col-md-10 col-xs-12 col-md-offset-1">
+                        <div class="col-md-8 nopadding">
+                            <h4>{{'RECEIPTS' | translate}}</h4>
+                        </div>
+                    </div>
+
+                    <div class="col-md-10  col-xs-12 col-md-offset-1">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="box-title">
+
+                                </div>
+                            </div>
+                            <div class="box-body overflowTable">
+                                <form role="form">
+                                    <table class="table table-responsive">
+                                        <thead>
+                                            <td>
+                                                S.No
+                                            </td>
+                                            <td>
+                                                <input id="RecpNameFilter" placeholder="{{'NAME' | translate}}"
+                                                    class="form-control" ng-model="search.name" />
+                                            </td>
+                                            <td>
+                                                <input id="RecpCateoryFilter" placeholder="{{'CATEGORY' | translate}}"
+                                                    class="form-control" ng-model="search.category" />
+                                            </td>
+                                            <td>
+                                                <input id="RecpInvNoFilter" placeholder="{{'INVOICE' | translate}} #"
+                                                    class="form-control" ng-model="search.inv" />
+                                            </td>
+                                            <td>
+                                                <input id="DateFilter" placeholder="{{'DATE' | translate}}"
+                                                    class="form-control" ng-model="search.date" />
+                                            </td>
+                                            <td style="width: 146px;">
+                                                <input id="AmountFilter" placeholder="{{'AMOUNT' | translate}}"
+                                                    class="form-control" ng-model="search.amount" />
+
+                                                <input id="CurrencyFilter" placeholder="{{'CURRENCY' | translate}}"
+                                                    class="form-control" ng-model="search.currency" />
+                                            </td>
+                                            <td>
+                                                {{'ACTIONS' | translate}}
+                                            </td>
+                                        </thead>
+                                        <tr ng-repeat="receipt in receiptDetails
+                                     | filter : {donationdetails : {program : { programName : search.category }}}
+                                     | filter : {invoiceNo : search.inv}
+                                     | filter : {totalAmount : search.amount}
+                                     | filter : {donor : { donarName : search.name } }
+                                     | filter : {created : search.date}
+                                     |filter : {currencyTitle: search.currency} track by $index">
+                                            <td>{{$index+1}}</td>
+                                            <td>
+                                                <p ng-repeat="dd in receipt.donor">{{dd.donarName}}</p>
+                                            </td>
+
+                                            <td>
+                                                <div ng-repeat="pp in receipt.donationdetails">
+                                                    <p>{{pp.program[0].programName}}
+                                                        <span ng-if="pp.programSubCategory[0].programSubCategoryName">
+                                                            : {{pp.programSubCategory[0].programSubCategoryName}}
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p>{{receipt.invoiceNo}}</p>
+                                            </td>
+                                            <td>
+                                                <p>{{ receipt.created | date : "dd-MM-y"}}</p>
+                                            </td>
+                                            <td>
+                                                <table class="table table-bordered">
+                                                    <tr ng-repeat="pp in receipt.donationdetails">
+                                                        <td>{{ pp.donation.currency +" "+ pp.amount}}</td>
+                                                    </tr>
+                                                </table>
+                                                <p ng-if="receipt.totalInUSD">
+                                                    {{'TOTAL' | translate}} :
+                                                    {{ receipt.currency +" "+ receipt.totalInUSD}}</p>
+                                                <p ng-if="receipt.totalInEUR">
+                                                    {{'TOTAL' | translate}} :
+                                                    {{ receipt.currency +" "+ receipt.totalInEUR}}</p>
+                                                <p ng-if="receipt.totalInGBP">
+                                                    {{'TOTAL' | translate}} :
+                                                    {{ receipt.currency +" "+ receipt.totalInGBP}}</p>
+                                            </td>
+
+                                            <!--<td>-->
+                                            <!--<p class="{{receipt.isActive==true?'bg-success':'btn-danger'}}">-->
+                                            <!--{{receipt.isActive==true?'Active':'Inactive' }}</p>-->
+                                            <!--</td>-->
+                                            <td>
+                                                <!--<a href="/#/admin/updatereligiousPayment?religiousPaymentId={{religiousPayment._id}}"><i-->
+                                                <!--class="fa fa-edit">Edit</i></a> |-->
+                                                <!--<button class="{{receipt.isActive==true?'btn btn-danger':'btn btn-success'}}"-->
+                                                <!--data-ng-click="religiousPaymentVM.deleteReligiousPayment(religiousPayment._id,religiousPayment.isActive);">-->
+                                                <!--{{religiousPayment.isActive==true?'Deactivate':'Activate'}}-->
+                                                <!--</button>-->
+
+                                                <a href="" class="btn btn-transparent btn-xs tooltips"
+                                                    data-ng-click="viewReceipt(receipt.invoiceNo);" data-toggle="modal"
+                                                    data-target="#viewReceiptModal">
+                                                    <i title="View Receipt" class="fa fa-expand"></i>
+
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                            <div class="box-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!--Modal for Receipt-->
+            <section class="content" ng-controller="receiptController">
+                <div ui-grid="customer" ui-grid-pagination class="grid"></div>
+                <div class="modal fade in" role="dialog" id="viewReceiptModal" tabindex="-1"
+                    aria-labelledby="myModalLabel">
+
+                    <div class="modal-dialog  modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">{{receiptsDetails.user.displayName}}</h4>
+                            </div>
+                            <div class="modal-body" id="innerReceiptModal">
+                                <div class="container" style="width:  auto;">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="text-center">
+                                                <img src="images/logo.png" alt="">
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <!-- <div class="col-xs-12">
+                                        <div class="text-center">
+                                            <h2>{{'RECEIPT' | translate}}</h2>
+                                        </div>
+                                        <hr>
+                                    </div> -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel-heading">
+                                                <h3 class="text-center"><strong>{{'RECEIPT' | translate}}
+                                                        # : {{receiptsDetails.invoiceNo}}</strong></h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-condensed">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <td><strong>{{'NAME' | translate}}</strong></td>
+                                                                <td><strong>{{'CATEGORY' | translate}}</strong>
+                                                                </td>
+                                                                <td><strong>{{'TOTAL' | translate}}</strong></td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <p ng-repeat="dd in receiptsDetails.donor">
+                                                                        {{dd.donarName}}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <div
+                                                                        ng-repeat="pp in receiptsDetails.donationdetails">
+                                                                        <p ng-repeat="programName in pp.program">
+                                                                            {{programName.programName}}</p>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <p ng-if="receiptsDetails.totalInUSD">
+                                                                        {{ receiptsDetails.currency +" "+ receiptsDetails.totalInUSD}}
+                                                                    </p>
+                                                                    <p ng-if="receiptsDetails.totalInEUR">
+                                                                        {{ receiptsDetails.currency +" "+ receiptsDetails.totalInEUR}}
+                                                                    </p>
+                                                                    <p ng-if="receiptsDetails.totalInGBP">
+                                                                        {{ receiptsDetails.currency +" "+ receiptsDetails.totalInGBP}}
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <!--<tr>-->
+                                                            <!--<td class="emptyrow"></td>-->
+                                                            <!--<td class="emptyrow"></td>-->
+                                                            <!--<td class="emptyrow text-center"><strong>Shipping</strong>-->
+                                                            <!--</td>-->
+                                                            <!--<td class="emptyrow text-right">$20</td>-->
+                                                            <!--</tr>-->
+                                                            <!--<tr>-->
+                                                            <!--<td class="emptyrow"><i class="fa fa-barcode iconbig"></i>-->
+                                                            <!--</td>-->
+                                                            <!--<td class="emptyrow"></td>-->
+                                                            <!--<td class="emptyrow text-center"><strong>Total</strong></td>-->
+                                                            <!--<td class="emptyrow text-right">$978.00</td>-->
+                                                            <!--</tr>-->
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default btn-danger btn-sm"
+                                    data-dismiss="modal">{{'CLOSE' | translate}}
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm"
+                                    data-ng-click="printReceipt(receiptsDetails.documentPath);"> {{'PRINT' | translate}}
+                                </button>
+                                <button type="button" data-ng-click="sendReceiptEmail(receiptsDetails,'receipt');"
+                                    class="btn btn-default  btn-sm">
+                                    {{'EMAIL' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- /.content -->
+        </div>
+        <!-- HEADER -->
+
+    </div>
+</div>
+<script>
+    jQuery(function () {
+        jQuery('#edit').editable({ inlineMode: false, fullreligiousPayment: true })
+    });
+
+</script>

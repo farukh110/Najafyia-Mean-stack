@@ -1,0 +1,143 @@
+<div class="grop-page container padding-cnt-no grop-full-width">
+    <div class="no-sidebar">
+        <div data-ng-controller="religiousPaymentController as religiousPaymentVM"
+            data-ng-init="religiousPaymentVM.getReligiousPaymentSubCategories();religiousPaymentVM.getCountryList();religiousPaymentVM.amount=0;">
+            <div class="row">
+                <div class="col-md-12  col-xs-12">
+                    <div class="project-detail-banner religiousbanner">
+                        <h1>{{religiousPaymentVM.religiousPaymentDetail.programName}}</h1>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xs-12">
+                    <p class="text-justify"
+                        data-ng-bind-html="religiousPaymentVM.religiousPaymentDetail.programDescription"></p>
+                </div>
+                <!--<div class="gap"></div>-->
+                <div class="col-md-12 col-xs-12 no-padding">
+                    <div class="col-md-3 col-xs-12 dpnone">
+                        <div class="project-calculator">
+                            <div id="religiousPaymentCalculator">
+
+                            </div>
+                            <div id="dummyDiv"
+                                ng-show="(selectedCategory == null || selectedCategory == '') ? true : false">
+                                <div class="form-group ng-scope">
+                                    <label>{{ 'COUNT' | translate }} </label>
+                                    <input type="text" value="" placeholder="{{'PLEASE SELECT' | translate}}"
+                                        class="form-control" ng-disabled="true">
+                                </div>
+                                <div class="form-group ng-scope">
+                                    <label>{{ 'AMOUNT' | translate }} </label>
+                                    <input type="text" class="form-control" ng-disabled="true">
+                                </div>
+                                <div class="form-group ng-scope">
+                                    <label>{{ 'TOTAL AMOUNT' | translate }} </label>
+                                    <input type="text" class="form-control" ng-disabled="true">
+                                </div>
+                                <div class="row ng-scope">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 no-padding text_center">
+                                        <button class="grop-btn-addcart  grop-btn_submit" ng-disabled="true">
+                                            {{ 'ADD TO CART' | translate }}
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 no-padding text_center">
+                                        <button class="grop-btn-donate  grop-btn_submit" ng-disabled="true">
+                                            {{ 'DONATE NOW' | translate }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-9 customBox no-padding grop-float_left">
+                        <div class="col-md-6 contentdyn"
+                            data-ng-repeat="x in religiousPaymentVM.religiousPaymentSubCategories" ng-if="x.isLanding">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <div class="box-title">{{x.programSubCategoryName | limitTo:84}}</div>
+                                </div>
+                                <div class="box-body">
+                                    <!-- <img ng-src="uploads/{{x.imageLink}}" class="religiouspayment-list-image" style="width:100%; height:200px;">
+                                <p style="text-align:justify;height: 50px;">
+                                    {{x.description.substring(0,100)}}
+                                </p>
+
+                                <a ng-href="/#/subcategorydetail/{{x._id}}?programid={{religiousPaymentVM.religiousPaymentDetail._id}}"  class="grop-btn grop-btn_overly grop-btn_submit">View Details</a> -->
+
+                                    <a data-ng-if="religiousPaymentVM.religiousPaymentDetail.programName !='Khums' && religiousPaymentVM.religiousPaymentDetail.slug !='-niyaz' && religiousPaymentVM.religiousPaymentDetail.programName !='Donations for Holy Shrines' && religiousPaymentVM.religiousPaymentDetail.programName !='Dons pour les Saints Mausolées' && religiousPaymentVM.religiousPaymentDetail.programName != 'الخمس' && religiousPaymentVM.religiousPaymentDetail.programName != 'النذر' && religiousPaymentVM.religiousPaymentDetail.programName != 'التبرعات للعتبات المقدسة'"
+                                        ng-href="/#/subcategorydetail/{{x.slug}}?programid={{religiousPaymentVM.religiousPaymentDetail.slug}}"
+                                        class="readMore"><img ng-src='uploads/{{x.imageLink}}'
+                                            class='project-list-image'>
+                                    </a>
+
+                                    <a style="cursor: default;"
+                                        data-ng-if="religiousPaymentVM.religiousPaymentDetail.programName =='Khums' || religiousPaymentVM.religiousPaymentDetail.slug =='-niyaz' || religiousPaymentVM.religiousPaymentDetail.programName =='Donations for Holy Shrines' || religiousPaymentVM.religiousPaymentDetail.programName =='Dons pour les Saints Mausolées' || religiousPaymentVM.religiousPaymentDetail.programName == 'الخمس' || religiousPaymentVM.religiousPaymentDetail.programName == 'النذر' || religiousPaymentVM.religiousPaymentDetail.programName == 'التبرعات للعتبات المقدسة'"
+                                        class="readMore"><img ng-src='uploads/{{x.imageLink}}'
+                                            class='project-list-image'>
+                                    </a>
+
+                                    <!-- <img  ng-src="uploads/{{x.imageLink}}"  class="project-list-image"> -->
+
+                                    <div class="readmore-aun" data-ng-if="!religiousPaymentVM.MobileDevice">
+                                        <p class="">{{readmoreText(x.description,3)}}</p>
+
+                                        <a ng-href="/#/subcategorydetail/{{x.slug}}?programid={{religiousPaymentVM.religiousPaymentDetail.slug}}"
+                                            data-ng-if="(x.description.length >= 178 && x.description) && religiousPaymentVM.religiousPaymentDetail.programName !='Khums' && religiousPaymentVM.religiousPaymentDetail.programName !='Niyaz' && religiousPaymentVM.religiousPaymentDetail.programName !='Donations for Holy Shrines' && religiousPaymentVM.religiousPaymentDetail.programName !='Dons pour les Saints Mausolées'"
+                                            data-ng-if="x.description.length >= 178">{{'READ MORE' | translate }}</a>
+                                    </div>
+                                    <div class="readmore-aun" data-ng-if="religiousPaymentVM.MobileDevice">
+                                        <p class="">{{readmoreText(x.description,3)}}</p>
+
+                                        <a ng-href="/#/subcategorydetail/{{x.slug}}?programid={{religiousPaymentVM.religiousPaymentDetail.slug}}"
+                                            data-ng-if="(x.description.length >= 178 && x.description) && religiousPaymentVM.religiousPaymentDetail.programName !='Khums' && religiousPaymentVM.religiousPaymentDetail.programName !='Niyaz' && religiousPaymentVM.religiousPaymentDetail.programName !='Donations for Holy Shrines' && religiousPaymentVM.religiousPaymentDetail.programName !='Dons pour les Saints Mausolées'"
+                                            data-ng-if="x.description.length >= 178">{{'READ MORE' | translate }}</a>
+                                    </div>
+                                    <!-- <div style=" text-align: justify;" hm-read-more hm-html="{{x.description}}" 
+                                hm-link="/#/subcategorydetail/{{x._id}}?programid={{religiousPaymentVM.religiousPaymentDetail._id}}" hm-limit="300"
+                                hm-more-text="{{' READ MORE' | translate }}" hm-dots-class="{{toggle-dots-grey}}"
+                                hm-link-class="readMore">
+                        </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-3 no-padding dpnones">
+                <div class="project-calculator">
+                    <div id="religiousPaymentCalculator">
+
+                    </div>
+                    <div id="dummyDiv" ng-show="(selectedCategory == null || selectedCategory == '') ? true : false">
+                            <div class="form-group ng-scope">
+                                <label>{{ 'COUNT' | translate }} </label>
+                                <input type="text" value="" placeholder="{{'PLEASE SELECT' | translate}}" class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="form-group ng-scope">
+                                <label>{{ 'AMOUNT' | translate }} </label>
+                                <input type="text" class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="form-group ng-scope">
+                                <label>{{ 'TOTAL AMOUNT' | translate }} </label>
+                                <input type="text" class="form-control" ng-disabled="true">
+                            </div>
+                            <div class="row ng-scope">
+                                <div class="col-md-6 col-sm-6 col-xs-6 no-padding text_center">
+                                    <button class="grop-btn-addcart  grop-btn_submit" ng-disabled="true">
+                                        {{ 'ADD TO CART' | translate }}
+                                    </button>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 no-padding text_center">
+                                    <button class="grop-btn-donate  grop-btn_submit" ng-disabled="true">
+                                        {{ 'DONATE NOW' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+            </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

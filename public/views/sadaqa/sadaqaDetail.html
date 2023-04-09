@@ -1,0 +1,142 @@
+<div class="grop-page container padding-cnt-no grop-full-width" style="">
+    <div class="no-sidebar">
+        <div data-ng-controller="sadaqaController as pageVM"
+            data-ng-init="pageVM.getSadaqaDetail();pageVM.amount=0;">
+            <div class="row">
+                <div class="col-md-12 col-xs-12 ">
+                    <div class="project-detail-banner sadqabanner">
+                        <h1>{{pageVM.sadaqaDetail.programName}}</h1>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xs-12 ">
+                    <a class="printhed" href="#" class="" data-ng-if="!pageVM.printArb"><img src="images/print-logo.jpg" alt="">
+                        <h2 class="printhed">{{pageVM.sadaqaDetail.programName}}</h2>
+                    </a>
+                    <a class="printhed" href="#" class="" data-ng-if="pageVM.printArb"><img src="images/print-logo-arb.svg " alt="">
+                        <h2 class="printhed" style="margin-top: 3%;">{{pageVM.sadaqaDetail.programName}}</h2>
+                    </a>
+                </div>
+                <div class="col-md-3  col-xs-12 dpnone printsc">
+                    <div class="project-calculator">
+                        <div id="sadaqaCalculator" ng-show="pageVM.sadaqaDetail.slug == 'sadaqah-for-holy-personalities'">
+                        </div>
+                        <sadaqah-component ng-show="pageVM.sadaqaDetail.slug == 'sadaqah-a-day'" compactmode="'false'" ></sadaqah-component>
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="related-projects dpnones">
+                        <h4>{{'RELATED SADAQAH' | translate}}</h4>
+                        <div class="gap-small"></div>
+                        <div class="project-post"
+                            ng-repeat="x in pageVM.relatedSadaqas | unique:'x._id' track by $index">
+                            <h5>{{x.programName}}</h5>
+                            <div class="img-area">
+                                <a ng-href="/#/sadaqadetails/{{x.slug}}">
+                                    <img src="uploads/{{x.imageLink}}" class="project-list-thumb-image" /></a>
+                            </div>
+                            <div class="readmore-aun">
+                                <p class="content-aun">{{readmoreText(x.programDescription,2)}}</p>
+                                <a ng-href="/#/sadaqadetails/{{x.slug}}"
+                                    data-ng-if="x.programDescription.length >= 178">{{' READ MORE' | translate }}</a>
+                            </div>
+                            <!-- <div style=" text-align: justify;" hm-read-more hm-html="{{x.programDescription}}"
+                            hm-link="/#/sadaqadetails/{{x._id}}" hm-limit="300"
+                            hm-more-text="{{' READ MORE' | translate }}" hm-dots-class="{{toggle-dots-grey}}"
+                            hm-link-class="readMore">
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 grop-float_left">
+                    <div id="printableArea" class="resheight">
+                        <p class="text-justify" data-ng-bind-html="pageVM.sadaqaDetail.programDescription">
+                            {{pageVM.sadaqaDetail.programDescription.substring(0,1000)}}
+                            <!-- {{pageVM.description.para1}} -->
+                        </p>
+                        <div class="pagebreak"> </div>
+                        <!--<img class="center-block descriptionImage" src="uploads/{{pageVM.sadaqaDetail.imageLink}}">-->
+                        <p class="text-justify">
+                            <!-- {{pageVM.sadaqaDetail.programDescription.substring(0,531)}} -->
+                            <!-- {{pageVM.description.para2}} -->
+                        </p>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 printsc no-padding">
+                        <div class="col-md-4 col-sm-6 col-xs-12 socialButtons no-padding">
+                            <div class="socialnaj no-padding">
+                                <div class="shareButtons">
+                                    <div class="showSocialIconsR">
+                                        <div class="ssk-group">
+                                            <p>
+                                                <a href="" class="ssk ssk-facebook"></a>
+                                                <a href="" class="ssk ssk-twitter"></a>
+                                                <!-- <a href="" class="ssk ssk-google-plus"></a>
+                                            <a href="" class="ssk ssk-pinterest"></a>
+                                            <a href="" class="ssk ssk-tumblr"></a> -->
+                                                <!-- <a href="" class="ssk ssk-instagram"></a> -->
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <i class="fa fa-share-alt"></i>
+                                    <small>{{ 'SHARE' | translate}}</small>
+                                </div>
+                            </div>
+                            <div class="socialnaj no-padding">
+                                <div class="">
+                                    <a href="mailto:info@najafyia.org" target="_blank">
+                                        <i class="fa fa-envelope-o"></i>
+                                        <small>{{ 'EMAIL' | translate}}</small>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="socialnaj no-padding">
+                                <div class="" data-ng-click="pageVM.printContent('printableArea');">
+                                    <i class="fa fa-print"></i>
+                                    <small>{{ 'PRINT' | translate}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-12 printsc">
+                    <div class="related-projects dpnonesdesk">
+                        <h4>{{'RELATED SADAQAH' | translate}}</h4>
+                        <div class="gap-small"></div>
+                        <div class="project-post"
+                            ng-repeat="x in pageVM.relatedSadaqas | unique:'x._id' track by $index">
+                            <h5>{{x.programName}}</h5>
+                            <div class="img-area">
+                                <a ng-href="/#/sadaqadetails/{{x.slug}}">
+                                    <img src="uploads/{{x.imageLink}}" class="project-list-thumb-image" /></a>
+                            </div>
+                            <div class="readmore-aun" data-ng-if="!pageVM.MobileDevice">
+                                <p class="content-aun">{{readmoreText(x.programDescription,3)}}</p>
+                                <a ng-href="/#/sadaqadetails/{{x.slug}}"
+                                    data-ng-if="x.programDescription.length >= 178">{{' READ MORE' | translate }}</a>
+                            </div>
+                            <div class="readmore-aun" data-ng-if="pageVM.MobileDevice">
+                                <p class="content-aun-mobile">{{readmoreText(x.programDescription)}}</p>
+                                <a ng-href="/#/sadaqadetails/{{x.slug}}"
+                                    data-ng-if="x.programDescription.length >= 178">{{' READ MORE' | translate }}</a>
+                            </div>
+                            <!-- <div style=" text-align: justify;" hm-read-more hm-html="{{x.programDescription}}"
+                            hm-link="/#/sadaqadetails/{{x._id}}" hm-limit="300"
+                            hm-more-text="{{' READ MORE' | translate }}" hm-dots-class="{{toggle-dots-grey}}"
+                            hm-link-class="readMore">
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+                <footer>
+                    <div class="printhed">
+                        <!-- <h5 class="footprint">All original content created on your website is secured by copyright law.</h5> -->
+                        <ul>
+                            <li><img src="images/bar-footer.jpg" alt=""></li>
+                        </ul>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    SocialShareKit.init();
+</script>

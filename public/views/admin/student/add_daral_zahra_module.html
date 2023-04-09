@@ -1,0 +1,280 @@
+<div data-ng-controller="darAlZahraController as darAlZahraVM" data-ng-init="darAlZahraVM.getProgramType();">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="col-sm-8 col-xs-12 col-md-9 col-lg-10 ">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <div class="row">
+                    <div class="col-md-10 col-xs-12 col-md-offset-1">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <div class="col-md-10 box-title">
+                                    {{'ADD DAR AL ZAHRA'| translate}}
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <form role="form" name="publishForm" enctype="multipart/form-data"
+                                    data-ng-submit="darAlZahraVM.addDarAlZahra(publishForm.$valid)">
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 nopadding">
+                                            <label class="control-label">{{'DAR AL ZAHRA NAME'| translate}}</label>
+                                            <input type="text" name="darAlZahraName" required maxlength="80"
+                                                data-ng-model="darAlZahraVM.darAlZahraName"
+                                                class="form-control col-md-6"
+                                                placeholder="{{'DAR AL ZAHRA NAME'| translate}}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 nopadding">
+                                            <label class="control-label">{{'SLUG'| translate}}</label>
+                                     <input type="text" name="darAlZahraSlug" required maxlength="80"
+                                        data-ng-model="darAlZahraVM.darAlZahraSlug"
+                                        class="form-control col-md-6" placeholder="{{'SLUG'| translate}}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12"><br>
+                                        <label class="control-label">{{'DAR AL ZAHRA DESCRIPTION'| translate}}</label>
+                                        <div id="editor" aria-placeholder="Write">
+                                            <div id='adddaralzahra' name="adddaralzahra">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top:10px">
+                                        <div class="col-md-4">
+                                            <input type="checkbox" name="hasSubCategory"
+                                                ng-model="darAlZahraVM.hasCategories" />
+                                            <label class="control-label">{{'SUB CATEGORIES'| translate}}</label>
+                                        </div>
+                                        <div class="col-md-10" ng-show="darAlZahraVM.hasCategories">
+                                            <table class="table table-bordered">
+                                                <thead class="success">
+                                                    <td> {{'SELECT'| translate}}</td>
+                                                    <td>{{'CATEGORIES'| translate}}</td>
+                                                </thead>
+                                                <tr ng-repeat="x in darAlZahraVM.darAlZahraCategories track by $index">
+                                                    <td>
+                                                        <input type="checkbox" class=""
+                                                            ng-click="darAlZahraVM.addOrRemoveSubcategory(x)">
+                                                    </td>
+                                                    <td>{{x.programSubCategoryName}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="margin-top:20px">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <label class="control-label">{{'DAR AL ZAHRA IMAGE'| translate}}</label>
+                                                <input type="file" name="file" required file-model="darAlZahraVM.file"
+                                                    class="image " placeholder="Dar Al Zahra Image" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top:20px">
+                                        <div class="box box-info">
+                                            <div class="box-header">
+                                                <h3 class="box-title">{{'DONATION PROCESS'| translate}}</h3>
+                                            </div>
+                                            <div class="box-body">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-8">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="minimumAmount"
+                                                                    ng-model="darAlZahraVM.isMinimumAmount" />
+                                                                {{'MIN AMOUNT'| translate}}</label>
+                                                        </div>
+                                                        <div class="col-md-4" ng-show="darAlZahraVM.isMinimumAmount">
+                                                            <label>{{'ENTER VALUE'| translate}}</label>
+                                                            <div class="input-group date">
+                                                                <input type="number"
+                                                                    class="form-control pull-right validateNumber"
+                                                                    maxlength="8"
+                                                                    ng-required="darAlZahraVM.isMinimumAmount"
+                                                                    ng-model="darAlZahraVM.minimumAmount" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="recurring"
+                                                                    ng-model="darAlZahraVM.isRecurring" />
+                                                                {{'RECURRING'| translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="yearAround"
+                                                                    ng-model="darAlZahraVM.isYearAround" />
+                                                                {{'YEAR AROUND'| translate}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                     <input type="checkbox" name="isSyed" ng-model="darAlZahraVM.isSyed" /> {{'SYED' | translate}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="amount"
+                                                                    ng-model="darAlZahraVM.isAmount" />
+                                                                {{'AMOUNT'| translate}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" ng-show="darAlZahraVM.isAmount">
+                                                    <div class="col-md-4">
+                                                        <label>{{'AMOUNT'| translate}}</label>
+                                                        <div class="input-group date">
+                                                            <input type="number"
+                                                                class="form-control pull-right validateNumber"
+                                                                maxlength="8" ng-required="darAlZahraVM.isAmount"
+                                                                ng-model="darAlZahraVM.amount" />
+                                                        </div>
+                                                        <label
+                                                            ng-if="darAlZahraVM.minimumAmount > 0 && darAlZahraVM.minimumAmount > darAlZahraVM.amount"
+                                                            class="text-danger">Fixed Amount should be greater than
+                                                            minimum amount</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="duration"
+                                                                    ng-model="darAlZahraVM.isDuration" />
+                                                                {{'DURATION'| translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" ng-show="darAlZahraVM.isDuration">
+                                                    <div class="col-md-4">
+                                                        <label>{{'START DATE'| translate}}</label>
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtFromDate"
+                                                                ng-click="setPosFromDate();"
+                                                                ng-change="startDateChange()" name="durationStart"
+                                                                class="form-control pull-right readonly"
+                                                                ng-required="darAlZahraVM.isDuration"
+                                                                ng-model="darAlZahraVM.StartDate" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>{{'END DATE'| translate}}</label>
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtToDate" ng-click="setPosToDate();"
+                                                                class="form-control pull-right readonly"
+                                                                ng-required="darAlZahraVM.isDuration"
+                                                                ng-model="darAlZahraVM.EndDate" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="isCount"
+                                                                    ng-model="darAlZahraVM.isCount" />
+                                                                {{'COUNT'| translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" ng-show="darAlZahraVM.isCount">
+                                                    <div class="col-md-4">
+                                                        <label>{{'MIN' | translate}}</label>
+                                                        <input type="text" class="form-control validateNumber"
+                                                            ng-model="darAlZahraVM.count.min" maxlength="3"
+                                                            ng-required="darAlZahraVM.isCount" placeholder="1" />
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>{{'MAX' | translate}}</label>
+                                                        <input type="text" class="form-control validateNumber"
+                                                            ng-model="darAlZahraVM.count.max" maxlength="3"
+                                                            ng-required="darAlZahraVM.isCount" placeholder="100" />
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>{{'INTERVAL'| translate}}</label>
+                                                        <input type="text" class="form-control validateNumber"
+                                                            ng-model="darAlZahraVM.count.interval" maxlength="3"
+                                                            ng-required="darAlZahraVM.isCount" placeholder="10" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4" style="margin-top: 10px;">
+                                                        <label>{{ 'PRIORITY RANK' | translate }}</label>
+                                                        <input type="number" class="form-control validateNumber"
+                                                            ng-model="darAlZahraVM.programPriority" min='1' required
+                                                            placeholder="1" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="col-md-2 col-md-offset-10">
+                                                    <button name="publish" type="submit"
+                                                        class="btn btn-primary pull-right"
+                                                        ng-disabled="(darAlZahraVM.isMinimumAmount && darAlZahraVM.isAmount) && darAlZahraVM.minimumAmount > 0 && (darAlZahraVM.minimumAmount > darAlZahraVM.amount)"
+                                                        style="margin-top:5px;">{{'ADD DAR AL ZAHRA'| translate}}</button>
+                                                </div>
+                                            </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- HEADER -->
+    </div>
+</div>
+<script>
+    jQuery(document).on('keypress paste', '.validateNumber', function (event) {
+        var regex = new RegExp(/^[A-Za-z~`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/);
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (regex.test(key)) {
+            jQuery(this).focus();
+            jQuery(this).parent().next('span:first').html("<span class='inputError'></span>").show().fadeOut();
+            return false;
+        } else {
+            jQuery(this).parent().next('span:first').html("");
+            return true;
+        }
+    });
+    jQuery(".readonly").on('keydown paste', function (e) {
+        e.preventDefault();
+    });
+</script>
+<script>
+    jQuery(function () {
+        jQuery('#adddaralzahra').editable({ inlineMode: false, fullPage: true });
+    });
+</script>
